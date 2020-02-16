@@ -65,12 +65,10 @@ class Feed extends Component {
                     end={{x: 0.5, y: 1.0}} 
                     locations={[0,0.5,0.6]}
                     style={styles.container} >
-                    <Header />              
-                    <View style={styles.imageSlider}>
-                        <ImageSlider images={images} /> 
-                    </View>
+                    <Header />                                          
                     <View style={styles.containerPosts}>
                         <ScrollView>
+                            <ImageSlider images={images}/> 
                             <Text style={styles.title}>Destaques</Text>
                             <FlatList horizontal                        
                                 data={this.state.posts}
@@ -93,8 +91,8 @@ class Feed extends Component {
                                 // destructuring de item
                                 renderItem={({ item }) =>                         
                                 <Post key={item.id} {...item} />}/>
-                        </ScrollView>
 
+                        </ScrollView>
                     </View>
                     {/* <View style={styles.b}>
                         <Post />        
@@ -115,9 +113,9 @@ const styles = StyleSheet.create({
         // backgroundColor: '#f5fcff'        
 
     },
-    imageSlider: {
-        flex: 1
-    },
+    // imageSlider: {
+    //     flex: 1
+    // },
     containerPosts: {
         flex: 2
     },

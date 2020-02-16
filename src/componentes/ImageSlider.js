@@ -76,11 +76,11 @@ class ImageSlider extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        // flex: 1,
         backgroundColor: 'green'
     },
     image: {        
-        // height: 200,
+        height: 200,
         width: Dimensions.get("window").width,
         // resizeMode: "stretch"
     },

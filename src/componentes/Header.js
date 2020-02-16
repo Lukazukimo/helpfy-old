@@ -21,8 +21,8 @@ class Header extends Component {
                         <Text style={styles.title}>Helpfy</Text>
                     </View>
                     <View style={styles.iconContainer}>
-                        <Icon name='bell' size={30}/>
-                        <Icon name='search' size={30}/>
+                        <Icon name='bell' size={30} style={styles.icon}/>
+                        <Icon name='search' size={30} style={styles.icon}/>
                     </View>
                 </View>
             // </LinearGradient>
@@ -34,12 +34,12 @@ const styles = StyleSheet.create({
     container: {
         marginTop: Platform.OS === 'ios' ? 20 : 0,
         padding: 10,
-        borderBottomWidth: 1,
-        borderColor: '#bbb',
+        // borderBottomWidth: 1,
+        // borderColor: '#bbb',
         width: '100%',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        backgroundColor: 'transparent',
+        backgroundColor: 'white',
     },
     rowContainer: {
         flexDirection: 'row',
@@ -66,6 +66,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginLeft: 10
     },
+    icon: {
+        paddingRight: 10,
+        paddingLeft: 10
+    }
     // user: {
     //     fontSize: 10,
     //     color: '#888'
