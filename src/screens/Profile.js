@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
     marginTop:10
 	},
 	icons: {
+        // teste
 		marginTop: 40,
 		height: 56,
 		flexDirection: 'row',
