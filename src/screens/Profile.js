@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     marginTop:10
 	},
 	icons: {
-        // ganbriel coctreoit da silvsdas
+        // Fabio
 		marginTop: 40,
 		height: 56,
 		flexDirection: 'row',
