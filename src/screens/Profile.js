@@ -44,7 +44,7 @@ export default class Profile extends Component {
 const styles = StyleSheet.create({
   header: {
     backgroundColor: "#136a8a",
-    height:180,
+    height:200,
   },
   avatar: {
     width: 130,
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     marginBottom:10,
     alignSelf:'center',
     position: 'absolute',
-    marginTop:110
+    marginTop:130
   },
   name:{
     fontSize:22,
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     padding:22,
-    marginTop: -5
+    marginTop: 5
   },
   bodyDescription: {
     flex: 1,
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     marginTop:10
 	},
 	icons: {
-		marginTop: 65,
+		marginTop: 40,
 		height: 56,
 		flexDirection: 'row',
 		borderTopColor: 'black',
