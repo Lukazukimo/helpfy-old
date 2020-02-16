@@ -52,7 +52,7 @@ const MenuConfig = {
 
 const MenuNavigator = createBottomTabNavigator(MenuRoutes, MenuConfig)
 
-// const SplashRouter = createSwitchNavigator({
+// const SplashRouter = createSwitchNavigator({ ddd
 //     Splash: Splash,
 //     App: MenuNavigator,
 // }, {
