@@ -4,6 +4,7 @@ import {
 } from 'react-navigation'
 import Icon from 'react-native-vector-icons/Feather'
 import Feed from './screens/Feed'
+import Profile from './screens/Profile'
 
 const MenuRoutes = {
     Feed: {
@@ -15,18 +16,9 @@ const MenuRoutes = {
                 <Icon name='home' size={30} color={tintColor}/>
         }
     },
-    Notification: {
-        name: 'Notification',
-        screen: Feed,
-        navigationOptions: {
-            title: 'Add Picture',
-            tabBarIcon: ({ tintColor }) =>
-                <Icon name='mail' size={30} color={tintColor} />
-        }
-    },
     Profile: {
         name: 'Profile',
-        screen: Feed,
+        screen: Profile,
         navigationOptions: {
             title: 'Profile',
             tabBarIcon: ({ tintColor: color }) =>
@@ -39,7 +31,7 @@ const MenuRoutes = {
         navigationOptions: {
             title: 'Message',
             tabBarIcon: ({ tintColor: color }) =>
-                <Icon name='message-square' size={30} color={ color } />
+                <Icon name='mail' size={30} color={ color } />
 
         }
     },

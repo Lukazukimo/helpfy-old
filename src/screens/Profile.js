@@ -1,81 +1,128 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { logout } from '../store/actions/user'
+import React, { Component } from 'react';
 import {
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity
 } from 'react-native'
 import { Gravatar } from 'react-native-gravatar'
+import Icon from 'react-native-vector-icons/Feather'
 
-class Profile extends Component{
-    logout = () => {
-        this.props.onLogout()
-        this.props.navigation.navigate('Auth')
-    }
+export default class Profile extends Component {
 
-    render() {
-        const options = { email: this.props.email, secure: true }
-        return(
-            <View style={styles.container}>
-                <Gravatar options={options} style={styles.avatar}/>
-                <Text style={styles.nickname}>{this.props.name}</Text>
-                <Text style={styles.email}>{this.props.email}</Text>
-                <TouchableOpacity onPress={this.logout} 
-                    style={styles.buttom}>
-                    <Text style={styles.buttomText}>Sair</Text>
-                </TouchableOpacity>
-            </View>
-        )
-    }
+	render() {
+		const options = { email: this.props.email, secure: true }
+		return (
+			<View style={styles.container}>
+				<View style={styles.header}></View>
+					<Gravatar options={options} style={styles.avatar}/>
+					<View style={styles.body}>
+						<View style={styles.bodyContent}>
+							<Text style={styles.name}>Gabriel Ciccotti Monteiro</Text>
+						</View>
+						<View style={styles.bodyDescription}>
+							<Text style={styles.description}>Frase motivacional aleatória</Text>
+						</View>
+						<View style={styles.icons}>
+							<TouchableOpacity style={styles.buttonContainer}>
+								<Icon name='user' size={30} color={'blue'}/>	 
+	        		</TouchableOpacity>
+							<TouchableOpacity style={styles.buttonContainer}>
+								<Icon name='edit' size={30} color={'blue'}/>	  
+	        		</TouchableOpacity>
+							<TouchableOpacity style={styles.buttonContainer}>
+								<Icon name='message-circle' size={30} color={'blue'}/>	 
+	        		</TouchableOpacity>
+						</View>          
+					</View>
+			</View>
+	  )
+	}
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center'
-    },
-    avatar: {
-        width: 150,
-        height: 150,
-        borderRadius: 75,
-        marginTop: 100
-    },
-    nickname: {
-        marginTop: 30,
-        fontSize: 30,
-        fontWeight: 'bold'
-    },
-    email: {
-        marginTop: 30,
-        fontSize: 25
-    },
-    buttom: {
-        marginTop: 30,
-        padding: 10,
-        backgroundColor: '#4286f4'
-    },
-    buttomText: {
-        fontSize: 20,
-        color: '#fff'
-    }
-})
+  header: {
+    backgroundColor: "#136a8a",
+    height:180,
+  },
+  avatar: {
+    width: 130,
+    height: 130,
+    borderRadius: 63,
+    borderWidth: 4,
+    borderColor: "white",
+    marginBottom:10,
+    alignSelf:'center',
+    position: 'absolute',
+    marginTop:110
+  },
+  name:{
+    fontSize:22,
+    color:"#FFFFFF",
+    fontWeight:'600',
+  },
+  body:{
+    marginTop:40,
+  },
+  bodyDonations: {
+    flex: 1,
+    alignItems: 'flex-start',
+    padding:10,
+    marginTop:-50,
+  },
+  bodyContent: {
+    flex: 1,
+    alignItems: 'center',
+    padding:22,
+    marginTop: -5
+  },
+  bodyDescription: {
+    flex: 1,
+    alignItems: 'flex-start',
+    padding:15,
+  },
+  name:{
+    fontSize:28,
+    color: "#696969",
+    fontWeight: "600"
+  },
+  info:{
+    fontSize:16,
+    color: "#00BFFF",
+    marginTop:10
+	},
+	icons: {
+		marginTop: 65,
+		height: 56,
+		flexDirection: 'row',
+		borderTopColor: 'black',
+		borderTopWidth: 1,
+		borderBottomColor: 'black',
+		borderBottomWidth: 1,
+	},
+  description:{
+    fontSize:16,
+    color: "#696969",
+    marginTop:15,
+    textAlign: 'justify'
+  },
+  donations:{
+    fontSize:18,
+    color: "#696969",
+    marginTop:10,
+    fontWeight: 'bold'
+  },
+  buttonContainer: {
+		height:55,
+		marginTop:10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    width:140,
+		borderRadius:40,
+  },
+});
+ 
 
-// user = estado global dentro de storeConfig
-const mapStateToProps = ({ user }) => {
-    return{
-        email: user.email,
-        name: user.name,
-    }
-}
 
-const mapDispatchToProps = dispatch => {
-    return {
-        // logout do arquivo actions/user
-        onLogout: () => dispatch(logout())
-    }
-}
-
-// export default Profile
-export default connect(mapStateToProps, mapDispatchToProps)(Profile)
