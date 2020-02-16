@@ -99,7 +99,8 @@ const styles = StyleSheet.create({
 		borderTopColor: 'black',
 		borderTopWidth: 1,
 		borderBottomColor: 'black',
-		borderBottomWidth: 1,
+    borderBottomWidth: 1,
+    //escrevi e sai correndo pau no cu de quem tá lendo
 	},
   description:{
     fontSize:16,
