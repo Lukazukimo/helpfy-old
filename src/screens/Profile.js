@@ -93,7 +93,6 @@ const styles = StyleSheet.create({
     marginTop:10
 	},
 	icons: {
-        // Fabio
 		marginTop: 40,
 		height: 56,
 		flexDirection: 'row',
@@ -101,7 +100,6 @@ const styles = StyleSheet.create({
 		borderTopWidth: 1,
 		borderBottomColor: 'black',
     borderBottomWidth: 1,
-    //escrevi e sai correndo pau no cu de quem tá lendo
 	},
   description:{
     fontSize:16,
