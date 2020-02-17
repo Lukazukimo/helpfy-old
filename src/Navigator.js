@@ -45,7 +45,12 @@ const MenuConfig = {
         activeTintColor: '#da6813',
         inactiveTintColor: '#993399',
         style: {
-            backgroundColor: 'rgba(107, 13, 200, 0.4)',
+            // backgroundColor: 'rgba(107, 13, 200, 0.4)',
+            backgroundColor: 'transparent',            
+            position: 'absolute',            
+            left: 0,
+            right: 0,
+            bottom: 0,
         }
     },    
 }

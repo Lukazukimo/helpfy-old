@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent'
     },
     image: {
-        width: Dimensions.get('window').width / 2,
-        height: Dimensions.get('window').width / 2,
+        width: Dimensions.get('window').width / (5/2),
+        height: Dimensions.get('window').width / (5/2),
         resizeMode: "stretch",
         margin: 10,
         borderRadius: 15

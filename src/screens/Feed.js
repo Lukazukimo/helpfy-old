@@ -4,12 +4,14 @@ import {
     StyleSheet,
     FlatList,
     Text,
-    ScrollView
+    ScrollView,
+    Dimensions
 } from 'react-native'
 import Header from '../componentes/Header'
 import Post from '../componentes/Post'
 import ImageSlider from '../componentes/ImageSlider'
 import LinearGradient from 'react-native-linear-gradient'
+import RadialGradient from 'react-native-radial-gradient'
 
 const images = [
     "https://images.unsplash.com/photo-1508138221679-760a23a2285b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
@@ -57,50 +59,60 @@ class Feed extends Component {
     }
 
     render(){
-        return(
-            
-            // <View style={styles.container}>
-                <LinearGradient colors={['#267871', '#136a8a']}                    
-                    start={{x: 0.0, y: 0.25}} 
-                    end={{x: 0.5, y: 1.0}} 
-                    locations={[0,0.5,0.6]}
-                    style={styles.container} >
-                    <Header />                                          
-                    <View style={styles.containerPosts}>
-                        <ScrollView>
-                            <ImageSlider images={images}/> 
-                            <Text style={styles.title}>Destaques</Text>
-                            <FlatList horizontal                        
-                                data={this.state.posts}
-                                keyExtractor={item => `${item.id}`}                        
-                                renderItem={({ item }) =>                         
-                                <Post key={item.id} {...item} />}/>    
 
-                            <Text style={styles.title}>Destaques</Text>
-                            <FlatList horizontal                    
-                                data={this.state.posts}
-                                keyExtractor={item => `${item.id}`}
-                                // destructuring de item
-                                renderItem={({ item }) =>                         
-                                <Post key={item.id} {...item} />}/>
+        const widthScreen = Dimensions.get('window').width / 2
+        const heightScreen = Dimensions.get('window').height / 2
 
-                            <Text style={styles.title}>Destaques</Text>
-                            <FlatList horizontal                    
-                                data={this.state.posts}
-                                keyExtractor={item => `${item.id}`}
-                                // destructuring de item
-                                renderItem={({ item }) =>                         
-                                <Post key={item.id} {...item} />}/>
+        return(                        
+            <RadialGradient style={{width:400,height:400}} 
+                // colors={['black','green','blue','red']}
+                colors={['rgba(219, 138, 169, 0.51)', 
+                    'rgba(219, 129, 163, 0.65)',
+                    'rgba(211, 116, 152, 0.78)',
+                    'rgba(204, 87, 132, 0.78)',
+                    'rgba(170, 83, 186, 0.78)',
+                    'rgba(156, 47, 175, 0.58)',
+                    'rgba(50, 13, 119, 0.60)']}
+                stops={[0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7]} 
+                center={[widthScreen,heightScreen]} 
+                radius={350}
+                style={styles.container} >
+                <Header />                                          
+                <View style={styles.containerPosts}>
+                    <ScrollView>
+                        <ImageSlider images={images}/> 
+                        <Text style={styles.title}>Destaques</Text>
+                        <FlatList horizontal                        
+                            data={this.state.posts}
+                            keyExtractor={item => `${item.id}`}                        
+                            renderItem={({ item }) =>                         
+                            <Post key={item.id} {...item} />}/>    
 
-                        </ScrollView>
-                    </View>
-                    {/* <View style={styles.b}>
-                        <Post />        
-                        <Post />                 
-                        <Post />                 
-                    </View> */}
-                </LinearGradient>
-            //</View>            
+                        <Text style={styles.title}>Destaques</Text>
+                        <FlatList horizontal                    
+                            data={this.state.posts}
+                            keyExtractor={item => `${item.id}`}
+                            // destructuring de item
+                            renderItem={({ item }) =>                         
+                            <Post key={item.id} {...item} />}/>
+
+                        <Text style={styles.title}>Destaques</Text>
+                        <FlatList horizontal                    
+                            data={this.state.posts}
+                            keyExtractor={item => `${item.id}`}
+                            // destructuring de item
+                            renderItem={({ item }) =>                         
+                            <Post key={item.id} {...item} />}/>                    
+                    </ScrollView>
+                </View>
+                <View style={styles.tabBottomBackground}>
+                </View>
+                {/* <View style={styles.b}>
+                    <Post />        
+                    <Post />                 
+                    <Post />                 
+                </View> */}
+            </RadialGradient>                
         )
     }
 }
@@ -125,6 +137,11 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontFamily: 'shelter',
         
+    },
+    tabBottomBackground: {
+        width: '100%',
+        height: 50,
+        backgroundColor: 'transparent'
     }
 })
 
