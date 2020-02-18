@@ -1,10 +1,12 @@
 import React from 'react'
 import { 
-    createBottomTabNavigator,    
+    createBottomTabNavigator,
+    createDrawerNavigator,      
 } from 'react-navigation'
 import Icon from 'react-native-vector-icons/Feather'
 import Feed from './screens/Feed'
 import Profile from './screens/Profile'
+import { DrawerLayoutAndroid } from 'react-native'
 
 const MenuRoutes = {
     Feed: {
@@ -34,8 +36,7 @@ const MenuRoutes = {
                 <Icon name='mail' size={30} color={ color } />
 
         }
-    },
-    
+    },    
 }
 
 const MenuConfig = {
@@ -55,14 +56,19 @@ const MenuConfig = {
     },    
 }
 
+
 const MenuNavigator = createBottomTabNavigator(MenuRoutes, MenuConfig)
 
-// const SplashRouter = createSwitchNavigator({ 
-//     Splash: Splash,
-//     App: MenuNavigator,
-// }, {
-//     initialRouteName: 'Splash'
-// })
+const Drawer = createDrawerNavigator({
+    a: MenuNavigator,
 
-export default MenuNavigator
-// export default SplashRouter
+    Teste: {
+        screen: Feed
+    },
+}, {
+    drawerWidth: 300,    
+
+})
+
+export default Drawer
+
