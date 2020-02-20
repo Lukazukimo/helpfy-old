@@ -1,12 +1,14 @@
 import React from 'react'
+import { Dimensions } from 'react-native'
 import { 
     createBottomTabNavigator,
-    createDrawerNavigator,      
+    createDrawerNavigator,
+    createStackNavigator 
 } from 'react-navigation'
 import Icon from 'react-native-vector-icons/Feather'
 import Feed from './screens/Feed'
 import Profile from './screens/Profile'
-import { DrawerLayoutAndroid } from 'react-native'
+import SideBar from './componentes/SideBar'
 
 const MenuRoutes = {
     Feed: {
@@ -59,14 +61,36 @@ const MenuConfig = {
 
 const MenuNavigator = createBottomTabNavigator(MenuRoutes, MenuConfig)
 
-const Drawer = createDrawerNavigator({
-    a: MenuNavigator,
+// const MainStack = createStackNavigator({
+//     Home: {
+//         screen: MenuNavigator,        
+//     },
+//     Feed: {
+//         screen: Feed
+//     }
+// },
+// {
+//     initialRouteName: 'Home'
+// })
 
-    Teste: {
-        screen: Feed
+const Drawer = createDrawerNavigator({
+    Home: {
+        screen: MenuNavigator,
+        // navigationOptions: {
+        //     title: 
+        // }
     },
+    Teste :{
+        screen: MenuNavigator,
+    },
+    SignOut: {
+        screen: MenuNavigator,
+    }
+
 }, {
-    drawerWidth: 300,    
+    contentComponent: props => <SideBar {...props}/>,
+    drawerWidth: Dimensions.get('window').width * 3/4,
+    
 
 })
 
