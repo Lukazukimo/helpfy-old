@@ -33,6 +33,7 @@ export default SideBar = props => (
     <ScrollView>
         <ImageBackground
             source={require("../../assets/imgs/fence.jpg")}
+            imageStyle={{ opacity: 0.75, backgroundColor: 'rgba(107, 13, 200, 0.75)' }}
             style={styles.imageBackground}>
             <Image 
                 source={require("../../assets/imgs/icon.png")}
@@ -55,30 +56,34 @@ const styles = StyleSheet.create({
     imageBackground: {
         width: undefined, 
         padding: 16,
-        paddingTop: 48,
+        paddingTop: 30,        
     },
     perfilContainer: {
-        flexDirection: 'row'
+        flexDirection: 'row',        
     },
     container: {
-        flex: 1
+        flex: 1,    
     },
     profile: {
         width: 80,
         height: 80,
         borderRadius: 40,
         borderWidth: 3,
-        borderColor: '#fff'
+        borderColor: '#993399',        
+        // borderColor: '#fff'
     },
     name: {
-        color: '#fff',
+        // color: '#fff',
+        color: '#993399',
         fontSize: 20,
         fontWeight: '800',
-        marginVertical: 8
+        fontWeight: 'bold',
+        marginVertical: 8,        
     },
     followers: {
         color: 'rgba(255, 255, 255, 0.8)',
+        // color: '#993399',
         fontSize: 13,
-        marginRight: 4
+        marginRight: 4,        
     }
 })
