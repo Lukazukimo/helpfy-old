@@ -4,15 +4,26 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  FlatList
 } from 'react-native'
 import { Gravatar } from 'react-native-gravatar'
 import Icon from 'react-native-vector-icons/Feather'
 
 export default class Profile extends Component {
+  state = {
+    profile: [{
+      fullName: 'Gabriel',
+      age: 21,
+      donations: 3,
+      ranking: 'Doador Mestre'
+    }]
+}
+
+
 
 	render() {
-		const options = { email: this.props.email, secure: true }
+    const options = { email: this.props.email, secure: true }
 		return (
 			<View style={styles.container}>
 				<View style={styles.header}></View>
@@ -34,7 +45,19 @@ export default class Profile extends Component {
 							<TouchableOpacity style={styles.buttonContainer}>
 								<Icon name='message-circle' size={30} color={'blue'}/>	 
 	        		</TouchableOpacity>
-						</View>          
+						</View>
+            <View style={styles.profile}> 
+              <Text style={styles.profileText}>Nome:{this.state.fullName}</Text>
+            </View>  
+            <View style={styles.profile}> 
+              <Text style={styles.profileText}>Idade:{this.state.age}</Text>
+            </View>  
+            <View style={styles.profile}> 
+             <Text style={styles.profileText}>Doações:{this.state.donations}</Text>
+            </View> 
+            <View style={styles.profile}> 
+             <Text style={styles.profileText}>Ranking:{this.state.ranking}</Text>
+            </View>           
 					</View>
 			</View>
 	  )
@@ -122,6 +145,21 @@ const styles = StyleSheet.create({
     width:140,
 		borderRadius:40,
   },
+  profile: {
+    marginTop: 2,
+    padding: 10,
+		borderBottomColor: 'black',
+    borderBottomWidth: 0.5,
+    
+    
+  },
+  profileText: {
+    fontWeight: 'bold',
+    textAlign: 'justify',
+    fontSize: 18,
+    color: "#696969",
+  }
+
 });
  
 
