@@ -3,62 +3,54 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
+  ScrollView,
   TouchableOpacity,
   FlatList
 } from 'react-native'
 import { Gravatar } from 'react-native-gravatar'
 import Icon from 'react-native-vector-icons/Feather'
+import ProfileInfo from '../componentes/ProfileInfo'
 
 export default class Profile extends Component {
   state = {
-    profile: [{
-      fullName: 'Gabriel',
-      age: 21,
-      donations: 3,
-      ranking: 'Doador Mestre'
-    }]
-}
+        id: Math.random(),
+        dataNasc: '25/09/1998',
+        uf: 'São Paulo',
 
-
+        
+    }
 
 	render() {
     const options = { email: this.props.email, secure: true }
 		return (
 			<View style={styles.container}>
-				<View style={styles.header}></View>
-					<Gravatar options={options} style={styles.avatar}/>
-					<View style={styles.body}>
-						<View style={styles.bodyContent}>
-							<Text style={styles.name}>Gabriel Ciccotti Monteiro</Text>
-						</View>
-						<View style={styles.bodyDescription}>
-							<Text style={styles.description}>Frase motivacional aleatória</Text>
-						</View>
-						<View style={styles.icons}>
-							<TouchableOpacity style={styles.buttonContainer}>
-								<Icon name='user' size={30} color={'blue'}/>	 
-	        		</TouchableOpacity>
-							<TouchableOpacity style={styles.buttonContainer}>
-								<Icon name='edit' size={30} color={'blue'}/>	  
-	        		</TouchableOpacity>
-							<TouchableOpacity style={styles.buttonContainer}>
-								<Icon name='message-circle' size={30} color={'blue'}/>	 
-	        		</TouchableOpacity>
-						</View>
-            <View style={styles.profile}> 
-              <Text style={styles.profileText}>Nome:{this.state.fullName}</Text>
-            </View>  
-            <View style={styles.profile}> 
-              <Text style={styles.profileText}>Idade:{this.state.age}</Text>
-            </View>  
-            <View style={styles.profile}> 
-             <Text style={styles.profileText}>Doações:{this.state.donations}</Text>
-            </View> 
-            <View style={styles.profile}> 
-             <Text style={styles.profileText}>Ranking:{this.state.ranking}</Text>
-            </View>           
-					</View>
+				<View style={styles.header}>
+          <Gravatar options={options} style={styles.avatar}/>
+        </View>
+        <View style={styles.body}>
+					  	  <View style={styles.bodyContent}>
+					  	  	<Text style={styles.name}>Gabriel Ciccotti Monteiro</Text>
+					  	  </View>
+					  	  <View style={styles.bodyDescription}>
+					  	  	<Text style={styles.description}>Frase motivacional aleatória</Text>
+					  	  </View>
+					  	  <View style={styles.icons}>
+					  	  	<TouchableOpacity style={styles.buttonContainer}>
+					  	  		<Icon name='user' size={30} color={'blue'}/>	 
+	          	  	</TouchableOpacity>
+					  	  	<TouchableOpacity style={styles.buttonContainer}>
+					  	  		<Icon name='edit' size={30} color={'blue'}/>	  
+	          	  	</TouchableOpacity>
+					  	  	<TouchableOpacity style={styles.buttonContainer}>
+					  	  		<Icon name='message-circle' size={30} color={'blue'}/>	 
+	          	  	</TouchableOpacity>
+					  	  </View>
+                  <ProfileInfo item={this.state.dataNasc} title={'Data de Nascimento:'}/>
+                  <ProfileInfo item={this.state.uf} title={'Estado'}/>
+                  <ProfileInfo item={this.state.uf} title={'Estado'}/>
+                  <ProfileInfo item={this.state.uf} title={'Estado'}/>
+                  <ProfileInfo item={this.state.uf} title={'Estado'}/>
+					  </View>
 			</View>
 	  )
 	}
@@ -67,7 +59,8 @@ export default class Profile extends Component {
 const styles = StyleSheet.create({
   header: {
     backgroundColor: "#136a8a",
-    height:200,
+    height:250,
+    justifyContent: 'center'
   },
   avatar: {
     width: 130,
@@ -77,8 +70,6 @@ const styles = StyleSheet.create({
     borderColor: "white",
     marginBottom:10,
     alignSelf:'center',
-    position: 'absolute',
-    marginTop:130
   },
   name:{
     fontSize:22,
@@ -87,6 +78,7 @@ const styles = StyleSheet.create({
   },
   body:{
     marginTop:40,
+    //backgroundColor: 'black'
   },
   bodyDonations: {
     flex: 1,
@@ -98,7 +90,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     padding:22,
-    marginTop: 5
+    marginTop: 5,
   },
   bodyDescription: {
     flex: 1,
@@ -153,12 +145,7 @@ const styles = StyleSheet.create({
     
     
   },
-  profileText: {
-    fontWeight: 'bold',
-    textAlign: 'justify',
-    fontSize: 18,
-    color: "#696969",
-  }
+
 
 });
  
