@@ -4,6 +4,7 @@ import {
 } from 'react-native'
 import { Gravatar } from 'react-native-gravatar'
 
+
 export default props => {
     return(
         <View style={styles.container}>

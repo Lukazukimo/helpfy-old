@@ -1,13 +1,17 @@
 import React from 'react'
-import { Dimensions } from 'react-native'
+import { Dimensions, SafeAreaView } from 'react-native'
 import { 
     createBottomTabNavigator,
     createDrawerNavigator,
-    createStackNavigator
+    createStackNavigator,
+    createSwitchNavigator,
+    TabNavigator,
+    createAppContainer,
 } from 'react-navigation'
 import Icon from 'react-native-vector-icons/Feather'
 import Feed from './screens/Feed'
 import Profile from './screens/Profile'
+import ProfileTest from './screens/Profile'
 import SideBar from './componentes/SideBar'
 import Search from './screens/Search'
 
@@ -140,5 +144,6 @@ const Drawer = createDrawerNavigator({
     }
 })
 
+//export default createAppContainer(App);
 export default Drawer
 
