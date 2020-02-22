@@ -64,15 +64,21 @@ class Feed extends Component {
         const heightScreen = Dimensions.get('window').height / 2
 
         return(                        
-            <RadialGradient style={{width:400,height:400}} 
-                // colors={['black','green','blue','red']}
-                colors={['rgba(219, 138, 169, 0.51)', 
-                    'rgba(219, 129, 163, 0.65)',
-                    'rgba(211, 116, 152, 0.78)',
-                    'rgba(204, 87, 132, 0.78)',
-                    'rgba(170, 83, 186, 0.78)',
-                    'rgba(156, 47, 175, 0.58)',
-                    'rgba(50, 13, 119, 0.60)']}
+            <RadialGradient style={{width:400,height:400}}                 
+                // colors={['rgba(219, 138, 169, 0.51)', 
+                //     'rgba(219, 129, 163, 0.65)',
+                //     'rgba(211, 116, 152, 0.78)',
+                //     'rgba(204, 87, 132, 0.78)',
+                //     'rgba(170, 83, 186, 0.78)',
+                //     'rgba(156, 47, 175, 0.58)',
+                //     'rgba(50, 13, 119, 0.60)']}
+                colors={['rgba(219, 138, 169, 0.41)', 
+                    'rgba(219, 129, 163, 0.55)',
+                    'rgba(211, 116, 152, 0.68)',
+                    'rgba(204, 87, 132, 0.68)',
+                    'rgba(170, 83, 186, 0.68)',
+                    'rgba(156, 47, 175, 0.48)',
+                    'rgba(50, 13, 119, 0.50)']}
                 stops={[0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7]} 
                 center={[widthScreen,heightScreen]} 
                 radius={350}
