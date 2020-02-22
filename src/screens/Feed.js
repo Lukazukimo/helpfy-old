@@ -83,7 +83,7 @@ class Feed extends Component {
                 center={[widthScreen,heightScreen]} 
                 radius={350}
                 style={styles.container} >
-                <Header />                                          
+                <Header navigation={this.props.navigation}/>                                          
                 <View style={styles.containerPosts}>
                     <ScrollView>
                         <ImageSlider images={images}/> 

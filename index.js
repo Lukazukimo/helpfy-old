@@ -1,4 +1,4 @@
-import Feed from './src/screens/Feed'
+import Search from './src/screens/Search'
 import MenuNavigator from './src/Navigator';
 
 // import React from 'react'

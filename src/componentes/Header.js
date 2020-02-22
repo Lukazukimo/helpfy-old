@@ -6,11 +6,17 @@ import {
     Text,
     View,
     Platform,
-    Image
+    Image,
+    TouchableOpacity
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Feather'
 
 class Header extends Component {
+
+    goSearch = () => {    
+        this.props.navigation.navigate('Search')
+    }
+
     render() {        
         return (            
             <View style={styles.container}>
@@ -19,8 +25,13 @@ class Header extends Component {
                     <Text style={styles.title}>Helpfy</Text>
                 </View>
                 <View style={styles.iconContainer}>
-                    <Icon name='bell' size={30} style={styles.icon}/>
-                    <Icon name='search' size={30} style={styles.icon}/>
+                    <TouchableOpacity style={styles.icon}>
+                        <Icon name='bell' size={30} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.icon}
+                        onPress={this.goSearch}>
+                        <Icon name='search' size={30} />
+                    </TouchableOpacity>                        
                 </View>
             </View>            
         )

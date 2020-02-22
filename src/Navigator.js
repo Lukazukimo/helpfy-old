@@ -3,21 +3,41 @@ import { Dimensions } from 'react-native'
 import { 
     createBottomTabNavigator,
     createDrawerNavigator,
-    createStackNavigator 
+    createStackNavigator
 } from 'react-navigation'
 import Icon from 'react-native-vector-icons/Feather'
 import Feed from './screens/Feed'
 import Profile from './screens/Profile'
 import SideBar from './componentes/SideBar'
+import Search from './screens/Search'
+
+const navOptionHandler = (navigation) =>({
+    header: null
+})
+
+const goSearch = createStackNavigator({
+    Feed: {
+        screen: Feed,
+        navigationOptions: navOptionHandler
+    },
+    Search: {
+        screen: Search,  
+        tabBarVisible: false
+        // navigationOptions: navOptionHandler
+    }
+}, {
+    // rota inicial
+    initialRouteName: 'Feed',    
+})
 
 const MenuRoutes = {
     Feed: {
         name: 'Feed',
-        screen: Feed,
+        screen: goSearch,
         navigationOptions: {
             title: 'Feed',
             tabBarIcon: ({ tintColor }) =>                
-                <Icon name='home' size={30} color={tintColor}/>
+                <Icon name='home' size={30} color={tintColor}/>,
         }
     },
     Profile: {
@@ -50,10 +70,11 @@ const MenuConfig = {
         style: {
             // backgroundColor: 'rgba(107, 13, 200, 0.4)',
             backgroundColor: 'transparent',
-            position: 'absolute',            
+            position: 'absolute',
             left: 0,
             right: 0,
-            bottom: 0,
+            bottom: 0,            
+            
         }
     },    
 }
