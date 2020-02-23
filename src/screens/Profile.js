@@ -56,9 +56,11 @@ export default class Profile extends Component {
 									<Icon name='message-circle' size={30} color={'blue'}/>	 
 		          			  	</TouchableOpacity>
 							</View>
-							<Comments comments={comments}/>						
-						</View>
+							<Comments comments={comments}/>				
+						</View>						
 					</ScrollView>
+					<View style={styles.tabBottomBackground}>
+                	</View>	
 				</View>
 		  )
 	}
@@ -113,11 +115,14 @@ const styles = StyleSheet.create({
     	width:140,
 		borderRadius:40,
   	},
-	//tabBottomBackground: {
-	//	width: '100%',
-	//	height: 50,
-	//	backgroundColor: 'rgba(50, 13, 119, 0.50)'
-    //}
+	tabBottomBackground: {		
+		width: '100%',
+		height: 50,
+		backgroundColor: 'rgba(50, 13, 119, 0.50)',				
+	},
+	container: {
+		flex: 1
+	}
 
 });
  
