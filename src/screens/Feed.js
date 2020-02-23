@@ -88,7 +88,7 @@ class Feed extends Component {
                     <ScrollView>
                         <ImageSlider images={images}/> 
                         <Text style={styles.title}>Destaques</Text>
-                        <FlatList horizontal                        
+                        <FlatList horizontal 
                             data={this.state.posts}
                             keyExtractor={item => `${item.id}`}                        
                             renderItem={({ item }) =>                         

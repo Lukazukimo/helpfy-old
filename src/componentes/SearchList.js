@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, ActivityIndicator } from 'react-native';
+import { View, 
+    Text, 
+    FlatList, 
+    ActivityIndicator,
+    TouchableOpacity,
+    StyleSheet
+} from 'react-native';
 import { ListItem, SearchBar } from 'react-native-elements';
 
 class SearchList extends Component {
@@ -8,16 +14,36 @@ class SearchList extends Component {
 
         this.state = {
             loading: false,
-            data: [],
+            data: [{
+                // picture: require('../../assets/imgs/boat.jpg'),
+                name: {
+                    first: 'Fabio',
+                    last: 'Huang',            
+                },
+                email: 'fabio@teste',
+            },{
+                // picture: require('../../assets/imgs/boat.jpg'),
+                name: {
+                    first: 'Gabriel',
+                    last: 'Ciccotti',            
+                },
+                email: 'gabriel@teste',
+            }],
             error: null,
         }
 
         this.arrayholder = []
     }
 
-    // componentDidMount() {
-    //     this.makeRemoteRequest();
-    // }
+    componentDidMount() {
+        this.makeRemoteRequest();
+    }
+
+    makeRemoteRequest = () => {
+        this.setState({ loading: false })
+        this.arrayholder = this.state.data;
+
+    };
 
     // makeRemoteRequest = () => {
     //     const url = `https://randomuser.me/api/?&results=20`;
@@ -57,9 +83,9 @@ class SearchList extends Component {
         })
 
         const newData = this.arrayholder.filter(item => {
-            const itemData = `${item.name.title.toUpperCase()} ${item.name.first.toUpperCase()} ${item.name.last.toUpperCase()}`;
-            const textData = text.toUpperCase();
-
+            const itemData = `${item.name.first.toUpperCase()} ${item.name.last.toUpperCase()}`
+            const textData = text.toUpperCase()
+            console.log(itemData.indexOf(textData) > -1)
             return itemData.indexOf(textData) > -1
         })
         this.setState({
@@ -67,34 +93,39 @@ class SearchList extends Component {
         })
     }
 
+    goHome = () => {    
+        this.props.navigation.navigate('Feed')
+    }
+
     renderHeader = () => {
-        return (
+        return (                                   
             <SearchBar
-                placeholder="Type Here..."
+                placeholder="Type Here..."                    
+                platform={'android'}
                 lightTheme
                 round
                 onChangeText={text => this.searchFilterFunction(text)}
                 autoCorrect={false}
                 value={this.state.value}
-            />
+            />                   
         )
     }
 
     render() {
         if (this.state.loading) {
             return (
-                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                     <ActivityIndicator />
                 </View>
             )
         }
         return (
-            <View style={{ flex: 1 }}>
+            <View style={styles.containerBack}>
                 <FlatList
                     data={this.state.data}
                     renderItem={({ item }) => (
                         <ListItem
-                            leftAvatar={{ source: { uri: item.picture.thumbnail } }}
+                            // leftAvatar={{ source: { uri: item.picture.thumbnail } }}
                             title={`${item.name.first} ${item.name.last}`}
                             subtitle={item.email}
                         />
@@ -107,5 +138,11 @@ class SearchList extends Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    containerBack:{
+        flex: 1
+    }
+})
 
 export default SearchList

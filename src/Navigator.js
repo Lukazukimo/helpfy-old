@@ -26,13 +26,24 @@ const goSearch = createStackNavigator({
     },
     Search: {
         screen: Search,  
-        tabBarVisible: false
-        // navigationOptions: navOptionHandler
+        navigationOptions: navOptionHandler
     }
 }, {
     // rota inicial
     initialRouteName: 'Feed',    
 })
+
+// Quando esta na tela Search retira o tabBottomBar
+goSearch.navigationOptions = ({ navigation }) => {
+    const { state: { routes, index } } = navigation;
+    let tabBarVisible = true;
+    if(routes[index].routeName === 'Search'){
+      tabBarVisible = false;
+    }
+    return {
+      tabBarVisible
+    }
+}
 
 const MenuRoutes = {
     Feed: {
@@ -79,24 +90,12 @@ const MenuConfig = {
             right: 0,
             bottom: 0,            
             
-        }
+        }        
     },    
 }
 
 
 const MenuNavigator = createBottomTabNavigator(MenuRoutes, MenuConfig)
-
-// const MainStack = createStackNavigator({
-//     Home: {
-//         screen: MenuNavigator,        
-//     },
-//     Feed: {
-//         screen: Feed
-//     }
-// },
-// {
-//     initialRouteName: 'Home'
-// })
 
 const Drawer = createDrawerNavigator({
     Home: {
