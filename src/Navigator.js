@@ -11,9 +11,11 @@ import {
 import Icon from 'react-native-vector-icons/Feather'
 import Feed from './screens/Feed'
 import Profile from './screens/Profile'
-import ProfileTest from './screens/Profile'
 import SideBar from './componentes/SideBar'
 import Search from './screens/Search'
+import ScreenPost from './screens/ScreenPost'
+
+
 
 const navOptionHandler = (navigation) =>({
     header: null
@@ -66,7 +68,7 @@ const MenuRoutes = {
     },
     Message: {
         name: 'Message',
-        screen: Feed,
+        screen: ScreenPost,
         navigationOptions: {
             title: 'Message',
             tabBarIcon: ({ tintColor: color }) =>
