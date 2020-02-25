@@ -14,7 +14,6 @@ class ScreenPost extends Component {
         return (            
             <View style={styles.container}>
                 <Header />
-                <Text style={styles.title}> Titulo do Post </Text>
                 <MainPost image={require('../../assets/imgs/boat.jpg')} />
             </View>            
         )
@@ -23,13 +22,7 @@ class ScreenPost extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
-    },
-    title: {
-        textAlign: 'center',
-        fontSize: 20,
-        marginTop: 20,
-        fontWeight: 'bold'
+        flex: 1,
     }
 })
 

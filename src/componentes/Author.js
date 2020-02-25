@@ -19,18 +19,18 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: -20
+        marginTop: -25
     },
     avatar: {
-        width: 40,
-        height: 40,
+        width: 30,
+        height: 30,
         borderRadius: 25,
         marginHorizontal: 15,
     },
     nickname: {
         color: '#444',
         marginVertical: 10,
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: 'bold'
     }
 })
