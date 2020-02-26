@@ -14,7 +14,7 @@ import Author from './Author'
 import TitlePost from './TitlePost'
 import DescriptionPost from './DescriptionPost'
 import CommentPost from './CommentPost'
-
+import AuthorPost from './AuthorPost'
 
 
 export default class MainPost extends Component {
@@ -31,6 +31,9 @@ export default class MainPost extends Component {
         const changeIcon = this.state.liked? 'black' : 'gray'
         const wantOrNo = this.state.iWant? styles.iWant : styles.iDontWant
         const wantOrNoText = this.state.iWant? 'Eu quero!' : 'Eu não quero'
+        
+        const emailAuthorPost = 'aaa@gmail.com'
+        const email = 'aa@gmail.com'        
         
         const comments = [{
 			nickname: 'Ulisses',
@@ -54,16 +57,23 @@ export default class MainPost extends Component {
                     <Author email={'fulano@teste.com'} nickname={'Fabio'} />
                     <DescriptionPost descriptionPost={a} />
                     <View style={styles.buttonContainer}>
-                        <TouchableOpacity style={styles.buttons}
-                            onPress={ () => this.setState({ iWant : !this.state.iWant})}>
-                            <Text style={wantOrNo}>{wantOrNoText}</Text>	  
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.buttons}
-                            onPress={ () => this.setState({ liked : !this.state.liked})}>
-                            <Icon name={'heart'} size={40} color={changeIcon} style={{}} /> 
-                        </TouchableOpacity>
+                        <AuthorPost test={emailAuthorPost === email}>
+                            <TouchableOpacity style={styles.buttons}
+                                onPress={ () => this.setState({ iWant : !this.state.iWant})}>
+                                <Text style={wantOrNo}>{wantOrNoText}</Text>	  
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.buttons}
+                                onPress={ () => this.setState({ liked : !this.state.liked})}>
+                                <Icon name={'heart'} size={40} color={changeIcon} style={{}} /> 
+                            </TouchableOpacity>
+                        </AuthorPost>
+                        <AuthorPost test={emailAuthorPost !== email}>
+                            <TouchableOpacity style={styles.iWantList}>
+                                <Text style={styles.iWantListButton}>Lista de quem quer</Text>	  
+                            </TouchableOpacity>
+                        </AuthorPost>
                     </View>
-                    <CommentPost comments={comments} />
+                        <CommentPost comments={comments} />  
                 </ScrollView>
                 <View style={styles.tabBottomBackground} />
             </View>
@@ -93,6 +103,14 @@ const styles = StyleSheet.create({
     	justifyContent: 'center',
     	alignItems: 'center',
         width: Dimensions.get('window').width * 0.5,
+      },
+      iWantList: {
+		height:55,
+		marginTop:10,
+    	flexDirection: 'row',
+    	justifyContent: 'center',
+    	alignItems: 'center',
+        width: Dimensions.get('window').width
       },
     iWant: {
         height: 45,
@@ -129,6 +147,25 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         textAlignVertical: 'center',
         backgroundColor: 'gray',
+        fontWeight: 'bold',
+        color: 'white'  
+    },
+    iWantListButton: {
+        height: 45,
+        width: 250,
+        fontSize: 20,
+        borderTopColor: 'black',
+        borderTopWidth: 1,
+        borderBottomColor: 'black',
+        borderBottomWidth: 1,
+        borderLeftColor: 'black',
+        borderLeftWidth: 1,
+        borderRightColor: 'black',
+        borderRightWidth: 1,
+        borderRadius: 13,
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        backgroundColor: 'blue',
         fontWeight: 'bold',
         color: 'white'  
     },
