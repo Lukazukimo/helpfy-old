@@ -9,14 +9,15 @@ import {
 	Dimensions
 } from 'react-native'
 import {
-	Container, Tabs, Tab, TabHeading
+	Container, Tabs, Tab, TabHeading, ScrollableTab
 } from 'native-base'
 import ProfileInformation from './ProfileInformation'
 import ProfileComment from './ProfileComment'
 import ProfilePosts from './ProfilePosts'
 import Icon from 'react-native-vector-icons/Feather'
+import LinearGradient from 'react-native-linear-gradient'
 
-class Profile extends Component {
+class Profile extends Component {	
 
 	render() {
 		return(
@@ -74,21 +75,21 @@ class Profile extends Component {
 					</View>				
 					<Container>
 						<View style={styles.conteudo}>
-							<Tabs>
+							<Tabs >
 								<Tab heading={
-									<TabHeading style={{ backgroundColor : 'red' }}>
+									<TabHeading style={{ backgroundColor : 'rgba(153, 51, 153, 0.5)'}}>
 										<Icon name='user-check' size={26}/>					
-									</TabHeading>} >
-										<ProfileInformation />
-								</Tab>
-								<Tab heading={
-									<TabHeading>
-										<Icon name='grid' size={26}/>
 									</TabHeading>}>
+										<ProfileInformation />
+								</Tab>							
+								<Tab heading={										
+									<TabHeading style={{ backgroundColor : 'rgba(153, 51, 153, 0.5)'}}>
+										<Icon name='grid' size={26}/>
+									</TabHeading>}>										
 										<ProfilePosts />
 								</Tab>
 								<Tab heading={
-									<TabHeading>
+									<TabHeading style={{ backgroundColor : 'rgba(153, 51, 153, 0.5)'}}>
 										<Icon name='message-square' size={26}/>
 									</TabHeading>}>
 										<ProfileComment />
