@@ -8,8 +8,7 @@ import{
     TouchableOpacity,
     TextInput
 } from 'react-native'
-import Header from '../componentes/Header'
-import Logo from '../componentes/Logo'
+
 class Login extends Component{
     state = { 
         name: 'Temporario',
@@ -17,11 +16,23 @@ class Login extends Component{
         password: ''
     }
 
+    componentDidUpdate = prevProps => {  
+        // isLoading tem que ficar true e depois no this tem que ficar false
+        // evento do LOADINING_USER e depois USER_LOADED
+        if (prevProps.isLoading && !this.props.isLoading) {
+            this.props.navigation.navigate('Profile')
+        }
+    }
+
+    // funcao que vai fazer a lgica do login
+    login = () => {
+        this.props.onLogin({...this.state})
+        // this.props.navigation.navigate('Profile')
+    }
 
     render(){
         return(
             <View style={styles.container}>
-                <Logo logo={'Helpfy'}/>
                 <TextInput placeholder='Email' style={styles.input}
                     autoFocus={true} keyboardType='email-address'
                     value={this.state.email}
@@ -33,7 +44,10 @@ class Login extends Component{
                 <TouchableOpacity onPress={this.login} style={styles.buttom}>
                     <Text style={styles.buttomText}>Login</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('Register')} style={styles.buttom}>
+                <TouchableOpacity onPress={() => {
+                    // navegar na tela de registrar
+                    this.props.navigation.navigate('Register')
+                }} style={styles.buttom}>
                     <Text style={styles.buttomText}>Criar nova conta...</Text>
                 </TouchableOpacity>
             </View>
@@ -43,22 +57,18 @@ class Login extends Component{
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },
     buttom: {
         marginTop: 30,
         padding: 10,
-        backgroundColor: '#4286f4',
-        width: 220,
-        borderRadius: 40,
-
+        backgroundColor: '#4286f4'
     },
     buttomText: {
         fontSize: 20,
-        color: '#fff',
-        textAlignVertical: 'center',
-        textAlign: 'center'
+        color: '#fff'
     },
     input: {
         marginTop: 20,
@@ -66,10 +76,24 @@ const styles = StyleSheet.create({
         backgroundColor: '#eee',
         height: 40,
         borderWidth: 1,
-        borderColor: '#333',
-        borderRadius: 7
-    },
+        borderColor: '#333'
+    }
 })
 
+const mapStateToProps = ({ user }) => {
+    return {
+        isLoading: user.isLoading
+    }
+}
 
-export default Login
+const mapDispatchToProps = dispatch => {
+    return {
+        // dispatch reponsavel por propagar as actions para o reducers
+        //actions/user
+        onLogin: user => dispatch(login(user))
+    }
+}
+
+// export default Login
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
+// conectar com reduxls

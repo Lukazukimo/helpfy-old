@@ -6,8 +6,9 @@ import {
     TouchableOpacity,
     TextInput
 } from 'react-native'
-import Logo from '../componentes/Logo'
-import Header from '../componentes/Header'
+import { connect } from 'react-redux'
+import { createUser } from '../store/actions/user'
+
 class Register extends Component{
     state = {
         name: '',
@@ -15,10 +16,23 @@ class Register extends Component{
         password: ''
     }
 
+    componentDidUpdate = prevProps => {  
+        // isLoading tem que ficar true e depois no this tem que ficar false
+        // evento do LOADINING_USER e depois USER_LOADED
+        if (prevProps.isLoading && !this.props.isLoading) {
+            // zerar
+            this.setState({                
+                name: '',
+                email: '',
+                password: ''                
+            })
+            this.props.navigation.navigate('Profile') //Feed
+        }
+    }
+
     render(){
         return(
             <View style={styles.container}>
-                <Logo logo={'Criar conta...'} />
                 <TextInput placeholder='Nome' style={styles.input}
                     autoFocus={true} value={this.state.name}
                     onChangeText={name => this.setState({ name })} />
@@ -40,22 +54,18 @@ class Register extends Component{
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     buttom: {
         marginTop: 30,
         padding: 10,
-        backgroundColor: '#4286f4',
-        width: 220,
-        borderRadius: 40,
-
+        backgroundColor: '#4286f4'
     },
     buttomText: {
         fontSize: 20,
-        color: '#fff',
-        textAlignVertical: 'center',
-        textAlign: 'center'
+        color: '#fff'
     },
     input: {
         marginTop: 20,
@@ -64,9 +74,22 @@ const styles = StyleSheet.create({
         height: 40,
         borderWidth: 1,
         borderColor: '#333',
-        borderRadius: 7
-    }, 
+        paddingLeft: 15
+        
+    }
 })
 
+const mapStateToProps = ({ user }) => {
+    return {
+        isLoading: user.isLoading
+    }
+}
 
-export default Register
+const mapDispatchToProps = dispatch => {
+    return {
+        onCreateUser: user => dispatch(createUser(user))
+    }
+}
+
+// export default Register
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

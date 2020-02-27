@@ -14,7 +14,21 @@ import Profile from './screens/Profile'
 import SideBar from './componentes/SideBar'
 import Search from './screens/Search'
 import ScreenPost from './screens/ScreenPost'
+import Login from './screens/Login'
+import Register from './screens/Register'
 
+const goRegister = createStackNavigator({
+    Login: {
+        screen: Login,
+        navigationOptions: { title: 'Login'}
+    },
+    Register: {
+        screen: Register,  
+        navigationOptions: { title: 'Registrar'}
+    }
+}, {
+    initialRouteName: 'Login',    
+})
 
 
 const navOptionHandler = (navigation) =>({
@@ -68,7 +82,7 @@ const MenuRoutes = {
     },
     Message: {
         name: 'Message',
-        screen: ScreenPost,
+        screen: goRegister,
         navigationOptions: {
             title: 'Message',
             tabBarIcon: ({ tintColor: color }) =>
