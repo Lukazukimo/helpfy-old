@@ -75,22 +75,22 @@ class Profile extends Component {
 					</View>				
 					<Container>
 						<View style={styles.conteudo}>
-							<Tabs >
+							<Tabs tabBarUnderlineStyle={{ backgroundColor: 'orange'}}>
 								<Tab heading={
 									<TabHeading style={{ backgroundColor : 'rgba(153, 51, 153, 0.5)'}}>
-										<Icon name='user-check' size={26}/>					
+										<Icon name='user-check' size={26} color={'#fff'}/>
 									</TabHeading>}>
 										<ProfileInformation />
 								</Tab>							
 								<Tab heading={										
 									<TabHeading style={{ backgroundColor : 'rgba(153, 51, 153, 0.5)'}}>
-										<Icon name='grid' size={26}/>
+										<Icon name='grid' size={26} color={'#fff'}/>
 									</TabHeading>}>										
 										<ProfilePosts />
 								</Tab>
 								<Tab heading={
 									<TabHeading style={{ backgroundColor : 'rgba(153, 51, 153, 0.5)'}}>
-										<Icon name='message-square' size={26}/>
+										<Icon name='message-square' size={26} color={'#fff'}/>
 									</TabHeading>}>
 										<ProfileComment />
 								</Tab>
