@@ -16,6 +16,7 @@ import Search from './screens/Search'
 import ScreenPost from './screens/ScreenPost'
 import Login from './screens/Login'
 import Register from './screens/Register'
+import WishList from './screens/WishList'
 
 const goRegister = createStackNavigator({
     Login: {
@@ -122,9 +123,16 @@ const Drawer = createDrawerNavigator({
                 <Icon name='home' size={23} color={ tintColor } />
         }
     },
-    Teste :{
-        screen: MenuNavigator,
+
+    WishList: {
+        screen: WishList,
+        navigationOptions: {
+            title: 'Lista de desejos',
+            drawerIcon:({ tintColor }) =>
+                <Icon name='list' size={23} color={ tintColor } />
+        }
     },
+
     SignOut: {
         screen: MenuNavigator,
         navigationOptions: {
@@ -148,11 +156,13 @@ const Drawer = createDrawerNavigator({
         itemsContainerStyle: {
             marginTop: 8,
         },
+
         itemStyle: {            
             borderRadius: 4,
             marginLeft: 5
         },
     },
+    
     style: {
         backgroundColor: 'rgba(107, 13, 200, 0.15)',
         // backgroundColor: 'rgba(211, 116, 152, 0.2)',

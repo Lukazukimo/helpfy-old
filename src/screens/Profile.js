@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
 	},
 	profileContainer: {	
 		flex: 5,	
-		flexDirection: 'row'
+		flexDirection: 'row',		
 	},
 	profile: {		
 		flex: 3,
@@ -207,6 +207,9 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: 'red'
 	},
+	teste: {
+		backgroundColor: 'red'
+	}
 })
 
 export default Profile
