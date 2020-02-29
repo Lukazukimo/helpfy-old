@@ -16,15 +16,31 @@ import Search from './screens/Search'
 import ScreenPost from './screens/ScreenPost'
 import Login from './screens/Login'
 import Register from './screens/Register'
+import NotificationScreen from './screens/NotificationScreen'
+
+const goNotification = createSwitchNavigator({
+    Feed: {
+        screen: Feed,
+        navigationOptions: navOptionHandler
+    },
+    Notification: {
+        screen: NotificationScreen,  
+        navigationOptions: navOptionHandler
+    }
+}, {
+    // rota inicial
+    initialRouteName: 'Feed',    
+})
+
 
 const goRegister = createStackNavigator({
     Login: {
         screen: Login,
-        navigationOptions: { title: 'Login'}
+        navigationOptions: navOptionHandler
     },
     Register: {
         screen: Register,  
-        navigationOptions: { title: 'Registrar'}
+        navigationOptions: navOptionHandler
     }
 }, {
     initialRouteName: 'Login',    
@@ -48,6 +64,8 @@ const goSearch = createStackNavigator({
     // rota inicial
     initialRouteName: 'Feed',    
 })
+
+
 
 // Quando esta na tela Search retira o tabBottomBar
 goSearch.navigationOptions = ({ navigation }) => {
@@ -82,7 +100,7 @@ const MenuRoutes = {
     },
     Message: {
         name: 'Message',
-        screen: goRegister,
+        screen: goNotification,
         navigationOptions: {
             title: 'Message',
             tabBarIcon: ({ tintColor: color }) =>
