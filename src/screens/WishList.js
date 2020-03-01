@@ -8,9 +8,9 @@ import {
     TouchableOpacity,
     SafeAreaView
 } from 'react-native'
-import Post from './../componentes/Post'
-import Header from './../componentes/Header'
 import RadialGradient from 'react-native-radial-gradient'
+import Header from './../componentes/Header'
+import Post from './../componentes/Post'
 
 class WishList extends Component {
     state = {

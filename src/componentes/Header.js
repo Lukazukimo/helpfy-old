@@ -26,7 +26,8 @@ class Header extends Component {
                 </View>
                 <View style={styles.iconContainer}>
                     <TouchableOpacity style={styles.icon}>
-                        <Icon name='bell' size={30} />
+                        <Icon name='bell' size={30} 
+                        onPress={() => this.props.navigation.navigate('Notification')}/>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.icon}
                         onPress={this.goSearch}>

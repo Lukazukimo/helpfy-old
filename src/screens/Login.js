@@ -10,6 +10,7 @@ import{
 } from 'react-native'
 import Header from '../componentes/Header'
 import Logo from '../componentes/Logo'
+import { Left } from 'native-base'
 class Login extends Component{
     state = { 
         name: 'Temporario',
@@ -36,6 +37,11 @@ class Login extends Component{
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Register')} style={styles.buttom}>
                     <Text style={styles.buttomText}>Criar nova conta...</Text>
                 </TouchableOpacity>
+                <View style={styles.forgot}>
+                    <TouchableOpacity style={styles.forgot}>
+                        <Text style={styles.forgotPasswd}>Esqueci minha senha</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         )
     }
@@ -69,6 +75,15 @@ const styles = StyleSheet.create({
         borderColor: '#333',
         borderRadius: 7
     },
+    forgot: {
+        alignItems: 'flex-start',
+        marginTop: 30
+    },
+    forgotPasswd: {
+        color: 'blue',
+        fontWeight: 'bold',
+        fontSize: 15
+    }
 })
 
 
