@@ -16,8 +16,26 @@ import Search from './screens/Search'
 import ScreenPost from './screens/ScreenPost'
 import Login from './screens/Login'
 import Register from './screens/Register'
+<<<<<<< HEAD
 import WishList from './screens/WishList'
-import goNotification from './screens/NotificationScreen'
+=======
+import NotificationScreen from './screens/NotificationScreen'
+
+const goNotification = createSwitchNavigator({
+    Feed: {
+        screen: Feed,
+        navigationOptions: navOptionHandler
+    },
+    Notification: {
+        screen: NotificationScreen,  
+        navigationOptions: navOptionHandler
+    }
+}, {
+    // rota inicial
+    initialRouteName: 'Feed',    
+})
+
+>>>>>>> 662fc2abdd6789c837b0063b5441cb2d49c64a8b
 
 const goRegister = createStackNavigator({
     Login: {
