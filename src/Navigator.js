@@ -61,6 +61,10 @@ const goSearch = createStackNavigator({
     Search: {
         screen: Search,  
         navigationOptions: navOptionHandler
+    },
+    Notification: {
+        screen: NotificationScreen,  
+        navigationOptions: navOptionHandler
     }
 }, {
     // rota inicial
@@ -102,7 +106,7 @@ const MenuRoutes = {
     },
     Message: {
         name: 'Message',
-        screen: goNotification,
+        screen: goRegister,
         navigationOptions: {
             title: 'Message',
             tabBarIcon: ({ tintColor: color }) =>
