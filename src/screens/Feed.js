@@ -92,7 +92,14 @@ class Feed extends Component {
                             data={this.state.posts}
                             keyExtractor={item => `${item.id}`}                        
                             renderItem={({ item }) =>                         
-                            <Post key={item.id} {...item} />}/>    
+                            <Post key={item.id} {...item} 
+                                tamanho={{
+                                    width: Dimensions.get('window').width / (5/2),
+                                    height: Dimensions.get('window').width / (5/2),
+                                    resizeMode: "stretch",
+                                    margin: 10,
+                                    borderRadius: 15
+                                }}/>}/>    
 
                         <Text style={styles.title}>Destaques</Text>
                         <FlatList horizontal                    
@@ -100,7 +107,14 @@ class Feed extends Component {
                             keyExtractor={item => `${item.id}`}
                             // destructuring de item
                             renderItem={({ item }) =>                         
-                            <Post key={item.id} {...item} />}/>
+                            <Post key={item.id} {...item} 
+                                tamanho={{
+                                    width: Dimensions.get('window').width / (5/2),
+                                    height: Dimensions.get('window').width / (5/2),
+                                    resizeMode: "stretch",
+                                    margin: 10,
+                                    borderRadius: 15
+                                }}/>}/>
 
                         <Text style={styles.title}>Destaques</Text>
                         <FlatList horizontal                    
@@ -108,7 +122,14 @@ class Feed extends Component {
                             keyExtractor={item => `${item.id}`}
                             // destructuring de item
                             renderItem={({ item }) =>                         
-                            <Post key={item.id} {...item} />}/>                    
+                            <Post key={item.id} {...item} 
+                                tamanho={{
+                                    width: Dimensions.get('window').width / (5/2),
+                                    height: Dimensions.get('window').width / (5/2),
+                                    resizeMode: "stretch",
+                                    margin: 10,
+                                    borderRadius: 15
+                                }}/>}/>                    
                     </ScrollView>
                 </View>
                 <View style={styles.tabBottomBackground}>

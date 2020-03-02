@@ -13,7 +13,7 @@ class Post extends Component {
         return(
             <View style={styles.container}>
                 {/* <Image source={require('../../assets/imgs/boat.jpg')}/> */}
-                <Image source={this.props.image} style={styles.image}/>
+                <Image source={this.props.image} style={this.props.tamanho}/>
             </View>
         )
     }
@@ -24,13 +24,13 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'transparent'
     },
-    image: {
-        width: Dimensions.get('window').width / (5/2),
-        height: Dimensions.get('window').width / (5/2),
-        resizeMode: "stretch",
-        margin: 10,
-        borderRadius: 15
-    }
+    // image: {
+    //     width: Dimensions.get('window').width / (5/2),
+    //     height: Dimensions.get('window').width / (5/2),
+    //     resizeMode: "stretch",
+    //     margin: 10,
+    //     borderRadius: 15
+    // }
 })
 
 // const mapStateToProps = ({ user }) => {
