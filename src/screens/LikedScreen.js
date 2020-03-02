@@ -17,7 +17,7 @@ class LikedScreen extends Component {
             image: require('../../assets/imgs/gate.jpg'),
         }, {
             id: Math.random(),
-            image: require('../../assets/imgs/gate.jpg'),
+            image: require('../../assets/imgs/fence.jpg'),
         },{
             id: Math.random(),
             image: require('../../assets/imgs/gate.jpg'),

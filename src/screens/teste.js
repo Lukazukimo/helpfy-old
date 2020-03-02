@@ -106,3 +106,4 @@
         </Tabs>
     </Animated.ScrollView>
 </Container> 
+//quem ta lendo é gay
