@@ -107,3 +107,4 @@
     </Animated.ScrollView>
 </Container> 
 //quem ta lendo é gay e o Wu também
+//NAo esta mais
