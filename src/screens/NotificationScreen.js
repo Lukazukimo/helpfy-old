@@ -15,8 +15,6 @@ import Notifications from '../componentes/Notifications'
 
 class NotificationScreen extends Component{
     
-
-
     render(){
         const notifications = [{
 			nickname: 'Ulisses',
@@ -51,7 +49,7 @@ class NotificationScreen extends Component{
 		}]
         return(
             <View style={styles.container}>
-                <Header /> 
+                <Header navigation={this.props.navigation}/> 
                 <ScrollView>
                     <Notifications notifications={notifications} />
                 </ScrollView>

@@ -17,7 +17,23 @@ import ScreenPost from './screens/ScreenPost'
 import Login from './screens/Login'
 import Register from './screens/Register'
 import WishList from './screens/WishList'
-import goNotification from './screens/NotificationScreen'
+import NotificationScreen from './screens/NotificationScreen'
+import LikedScreen from './screens/LikedScreen'
+
+const goNotification = createSwitchNavigator({
+    Feed: {
+        screen: Feed,
+        navigationOptions: navOptionHandler
+    },
+    Notification: {
+        screen: NotificationScreen,  
+        navigationOptions: navOptionHandler
+    }
+}, {
+    // rota inicial
+    initialRouteName: 'Feed',    
+})
+
 
 const goRegister = createStackNavigator({
     Login: {
@@ -133,6 +149,14 @@ const Drawer = createDrawerNavigator({
             title: 'Lista de desejos',
             drawerIcon:({ tintColor }) =>
                 <Icon name='list' size={23} color={ tintColor } />
+        }
+    },
+    Likes: {
+        screen: LikedScreen,
+        navigationOptions: {
+            title: 'Itens curtidos',
+            drawerIcon:({ tintColor }) =>
+                <Icon name='heart' size={23} color={ tintColor } />
         }
     },
 
