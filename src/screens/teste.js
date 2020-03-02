@@ -106,4 +106,4 @@
         </Tabs>
     </Animated.ScrollView>
 </Container> 
-//quem ta lendo é gay
+//quem ta lendo é gay e o Wu também
