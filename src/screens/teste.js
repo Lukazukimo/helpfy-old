@@ -106,4 +106,4 @@
         </Tabs>
     </Animated.ScrollView>
 </Container> 
-//Estou alterando
+//NAo esta mais
