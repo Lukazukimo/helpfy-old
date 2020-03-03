@@ -3,7 +3,8 @@ import {
     View,
     StyleSheet,
     Text,
-    Dimensions
+    Dimensions,
+    ScrollView
 } from 'react-native'
 import {Icon} from 'react-native-elements'
 
@@ -11,78 +12,128 @@ class ProfileInformation extends Component{
     render() {
         return(
             <View style={styles.container}>
-                <View style={styles.miniContainer}>
-                    <Icon name='user' type='feather'/>
-                    <View style={styles.textContainer}>
-                        <Text style={styles.text} 
-                            numberOfLines={1}>Fabio Wu Huang</Text>
-                        <Text style={styles.textTitle}>Nome</Text>
+                {/* <ScrollView> */}
+                    <View style={styles.miniContainer}>
+                        <Icon name='user' type='feather'/>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.text} 
+                                numberOfLines={1}>Fabio Wu Huang</Text>
+                            <Text style={styles.textTitle}>Nome</Text>
+                        </View>
                     </View>
-                </View>
-                <View style={styles.miniContainer}>
-                    <Icon name='user' type='feather'/>
-                    <View style={styles.textContainer}>
-                        <Text style={styles.text} 
-                            numberOfLines={1}>25/09/1998</Text>
-                        <Text style={styles.textTitle}>Data de Nascimento</Text>
+                    <View style={styles.miniContainer}>
+                        <Icon name='user' type='feather'/>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.text} 
+                                numberOfLines={1}>25/09/1998</Text>
+                            <Text style={styles.textTitle}>Data de Nascimento</Text>
+                        </View>
                     </View>
-                </View>
-                <View style={styles.miniContainer}>
-                    <Icon name='user' type='feather'/>
-                    <View style={styles.textContainer}>
-                        <Text style={styles.text} 
-                            numberOfLines={1}>Masculino</Text>
-                        <Text style={styles.textTitle}>Genero</Text>
+                    <View style={styles.miniContainer}>
+                        <Icon name='user' type='feather'/>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.text} 
+                                numberOfLines={1}>Masculino</Text>
+                            <Text style={styles.textTitle}>Genero</Text>
+                        </View>
                     </View>
-                </View>
-                <View style={styles.miniContainer}>
-                    <Icon name='user' type='feather'/>
-                    <View style={styles.textContainer}>
-                        <Text style={styles.text} 
-                            numberOfLines={1}>Sao Paulo</Text>
-                        <Text style={styles.textTitle}>Estado</Text>
+                    <View style={styles.miniContainer}>
+                        <Icon name='user' type='feather'/>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.text} 
+                                numberOfLines={1}>Sao Paulo</Text>
+                            <Text style={styles.textTitle}>Estado</Text>
+                        </View>
                     </View>
-                </View>
-                <View style={styles.miniContainer}>
-                    <Icon name='user' type='feather'/>
-                    <View style={styles.textContainer}>
-                        <Text style={styles.text} 
-                            numberOfLines={1}>Sao Paulo</Text>
-                        <Text style={styles.textTitle}>Estado</Text>
+                    <View style={styles.miniContainer}>
+                        <Icon name='user' type='feather'/>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.text} 
+                                numberOfLines={1}>Sao Paulo</Text>
+                            <Text style={styles.textTitle}>Estado</Text>
+                        </View>
                     </View>
-                </View>
-                <View style={styles.miniContainer}>
-                    <Icon name='user' type='feather'/>
-                    <View style={styles.textContainer}>
-                        <Text style={styles.text} 
-                            numberOfLines={1}>Sao Paulo</Text>
-                        <Text style={styles.textTitle}>Estado</Text>
+                    <View style={styles.miniContainer}>
+                        <Icon name='user' type='feather'/>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.text} 
+                                numberOfLines={1}>Sao Paulo</Text>
+                            <Text style={styles.textTitle}>Estado</Text>
+                        </View>
                     </View>
-                </View>
-                <View style={styles.miniContainer}>
-                    <Icon name='user' type='feather'/>
-                    <View style={styles.textContainer}>
-                        <Text style={styles.text} 
-                            numberOfLines={1}>Sao Paulo</Text>
-                        <Text style={styles.textTitle}>Estado</Text>
+                    <View style={styles.miniContainer}>
+                        <Icon name='user' type='feather'/>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.text} 
+                                numberOfLines={1}>Sao Paulo</Text>
+                            <Text style={styles.textTitle}>Estado</Text>
+                        </View>
                     </View>
-                </View>
-                {/* <View style={styles.miniContainer}>
-                    <Icon name='user' type='feather'/>
-                    <View style={styles.textContainer}>
-                        <Text style={styles.text} 
-                            numberOfLines={1}>Sao Paulo</Text>
-                        <Text style={styles.textTitle}>Estado</Text>
+                    <View style={styles.miniContainer}>
+                        <Icon name='user' type='feather'/>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.text} 
+                                numberOfLines={1}>Sao Paulo</Text>
+                            <Text style={styles.textTitle}>Estado</Text>
+                        </View>
                     </View>
-                </View>
-                <View style={styles.miniContainer}>
-                    <Icon name='user' type='feather'/>
-                    <View style={styles.textContainer}>
-                        <Text style={styles.text} 
-                            numberOfLines={1}>Sao Paulo</Text>
-                        <Text style={styles.textTitle}>Estado</Text>
+                    <View style={styles.miniContainer}>
+                        <Icon name='user' type='feather'/>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.text} 
+                                numberOfLines={1}>Sao Paulo</Text>
+                            <Text style={styles.textTitle}>Estado</Text>
+                        </View>
                     </View>
-                </View> */}
+                    <View style={styles.miniContainer}>
+                        <Icon name='user' type='feather'/>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.text} 
+                                numberOfLines={1}>Sao Paulo</Text>
+                            <Text style={styles.textTitle}>Estado</Text>
+                        </View>
+                    </View>
+                    <View style={styles.miniContainer}>
+                        <Icon name='user' type='feather'/>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.text} 
+                                numberOfLines={1}>Sao Paulo</Text>
+                            <Text style={styles.textTitle}>Estado</Text>
+                        </View>
+                    </View>
+                    <View style={styles.miniContainer}>
+                        <Icon name='user' type='feather'/>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.text} 
+                                numberOfLines={1}>Sao Paulo</Text>
+                            <Text style={styles.textTitle}>Estado</Text>
+                        </View>
+                    </View>
+                    <View style={styles.miniContainer}>
+                        <Icon name='user' type='feather'/>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.text} 
+                                numberOfLines={1}>Sao Paulo</Text>
+                            <Text style={styles.textTitle}>Estado</Text>
+                        </View>
+                    </View>  
+                    <View style={styles.miniContainer}>
+                        <Icon name='user' type='feather'/>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.text} 
+                                numberOfLines={1}>RJ</Text>
+                            <Text style={styles.textTitle}>Estado</Text>
+                        </View>
+                    </View>
+                    <View style={styles.miniContainer}>
+                        <Icon name='user' type='feather'/>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.text} 
+                                numberOfLines={1}>Sao Paulo</Text>
+                            <Text style={styles.textTitle}>Estado</Text>
+                        </View>
+                    </View>  
+                {/* </ScrollView>               */}
             </View>
         )
     }

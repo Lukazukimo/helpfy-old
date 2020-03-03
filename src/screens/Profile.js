@@ -16,10 +16,14 @@ import ProfileComment from './ProfileComment'
 import ProfilePosts from './ProfilePosts'
 import Icon from 'react-native-vector-icons/Feather'
 import LinearGradient from 'react-native-linear-gradient'
+import RadialGradient from 'react-native-radial-gradient'
 
 class Profile extends Component {	
 
 	render() {
+		const widthScreen = Dimensions.get('window').width / 2
+		const heightScreen = Dimensions.get('window').height / 2
+		
 		return(
 			<View style={styles.container}>
 				<ScrollView>
@@ -73,31 +77,54 @@ class Profile extends Component {
 							</View>
 						</ImageBackground>
 					</View>				
-					<Container>
+					{/* <Container style={{ flex: 1 }}> */}
 						<View style={styles.conteudo}>
 							<Tabs tabBarUnderlineStyle={{ backgroundColor: 'orange'}}>
 								<Tab heading={
 									<TabHeading style={{ backgroundColor : 'rgba(153, 51, 153, 0.5)'}}>
 										<Icon name='user-check' size={26} color={'#fff'}/>
-									</TabHeading>}>
-										<ProfileInformation />
+									</TabHeading>}>	
+										<View style={styles.teste}>
+											<ScrollView>
+												<ProfileInformation />
+											</ScrollView>
+										</View>
 								</Tab>							
 								<Tab heading={										
 									<TabHeading style={{ backgroundColor : 'rgba(153, 51, 153, 0.5)'}}>
 										<Icon name='grid' size={26} color={'#fff'}/>
-									</TabHeading>}>										
-										<ProfilePosts />
+									</TabHeading>}>			
+										<View style={styles.teste}>
+											<ScrollView>							
+												<ProfilePosts />
+											</ScrollView>
+										</View>
 								</Tab>
 								<Tab heading={
 									<TabHeading style={{ backgroundColor : 'rgba(153, 51, 153, 0.5)'}}>
 										<Icon name='message-square' size={26} color={'#fff'}/>
 									</TabHeading>}>
-										<ProfileComment />
+										<RadialGradient style={{width:400,height:100}}                 										
+											colors={['rgba(219, 138, 169, 0.41)', 
+												'rgba(219, 129, 163, 0.55)',
+												'rgba(211, 116, 152, 0.68)',
+												'rgba(204, 87, 132, 0.68)',
+												'rgba(170, 83, 186, 0.68)',
+												'rgba(156, 47, 175, 0.48)',
+												'rgba(50, 13, 119, 0.50)']}
+											stops={[0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7]} 
+											center={[widthScreen,heightScreen]} 
+											radius={350}
+											style={styles.container} >  
+												<ProfileComment />
+										</RadialGradient>
 								</Tab>
 							</Tabs>
 						</View>
-					</Container>
+					{/* </Container> */}
 				</ScrollView>
+				<View style={styles.tabBottomBackground}>
+                </View>
 			</View>
 		)
 	}
@@ -202,12 +229,18 @@ const styles = StyleSheet.create({
 		fontStyle: "italic",
 		textAlignVertical: "center",
 		textAlign: "center",
+	},
+	tabBottomBackground: {
+        width: '100%',
+        height: 50,
+        backgroundColor: 'transparent'
     },
 	conteudo: {
 		flex: 1,
 		backgroundColor: 'red'
 	},
 	teste: {
+		flex: 1,
 		backgroundColor: 'red'
 	}
 })
