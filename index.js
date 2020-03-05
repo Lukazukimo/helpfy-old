@@ -1,5 +1,5 @@
-import Search from './src/screens/Search'
 import MenuNavigator from './src/Navigator';
+import Teste from './src/screens/Teste'
 
 // import React from 'react'
 // import { Provider } from 'react-redux'

@@ -5,6 +5,7 @@ import {
     createDrawerNavigator,
     createStackNavigator,
     createSwitchNavigator,
+    createMaterialTopTabNavigator,
     TabNavigator,
     createAppContainer,
 } from 'react-navigation'
@@ -19,6 +20,7 @@ import Register from './screens/Register'
 import WishList from './screens/WishList'
 import NotificationScreen from './screens/NotificationScreen'
 import LikedScreen from './screens/LikedScreen'
+import TesteScreen from './/screens/TesteScreen'
 
 const goNotification = createSwitchNavigator({
     Feed: {
@@ -71,7 +73,19 @@ const goSearch = createStackNavigator({
     initialRouteName: 'Feed',    
 })
 
-
+const goTesteScreen = createStackNavigator({
+    Profile: {
+        screen: Profile,
+        navigationOptions: navOptionHandler
+    },
+    TesteScreen: {
+        screen: TesteScreen,  
+        navigationOptions: navOptionHandler
+    },
+}, {
+    // rota inicial
+    initialRouteName: 'Profile',    
+})
 
 // Quando esta na tela Search retira o tabBottomBar
 goSearch.navigationOptions = ({ navigation }) => {
@@ -96,8 +110,8 @@ const MenuRoutes = {
         }
     },
     Profile: {
-        name: 'Profile',
-        screen: Profile,
+        name: 'Profile',              
+        screen: goTesteScreen,
         navigationOptions: {
             title: 'Profile',
             tabBarIcon: ({ tintColor: color }) =>

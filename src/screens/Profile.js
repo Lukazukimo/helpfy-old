@@ -7,6 +7,7 @@ import {
 	ImageBackground,
 	Image,
 	Dimensions,	
+	TouchableOpacity
 } from 'react-native'
 import {
 	Container, Tabs, Tab, TabHeading, ScrollableTab, Content
@@ -18,7 +19,12 @@ import Icon from 'react-native-vector-icons/Feather'
 import LinearGradient from 'react-native-linear-gradient'
 import RadialGradient from 'react-native-radial-gradient'
 
+
 class Profile extends Component {	
+
+	goTesteScreen = () => {    
+        this.props.navigation.navigate('TesteScreen')
+    }
 
 	render() {
 		const widthScreen = Dimensions.get('window').width / 2
@@ -76,9 +82,16 @@ class Profile extends Component {
 								</View>
 							</View>
 						</ImageBackground>
-					</View>				
+					</View>	
+					<View style={styles.iconContainer}>
+						<TouchableOpacity style={styles.icon}>
+							<Icon name='bell' size={30} 
+							onPress={this.goTesteScreen}/>
+						</TouchableOpacity>						                     
+                	</View>
+
 					{/* <Container style={{ flex: 1 }}> */}
-						<View style={styles.conteudo}>
+						{/* <View style={styles.conteudo}>
 							<Tabs tabBarUnderlineStyle={{ backgroundColor: 'orange'}}>
 								<Tab heading={
 									<TabHeading style={{ backgroundColor : 'rgba(153, 51, 153, 0.5)'}}>
@@ -135,7 +148,7 @@ class Profile extends Component {
 										</RadialGradient>
 								</Tab>
 							</Tabs>
-						</View>
+						</View> */}
 					{/* </Container> */}
 				</ScrollView>
 				<View style={styles.tabBottomBackground}>
