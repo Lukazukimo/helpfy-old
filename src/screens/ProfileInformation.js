@@ -53,7 +53,7 @@ class ProfileInformation extends Component{
                             <Text style={styles.textTitle}>Estado</Text>
                         </View>
                     </View>
-                    <View style={styles.miniContainer}>
+                    {/* <View style={styles.miniContainer}>
                         <Icon name='user' type='feather'/>
                         <View style={styles.textContainer}>
                             <Text style={styles.text} 
@@ -132,8 +132,8 @@ class ProfileInformation extends Component{
                                 numberOfLines={1}>Sao Paulo</Text>
                             <Text style={styles.textTitle}>Estado</Text>
                         </View>
-                    </View>  
-                {/* </ScrollView>               */}
+                    </View>   */}
+                {/* </ScrollView>*/}
             </View>
         )
     }

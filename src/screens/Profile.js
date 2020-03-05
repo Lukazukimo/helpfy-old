@@ -6,10 +6,10 @@ import {
 	ScrollView,
 	ImageBackground,
 	Image,
-	Dimensions
+	Dimensions,	
 } from 'react-native'
 import {
-	Container, Tabs, Tab, TabHeading, ScrollableTab
+	Container, Tabs, Tab, TabHeading, ScrollableTab, Content
 } from 'native-base'
 import ProfileInformation from './ProfileInformation'
 import ProfileComment from './ProfileComment'
@@ -84,21 +84,36 @@ class Profile extends Component {
 									<TabHeading style={{ backgroundColor : 'rgba(153, 51, 153, 0.5)'}}>
 										<Icon name='user-check' size={26} color={'#fff'}/>
 									</TabHeading>}>	
+									
 										<View style={styles.teste}>
 											<ScrollView>
 												<ProfileInformation />
 											</ScrollView>
 										</View>
+												
 								</Tab>							
 								<Tab heading={										
 									<TabHeading style={{ backgroundColor : 'rgba(153, 51, 153, 0.5)'}}>
 										<Icon name='grid' size={26} color={'#fff'}/>
 									</TabHeading>}>			
-										<View style={styles.teste}>
-											<ScrollView>							
-												<ProfilePosts />
-											</ScrollView>
-										</View>
+										<RadialGradient style={{width:400,height:100}}                 										
+											colors={['rgba(219, 138, 169, 0.41)', 
+												'rgba(219, 129, 163, 0.55)',
+												'rgba(211, 116, 152, 0.68)',
+												'rgba(204, 87, 132, 0.68)',
+												'rgba(170, 83, 186, 0.68)',
+												'rgba(156, 47, 175, 0.48)',
+												'rgba(50, 13, 119, 0.50)']}
+											stops={[0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7]} 
+											center={[widthScreen,heightScreen]} 
+											radius={350}
+											style={styles.container}>  
+											<View style={styles.teste}>
+												<ScrollView>							
+													<ProfilePosts />
+												</ScrollView>
+											</View>
+										</RadialGradient>
 								</Tab>
 								<Tab heading={
 									<TabHeading style={{ backgroundColor : 'rgba(153, 51, 153, 0.5)'}}>
@@ -240,8 +255,8 @@ const styles = StyleSheet.create({
 		backgroundColor: 'red'
 	},
 	teste: {
-		flex: 1,
-		backgroundColor: 'red'
+		// flex: 1,
+		backgroundColor: 'red',		
 	}
 })
 
