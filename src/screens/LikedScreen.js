@@ -5,6 +5,7 @@ import {
     FlatList,
     Dimensions,
     TouchableOpacity,
+    Text
 } from 'react-native'
 import RadialGradient from 'react-native-radial-gradient'
 import Header from './../componentes/Header'
@@ -15,18 +16,39 @@ class LikedScreen extends Component {
         posts: [{
             id: Math.random(),
             image: require('../../assets/imgs/gate.jpg'),
+            title: 'Post sobre çççç'
         }, {
             id: Math.random(),
             image: require('../../assets/imgs/fence.jpg'),
+            title: 'Post sobre çççç'
         },{
             id: Math.random(),
             image: require('../../assets/imgs/gate.jpg'),
+            title: 'Post sobre çççç'
         },{
             id: Math.random(),
             image: require('../../assets/imgs/gate.jpg'),
+            title: 'Post sobre çççç'
         }, {
             id: Math.random(),
             image: require('../../assets/imgs/gate.jpg'),
+            title: 'Post sobre çççç'
+        },{
+            id: Math.random(),
+            image: require('../../assets/imgs/gate.jpg'),
+            title: 'Post sobre çççç'
+        },{
+            id: Math.random(),
+            image: require('../../assets/imgs/gate.jpg'),
+            title: 'Post sobre çççç'
+        },{
+            id: Math.random(),
+            image: require('../../assets/imgs/gate.jpg'),
+            title: 'Post sobre çççç'
+        },{
+            id: Math.random(),
+            image: require('../../assets/imgs/gate.jpg'),
+            title: 'Post sobre çççç'
         }]
     }
 
@@ -50,14 +72,22 @@ class LikedScreen extends Component {
                 <Header navigation={this.props.navigation}/>
 
 
-                        <FlatList numColumns={2} style={styles.likedPosts}
+                        <FlatList numColumns={2}
                             data={this.state.posts}
                             keyExtractor={item => `${item.id}`}
                             renderItem={({ item }) =>  {
                                 return (
-                                    <View>
-                                        <Post key={item.id} {...item} />
+                                    <View style={styles.likedPosts}>
+                                        <Post key={item.id} {...item}  tamanho={{
+                                            width: Dimensions.get('window').width / (5/2),
+                                            height: Dimensions.get('window').width / (5/2),
+                                            resizeMode: "stretch",
+                                            margin: 10,
+                                            borderRadius: 15
+                                        }}/>
+                                        <Text style={styles.titlePost}>{item.title}</Text>   
                                     </View>
+                                    
                                 )   
                             }}
                         />  
@@ -69,10 +99,19 @@ class LikedScreen extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        alignItems: 'center'
     },
     likedPost: {
         flexDirection: 'row',
         alignContent: 'space-around'
+    },
+    titlePost: {
+        marginLeft: 43,
+        marginTop: -8,
+        fontWeight: 'bold',
+        color: 'black',
+        fontSize: 13
+
     }
 })
 

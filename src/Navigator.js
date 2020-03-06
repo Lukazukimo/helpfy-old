@@ -20,7 +20,8 @@ import Register from './screens/Register'
 import WishList from './screens/WishList'
 import NotificationScreen from './screens/NotificationScreen'
 import LikedScreen from './screens/LikedScreen'
-import TesteScreen from './/screens/TesteScreen'
+import TesteScreen from './screens/TesteScreen'
+import AddPost from './screens/AddPost'
 
 const goNotification = createSwitchNavigator({
     Feed: {
@@ -120,7 +121,7 @@ const MenuRoutes = {
     },
     Message: {
         name: 'Message',
-        screen: goRegister,
+        screen: AddPost,
         navigationOptions: {
             title: 'Message',
             tabBarIcon: ({ tintColor: color }) =>
