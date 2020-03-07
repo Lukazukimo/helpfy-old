@@ -6,7 +6,8 @@ import {
     FlatList,
     Dimensions,
     TouchableOpacity,
-    SafeAreaView
+    SafeAreaView,
+    ScrollView
 } from 'react-native'
 import RadialGradient from 'react-native-radial-gradient'
 import Header from './../componentes/Header'
@@ -16,32 +17,32 @@ class WishList extends Component {
     state = {
         posts: [{
             id: Math.random(),
-            nickname: 'Francisco Leandro Lima',
-            email: 'fllima@gmail.com',
-            image: require('../../assets/imgs/bw.jpg'),
+            nickname: 'Nome 1',
+            email: 'nome1@gmail.com',
+            image: require('./../../assets/imgs/bw.jpg'),
             comments: []
         }, {
             id: Math.random(),
-            // nickname: 'Francisco Leandro Lima',
-            // email: 'fllima@gmail.com',
+            nickname: 'Nome 2',
+            email: 'nome2@gmail.com',
             image: require('../../assets/imgs/bw.jpg'),
             // comments: []
         },{
             id: Math.random(),
-            // nickname: 'Francisco Leandro Lima',
-            // email: 'fllima@gmail.com',
+            nickname: 'Nome 3',
+            email: 'nome3@gmail.com',
             image: require('../../assets/imgs/bw.jpg'),
             // comments: []
         },{
             id: Math.random(),
-            // nickname: 'Francisco Leandro Lima',
-            // email: 'fllima@gmail.com',
+            nickname: 'Nome 4',
+            email: 'nome4@gmail.com',
             image: require('../../assets/imgs/bw.jpg'),
             // comments: []
         }, {
             id: Math.random(),
-            // nickname: 'Francisco Leandro Lima',
-            // email: 'fllima@gmail.com',
+            nickname: 'Nome 5',
+            email: 'nome5@gmail.com',
             image: require('../../assets/imgs/bw.jpg'),
             // comments: []
         }]
@@ -67,25 +68,33 @@ class WishList extends Component {
                 <View style={{width: '100%'}}>
                     <Header navigation={this.props.navigation}/>
                 </View>   
-                <View style={{width: '100%', flex: 1 }}>
-                    <SafeAreaView style={{width: '200%'}}>
-                        <FlatList style={{width: '100%'}}
-                            data={this.state.posts}
-                            keyExtractor={item => `${item.id}`}
-                            renderItem={({ item }) =>  {
-                                return (
-                                    <View style={{width: '100%'}}>
-                                        <TouchableOpacity onPress={() => alert(`Post ${item.id}`)}>
-                                            <Post key={item.id} {...item} />
-                                        </TouchableOpacity>
-                                        <Text>{item.nickname}</Text>
-                                        <Text>{item.email}</Text>
-                                        <Text>{item.comments}</Text>
-                                    </View>
-                                )   
-                            }}
-                        />
-                    </SafeAreaView>    
+                <View style={styles.wishListContainer}>
+                    <ScrollView>
+                        <SafeAreaView style={{width: '200%'}}>
+                            <FlatList style={{width: '100%'}}
+                                data={this.state.posts}
+                                keyExtractor={item => `${item.id}`}
+                                renderItem={({ item }) =>  {
+                                    return (
+                                        <View style={styles.wishListItem}>
+                                            <TouchableOpacity onPress={() => alert("Testando!")}>
+                                                <View style={styles.postItems}>
+                                                    <View>
+                                                        <Post key={item.id} {...item} tamanho={styles.postSize} />   
+                                                    </View>
+                                                    <View style={styles.postDescription}>
+                                                        <Text style={styles.textDescription}>{item.nickname}</Text>
+                                                        <Text style={styles.textDescription}>{item.email}</Text>
+                                                    </View>
+                                                </View>
+                                                <View style={styles.lineStyle} />
+                                            </TouchableOpacity>
+                                        </View>
+                                    )   
+                                }}
+                            />
+                        </SafeAreaView>    
+                    </ScrollView>
                 </View>
             </RadialGradient>
         )
@@ -95,20 +104,45 @@ class WishList extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        textAlign: 'center'
     },
 
     wishListContainer: {
-        justifyContent: 'center',
-        alignItems: 'center'
+        paddingBottom: 23
+    },
+
+    wishListItem: {
+        width: '100%',
+        paddingTop: 10,
+        paddingBottom: 20,
+        marginLeft: 10, 
+    },
+
+    lineStyle: {
+        borderBottomColor: '#000', 
+        borderBottomWidth: 0.5,
+        paddingBottom: 30
+    },
+
+    postSize: {
+        width: 90,
+        height: 90,
+        borderRadius: 50
+    },
+
+    postItems: {
+        flexDirection: 'row',
+    },
+
+    postDescription: {
+        marginTop: 15,
+        marginLeft: 25
+    },
+
+    textDescription: {
+        fontWeight: 'bold',
+        paddingBottom: 10
     }
+
 })
 
 export default WishList
