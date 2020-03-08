@@ -13,7 +13,7 @@ class ScreenPost extends Component {
     render() {        
         return (            
             <View style={styles.container}>
-                <Header />
+                <Header navigation={this.props.navigation}/>  
                 <MainPost image={require('../../assets/imgs/boat.jpg')} />
             </View>            
         )

@@ -15,13 +15,14 @@ import TitlePost from './TitlePost'
 import DescriptionPost from './DescriptionPost'
 import CommentPost from './CommentPost'
 import AuthorPost from './AuthorPost'
-
+import IWantList from './IWantList'
 
 export default class MainPost extends Component {
         
     state = { 
         liked: true,
-        iWant: true
+        iWant: true,
+        showIWantList: false,
     }
 
 
@@ -52,6 +53,8 @@ export default class MainPost extends Component {
         return(
             <View style={styles.container}>
                 <ScrollView>
+                    <IWantList isVisible={this.state.showIWantList} 
+                    onCancel={() => this.setState({ showIWantList: false })}/>
                     <TitlePost titlePost={'Titulo do Post'} />
                     <Image source={this.props.image} style={styles.image}/>
                     <Author email={'fulano@teste.com'} nickname={'Fabio'} />
@@ -68,7 +71,7 @@ export default class MainPost extends Component {
                             </TouchableOpacity>
                         </AuthorPost>
                         <AuthorPost test={emailAuthorPost !== email}>
-                            <TouchableOpacity style={styles.iWantList}>
+                            <TouchableOpacity style={styles.iWantList} onPress={() => this.setState({ showIWantList: true })}>
                                 <Text style={styles.iWantListButton}>Lista de quem quer</Text>	  
                             </TouchableOpacity>
                         </AuthorPost>

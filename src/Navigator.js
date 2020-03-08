@@ -121,7 +121,7 @@ const MenuRoutes = {
     },
     Message: {
         name: 'Message',
-        screen: AddPost,
+        screen: ScreenPost,
         navigationOptions: {
             title: 'Message',
             tabBarIcon: ({ tintColor: color }) =>
