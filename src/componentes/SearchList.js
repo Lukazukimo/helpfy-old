@@ -14,6 +14,7 @@ class SearchList extends Component {
 
         this.state = {
             loading: false,
+            renderResult: false,
             data: [{
                 // picture: require('../../assets/imgs/boat.jpg'),
                 name: {
@@ -28,15 +29,22 @@ class SearchList extends Component {
                     last: 'Ciccotti',            
                 },
                 email: 'gabriel@teste',
+            }, {
+                // picture: require('../../assets/imgs/boat.jpg'),
+                name: {
+                    first: 'Teste',
+                    last: 'TesteLastname',            
+                },
+                email: 'teste@teste',
             }],
-            error: null,
+            error: null,            
         }
 
         this.arrayholder = []
     }
 
     componentDidMount() {
-        this.makeRemoteRequest();
+        this.makeRemoteRequest()        
     }
 
     makeRemoteRequest = () => {
@@ -64,28 +72,38 @@ class SearchList extends Component {
     //         });
     // };
 
+    renderResultFunction = (text) => {        
+        if (this.state.renderResult === false){
+            this.setState({ renderResult: true })
+            // console.log('depois ', this.state.renderResult)
+        } 
+        if (text === '') {
+            this.setState({ renderResult: false})
+            // console.log('fiquei false')
+        }
+    }
+
     renderSeparator = () => {
         return (
             <View
                 style={{
                     height: 1,
                     width: '86%',
-                    backgroundColor: '#CED0CE',
+                    // backgroundColor: '#CED0CE',                    
                     marginLeft: '14%',
                 }}
             />
         )
     }
-
+    
     searchFilterFunction = text => {
         this.setState({
             value: text,
-        })
-
+        })        
         const newData = this.arrayholder.filter(item => {
             const itemData = `${item.name.first.toUpperCase()} ${item.name.last.toUpperCase()}`
             const textData = text.toUpperCase()
-            console.log(itemData.indexOf(textData) > -1)
+            // console.log(itemData.indexOf(textData) > -1)
             return itemData.indexOf(textData) > -1
         })
         this.setState({
@@ -104,7 +122,13 @@ class SearchList extends Component {
                 platform={'android'}
                 lightTheme
                 round
-                onChangeText={text => this.searchFilterFunction(text)}
+                onChangeText={text => {
+                        this.searchFilterFunction(text)
+                        this.renderResultFunction(text)
+                        // console.log(this.state.renderResult)
+                        // console.log(text)            
+                    }                    
+                }
                 autoCorrect={false}
                 value={this.state.value}
             />                   
@@ -119,21 +143,37 @@ class SearchList extends Component {
                 </View>
             )
         }
+        // se renderResult verdadeiro renderiza a lista resultante da pesquisa
+        // caso contrario nao
+        const renderCondition = this.state.renderResult ?            
+            <FlatList
+                data={this.state.data}
+                renderItem={({ item }) => (
+                    <ListItem
+                        // leftAvatar={{ source: { uri: item.picture.thumbnail } }}
+                        title={`${item.name.first} ${item.name.last}`}
+                        subtitle={item.email}                            
+                    />
+                )}
+                keyExtractor={item => item.email}
+                ItemSeparatorComponent={this.renderSeparator}
+                ListHeaderComponent={this.renderHeader}
+            /> : 
+            <FlatList                                
+                renderItem={({ item }) => (
+                    <ListItem
+                        // leftAvatar={{ source: { uri: item.picture.thumbnail } }}
+                        title={`${item.name.first} ${item.name.last}`}
+                        subtitle={item.email}                            
+                    />
+                )}
+                keyExtractor={item => item.email}
+                ItemSeparatorComponent={this.renderSeparator}
+                ListHeaderComponent={this.renderHeader}
+            />
         return (
-            <View style={styles.containerBack}>
-                <FlatList
-                    data={this.state.data}
-                    renderItem={({ item }) => (
-                        <ListItem
-                            // leftAvatar={{ source: { uri: item.picture.thumbnail } }}
-                            title={`${item.name.first} ${item.name.last}`}
-                            subtitle={item.email}
-                        />
-                    )}
-                    keyExtractor={item => item.email}
-                    ItemSeparatorComponent={this.renderSeparator}
-                    ListHeaderComponent={this.renderHeader}
-                />
+            <View style={styles.containerBack}>               
+                { renderCondition }
             </View>
         )
     }
@@ -141,7 +181,9 @@ class SearchList extends Component {
 
 const styles = StyleSheet.create({
     containerBack:{
-        flex: 1
+        flex: 1,
+        backgroundColor: 'blue'
+
     }
 })
 
