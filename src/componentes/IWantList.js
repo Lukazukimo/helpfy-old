@@ -11,7 +11,7 @@ import RenderUsersList from './RenderUsersList'
 
 export default class IWantList extends Component {
     render() {
-        const comments = [{
+        const users = [{
 			nickname: 'Ulisses',
 		}, {
 			nickname: 'Murilo',
@@ -19,6 +19,8 @@ export default class IWantList extends Component {
         }, {
             nickname: 'Murilo',
         }, {
+            nickname: 'Murilo',
+        },{
             nickname: 'Murilo',
 		}]
         return (
@@ -28,7 +30,7 @@ export default class IWantList extends Component {
                     <View style={styles.background} />
                 </TouchableWithoutFeedback>
                 <View style={styles.modal}> 
-                    <RenderUsersList comments={comments} />
+                    <RenderUsersList users={users} />
                 </View>
                 <TouchableWithoutFeedback onPress={this.props.onCancel}> 
                     <View style={styles.background} />
@@ -40,11 +42,11 @@ export default class IWantList extends Component {
 
 const styles = StyleSheet.create({
     background: {
-      flex: 1,
+      height: '30%',
       backgroundColor: 'rgba(0, 0, 0, 0.7)'  
     },
     modal: {
-        flex: 1,
+        height: '40%',
         backgroundColor: 'white'
     },
 })

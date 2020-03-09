@@ -3,7 +3,9 @@ import {
     View,
     Text,
     StyleSheet,
-    ScrollView,    
+    ScrollView,
+    TouchableWithoutFeedback, 
+    Dimensions   
 } from 'react-native'
 import { Gravatar } from 'react-native-gravatar'
 
@@ -11,13 +13,19 @@ class RenderUsersList extends Component {
     render() {
         // Array de Comentario transformar em JSX
         let view = null
-        if(this.props.comments) {
-            view = this.props.comments.map((item, index) => {
+        if(this.props.users) {
+            view = this.props.users.map((item, index) => {
                 return(
-                    <View style={styles.commentContainer} key={index}>
+                    <View style={styles.listContainer} key={index}>
                         <Gravatar options={{ email: 'teste@teste.com', secure: true}}
                             style={styles.avatar} />
+                        
                         <Text style={styles.nickname}>{item.nickname} </Text>
+                        <View style={styles.callContainer}>
+                            <TouchableWithoutFeedback style={styles.button}>
+                                <Text style={styles.callButton}> Chamar </Text>
+                            </TouchableWithoutFeedback>
+                        </View>
                     </View>
                 )
             })
@@ -36,25 +44,15 @@ class RenderUsersList extends Component {
 const styles = StyleSheet.create({
     container: {
         marginLeft: 2,
-        marginTop: 10
+        marginTop: 7
     },
-    headerCommentView: {
-        marginLeft: 15,
-        borderBottomColor: 'black',
-        width: '100%',
-        borderBottomWidth: 1.5,
-    },
-    headerCommentText: {
-        fontSize: 22,
-        fontWeight: 'bold'
-    },
-    commentContainer: {
-		height: 50,
+    listContainer: {
+        height: 50,
 		flexDirection: 'row',
         borderBottomColor: 'black',
         width: '100%',
         borderBottomWidth: 0.5,
-        alignItems: 'center'
+        alignItems: 'center',
     },
     avatar: {
         width: 25,
@@ -65,11 +63,28 @@ const styles = StyleSheet.create({
     nickname: {
         fontSize: 17,
         fontWeight: 'bold',
-        color: 'black'
+        color: 'black',
+        width: '70%'
     },
-    comment: {
-        fontSize: 15,
-        color: 'black'
+    button: {
+		height:55,
+		marginTop:10,
+        width: 56
+
+    },
+    callButton: {
+        height: 40,
+        width: 70,
+        fontSize: 16,
+        borderRadius: 20,
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        backgroundColor: 'blue',
+        fontWeight: 'bold',
+        color: 'white',
+    },
+    callContainer: {
+        alignItems: 'flex-end'
     }
 })
 
