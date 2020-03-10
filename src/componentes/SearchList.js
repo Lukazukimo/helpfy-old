@@ -14,7 +14,7 @@ class SearchList extends Component {
 
         this.state = {
             loading: false,
-            renderResult: false,
+            renderResult: false,            
             data: [{
                 // picture: require('../../assets/imgs/boat.jpg'),
                 name: {
@@ -145,7 +145,7 @@ class SearchList extends Component {
         }
         // se renderResult verdadeiro renderiza a lista resultante da pesquisa
         // caso contrario nao
-        const renderCondition = this.state.renderResult ?            
+        const renderResultCondition = this.state.renderResult ?            
             <FlatList
                 data={this.state.data}
                 renderItem={({ item }) => (
@@ -171,9 +171,32 @@ class SearchList extends Component {
                 ItemSeparatorComponent={this.renderSeparator}
                 ListHeaderComponent={this.renderHeader}
             />
+        const renderCategoria = this.state.renderResult ?
+            null :
+            <View style={styles.categoryContainer}>
+                <TouchableOpacity style={styles.buttonCategory}>
+                    <Text style={styles.textCategory}>Teste</Text>
+                    <Text style={styles.textCategory}>></Text>
+                </TouchableOpacity>          
+                <TouchableOpacity style={styles.buttonCategory}>
+                    <Text style={styles.textCategory}>Teste</Text>
+                    <Text style={styles.textCategory}>></Text>
+                </TouchableOpacity> 
+                <TouchableOpacity style={styles.buttonCategory}>
+                    <Text style={styles.textCategory}>Teste</Text>
+                    <Text style={styles.textCategory}>></Text>
+                </TouchableOpacity>          
+                <TouchableOpacity style={styles.buttonCategory}>
+                    <Text style={styles.textCategory}>Teste</Text>
+                    <Text style={styles.textCategory}>></Text>
+                </TouchableOpacity> 
+            </View>
+
+
         return (
             <View style={styles.containerBack}>               
-                { renderCondition }
+                { renderResultCondition }
+                { renderCategoria}
             </View>
         )
     }
@@ -181,9 +204,27 @@ class SearchList extends Component {
 
 const styles = StyleSheet.create({
     containerBack:{
-        flex: 1,
+        // flex: 1,
         backgroundColor: 'blue'
-
+    },
+    categoryContainer:{
+        backgroundColor: 'red',
+        // flex: 1
+    },
+    buttonCategory:{
+        backgroundColor: 'green',
+        flexDirection: 'row',
+        justifyContent: 'space-between', 
+        padding: 10
+    },
+    textCategory: {
+        color: 'rgba(255, 255, 255, 0.8)',        
+        fontSize: 20,
+		marginRight: 4,
+		fontWeight: 'bold',
+		// fontStyle: "italic",
+		textAlignVertical: "center",
+		textAlign: "center",
     }
 })
 
