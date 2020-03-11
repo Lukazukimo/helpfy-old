@@ -22,6 +22,8 @@ const styles = StyleSheet.create({
         padding: 10,
         borderBottomColor: 'black',
         borderBottomWidth: 0.5,
+        marginLeft: 7
+
     },
     profileText: {
         fontWeight: 'bold',

@@ -18,22 +18,36 @@ import ProfilePosts from './ProfilePosts'
 import Icon from 'react-native-vector-icons/Feather'
 import LinearGradient from 'react-native-linear-gradient'
 import RadialGradient from 'react-native-radial-gradient'
-
+import ProfileInfo from '../componentes/ProfileInfo'
+import PostList from '../componentes/PostList'
 
 class Profile extends Component {	
 
-	goTesteScreen = () => {    
-        this.props.navigation.navigate('TesteScreen')
-    }
+	state = {
+        id: Math.random(),
+        dataNasc: '25/09/1998',
+		uf: 'São Paulo',
+		showPostList: false
+	}
 
 	render() {
 		const widthScreen = Dimensions.get('window').width / 2
 		const heightScreen = Dimensions.get('window').height / 2
 		
+		const comments = [{
+			nickname: 'Ulisses',
+			comment: 'Esse cara me roubou!!!'
+		}, {
+			nickname: 'Murilo',
+			comment: 'Comendo o cu de curioso'
+		}]
+
 		return(
 			<View style={styles.container}>
 				<ScrollView>
 					<View style={styles.backgroundContainer}>
+					<PostList isVisible={this.state.showPostList} 
+                    	onCancel={() => this.setState({ showPostList: false })}/>
 						<ImageBackground
 							source={require("../../assets/imgs/fence.jpg")}
 							imageStyle={{ opacity: 0.75, backgroundColor: 'rgba(107, 13, 200, 0.75)' }}
@@ -82,74 +96,23 @@ class Profile extends Component {
 								</View>
 							</View>
 						</ImageBackground>
-					</View>	
-					<View style={styles.iconContainer}>
-						<TouchableOpacity style={styles.icon}>
-							<Icon name='bell' size={30} 
-							onPress={this.goTesteScreen}/>
-						</TouchableOpacity>						                     
-                	</View>
-
-					{/* <Container style={{ flex: 1 }}> */}
-						{/* <View style={styles.conteudo}>
-							<Tabs tabBarUnderlineStyle={{ backgroundColor: 'orange'}}>
-								<Tab heading={
-									<TabHeading style={{ backgroundColor : 'rgba(153, 51, 153, 0.5)'}}>
-										<Icon name='user-check' size={26} color={'#fff'}/>
-									</TabHeading>}>	
-									
-										<View style={styles.teste}>
-											<ScrollView>
-												<ProfileInformation />
-											</ScrollView>
-										</View>
-												
-								</Tab>							
-								<Tab heading={										
-									<TabHeading style={{ backgroundColor : 'rgba(153, 51, 153, 0.5)'}}>
-										<Icon name='grid' size={26} color={'#fff'}/>
-									</TabHeading>}>			
-										<RadialGradient style={{width:400,height:100}}                 										
-											colors={['rgba(219, 138, 169, 0.41)', 
-												'rgba(219, 129, 163, 0.55)',
-												'rgba(211, 116, 152, 0.68)',
-												'rgba(204, 87, 132, 0.68)',
-												'rgba(170, 83, 186, 0.68)',
-												'rgba(156, 47, 175, 0.48)',
-												'rgba(50, 13, 119, 0.50)']}
-											stops={[0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7]} 
-											center={[widthScreen,heightScreen]} 
-											radius={350}
-											style={styles.container}>  
-											<View style={styles.teste}>
-												<ScrollView>							
-													<ProfilePosts />
-												</ScrollView>
-											</View>
-										</RadialGradient>
-								</Tab>
-								<Tab heading={
-									<TabHeading style={{ backgroundColor : 'rgba(153, 51, 153, 0.5)'}}>
-										<Icon name='message-square' size={26} color={'#fff'}/>
-									</TabHeading>}>
-										<RadialGradient style={{width:400,height:100}}                 										
-											colors={['rgba(219, 138, 169, 0.41)', 
-												'rgba(219, 129, 163, 0.55)',
-												'rgba(211, 116, 152, 0.68)',
-												'rgba(204, 87, 132, 0.68)',
-												'rgba(170, 83, 186, 0.68)',
-												'rgba(156, 47, 175, 0.48)',
-												'rgba(50, 13, 119, 0.50)']}
-											stops={[0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7]} 
-											center={[widthScreen,heightScreen]} 
-											radius={350}
-											style={styles.container} >  
-												<ProfileComment />
-										</RadialGradient>
-								</Tab>
-							</Tabs>
-						</View> */}
-					{/* </Container> */}
+					</View>					                     
+					<View style={styles.bodyIcons}>
+								<TouchableOpacity style={styles.buttonContainer}
+								onPress={() => this.setState({ showPostList: true })}>
+									<Icon name='edit' size={30} color={'blue'}/>	  
+		          			  	</TouchableOpacity>
+								<TouchableOpacity style={styles.buttonContainer}>
+									<Icon name='message-circle' size={30} color={'blue'}/>	 
+		          			  	</TouchableOpacity>
+							</View>
+						<View style={styles.conteudo}>
+							<ProfileInfo title={'Data de Nascimento'} item={this.state.dataNasc}/>
+							<ProfileInfo title={'Data de Nascimento'} item={this.state.dataNasc}/>
+							<ProfileInfo title={'Data de Nascimento'} item={this.state.dataNasc}/>
+							<ProfileInfo title={'Data de Nascimento'} item={this.state.dataNasc}/>
+							<ProfileInfo title={'Data de Nascimento'} item={this.state.dataNasc}/>
+						</View>
 				</ScrollView>
 				<View style={styles.tabBottomBackground}>
                 </View>
@@ -265,12 +228,31 @@ const styles = StyleSheet.create({
     },
 	conteudo: {
 		flex: 1,
-		backgroundColor: 'red'
+		justifyContent: 'center'
 	},
 	teste: {
 		// flex: 1,
 		backgroundColor: 'red',		
-	}
+	},
+	bodyIcons: {
+		marginTop: 0,
+		height: 56,
+		flexDirection: 'row',
+		borderTopColor: 'black',
+		borderTopWidth: 1,
+		borderBottomColor: 'black',
+		borderBottomWidth: 1,
+		justifyContent: 'space-around'
+	},
+  	buttonContainer: {
+		height:55,
+		marginTop:10,
+    	flexDirection: 'row',
+    	justifyContent: 'center',
+    	alignItems: 'flex-start',
+    	width:140,
+		borderRadius:40,
+  	},
 })
 
 export default Profile
