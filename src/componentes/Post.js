@@ -4,16 +4,18 @@ import{
     View,
     Text,
     Image,
-    Dimensions
+    Dimensions,
+    TouchableOpacity
 } from 'react-native'
-
 
 class Post extends Component {
     render() {    
         return(
             <View style={styles.container}>
                 {/* <Image source={require('../../assets/imgs/boat.jpg')}/> */}
-                <Image source={this.props.image} style={this.props.tamanho}/>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('ScreenPost')}>
+                    <Image source={this.props.image} style={this.props.tamanho}/>
+                </TouchableOpacity>
             </View>
         )
     }

@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { View, 
     Text, 
     FlatList, 
     ActivityIndicator,
     TouchableOpacity,
-    StyleSheet
-} from 'react-native';
-import { ListItem, SearchBar } from 'react-native-elements';
+    StyleSheet,
+    ScrollView,
+    Dimensions
+} from 'react-native'
+import { ListItem, SearchBar } from 'react-native-elements'
+import Post from './Post'
 
 class SearchList extends Component {
     constructor(props) {
@@ -37,7 +40,44 @@ class SearchList extends Component {
                 },
                 email: 'teste@teste',
             }],
-            error: null,            
+            error: null,               
+            posts: [{
+                id: Math.random(),
+                image: require('../../assets/imgs/gate.jpg'),
+                title: 'Post sobre çççç'
+            }, {
+                id: Math.random(),
+                image: require('../../assets/imgs/fence.jpg'),
+                title: 'Post sobre çççç'
+            },{
+                id: Math.random(),
+                image: require('../../assets/imgs/icon.png'),
+                title: 'Post sobre çççç'
+            },{
+                id: Math.random(),
+                image: require('../../assets/imgs/gate.jpg'),
+                title: 'Post sobre çççç'
+            }, {
+                id: Math.random(),
+                image: require('../../assets/imgs/gate.jpg'),
+                title: 'Post sobre çççç'
+            },{
+                id: Math.random(),
+                image: require('../../assets/imgs/gate.jpg'),
+                title: 'Post sobre çççç'
+            },{
+                id: Math.random(),
+                image: require('../../assets/imgs/gate.jpg'),
+                title: 'Post sobre çççç'
+            },{
+                id: Math.random(),
+                image: require('../../assets/imgs/gate.jpg'),
+                title: 'Post sobre çççç'
+            },{
+                id: Math.random(),
+                image: require('../../assets/imgs/gate.jpg'),
+                title: 'Post sobre çççç'
+            }]
         }
 
         this.arrayholder = []
@@ -131,6 +171,7 @@ class SearchList extends Component {
                 }
                 autoCorrect={false}
                 value={this.state.value}
+                containerStyle={styles.searchStyle}
             />                   
         )
     }
@@ -173,31 +214,42 @@ class SearchList extends Component {
             />
         const renderCategoria = this.state.renderResult ?
             null :
-            <View style={styles.categoryContainer}>
-                <TouchableOpacity style={styles.buttonCategory}>
-                    <Text style={styles.textCategory}>Teste</Text>
-                    <Text style={styles.textCategory}>></Text>
-                </TouchableOpacity>          
-                <TouchableOpacity style={styles.buttonCategory}>
-                    <Text style={styles.textCategory}>Teste</Text>
-                    <Text style={styles.textCategory}>></Text>
-                </TouchableOpacity> 
-                <TouchableOpacity style={styles.buttonCategory}>
-                    <Text style={styles.textCategory}>Teste</Text>
-                    <Text style={styles.textCategory}>></Text>
-                </TouchableOpacity>          
-                <TouchableOpacity style={styles.buttonCategory}>
-                    <Text style={styles.textCategory}>Teste</Text>
-                    <Text style={styles.textCategory}>></Text>
-                </TouchableOpacity> 
+            <View style={styles.teste}>
+            {/* //     <TouchableOpacity style={styles.buttonCategory}>
+            //         <Text style={styles.textCategory}>Teste</Text>
+            //         <Text style={styles.textCategory}>></Text>
+            //     </TouchableOpacity> */}
+                <FlatList numColumns={2}
+                    data={this.state.posts}
+                    keyExtractor={item => `${item.id}`}
+                    renderItem={({ item }) =>  {
+                        return (
+                            <View style={styles.categoryContainer}>                                    
+                                <Post key={item.id} {...item}  
+                                    navigation={this.props.navigation}
+                                    tamanho={{
+                                        width: Dimensions.get('window').width / (5/2),
+                                        height: Dimensions.get('window').width / (5/2),
+                                        resizeMode: "stretch",
+                                        margin: 10,
+                                        borderRadius: 15,
+                                        // backgroundColor: '#fff',
+                                    }}/>                                                            
+                                <Text style={styles.textCategory}>{item.title}</Text>
+                            </View>                            
+                        )   
+                    }}
+                /> 
             </View>
-
 
         return (
-            <View style={styles.containerBack}>               
-                { renderResultCondition }
-                { renderCategoria}
-            </View>
+            <ScrollView>
+                <View style={styles.containerBack}>               
+                    { renderResultCondition }
+                    { renderCategoria}
+                </View>
+            </ScrollView>
+
         )
     }
 }
@@ -208,14 +260,19 @@ const styles = StyleSheet.create({
         backgroundColor: 'blue'
     },
     categoryContainer:{
-        backgroundColor: 'red',
-        // flex: 1
+        // backgroundColor: 'red',
+        // borderColor: 'white',
+        // borderWidth: 2,
+        paddingTop: 10,        
+        justifyContent: 'center',        
+        alignItems: 'center',
+        width: Dimensions.get('window').width / 2
     },
     buttonCategory:{
         backgroundColor: 'green',
         flexDirection: 'row',
         justifyContent: 'space-between', 
-        padding: 10
+        padding: 10,        
     },
     textCategory: {
         color: 'rgba(255, 255, 255, 0.8)',        
@@ -225,6 +282,13 @@ const styles = StyleSheet.create({
 		// fontStyle: "italic",
 		textAlignVertical: "center",
 		textAlign: "center",
+    },
+    searchStyle: {
+        backgroundColor: 'yellow'
+    },
+    teste: {
+        backgroundColor: 'transparent',
+        alignItems: 'center'
     }
 })
 

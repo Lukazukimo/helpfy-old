@@ -30,7 +30,8 @@ class Header extends Component {
                         onPress={() => this.props.navigation.navigate('Notification')}/>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.icon}
-                        onPress={this.goSearch}>
+                        onPress={() => this.props.navigation.navigate('Search')}>
+                        {/* onPress={this.goSearch}> */}
                         <Icon name='search' size={30} />
                     </TouchableOpacity>                        
                 </View>

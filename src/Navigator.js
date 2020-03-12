@@ -23,20 +23,6 @@ import LikedScreen from './screens/LikedScreen'
 import TesteScreen from './screens/TesteScreen'
 import AddPost from './screens/AddPost'
 
-const goNotification = createSwitchNavigator({
-    Feed: {
-        screen: Feed,
-        navigationOptions: navOptionHandler
-    },
-    Notification: {
-        screen: NotificationScreen,  
-        navigationOptions: navOptionHandler
-    }
-}, {
-    // rota inicial
-    initialRouteName: 'Feed',    
-})
-
 
 const goRegister = createStackNavigator({
     Login: {
@@ -50,7 +36,6 @@ const goRegister = createStackNavigator({
 }, {
     initialRouteName: 'Login',    
 })
-
 
 const navOptionHandler = (navigation) =>({
     header: null
@@ -67,6 +52,10 @@ const goSearch = createStackNavigator({
     },
     Notification: {
         screen: NotificationScreen,  
+        navigationOptions: navOptionHandler
+    },
+    ScreenPost: {
+        screen: ScreenPost,
         navigationOptions: navOptionHandler
     }
 }, {

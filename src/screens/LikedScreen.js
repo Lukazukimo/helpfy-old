@@ -70,27 +70,25 @@ class LikedScreen extends Component {
                 radius={350}
                 style={styles.container} >
                 <Header navigation={this.props.navigation}/>
-
-
-                        <FlatList numColumns={2}
-                            data={this.state.posts}
-                            keyExtractor={item => `${item.id}`}
-                            renderItem={({ item }) =>  {
-                                return (
-                                    <View style={styles.likedPosts}>
-                                        <Post key={item.id} {...item}  tamanho={{
-                                            width: Dimensions.get('window').width / (5/2),
-                                            height: Dimensions.get('window').width / (5/2),
-                                            resizeMode: "stretch",
-                                            margin: 10,
-                                            borderRadius: 15
-                                        }}/>
-                                        <Text style={styles.titlePost}>{item.title}</Text>   
-                                    </View>
-                                    
-                                )   
-                            }}
-                        />  
+                    <FlatList numColumns={2}
+                        data={this.state.posts}
+                        keyExtractor={item => `${item.id}`}
+                        renderItem={({ item }) =>  {
+                            return (
+                                <View style={styles.likedPosts}>
+                                    <Post key={item.id} {...item}  tamanho={{
+                                        width: Dimensions.get('window').width / (5/2),
+                                        height: Dimensions.get('window').width / (5/2),
+                                        resizeMode: "stretch",
+                                        margin: 10,
+                                        borderRadius: 15
+                                    }}/>
+                                    <Text style={styles.titlePost}>{item.title}</Text>
+                                </View>
+                                
+                            )   
+                        }}
+                    />  
             </RadialGradient>
         )
     }
