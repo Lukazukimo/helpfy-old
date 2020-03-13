@@ -8,8 +8,9 @@ import { View,
     ScrollView,
     Dimensions
 } from 'react-native'
-import { ListItem, SearchBar } from 'react-native-elements'
+import { ListItem } from 'react-native-elements'
 import Post from './Post'
+import SearchBar from 'react-native-dynamic-search-bar'
 
 class SearchList extends Component {
     constructor(props) {
@@ -43,40 +44,44 @@ class SearchList extends Component {
             error: null,               
             posts: [{
                 id: Math.random(),
-                image: require('../../assets/imgs/gate.jpg'),
-                title: 'Post sobre çççç'
-            }, {
-                id: Math.random(),
-                image: require('../../assets/imgs/fence.jpg'),
-                title: 'Post sobre çççç'
+                image: require('../../assets/imgs/icon.png'),
+                title: 'Brinquedos'
             },{
                 id: Math.random(),
                 image: require('../../assets/imgs/icon.png'),
-                title: 'Post sobre çççç'
+                title: 'Calçados'
             },{
                 id: Math.random(),
-                image: require('../../assets/imgs/gate.jpg'),
-                title: 'Post sobre çççç'
-            }, {
-                id: Math.random(),
-                image: require('../../assets/imgs/gate.jpg'),
-                title: 'Post sobre çççç'
+                image: require('../../assets/imgs/icon.png'),
+                title: 'Eletrodomésticos'
             },{
                 id: Math.random(),
-                image: require('../../assets/imgs/gate.jpg'),
-                title: 'Post sobre çççç'
+                image: require('../../assets/imgs/icon.png'),
+                title: 'Higiene Pessoal'
             },{
                 id: Math.random(),
-                image: require('../../assets/imgs/gate.jpg'),
-                title: 'Post sobre çççç'
+                image: require('../../assets/imgs/icon.png'),
+                title: 'Livros'
             },{
                 id: Math.random(),
-                image: require('../../assets/imgs/gate.jpg'),
-                title: 'Post sobre çççç'
+                image: require('../../assets/imgs/icon.png'),
+                title: 'Material de Construção'
             },{
                 id: Math.random(),
-                image: require('../../assets/imgs/gate.jpg'),
-                title: 'Post sobre çççç'
+                image: require('../../assets/imgs/icon.png'),
+                title: 'Material de Limpeza'
+            },{
+                id: Math.random(),
+                image: require('../../assets/imgs/icon.png'),
+                title: 'Material Escolar'
+            },{
+                id: Math.random(),
+                image: require('../../assets/imgs/icon.png'),
+                title: 'Móveis'
+            },{
+                id: Math.random(),
+                image: require('../../assets/imgs/icon.png'),
+                title: 'Roupas'
             }]
         }
 
@@ -158,10 +163,11 @@ class SearchList extends Component {
     renderHeader = () => {
         return (                                   
             <SearchBar
-                placeholder="Type Here..."                    
-                platform={'android'}
-                lightTheme
-                round
+                placeholder="Type Here..."
+                placeholderTextColor={'#fff'}
+                // platform={'android'}
+                // lightTheme
+                // round
                 onChangeText={text => {
                         this.searchFilterFunction(text)
                         this.renderResultFunction(text)
@@ -171,7 +177,10 @@ class SearchList extends Component {
                 }
                 autoCorrect={false}
                 value={this.state.value}
-                containerStyle={styles.searchStyle}
+                // containerStyle={styles.searchStyle}
+                // inputContainerStyle={styles.searchStyle}
+                // inputStyle={styles.searchStyle}
+                // iconColor={'#fff'}                            
             />                   
         )
     }
@@ -214,40 +223,40 @@ class SearchList extends Component {
             />
         const renderCategoria = this.state.renderResult ?
             null :
-            <View style={styles.teste}>
-            {/* //     <TouchableOpacity style={styles.buttonCategory}>
-            //         <Text style={styles.textCategory}>Teste</Text>
-            //         <Text style={styles.textCategory}>></Text>
-            //     </TouchableOpacity> */}
-                <FlatList numColumns={2}
-                    data={this.state.posts}
-                    keyExtractor={item => `${item.id}`}
-                    renderItem={({ item }) =>  {
-                        return (
-                            <View style={styles.categoryContainer}>                                    
-                                <Post key={item.id} {...item}  
-                                    navigation={this.props.navigation}
-                                    tamanho={{
-                                        width: Dimensions.get('window').width / (5/2),
-                                        height: Dimensions.get('window').width / (5/2),
-                                        resizeMode: "stretch",
-                                        margin: 10,
-                                        borderRadius: 15,
-                                        // backgroundColor: '#fff',
-                                    }}/>                                                            
-                                <Text style={styles.textCategory}>{item.title}</Text>
-                            </View>                            
-                        )   
-                    }}
-                /> 
-            </View>
+            // <View style={styles.teste}>
+            // <TouchableOpacity style={styles.buttonCategory}>
+            //          <Text style={styles.textCategory}>Teste</Text>
+            //          <Text style={styles.textCategory}>></Text>
+            // </TouchableOpacity> 
+            <FlatList numColumns={2}
+                data={this.state.posts}
+                keyExtractor={item => `${item.id}`}
+                renderItem={({ item }) =>  {
+                    return (
+                        <View style={styles.categoryContainer}>                                    
+                            <Post key={item.id} {...item}  
+                                navigation={this.props.navigation}
+                                tamanho={{
+                                    width: Dimensions.get('window').width / (5/2),
+                                    height: Dimensions.get('window').width / (5/2),
+                                    resizeMode: "stretch",
+                                    margin: 10,
+                                    borderRadius: 15,
+                                    // backgroundColor: '#fff',
+                                }}/>                                                            
+                            <Text style={styles.textCategory}>{item.title}</Text>
+                        </View>                            
+                    )   
+                }}
+            /> 
+            // </View>
 
         return (
-            <ScrollView>
-                <View style={styles.containerBack}>               
+            <ScrollView>               
+                <View style={styles.containerBack}>
                     { renderResultCondition }
                     { renderCategoria}
-                </View>
+                </View>                
             </ScrollView>
 
         )
@@ -257,23 +266,24 @@ class SearchList extends Component {
 const styles = StyleSheet.create({
     containerBack:{
         // flex: 1,
-        backgroundColor: 'blue'
+        backgroundColor: 'transparent'
     },
     categoryContainer:{
         // backgroundColor: 'red',
         // borderColor: 'white',
         // borderWidth: 2,
-        paddingTop: 10,        
+        paddingTop: 10,
+        paddingBottom: 10,        
         justifyContent: 'center',        
         alignItems: 'center',
         width: Dimensions.get('window').width / 2
     },
-    buttonCategory:{
-        backgroundColor: 'green',
-        flexDirection: 'row',
-        justifyContent: 'space-between', 
-        padding: 10,        
-    },
+    // buttonCategory:{
+    //     backgroundColor: 'green',
+    //     flexDirection: 'row',
+    //     justifyContent: 'space-between', 
+    //     padding: 10,        
+    // },
     textCategory: {
         color: 'rgba(255, 255, 255, 0.8)',        
         fontSize: 20,
@@ -284,7 +294,8 @@ const styles = StyleSheet.create({
 		textAlign: "center",
     },
     searchStyle: {
-        backgroundColor: 'yellow'
+        backgroundColor: 'transparent', 
+        color: '#fff'
     },
     teste: {
         backgroundColor: 'transparent',

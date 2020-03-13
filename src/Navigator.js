@@ -22,6 +22,7 @@ import NotificationScreen from './screens/NotificationScreen'
 import LikedScreen from './screens/LikedScreen'
 import TesteScreen from './screens/TesteScreen'
 import AddPost from './screens/AddPost'
+import Teste from './screens/Teste'
 
 
 const goRegister = createStackNavigator({
@@ -110,7 +111,7 @@ const MenuRoutes = {
     },
     Message: {
         name: 'Message',
-        screen: ScreenPost,
+        screen: Teste,
         navigationOptions: {
             title: 'Message',
             tabBarIcon: ({ tintColor: color }) =>
@@ -124,8 +125,8 @@ const MenuConfig = {
     initialRouteName: 'Feed',
     tabBarOptions: {
         showLabel: false,
-        activeTintColor: '#da6813',
-        inactiveTintColor: '#993399',
+        activeTintColor: 'rgba(225, 22, 94, 0.5)',
+        inactiveTintColor: 'rgb(84, 76, 126)',
         style: {
             // backgroundColor: 'rgba(107, 13, 200, 0.4)',
             backgroundColor: 'transparent',

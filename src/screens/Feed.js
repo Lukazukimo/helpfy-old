@@ -64,24 +64,38 @@ class Feed extends Component {
         const heightScreen = Dimensions.get('window').height / 2
 
         return(                        
-            <RadialGradient style={{width:400,height:400}}                 
-                // colors={['rgba(219, 138, 169, 0.51)', 
-                //     'rgba(219, 129, 163, 0.65)',
-                //     'rgba(211, 116, 152, 0.78)',
-                //     'rgba(204, 87, 132, 0.78)',
-                //     'rgba(170, 83, 186, 0.78)',
-                //     'rgba(156, 47, 175, 0.58)',
-                //     'rgba(50, 13, 119, 0.60)']}
-                colors={['rgba(219, 138, 169, 0.41)', 
-                    'rgba(219, 129, 163, 0.55)',
-                    'rgba(211, 116, 152, 0.68)',
-                    'rgba(204, 87, 132, 0.68)',
-                    'rgba(170, 83, 186, 0.68)',
-                    'rgba(156, 47, 175, 0.48)',
-                    'rgba(50, 13, 119, 0.50)']}
-                stops={[0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7]} 
-                center={[widthScreen,heightScreen]} 
-                radius={350}
+            // <RadialGradient style={{width:400,height:400}}                 
+            //     // colors={['rgba(219, 138, 169, 0.51)', 
+            //     //     'rgba(219, 129, 163, 0.65)',
+            //     //     'rgba(211, 116, 152, 0.78)',
+            //     //     'rgba(204, 87, 132, 0.78)',
+            //     //     'rgba(170, 83, 186, 0.78)',
+            //     //     'rgba(156, 47, 175, 0.58)',
+            //     //     'rgba(50, 13, 119, 0.60)']}
+            //     colors={['rgba(219, 138, 169, 0.41)', 
+            //         'rgba(219, 129, 163, 0.55)',
+            //         'rgba(211, 116, 152, 0.68)',
+            //         'rgba(204, 87, 132, 0.68)',
+            //         'rgba(170, 83, 186, 0.68)',
+            //         'rgba(156, 47, 175, 0.48)',
+            //         'rgba(50, 13, 119, 0.50)']}
+            //     stops={[0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7]} 
+            //     center={[widthScreen,heightScreen]} 
+            //     radius={350}
+            //     style={styles.container} >
+            <LinearGradient colors={[
+                'rgb(146, 135, 211)',
+                'rgb(124, 147, 225)',
+                'rgba(124, 147, 225, 0.8)',
+                'rgb(155, 156, 213)',
+                'rgb(162, 163, 217)',            
+                'rgba(162, 163, 217, 0.85)',
+                'rgb(162, 163, 217)',
+                'rgb(162, 163, 217)',
+                'rgba(124, 147, 225, 0.8)',
+                'rgb(124, 147, 225)',
+                'rgb(146, 135, 211)',
+                ]}
                 style={styles.container} >
                 <Header navigation={this.props.navigation}/>                                          
                 <View style={styles.containerPosts}>
@@ -102,13 +116,14 @@ class Feed extends Component {
                                     borderRadius: 15
                                 }}/>}/>    
 
-                        <Text style={styles.title}>Destaques</Text>
+                        <Text style={styles.title}>Recentes</Text>
                         <FlatList horizontal                    
                             data={this.state.posts}
                             keyExtractor={item => `${item.id}`}
                             // destructuring de item
                             renderItem={({ item }) =>                         
-                            <Post key={item.id} {...item} 
+                            <Post key={item.id} {...item}
+                                navigation={this.props.navigation}
                                 tamanho={{
                                     width: Dimensions.get('window').width / (5/2),
                                     height: Dimensions.get('window').width / (5/2),
@@ -123,7 +138,8 @@ class Feed extends Component {
                             keyExtractor={item => `${item.id}`}
                             // destructuring de item
                             renderItem={({ item }) =>                         
-                            <Post key={item.id} {...item} 
+                            <Post key={item.id} {...item}
+                                navigation={this.props.navigation}
                                 tamanho={{
                                     width: Dimensions.get('window').width / (5/2),
                                     height: Dimensions.get('window').width / (5/2),
@@ -140,7 +156,8 @@ class Feed extends Component {
                     <Post />                 
                     <Post />                 
                 </View> */}
-            </RadialGradient>                
+            </LinearGradient>
+            // </RadialGradient>                
         )
     }
 }
