@@ -8,9 +8,9 @@ import { View,
     ScrollView,
     Dimensions
 } from 'react-native'
-import { ListItem } from 'react-native-elements'
+import { ListItem, SearchBar } from 'react-native-elements'
 import Post from './Post'
-import SearchBar from 'react-native-dynamic-search-bar'
+import LinearGradient from 'react-native-linear-gradient'
 
 class SearchList extends Component {
     constructor(props) {
@@ -165,9 +165,9 @@ class SearchList extends Component {
             <SearchBar
                 placeholder="Type Here..."
                 placeholderTextColor={'#fff'}
-                // platform={'android'}
-                // lightTheme
-                // round
+                platform={'android'}
+                lightTheme
+                round
                 onChangeText={text => {
                         this.searchFilterFunction(text)
                         this.renderResultFunction(text)
@@ -177,10 +177,10 @@ class SearchList extends Component {
                 }
                 autoCorrect={false}
                 value={this.state.value}
-                // containerStyle={styles.searchStyle}
-                // inputContainerStyle={styles.searchStyle}
-                // inputStyle={styles.searchStyle}
-                // iconColor={'#fff'}                            
+                containerStyle={styles.searchStyle}
+                inputContainerStyle={styles.searchStyle}
+                inputStyle={styles.searchStyle}
+                iconColor={'#fff'}                
             />                   
         )
     }
@@ -198,12 +198,13 @@ class SearchList extends Component {
         const renderResultCondition = this.state.renderResult ?            
             <FlatList
                 data={this.state.data}
-                renderItem={({ item }) => (
+                renderItem={({ item }) => (                                           
                     <ListItem
                         // leftAvatar={{ source: { uri: item.picture.thumbnail } }}
                         title={`${item.name.first} ${item.name.last}`}
-                        subtitle={item.email}                            
-                    />
+                        subtitle={item.email}
+                        containerStyle={{ backgroundColor: 'transparent' }}
+                    />                    
                 )}
                 keyExtractor={item => item.email}
                 ItemSeparatorComponent={this.renderSeparator}
@@ -211,7 +212,7 @@ class SearchList extends Component {
             /> : 
             <FlatList                                
                 renderItem={({ item }) => (
-                    <ListItem
+                    <ListItem                                            
                         // leftAvatar={{ source: { uri: item.picture.thumbnail } }}
                         title={`${item.name.first} ${item.name.last}`}
                         subtitle={item.email}                            
