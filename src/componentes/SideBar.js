@@ -33,7 +33,7 @@ export default SideBar = props => (
     <ScrollView>
         <ImageBackground
             source={require("../../assets/imgs/fence.jpg")}
-            imageStyle={{ opacity: 0.75, backgroundColor: 'rgba(107, 13, 200, 0.75)' }}
+            imageStyle={{ opacity: 0.75, backgroundColor: 'rgb(84, 76, 126)' }}
             style={styles.imageBackground}>
             <Image 
                 source={require("../../assets/imgs/icon.png")}
@@ -69,12 +69,15 @@ const styles = StyleSheet.create({
         height: 80,
         borderRadius: 40,
         borderWidth: 3,
-        borderColor: '#993399',        
-        // borderColor: '#fff'
+        borderColor: 'rgb(84, 76, 126)',
+        backgroundColor: '#fff'
     },
     name: {
         // color: '#fff',
-        color: '#993399',
+        color: 'rgb(84, 76, 126)',
+        textShadowColor: '#fff', 
+        textShadowOffset: { width: 1, height: 0 },
+        textShadowRadius: 10, 
         fontSize: 20,
         fontWeight: '800',
         fontWeight: 'bold',

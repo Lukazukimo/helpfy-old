@@ -13,10 +13,6 @@ import Icon from 'react-native-vector-icons/Feather'
 
 class Header extends Component {
 
-    goSearch = () => {    
-        this.props.navigation.navigate('Search')
-    }
-
     render() {        
         return (            
             <View style={styles.container}>
@@ -25,14 +21,13 @@ class Header extends Component {
                     <Text style={styles.title}>Helpfy</Text>
                 </View>
                 <View style={styles.iconContainer}>
-                    <TouchableOpacity style={styles.icon}>
-                        <Icon name='bell' size={30} 
-                        onPress={() => this.props.navigation.navigate('Notification')}/>
+                    <TouchableOpacity style={styles.icon}
+                        onPress={() => this.props.navigation.navigate('Notification')}>
+                        <Icon name='bell' size={30} color='rgb(84, 76, 126)'/>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.icon}
-                        onPress={() => this.props.navigation.navigate('Search')}>
-                        {/* onPress={this.goSearch}> */}
-                        <Icon name='search' size={30} />
+                        onPress={() => this.props.navigation.navigate('Search')}>                        
+                        <Icon name='search' size={30} color='rgb(84, 76, 126)'/>
                     </TouchableOpacity>                        
                 </View>
             </View>            
@@ -58,18 +53,22 @@ const styles = StyleSheet.create({
     profile: {
         height: 40,
         width: 40,
-        borderWidth: 3,
+        borderWidth: 2,
         borderRadius: 40,
-        borderColor: '#320056',
+        borderColor: 'rgb(84, 76, 126)',
         marginRight: 20,        
         // redimensiona a imagem inteira
-        // resizeMode: 'contain',
+        // resizeMode: 'contain',       
+        backgroundColor: '#fff'
     },
-    title: {
-        color: '#000',
+    title: {        
         fontFamily: 'shelter',
         height: 30,
-        fontSize: 28
+        fontSize: 28,
+        color: 'rgba(225, 22, 94, 0.7)',
+        textShadowColor: '#fff', 
+        textShadowOffset: { width: 1, height: 0 },
+        textShadowRadius: 10, 
     },
     iconContainer: {
         flexDirection: 'row',
@@ -78,8 +77,7 @@ const styles = StyleSheet.create({
     },
     icon: {
         paddingRight: 10,
-        paddingLeft: 10,
-        color: '#320056'
+        paddingLeft: 10,        
     }
     // user: {
     //     fontSize: 10,

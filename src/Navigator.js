@@ -127,14 +127,12 @@ const MenuConfig = {
         showLabel: false,
         activeTintColor: 'rgba(225, 22, 94, 0.5)',
         inactiveTintColor: 'rgb(84, 76, 126)',
-        style: {
-            // backgroundColor: 'rgba(107, 13, 200, 0.4)',
+        style: {            
             backgroundColor: 'transparent',
             position: 'absolute',
             left: 0,
             right: 0,
-            bottom: 0,            
-            
+            bottom: 0,                        
         }        
     },    
 }
@@ -184,11 +182,9 @@ const Drawer = createDrawerNavigator({
     hidenStatusbar: true,
     
     contentOptions: {    
-        activeBackgroundColor: 'rgba(212, 118, 207, 0.3)',
-        // activeBackgroundColor: 'rgba(211, 116, 152, 0.4)',
-        // activeTintColor: '#531158',
-        activeTintColor: '#da6813',
-        inactiveTintColor: '#993399',
+        activeBackgroundColor: 'rgba(225, 22, 94, 0.2)',        
+        activeTintColor: 'rgba(225, 22, 94, 0.5)',
+        inactiveTintColor: 'rgb(84, 76, 126)',
         itemsContainerStyle: {
             marginTop: 8,
         },
@@ -200,8 +196,7 @@ const Drawer = createDrawerNavigator({
     },
     
     style: {
-        backgroundColor: 'rgba(107, 13, 200, 0.15)',
-        // backgroundColor: 'rgba(211, 116, 152, 0.2)',
+        backgroundColor: 'rgba(162, 163, 217, 0.85)'
     }
 })
 

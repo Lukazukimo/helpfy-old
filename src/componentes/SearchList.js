@@ -204,6 +204,8 @@ class SearchList extends Component {
                         title={`${item.name.first} ${item.name.last}`}
                         subtitle={item.email}
                         containerStyle={{ backgroundColor: 'transparent' }}
+                        titleStyle={{ color: '#fff'}}
+                        subtitleStyle={{ color: '#fff'}}
                     />                    
                 )}
                 keyExtractor={item => item.email}
@@ -215,7 +217,7 @@ class SearchList extends Component {
                     <ListItem                                            
                         // leftAvatar={{ source: { uri: item.picture.thumbnail } }}
                         title={`${item.name.first} ${item.name.last}`}
-                        subtitle={item.email}                            
+                        subtitle={item.email}                        
                     />
                 )}
                 keyExtractor={item => item.email}
@@ -298,10 +300,10 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent', 
         color: '#fff'
     },
-    teste: {
-        backgroundColor: 'transparent',
-        alignItems: 'center'
-    }
+    // teste: {
+    //     backgroundColor: 'transparent',
+    //     alignItems: 'center'
+    // }
 })
 
 export default SearchList
