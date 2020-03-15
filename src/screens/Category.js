@@ -5,28 +5,37 @@ import {
     StatusBar
 } from 'react-native'
 import { Header } from 'react-native-elements'
+import LinearGradient from 'react-native-linear-gradient'
 
 export default class Category extends Component {
     render() {
         return (
-            <View style={styles.container}>
-                <Header 
-                    centerComponent={{ text: 'Teste', style: { color: '#fff'} }}
-                    centerContainerStyle={styles.centerContainer}
-                    containerStyle={styles.headerContainer}
-                />
-                {/* <Header
-                    // placement="left"
-                    // leftComponent={{ icon: 'menu', color: '#fff' }}
-                    // centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
-                    // rightComponent={{ icon: 'home', color: '#fff' }}
-                    statusBarProps={{ barStyle: 'light-content' }}
-                    centerComponent={{ text: 'Dashboard', style: { color: '#fff' } }}
-                    outerContainerStyles={{ backgroundColor: '#324C66' }}
-                /> */}
-                <StatusBar backgroundColor="#324C66"
-                    translucent={true}/>
-            </View>
+            //<View style={styles.container}>                
+                <LinearGradient colors={[
+                'rgb(146, 135, 211)',
+                'rgb(124, 147, 225)',
+                'rgba(124, 147, 225, 0.8)',
+                'rgb(155, 156, 213)',
+                'rgb(162, 163, 217)',            
+                'rgba(162, 163, 217, 0.85)',
+                'rgb(162, 163, 217)',
+                'rgb(162, 163, 217)',
+                'rgba(124, 147, 225, 0.8)',
+                'rgb(124, 147, 225)',
+                'rgb(146, 135, 211)',
+                ]}
+                style={styles.container} >
+                    <Header                                   
+                        centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
+                        containerStyle={{
+                        backgroundColor: 'transparent',
+                        justifyContent: 'space-around',
+                        }}
+                    />
+                    <StatusBar backgroundColor='transparent'
+                        translucent={true}/>
+                </LinearGradient>
+            // </View>
         )
     }
 }

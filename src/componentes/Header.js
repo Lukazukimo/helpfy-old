@@ -7,7 +7,8 @@ import {
     View,
     Platform,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    StatusBar
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Feather'
 
@@ -16,6 +17,8 @@ class Header extends Component {
     render() {        
         return (            
             <View style={styles.container}>
+                <StatusBar backgroundColor='transparent'
+                    translucent={true}/>
                 <View style={styles.rowContainer}>      
                     <Image source={require('../../assets/imgs/icon.png')} style={styles.profile}/>
                     <Text style={styles.title}>Helpfy</Text>
@@ -37,7 +40,7 @@ class Header extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: Platform.OS === 'ios' ? 20 : 0,
+        marginTop: Platform.OS === 'ios' ? 20 : 20,
         padding: 10,
         // borderBottomWidth: 1,
         // borderColor: '#bbb',

@@ -5,7 +5,7 @@ import {
     FlatList,
     Text,
     ScrollView,
-    Dimensions
+    Dimensions,    
 } from 'react-native'
 import Header from '../componentes/Header'
 import Post from '../componentes/Post'
@@ -82,7 +82,7 @@ class Feed extends Component {
             //     stops={[0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7]} 
             //     center={[widthScreen,heightScreen]} 
             //     radius={350}
-            //     style={styles.container} >
+            //     style={styles.container} >            
             <LinearGradient colors={[
                 'rgb(146, 135, 211)',
                 'rgb(124, 147, 225)',
@@ -96,8 +96,8 @@ class Feed extends Component {
                 'rgb(124, 147, 225)',
                 'rgb(146, 135, 211)',
                 ]}
-                style={styles.container} >
-                <Header navigation={this.props.navigation}/>                                          
+                style={styles.container} >                
+                <Header navigation={this.props.navigation}/>
                 <View style={styles.containerPosts}>
                     <ScrollView>
                         <ImageSlider images={images}/> 

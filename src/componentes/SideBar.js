@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     imageBackground: {
         width: undefined, 
         padding: 16,
-        paddingTop: 30,        
+        paddingTop: 45,        
     },
     perfilContainer: {
         flexDirection: 'row',        

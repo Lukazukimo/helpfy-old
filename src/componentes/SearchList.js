@@ -180,7 +180,7 @@ class SearchList extends Component {
                 containerStyle={styles.searchStyle}
                 inputContainerStyle={styles.searchStyle}
                 inputStyle={styles.searchStyle}
-                iconColor={'#fff'}                
+                iconColor={'#fff'}                               
             />                   
         )
     }
@@ -269,7 +269,8 @@ class SearchList extends Component {
 const styles = StyleSheet.create({
     containerBack:{
         // flex: 1,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
+        marginTop: 20
     },
     categoryContainer:{
         // backgroundColor: 'red',
