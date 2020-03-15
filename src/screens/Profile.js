@@ -20,6 +20,8 @@ import LinearGradient from 'react-native-linear-gradient'
 import RadialGradient from 'react-native-radial-gradient'
 import ProfileInfo from '../componentes/ProfileInfo'
 import PostList from '../componentes/PostList'
+import RenderPostList from '../componentes/RenderPostList'
+import Post from './../componentes/Post'
 
 class Profile extends Component {	
 
@@ -27,6 +29,7 @@ class Profile extends Component {
         id: Math.random(),
         dataNasc: '25/09/1998',
 		uf: 'São Paulo',
+		showCommentList: false,
 		showPostList: false
 	}
 
@@ -46,8 +49,10 @@ class Profile extends Component {
 			<View style={styles.container}>
 				<ScrollView>
 					<View style={styles.backgroundContainer}>
-					<PostList isVisible={this.state.showPostList} 
-                    	onCancel={() => this.setState({ showPostList: false })}/>
+					<PostList isVisible={this.state.showCommentList} 
+                    	onCancel={() => this.setState({ showCommentList: false })}/>
+					<RenderPostList isVisible={this.state.showPostList} 
+                    	onCancel={() => this.setState({ showPostList: false })}/>	
 						<ImageBackground
 							source={require("../../assets/imgs/fence.jpg")}
 							imageStyle={{ opacity: 0.75, backgroundColor: 'rgba(107, 13, 200, 0.75)' }}
@@ -99,10 +104,11 @@ class Profile extends Component {
 					</View>					                     
 					<View style={styles.bodyIcons}>
 								<TouchableOpacity style={styles.buttonContainer}
-								onPress={() => this.setState({ showPostList: true })}>
+								onPress={() => this.setState({ showCommentList: true })}>
 									<Icon name='edit' size={30} color={'blue'}/>	  
 		          			  	</TouchableOpacity>
-								<TouchableOpacity style={styles.buttonContainer}>
+								<TouchableOpacity style={styles.buttonContainer}
+								onPress={() => this.setState({ showPostList: true })}>
 									<Icon name='message-circle' size={30} color={'blue'}/>	 
 		          			  	</TouchableOpacity>
 							</View>
