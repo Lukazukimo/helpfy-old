@@ -23,6 +23,7 @@ import LikedScreen from './screens/LikedScreen'
 import TesteScreen from './screens/TesteScreen'
 import AddPost from './screens/AddPost'
 import Teste from './screens/Teste'
+import Category from './screens/Category'
 
 
 const goRegister = createStackNavigator({
@@ -111,7 +112,7 @@ const MenuRoutes = {
     },
     Message: {
         name: 'Message',
-        screen: Teste,
+        screen: Category,
         navigationOptions: {
             title: 'Message',
             tabBarIcon: ({ tintColor: color }) =>

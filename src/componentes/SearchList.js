@@ -288,7 +288,10 @@ const styles = StyleSheet.create({
     //     padding: 10,        
     // },
     textCategory: {
-        color: 'rgba(255, 255, 255, 0.8)',        
+        color: 'rgba(255, 255, 255, 0.95)',
+        textShadowColor: 'rgba(225, 22, 94, 1)', 
+        textShadowOffset: { width: 1, height: 3 },
+        textShadowRadius: 15,
         fontSize: 20,
 		marginRight: 4,
 		fontWeight: 'bold',
@@ -298,7 +301,7 @@ const styles = StyleSheet.create({
     },
     searchStyle: {
         backgroundColor: 'transparent', 
-        color: '#fff'
+        color: '#fff',        
     },
     // teste: {
     //     backgroundColor: 'transparent',
