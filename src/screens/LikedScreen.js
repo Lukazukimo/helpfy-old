@@ -16,7 +16,7 @@ class LikedScreen extends Component {
         posts: [{
             id: Math.random(),
             image: require('../../assets/imgs/gate.jpg'),
-            title: 'Post sobre çççç'
+            title: 'P'
         }, {
             id: Math.random(),
             image: require('../../assets/imgs/fence.jpg'),
@@ -100,11 +100,11 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     likedPost: {
-        flexDirection: 'row',
-        alignContent: 'space-around'
+        alignContent: 'center',
+        justifyContent: 'center',
     },
     titlePost: {
-        marginLeft: 43,
+        textAlign: 'center',
         marginTop: -8,
         fontWeight: 'bold',
         color: 'black',

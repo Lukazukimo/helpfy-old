@@ -9,13 +9,14 @@ import {
     Dimensions
 } from 'react-native'
 import Post from './Post'
+import { Textarea } from 'native-base'
 
 export default class RenderPostList extends Component {
     
     state = {
         posts: [{
             id: Math.random(),
-            image: require('../../assets/imgs/gate.jpg'),
+            image: require('../../assets/imgs/fence.jpg'),
             title: 'Post sobre çççç'
         }, {
             id: Math.random(),
@@ -48,7 +49,7 @@ export default class RenderPostList extends Component {
         },{
             id: Math.random(),
             image: require('../../assets/imgs/gate.jpg'),
-            title: 'Post sobre çççç'
+            title: 'P'
         }]
     }
     render() {
@@ -101,12 +102,12 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     modalPost: {
-        flexDirection: 'row',
-        alignContent: 'space-around',
-        justifyContent: 'center'
+        alignContent: 'center',
+        justifyContent: 'center',
+
     },
     titlePost: {
-        marginLeft: 43,
+        textAlign: 'center',
         marginTop: -8,
         fontWeight: 'bold',
         color: 'black',

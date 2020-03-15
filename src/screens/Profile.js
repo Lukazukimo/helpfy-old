@@ -37,14 +37,6 @@ class Profile extends Component {
 		const widthScreen = Dimensions.get('window').width / 2
 		const heightScreen = Dimensions.get('window').height / 2
 		
-		const comments = [{
-			nickname: 'Ulisses',
-			comment: 'Esse cara me roubou!!!'
-		}, {
-			nickname: 'Murilo',
-			comment: 'Comendo o cu de curioso'
-		}]
-
 		return(
 			<View style={styles.container}>
 				<ScrollView>

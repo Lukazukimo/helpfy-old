@@ -4,9 +4,10 @@ import {
     Text,
     StyleSheet,
     Modal,
+    ScrollView,
     TouchableWithoutFeedback  
 } from 'react-native'
-import CommentPost from './CommentPost'
+import ProfileComment from './ProfileComment'
 
 export default class PostList extends Component {
     render() {
@@ -15,7 +16,35 @@ export default class PostList extends Component {
 			comment: 'Esse cara me roubou!!!'
 		}, {
 			nickname: 'Murilo',
-			comment: 'Comendo o cu de curioso'
+            comment: 'Comendo o cu de curioso',
+        }, {
+			nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }, {
+			nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }, {
+			nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }, {
+			nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }, {
+			nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }, {
+			nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }, {
+			nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }, {
+			nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }, {
+			nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+            
         }]
         
 
@@ -25,9 +54,11 @@ export default class PostList extends Component {
                 <TouchableWithoutFeedback onPress={this.props.onCancel}> 
                     <View style={styles.background} />
                 </TouchableWithoutFeedback>
-                <View style={styles.modal}> 
-                    <CommentPost comments={comments} />
-                </View>
+                <ScrollView>
+                    <View style={styles.modal}> 
+                        <ProfileComment comments={comments} />
+                    </View>
+                </ScrollView>
                 <TouchableWithoutFeedback onPress={this.props.onCancel}> 
                     <View style={styles.background} />
                 </TouchableWithoutFeedback>
@@ -42,7 +73,7 @@ const styles = StyleSheet.create({
       backgroundColor: 'rgba(0, 0, 0, 0.7)'  
     },
     modal: {
-        height: '40%',
+        height: '100%',
         backgroundColor: 'white'
     },
 })
