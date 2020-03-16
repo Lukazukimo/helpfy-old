@@ -56,8 +56,11 @@ class Feed extends Component {
             image: require('../../assets/imgs/bw.jpg'),
             // comments: []
         }]
+       
     }
-
+    onNavigate = () => {
+        return
+    }
     render(){
 
         const widthScreen = Dimensions.get('window').width / 2
@@ -108,6 +111,7 @@ class Feed extends Component {
                             renderItem={({ item }) =>                         
                             <Post key={item.id} {...item} 
                                 navigation={this.props.navigation}
+                                onNavigate={(this.onNavigate)}
                                 tamanho={{
                                     width: Dimensions.get('window').width / (5/2),
                                     height: Dimensions.get('window').width / (5/2),
@@ -124,6 +128,7 @@ class Feed extends Component {
                             renderItem={({ item }) =>                         
                             <Post key={item.id} {...item}
                                 navigation={this.props.navigation}
+                                onNavigate={(this.onNavigate)}
                                 tamanho={{
                                     width: Dimensions.get('window').width / (5/2),
                                     height: Dimensions.get('window').width / (5/2),
@@ -140,6 +145,7 @@ class Feed extends Component {
                             renderItem={({ item }) =>                         
                             <Post key={item.id} {...item}
                                 navigation={this.props.navigation}
+                                onNavigate={(this.onNavigate)}
                                 tamanho={{
                                     width: Dimensions.get('window').width / (5/2),
                                     height: Dimensions.get('window').width / (5/2),

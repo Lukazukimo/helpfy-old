@@ -19,7 +19,7 @@ import Icon from 'react-native-vector-icons/Feather'
 import LinearGradient from 'react-native-linear-gradient'
 import RadialGradient from 'react-native-radial-gradient'
 import ProfileInfo from '../componentes/ProfileInfo'
-import PostList from '../componentes/PostList'
+import RenderCommentList from '../componentes/RenderCommentList'
 import RenderPostList from '../componentes/RenderPostList'
 import Post from './../componentes/Post'
 
@@ -33,6 +33,11 @@ class Profile extends Component {
 		showPostList: false
 	}
 
+	onNavigate = () => {
+		this.setState({showPostList: false})
+	  }
+
+
 	render() {
 		const widthScreen = Dimensions.get('window').width / 2
 		const heightScreen = Dimensions.get('window').height / 2
@@ -41,9 +46,10 @@ class Profile extends Component {
 			<View style={styles.container}>
 				<ScrollView>
 					<View style={styles.backgroundContainer}>
-					<PostList isVisible={this.state.showCommentList} 
+					<RenderCommentList isVisible={this.state.showCommentList} 
                     	onCancel={() => this.setState({ showCommentList: false })}/>
-					<RenderPostList isVisible={this.state.showPostList} 
+					<RenderPostList onNavigate={(this.onNavigate)} navigation={this.props.navigation}
+						isVisible={this.state.showPostList} 
                     	onCancel={() => this.setState({ showPostList: false })}/>	
 						<ImageBackground
 							source={require("../../assets/imgs/fence.jpg")}
@@ -239,8 +245,10 @@ const styles = StyleSheet.create({
 		borderTopColor: 'black',
 		borderTopWidth: 1,
 		borderBottomColor: 'black',
-		borderBottomWidth: 1,
-		justifyContent: 'space-around'
+		borderBottomWidth: 1.5,
+		justifyContent: 'space-around',
+		backgroundColor: 'rgb(148, 100, 300)',
+		
 	},
   	buttonContainer: {
 		height:55,

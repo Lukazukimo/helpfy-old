@@ -25,7 +25,6 @@ class ProfileComment extends Component {
         
         return(
             <View style={styles.container}>
-                
                 {view}
             </View>
         )
@@ -35,8 +34,6 @@ class ProfileComment extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginLeft: 2,
-        marginTop: 5
     },
     headerCommentView: {
         marginLeft: 15,
@@ -70,7 +67,24 @@ const styles = StyleSheet.create({
     comment: {
         fontSize: 15,
         color: 'black'
-    }
+    },
+    header:{
+        height: '8%',
+        backgroundColor: 'rgb(148, 100, 300)',
+        borderTopColor: 'black',
+		borderTopWidth: 2,
+		borderBottomColor: 'black',
+        borderBottomWidth: 2,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    headerText: {
+        fontWeight: 'bold',
+        color: 'black',
+        fontSize: 25,
+        textAlign: 'left',
+
+    },
 })
 
 export default ProfileComment

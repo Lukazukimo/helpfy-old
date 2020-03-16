@@ -51,6 +51,9 @@ class LikedScreen extends Component {
             title: 'Post sobre çççç'
         }]
     }
+    onNavigate = () => {
+        return
+    }
 
     render (){
         const widthScreen = Dimensions.get('window').width / 2
@@ -76,7 +79,10 @@ class LikedScreen extends Component {
                         renderItem={({ item }) =>  {
                             return (
                                 <View style={styles.likedPosts}>
-                                    <Post key={item.id} {...item}  tamanho={{
+                                    <Post key={item.id} {...item} 
+                                    navigation={this.props.navigation}
+                                    onNavigate={(this.onNavigate)}
+                                    tamanho={{
                                         width: Dimensions.get('window').width / (5/2),
                                         height: Dimensions.get('window').width / (5/2),
                                         resizeMode: "stretch",

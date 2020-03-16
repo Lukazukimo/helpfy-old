@@ -48,6 +48,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',        
         backgroundColor: 'transparent',
+        borderBottomColor: 'black',
+        borderBottomWidth: 1,
     },
     rowContainer: {
         flexDirection: 'row',

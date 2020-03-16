@@ -18,11 +18,10 @@ export default props => {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 2,
         padding: 10,
         borderBottomColor: 'black',
-        borderBottomWidth: 0.5,
-        marginLeft: 7
+        borderBottomWidth: 1,
+        backgroundColor: 'rgb(162, 170, 220)'
 
     },
     profileText: {

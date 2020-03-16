@@ -59,6 +59,10 @@ const goSearch = createStackNavigator({
     ScreenPost: {
         screen: ScreenPost,
         navigationOptions: navOptionHandler
+    },
+    LikedScreen: {
+        screen: LikedScreen,
+        navigationOptions: navOptionHandler
     }
 }, {
     // rota inicial
