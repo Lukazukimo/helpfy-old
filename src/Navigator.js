@@ -64,10 +64,6 @@ const goSearch = createStackNavigator({
         screen: LikedScreen,
         navigationOptions: navOptionHandler
     },
-    Category: {
-        screen: Category,  
-        navigationOptions: navOptionHandler
-    }
 }, {
     // rota inicial
     initialRouteName: 'Feed',    
