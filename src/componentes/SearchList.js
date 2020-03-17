@@ -238,7 +238,7 @@ class SearchList extends Component {
                     return (
                         <View style={styles.categoryContainer}>                                    
                             <Post key={item.id} {...item}  
-                                navigation={this.props.navigation}
+                                navigation={this.props.navigation}                                
                                 tamanho={{
                                     width: Dimensions.get('window').width / (5/2),
                                     height: Dimensions.get('window').width / (5/2),

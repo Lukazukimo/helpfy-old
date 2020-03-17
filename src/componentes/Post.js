@@ -9,11 +9,19 @@ import{
 } from 'react-native'
 
 class Post extends Component {
-    render() {    
+    constructor(props) {
+        super(props)
+    }
+
+    render() {            
+        console.log(this.props)
         return(
             <View style={styles.container}>
                 {/* <Image source={require('../../assets/imgs/boat.jpg')}/> */}
-                <TouchableOpacity onPress={() => {this.props.navigation.navigate('ScreenPost'); this.props.onNavigate()}}>
+                <TouchableOpacity onPress={() => {
+                        // this.props.navigation.navigate('Category', { title: this.props.title})
+                        this.props.navigation.navigate('ScreenPost')
+                        this.props.onNavigate()}}>
                     <Image source={this.props.image} style={this.props.tamanho}/>
                 </TouchableOpacity>
             </View>
