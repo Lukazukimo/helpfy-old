@@ -10,6 +10,7 @@ import { View,
 } from 'react-native'
 import { ListItem, SearchBar } from 'react-native-elements'
 import Post from './Post'
+import PostCategory from './PostCategory'
 import LinearGradient from 'react-native-linear-gradient'
 
 class SearchList extends Component {
@@ -241,7 +242,7 @@ class SearchList extends Component {
                 renderItem={({ item }) =>  {
                     return (
                         <View style={styles.categoryContainer}>                                    
-                            <Post key={item.id} {...item}  
+                            <PostCategory key={item.id} {...item}  
                                 navigation={this.props.navigation}
                                 onNavigate={(this.onNavigate)}
                                 tamanho={{

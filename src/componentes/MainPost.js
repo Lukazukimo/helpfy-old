@@ -29,12 +29,12 @@ export default class MainPost extends Component {
     render() {    
         const a = 'asiodhjasildjaslidjalsiojdkxzjkjzsdkfsjfksdkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkklasidjalsikjnmdlaskmd.asl,dalmciasdj'
         
-        const changeIcon = this.state.liked? 'black' : 'gray'
+        const changeIcon = this.state.liked? 'black' : 'red'
         const wantOrNo = this.state.iWant? styles.iWant : styles.iDontWant
         const wantOrNoText = this.state.iWant? 'Eu quero!' : 'Eu não quero'
         
         const emailAuthorPost = 'aaa@gmail.com'
-        const email = 'aa@gmail.com'        
+        const email = 'aaa@gmail.com'
         
         const comments = [{
 			nickname: 'Ulisses',
@@ -62,13 +62,13 @@ export default class MainPost extends Component {
                     <View style={styles.buttonContainer}>
                         <AuthorPost test={emailAuthorPost === email}>
                             <TouchableOpacity style={styles.buttons}
-                                onPress={ () => this.setState({ iWant : !this.state.iWant})}>
-                                <Text style={wantOrNo}>{wantOrNoText}</Text>	  
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons}
                                 onPress={ () => this.setState({ liked : !this.state.liked})}>
                                 <Icon name={'heart'} size={40} color={changeIcon} style={{}} /> 
                             </TouchableOpacity>
+                            <TouchableOpacity style={styles.buttons}
+                                onPress={ () => this.setState({ iWant : !this.state.iWant})}>
+                                <Text style={wantOrNo}>{wantOrNoText}</Text>	  
+                            </TouchableOpacity>                            
                         </AuthorPost>
                         <AuthorPost test={emailAuthorPost !== email}>
                             <TouchableOpacity style={styles.iWantList} onPress={() => this.setState({ showIWantList: true })}>
@@ -175,6 +175,6 @@ const styles = StyleSheet.create({
     tabBottomBackground: {		
 		width: '100%',
 		height: 50,
-		backgroundColor: 'rgba(50, 13, 119, 0.50)',				
+		backgroundColor: 'transparent'
 	},
 })

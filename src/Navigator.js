@@ -64,6 +64,10 @@ const goSearch = createStackNavigator({
         screen: LikedScreen,
         navigationOptions: navOptionHandler
     },
+    Category: {
+        screen: Category,
+        navigationOptions: navOptionHandler
+    }
 }, {
     // rota inicial
     initialRouteName: 'Feed',    
@@ -116,7 +120,7 @@ const MenuRoutes = {
     },
     Message: {
         name: 'Message',
-        screen: Category,
+        screen: Teste,
         navigationOptions: {
             title: 'Message',
             tabBarIcon: ({ tintColor: color }) =>

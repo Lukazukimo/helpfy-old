@@ -3,49 +3,121 @@ import {
     View,
     StyleSheet,
     Text,
-    StatusBar
+    ScrollView,
+    FlatList, 
+    Dimensions
 } from 'react-native'
-import { Header } from 'react-native-elements'
 import LinearGradient from 'react-native-linear-gradient'
+import Post from '../componentes/Post'
 
 export default class Category extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            title: this.props.navigation.state.params.title
+            title: this.props.navigation.state.params.title,
+            posts: [{
+                id: Math.random(),
+                image: require('../../assets/imgs/bw.jpg'),
+                title: 'Titulo Post 1'
+            }, {
+                id: Math.random(),
+                image: require('../../assets/imgs/boat.jpg'),
+                title: 'Titulo Post 2'
+            }, {
+                id: Math.random(),
+                image: require('../../assets/imgs/fence.jpg'),
+                title: 'Titulo Post 3'
+            }, {
+                id: Math.random(),
+                image: require('../../assets/imgs/bw.jpg'),
+                title: 'Titulo Post 1'
+            }, {
+                id: Math.random(),
+                image: require('../../assets/imgs/boat.jpg'),
+                title: 'Titulo Post 2'
+            }, {
+                id: Math.random(),
+                image: require('../../assets/imgs/fence.jpg'),
+                title: 'Titulo Post 3'
+            }, {
+                id: Math.random(),
+                image: require('../../assets/imgs/bw.jpg'),
+                title: 'Titulo Post 1'
+            }, {
+                id: Math.random(),
+                image: require('../../assets/imgs/boat.jpg'),
+                title: 'Titulo Post 2'
+            }, {
+                id: Math.random(),
+                image: require('../../assets/imgs/fence.jpg'),
+                title: 'Titulo Post 3'
+            }, {
+                id: Math.random(),
+                image: require('../../assets/imgs/bw.jpg'),
+                title: 'Titulo Post 1'
+            }, {
+                id: Math.random(),
+                image: require('../../assets/imgs/boat.jpg'),
+                title: 'Titulo Post 2'
+            }, {
+                id: Math.random(),
+                image: require('../../assets/imgs/fence.jpg'),
+                title: 'Titulo Post 3'
+            }]
         }
     }
-    
-    render() {        
 
-        return (            
+    onNavigate = () => {
+        return
+    }
+
+    render() {
+        return (
             <LinearGradient colors={[
-            'rgb(146, 135, 211)',
-            'rgb(124, 147, 225)',
-            'rgba(124, 147, 225, 0.8)',
-            'rgb(155, 156, 213)',
-            'rgb(162, 163, 217)',            
-            'rgba(162, 163, 217, 0.85)',
-            'rgb(162, 163, 217)',
-            'rgb(162, 163, 217)',
-            'rgba(124, 147, 225, 0.8)',
-            'rgb(124, 147, 225)',
-            'rgb(146, 135, 211)',
-            ]}
-            style={styles.container} >
-                {/* <Header                                   
-                    centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
-                    containerStyle={{
-                    backgroundColor: 'transparent',
-                    justifyContent: 'space-around',
-                    }}
-                /> */}
-                {/* <StatusBar backgroundColor='transparent'
-                    translucent={true}/> */}
-                <View style={styles.headerContainer}>
-                <Text style={styles.title}>{this.state.title}</Text>
+                'rgb(146, 135, 211)',
+                'rgb(124, 147, 225)',
+                'rgba(124, 147, 225, 0.8)',
+                'rgb(155, 156, 213)',
+                'rgb(162, 163, 217)',
+                'rgba(162, 163, 217, 0.85)',
+                'rgb(162, 163, 217)',
+                'rgb(162, 163, 217)',
+                'rgba(124, 147, 225, 0.8)',
+                'rgb(124, 147, 225)',
+                'rgb(146, 135, 211)',
+            ]} style={styles.container}>
+                <ScrollView>
+                    <View style={styles.headerContainer}>
+                        <Text style={styles.title}>{this.state.title}</Text>
+                    </View>
+                    <View style={styles.bodyContainer}>
+                        <FlatList numColumns={2}
+                            data={this.state.posts}
+                            keyExtractor={item => `${item.id}`}
+                            renderItem={({ item }) => {
+                                return (
+                                    <View style={styles.categoryContainer}>
+                                        <Post key={item.id} {...item}
+                                            navigation={this.props.navigation}
+                                            onNavigate={(this.onNavigate)}
+                                            tamanho={{
+                                                width: Dimensions.get('window').width / (5 / 2),
+                                                height: Dimensions.get('window').width / (5 / 2),
+                                                resizeMode: "stretch",
+                                                margin: 10,
+                                                borderRadius: 15,
+                                                // backgroundColor: '#fff',
+                                            }} />
+                                        <Text style={styles.textTitle}>{item.title}</Text>
+                                    </View>
+                                )
+                            }}
+                        />
+                    </View>
+                </ScrollView>
+                <View style={styles.tabBottomBackground}>
                 </View>
-            </LinearGradient>            
+            </LinearGradient>
         )
     }
 }
@@ -55,8 +127,9 @@ const styles = StyleSheet.create({
         flex: 1
     },
     headerContainer: {
-        backgroundColor: 'rgba(255,255,255,0.5)',
-        backgroundColor: 'transparent',
+        // backgroundColor: 'rgba(255,255,255,0.5)',
+        // backgroundColor: 'transparent',
+        // height: '13%',
         height: 80,
         alignItems: 'center'
     },
@@ -66,9 +139,30 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontFamily: 'shelter',
         color: 'rgba(225, 22, 94, 0.7)',
-        textShadowColor: '#fff', 
+        textShadowColor: '#fff',
         textShadowOffset: { width: 1, height: 0 },
-        textShadowRadius: 10, 
-        
+        textShadowRadius: 10,
+    },
+    bodyContainer: {
+        // backgroundColor: 'rgba(255,255,255,0.5)',
+        alignItems: 'center',        
+    },
+    textTitle: {
+        color: 'rgba(255, 255, 255, 0.95)',
+        textShadowColor: 'rgba(225, 22, 94, 1)', 
+        textShadowOffset: { width: 1, height: 3 },
+        textShadowRadius: 15,
+        fontSize: 20,
+		marginRight: 4,
+		fontWeight: 'bold',
+		// fontStyle: "italic",
+		textAlignVertical: "center",
+        textAlign: "center",
+        marginBottom: 10
+    },
+    tabBottomBackground: {
+        width: '100%',
+        height: 50,
+        backgroundColor: 'transparent'
     }
 })
