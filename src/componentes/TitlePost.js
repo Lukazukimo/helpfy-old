@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     titlePost: {
         textAlign: 'center',
         fontSize: 20,
-        marginTop: 2,
+        marginTop: 50,
         fontWeight: 'bold'
     }
 })

@@ -20,8 +20,8 @@ const styles = StyleSheet.create({
     container: {
         padding: 10,
         borderBottomColor: 'black',
-        borderBottomWidth: 1,
-        backgroundColor: 'rgb(162, 170, 220)'
+        borderBottomWidth: 0.5,
+        backgroundColor: 'transparent'
 
     },
     profileText: {

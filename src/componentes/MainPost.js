@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     },
     buttons: {
 		height:55,
-		marginTop:10,
+		marginTop:-5,
     	flexDirection: 'row',
     	justifyContent: 'center',
     	alignItems: 'center',

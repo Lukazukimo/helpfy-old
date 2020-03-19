@@ -43,7 +43,20 @@ class Profile extends Component {
 		const heightScreen = Dimensions.get('window').height / 2
 		
 		return(
-			<View style={styles.container}>
+			<LinearGradient colors={[
+                'rgb(146, 135, 211)',
+                'rgb(124, 147, 225)',
+                'rgba(124, 147, 225, 0.8)',
+                'rgb(155, 156, 213)',
+                'rgb(162, 163, 217)',            
+                'rgba(162, 163, 217, 0.85)',
+                'rgb(162, 163, 217)',
+                'rgb(162, 163, 217)',
+                'rgba(124, 147, 225, 0.8)',
+                'rgb(124, 147, 225)',
+                'rgb(146, 135, 211)',
+                ]}
+                style={styles.container} > 
 				<ScrollView>
 					<View style={styles.backgroundContainer}>
 					<RenderCommentList isVisible={this.state.showCommentList} 
@@ -120,7 +133,7 @@ class Profile extends Component {
 				</ScrollView>
 				<View style={styles.tabBottomBackground}>
                 </View>
-			</View>
+			</LinearGradient>
 		)
 	}
 }
@@ -242,12 +255,10 @@ const styles = StyleSheet.create({
 		marginTop: 0,
 		height: 56,
 		flexDirection: 'row',
-		borderTopColor: 'black',
-		borderTopWidth: 1,
 		borderBottomColor: 'black',
-		borderBottomWidth: 1.5,
+		borderBottomWidth: 0.5,
 		justifyContent: 'space-around',
-		backgroundColor: 'rgb(148, 100, 300)',
+		backgroundColor: 'transparent',
 		
 	},
   	buttonContainer: {

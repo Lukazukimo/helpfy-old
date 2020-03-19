@@ -13,22 +13,12 @@ export default props => {
 
 const styles = StyleSheet.create({
     descriptionContainer: {
-        fontSize: 20,
         height: 90,
-        marginTop: 5,
-        borderTopColor: 'black',
-        borderTopWidth: 1,
-        borderBottomColor: 'black',
-        borderBottomWidth: 1,
         marginLeft: 20,
-        borderLeftColor: 'black',
-        borderLeftWidth: 1,
-        borderRightColor: 'black',
-        marginRight: 25,
-        borderRightWidth: 1,
-        borderRadius: 15,    
+        marginRight: 15,
     },
     descriptionPost: {
+        fontSize: 15,
         marginLeft: 10,
         marginTop: 5,
         marginRight: 10,

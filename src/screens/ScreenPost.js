@@ -28,7 +28,6 @@ class ScreenPost extends Component {
                 'rgb(146, 135, 211)',
                 ]}
                 style={styles.container} >
-                <Header navigation={this.props.navigation}/>  
                 <MainPost image={require('../../assets/imgs/boat.jpg')} />
             </LinearGradient>            
         )
