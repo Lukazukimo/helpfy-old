@@ -9,8 +9,8 @@ import{
     TextInput,
     ScrollView
 } from 'react-native'
-import Header from '../componentes/Header'
 import Notifications from '../componentes/Notifications'
+import LinearGradient from 'react-native-linear-gradient'
 
 
 class NotificationScreen extends Component{
@@ -46,39 +46,70 @@ class NotificationScreen extends Component{
         }, {
             nickname: 'Murilo',
             notification: 'curtiu sua postagem'
-		}]
-        return(
-            <View style={styles.container}>
-                <Header navigation={this.props.navigation}/> 
-                <ScrollView>
+		}, {
+            nickname: 'Murilo',
+            notification: 'curtiu sua postagem'
+		}, {
+            nickname: 'Murilo',
+            notification: 'curtiu sua postagem'
+		}, {
+            nickname: 'Murilo',
+            notification: 'curtiu sua postagem'
+		}, {
+            nickname: 'Murilo',
+            notification: 'curtiu sua postagem'
+		}, {
+            nickname: 'Murilo',
+            notification: 'curtiu sua postagem'
+        }]        
+
+        return(            
+            <LinearGradient colors={[
+                'rgb(146, 135, 211)',
+                'rgb(124, 147, 225)',
+                'rgba(124, 147, 225, 0.8)',
+                'rgb(155, 156, 213)',
+                'rgb(162, 163, 217)',
+                'rgba(162, 163, 217, 0.85)',
+                'rgb(162, 163, 217)',
+                'rgb(162, 163, 217)',
+                'rgba(124, 147, 225, 0.8)',
+                'rgb(124, 147, 225)',
+                'rgb(146, 135, 211)',
+            ]} style={styles.container}>
+                <ScrollView style={styles.bodyContainer}>                    
+                    <View style={styles.headerContainer}>
+                        <Text style={styles.title}>Notificações</Text>
+                    </View>
                     <Notifications notifications={notifications} />
-                </ScrollView>
-                <View style={styles.tabBottomBackground} />
-            </View>
+                </ScrollView>                
+            </LinearGradient>            
         )
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,                
+    },
+    headerContainer: {
+        // backgroundColor: 'rgba(255,255,255,0.5)',
+        height: 70,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'flex-end'
     },
     title: {
-        alignItems: 'flex-start',
-        marginLeft: 20,
-        marginTop: 20,
-        borderBottomColor: 'black',
-    	borderBottomWidth: 1.5,
+        marginTop: 25,        
+        fontSize: 30,
+        fontFamily: 'shelter',
+        color: 'rgba(225, 22, 94, 0.7)',
+        textShadowColor: '#fff',
+        textShadowOffset: { width: 1, height: 0 },
+        textShadowRadius: 10,
     },
-    headerText: {
-        fontSize: 25,
-        fontWeight: 'bold',
-
-    },
-    tabBottomBackground: {
-		width: '100%',
-		height: 50,
-		backgroundColor: 'rgba(50, 13, 119, 0.50)',	
+    bodyContainer: {
+        
     }
 })
 

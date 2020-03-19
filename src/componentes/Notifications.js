@@ -27,10 +27,10 @@ class Notifications extends Component {
         
         return(
             <View style={styles.container}>
-                <View style={styles.headerNotificationView}> 
+                {/* <View style={styles.headerNotificationView}> 
                     <Text style={styles.headerNotificationText}>Notificações</Text>
                 </View>
-                
+                 */}
                 {view}
             </View>
         )
@@ -40,25 +40,23 @@ class Notifications extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginLeft: 2,
-        marginTop: 20
+        marginLeft: 2,        
     },
-    headerNotificationView: {
-        marginLeft: 15,
-        borderBottomColor: 'black',
-        width: '100%',
-        borderBottomWidth: 1.5,
-    },
-    headerNotificationText: {
-        fontSize: 25,
-        fontWeight: 'bold'
-    },
+    // headerNotificationView: {
+    //     marginLeft: 15,
+    //     borderBottomColor: 'black',
+    //     width: '100%',
+    //     borderBottomWidth: 1.5,
+    // },
+    // headerNotificationText: {
+    //     fontSize: 25,
+    //     fontWeight: 'bold'
+    // },
     notificationContainer: {
 		height: 60,
 		flexDirection: 'row',
         borderBottomColor: 'black',
-        width: '100%',
-        borderBottomWidth: 0.5,
+        width: '100%',        
         alignItems: 'center'
     },
     avatar: {

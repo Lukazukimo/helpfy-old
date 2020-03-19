@@ -1,148 +1,178 @@
 import React, { Component } from 'react'
-import { 
-    View, 
-    Text, 
+import {
+    View,
     StyleSheet,
-    FlatList,
+    Text,
+    ScrollView,
+    FlatList, 
     Dimensions,
-    TouchableOpacity,
-    SafeAreaView,
-    ScrollView
+    StatusBar
 } from 'react-native'
-import RadialGradient from 'react-native-radial-gradient'
-import Header from './../componentes/Header'
-import Post from './../componentes/Post'
+import LinearGradient from 'react-native-linear-gradient'
+import Post from '../componentes/Post'
 
-class WishList extends Component {
-    state = {
+export default class WishList extends Component {
+    
+    state = {            
         posts: [{
             id: Math.random(),
-            nickname: 'Nome 1',
-            email: 'nome1@gmail.com',
-            image: require('./../../assets/imgs/bw.jpg'),
-            comments: []
+            image: require('../../assets/imgs/bw.jpg'),
+            title: 'Titulo Post 0'
         }, {
             id: Math.random(),
-            nickname: 'Nome 2',
-            email: 'nome2@gmail.com',
-            image: require('../../assets/imgs/bw.jpg'),
-            // comments: []
-        },{
-            id: Math.random(),
-            nickname: 'Nome 3',
-            email: 'nome3@gmail.com',
-            image: require('../../assets/imgs/bw.jpg'),
-            // comments: []
-        },{
-            id: Math.random(),
-            nickname: 'Nome 4',
-            email: 'nome4@gmail.com',
-            image: require('../../assets/imgs/bw.jpg'),
-            // comments: []
+            image: require('../../assets/imgs/boat.jpg'),
+            title: 'Titulo Post 2'
         }, {
             id: Math.random(),
-            nickname: 'Nome 5',
-            email: 'nome5@gmail.com',
+            image: require('../../assets/imgs/fence.jpg'),
+            title: 'Titulo Post 3'
+        }, {
+            id: Math.random(),
             image: require('../../assets/imgs/bw.jpg'),
-            // comments: []
+            title: 'Titulo Post 1'
+        }, {
+            id: Math.random(),
+            image: require('../../assets/imgs/boat.jpg'),
+            title: 'Titulo Post 2'
+        }, {
+            id: Math.random(),
+            image: require('../../assets/imgs/fence.jpg'),
+            title: 'Titulo Post 3'
+        }, {
+            id: Math.random(),
+            image: require('../../assets/imgs/bw.jpg'),
+            title: 'Titulo Post 1'
+        }, {
+            id: Math.random(),
+            image: require('../../assets/imgs/boat.jpg'),
+            title: 'Titulo Post 2'
+        }, {
+            id: Math.random(),
+            image: require('../../assets/imgs/fence.jpg'),
+            title: 'Titulo Post 3'
+        }, {
+            id: Math.random(),
+            image: require('../../assets/imgs/bw.jpg'),
+            title: 'Titulo Post 1'
+        }, {
+            id: Math.random(),
+            image: require('../../assets/imgs/boat.jpg'),
+            title: 'Titulo Post 2'
+        }, {
+            id: Math.random(),
+            image: require('../../assets/imgs/fence.jpg'),
+            title: 'Titulo Post 3'
         }]
     }
+    
+    onNavigate = () => {
+        return
+    }
 
-    render (){
-        const widthScreen = Dimensions.get('window').width / 2
-        const heightScreen = Dimensions.get('window').height / 2
-            
-        return(    
-            <RadialGradient style={{width:'800', height: '600'}}                 
-                colors={['rgba(219, 138, 169, 0.41)', 
-                    'rgba(219, 129, 163, 0.55)',
-                    'rgba(211, 116, 152, 0.68)',
-                    'rgba(204, 87, 132, 0.68)',
-                    'rgba(170, 83, 186, 0.68)',
-                    'rgba(156, 47, 175, 0.48)',
-                    'rgba(50, 13, 119, 0.50)']}
-                stops={[0.7, 0.7, 0.7, 0.7, 0.7, 0.7, 0.7]} 
-                center={[widthScreen,heightScreen]} 
-                radius={350}
-                style={styles.container} >
-                <View style={{width: '100%'}}>
-                    <Header navigation={this.props.navigation}/>
-                </View>   
-                <View style={styles.wishListContainer}>
-                    <ScrollView>
-                        <SafeAreaView style={{width: '200%'}}>
-                            <FlatList style={{width: '100%'}}
-                                data={this.state.posts}
-                                keyExtractor={item => `${item.id}`}
-                                renderItem={({ item }) =>  {
-                                    return (
-                                        <View style={styles.wishListItem}>
-                                            <TouchableOpacity onPress={() => alert("Testando!")}>
-                                                <View style={styles.postItems}>
-                                                    <View>
-                                                        <Post key={item.id} {...item} tamanho={styles.postSize} />   
-                                                    </View>
-                                                    <View style={styles.postDescription}>
-                                                        <Text style={styles.textDescription}>{item.nickname}</Text>
-                                                        <Text style={styles.textDescription}>{item.email}</Text>
-                                                    </View>
-                                                </View>
-                                                <View style={styles.lineStyle} />
-                                            </TouchableOpacity>
-                                        </View>
-                                    )   
-                                }}
-                            />
-                        </SafeAreaView>    
-                    </ScrollView>
-                </View>
-            </RadialGradient>
+    render() {
+        return (
+            <LinearGradient colors={[
+                'rgb(146, 135, 211)',
+                'rgb(124, 147, 225)',
+                'rgba(124, 147, 225, 0.8)',
+                'rgb(155, 156, 213)',
+                'rgb(162, 163, 217)',
+                'rgba(162, 163, 217, 0.85)',
+                'rgb(162, 163, 217)',
+                'rgb(162, 163, 217)',
+                'rgba(124, 147, 225, 0.8)',
+                'rgb(124, 147, 225)',
+                'rgb(146, 135, 211)',
+            ]} style={styles.container}>
+                <StatusBar backgroundColor='transparent'
+                    translucent={true}/>
+                <ScrollView>
+                    <View style={styles.headerContainer}>
+                        <Text style={styles.title}>Desejos</Text>
+                    </View>
+                    <View style={styles.bodyContainer}>
+                        <FlatList numColumns={2}
+                            data={this.state.posts}
+                            keyExtractor={item => `${item.id}`}
+                            renderItem={({ item }) => {
+                                return (
+                                    <View style={styles.categoryContainer}>
+                                        <Post key={item.id} {...item}
+                                            navigation={this.props.navigation}
+                                            onNavigate={(this.onNavigate)}
+                                            tamanho={{
+                                                width: Dimensions.get('window').width / (5 / 2),
+                                                height: Dimensions.get('window').width / (5 / 2),
+                                                resizeMode: "stretch",
+                                                margin: 10,
+                                                borderRadius: 15,
+                                                // backgroundColor: '#fff',
+                                            }} />
+                                        <Text style={styles.textTitle}>{item.title}</Text>
+                                    </View>
+                                )
+                            }}
+                        />
+                    </View>
+                </ScrollView>
+                {/* <View style={styles.tabBottomBackground}>
+                </View> */}
+            </LinearGradient>
         )
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 1
     },
-
-    wishListContainer: {
-        paddingBottom: 23
+    headerContainer: {
+        // backgroundColor: 'rgba(255,255,255,0.5)',
+        // backgroundColor: 'transparent',
+        // height: '13%',
+        height: 80,
+        alignItems: 'center'
     },
-
-    wishListItem: {
+    categoryContainer:{
+        // backgroundColor: 'red',
+        // borderColor: 'white',
+        // borderWidth: 2,
+        paddingTop: 10,        
+        paddingBottom: 10,        
+        justifyContent: 'center',        
+        alignItems: 'center',
+        width: Dimensions.get('window').width / 2
+    },
+    title: {
+        marginTop: 30,
+        marginLeft: 10,
+        fontSize: 30,
+        fontFamily: 'shelter',
+        color: 'rgba(225, 22, 94, 0.7)',
+        textShadowColor: '#fff',
+        textShadowOffset: { width: 1, height: 0 },
+        textShadowRadius: 10,
+    },
+    bodyContainer: {
+        // backgroundColor: 'rgba(255,255,255,0.5)',
+        alignItems: 'center',               
+    },
+    textTitle: {
+        color: 'rgba(255, 255, 255, 0.95)',
+        textShadowColor: 'rgba(225, 22, 94, 1)', 
+        textShadowOffset: { width: 1, height: 3 },
+        textShadowRadius: 15,
+        fontSize: 20,
+		marginRight: 4,
+		fontWeight: 'bold',
+		// fontStyle: "italic",
+		textAlignVertical: "center",
+        textAlign: "center",
+        marginBottom: 10
+    },
+    tabBottomBackground: {
         width: '100%',
-        paddingTop: 10,
-        paddingBottom: 20,
-        marginLeft: 10, 
-    },
-
-    lineStyle: {
-        borderBottomColor: '#000', 
-        borderBottomWidth: 0.5,
-        paddingBottom: 30
-    },
-
-    postSize: {
-        width: 90,
-        height: 90,
-        borderRadius: 50
-    },
-
-    postItems: {
-        flexDirection: 'row',
-    },
-
-    postDescription: {
-        marginTop: 15,
-        marginLeft: 25
-    },
-
-    textDescription: {
-        fontWeight: 'bold',
-        paddingBottom: 10
+        height: 50,
+        backgroundColor: 'transparent'
     }
-
 })
-
-export default WishList

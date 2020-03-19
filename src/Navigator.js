@@ -89,10 +89,13 @@ const goTesteScreen = createStackNavigator({
 
 // Quando esta na tela Search retira o tabBottomBar
 goSearch.navigationOptions = ({ navigation }) => {
-    const { state: { routes, index } } = navigation;
-    let tabBarVisible = true;
+    const { state: { routes, index } } = navigation
+    let tabBarVisible = true
     if(routes[index].routeName === 'Search'){
-      tabBarVisible = false;
+      tabBarVisible = false
+    }
+    else if(routes[index].routeName === 'Notification'){
+        tabBarVisible = false
     }
     return {
       tabBarVisible

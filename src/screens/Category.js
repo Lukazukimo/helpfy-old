@@ -133,6 +133,16 @@ const styles = StyleSheet.create({
         height: 80,
         alignItems: 'center'
     },
+    categoryContainer:{
+        // backgroundColor: 'red',
+        // borderColor: 'white',
+        // borderWidth: 2,
+        paddingTop: 10,        
+        paddingBottom: 10,        
+        justifyContent: 'center',        
+        alignItems: 'center',
+        width: Dimensions.get('window').width / 2
+    },
     title: {
         marginTop: 30,
         marginLeft: 10,
