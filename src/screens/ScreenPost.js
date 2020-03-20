@@ -72,7 +72,7 @@ class ScreenPost extends Component {
                     onCancel={() => this.setState({ showIWantList: false })}/>
                     <TitlePost titlePost={this.state.title} />
                     <Image source={this.state.image} style={styles.image}/>
-                    <Author email={'fulano@teste.com'} nickname={'Fabio'} />
+                    <Author email={'fulano@teste.com'} nickname={'Fabio'}/>
                     <DescriptionPost descriptionPost={a} />
                     <View style={styles.buttonContainer}>
                         <AuthorPost test={emailAuthorPost === email}>
@@ -106,8 +106,8 @@ const styles = StyleSheet.create({
     image: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').width * 3 / 4,
-        resizeMode: 'contain',
-        marginTop: -20
+        resizeMode: "contain",        
+        backgroundColor: 'red'
     },
     buttonContainer: {
 		marginTop: 1,

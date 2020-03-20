@@ -46,14 +46,14 @@ class Feed extends Component {
             // nickname: 'Francisco Leandro Lima',
             // email: 'fllima@gmail.com',
             title: 'alo',
-            image: require('../../assets/imgs/bw.jpg'),
+            image: require('../../assets/imgs/boat.jpg'),
             // comments: []
         }, {
             id: Math.random(),
             // nickname: 'Francisco Leandro Lima',
             // email: 'fllima@gmail.com',
             title: 'alo',
-            image: require('../../assets/imgs/bw.jpg'),
+            image: require('../../assets/imgs/planeta.jpg'),
             // comments: []
         }, {
             id: Math.random(),
@@ -122,7 +122,7 @@ class Feed extends Component {
                                 tamanho={{
                                     width: Dimensions.get('window').width / (5/2),
                                     height: Dimensions.get('window').width / (5/2),
-                                    resizeMode: "stretch",
+                                    resizeMode: "cover",
                                     margin: 10,
                                     borderRadius: 15
                                 }}/>}/>    

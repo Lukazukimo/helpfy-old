@@ -66,7 +66,11 @@ const feedStack = createStackNavigator({
     Category: {
         screen: Category,
         navigationOptions: navOptionHandler
-    }
+    },
+    AddPost: {
+        screen: AddPost,
+        navigationOptions: navOptionHandler
+    },
 }, {
     // rota inicial
     initialRouteName: 'Feed',    
