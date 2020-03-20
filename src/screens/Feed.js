@@ -29,6 +29,7 @@ class Feed extends Component {
             id: Math.random(),
             // nickname: 'Rafael Pereira Filho',
             // email: 'rafaelprrflh@gmail.com',
+            title: 'alo',
             image: require('../../assets/imgs/boat.jpg'),
             // comments: [{
             //     nickname: 'John Ray Sheldon',

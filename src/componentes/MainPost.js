@@ -55,7 +55,7 @@ export default class MainPost extends Component {
                 <ScrollView>
                     <IWantList isVisible={this.state.showIWantList} 
                     onCancel={() => this.setState({ showIWantList: false })}/>
-                    <TitlePost titlePost={'Titulo do Post'} />
+                    <TitlePost titlePost={'alo'} />
                     <Image source={this.props.image} style={styles.image}/>
                     <Author email={'fulano@teste.com'} nickname={'Fabio'} />
                     <DescriptionPost descriptionPost={a} />

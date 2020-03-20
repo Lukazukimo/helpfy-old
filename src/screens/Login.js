@@ -11,6 +11,8 @@ import{
 import Header from '../componentes/Header'
 import Logo from '../componentes/Logo'
 import { Left } from 'native-base'
+import LinearGradient from 'react-native-linear-gradient'
+
 class Login extends Component{
     state = { 
         name: 'Temporario',
@@ -21,7 +23,20 @@ class Login extends Component{
 
     render(){
         return(
-            <View style={styles.container}>
+            <LinearGradient colors={[
+                'rgb(146, 135, 211)',
+                'rgb(124, 147, 225)',
+                'rgba(124, 147, 225, 0.8)',
+                'rgb(155, 156, 213)',
+                'rgb(162, 163, 217)',            
+                'rgba(162, 163, 217, 0.85)',
+                'rgb(162, 163, 217)',
+                'rgb(162, 163, 217)',
+                'rgba(124, 147, 225, 0.8)',
+                'rgb(124, 147, 225)',
+                'rgb(146, 135, 211)',
+                ]}
+                style={styles.container} >     
                 <Logo logo={'Helpfy'}/>
                 <TextInput placeholder='Email' style={styles.input}
                     autoFocus={true} keyboardType='email-address'
@@ -42,13 +57,14 @@ class Login extends Component{
                         <Text style={styles.forgotPasswd}>Esqueci minha senha</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            </LinearGradient>
         )
     }
 }
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },

@@ -8,6 +8,8 @@ import {
 } from 'react-native'
 import Logo from '../componentes/Logo'
 import Header from '../componentes/Header'
+import LinearGradient from 'react-native-linear-gradient'
+
 class Register extends Component{
     state = {
         name: '',
@@ -17,7 +19,20 @@ class Register extends Component{
 
     render(){
         return(
-            <View style={styles.container}>
+            <LinearGradient colors={[
+                'rgb(146, 135, 211)',
+                'rgb(124, 147, 225)',
+                'rgba(124, 147, 225, 0.8)',
+                'rgb(155, 156, 213)',
+                'rgb(162, 163, 217)',            
+                'rgba(162, 163, 217, 0.85)',
+                'rgb(162, 163, 217)',
+                'rgb(162, 163, 217)',
+                'rgba(124, 147, 225, 0.8)',
+                'rgb(124, 147, 225)',
+                'rgb(146, 135, 211)',
+                ]}
+                style={styles.container} >   
                 <Logo logo={'Criar conta...'} />
                 <TextInput placeholder='Nome' style={styles.input}
                     autoFocus={true} value={this.state.name}
@@ -33,7 +48,7 @@ class Register extends Component{
                     style={styles.buttom}>
                     <Text style={styles.buttomText}>Salvar</Text>
                 </TouchableOpacity>
-            </View>
+            </LinearGradient>
         )
     }
 }
@@ -42,6 +57,7 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         justifyContent: 'center',
+        flex: 1
     },
     buttom: {
         marginTop: 30,

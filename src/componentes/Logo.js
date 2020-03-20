@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',        
         backgroundColor: 'transparent',
         alignItems: 'center',
-        marginTop: 85
     }, 
     logo: {
       fontSize: 30,
