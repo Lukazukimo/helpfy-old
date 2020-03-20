@@ -42,7 +42,7 @@ const goRegister = createStackNavigator({
     initialRouteName: 'Login',    
 })
 
-const goSearch = createStackNavigator({
+const feedStack = createStackNavigator({
     Feed: {
         screen: Feed,
         navigationOptions: navOptionHandler
