@@ -67,6 +67,10 @@ const goSearch = createStackNavigator({
     Category: {
         screen: Category,
         navigationOptions: navOptionHandler
+    },
+    AddPost: {
+        screen: AddPost,
+        navigationOptions: navOptionHandler
     }
 }, {
     // rota inicial

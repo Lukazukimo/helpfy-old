@@ -5,8 +5,11 @@ import {
     FlatList,
     Text,
     ScrollView,
-    Dimensions,    
+    Dimensions,
+    TouchableOpacity
 } from 'react-native'
+import Icon from 'react-native-vector-icons/Feather'
+// import { Icon } from 'react-native-elements'
 import Header from '../componentes/Header'
 import Post from '../componentes/Post'
 import ImageSlider from '../componentes/ImageSlider'
@@ -155,13 +158,30 @@ class Feed extends Component {
                                 }}/>}/>                    
                     </ScrollView>
                 </View>
+                <LinearGradient colors={[
+                    'rgba(225, 22, 94, 0.6)',
+                    'rgba(225, 22, 94, 0.4)',
+                    'rgba(225, 22, 94, 0.6)',
+                    'rgba(225, 22, 94, 0.9)'
+                    ]}
+                    style={styles.iconViewContainer}>
+                    <TouchableOpacity
+                        onPress={() => this.props.navigation.navigate('AddPost')}>
+                        <Icon name='plus' size={32} color='rgba(255, 255, 255, 0.85)'/>
+                    </TouchableOpacity>
+                </LinearGradient> 
+                {/* <View style={styles.iconViewContainer}>
+                    <Icon
+                        name='rowing'
+                        containerStyle={styles.iconContainer}
+                        iconStyle={styles.icon}
+                        color='red'
+                        reverse='true'
+                        onPress={() => console.log('hello')} />
+                    />
+                </View> */}
                 <View style={styles.tabBottomBackground}>
                 </View>
-                {/* <View style={styles.b}>
-                    <Post />        
-                    <Post />                 
-                    <Post />                 
-                </View> */}
             </LinearGradient>
             // </RadialGradient>                
         )
@@ -192,6 +212,29 @@ const styles = StyleSheet.create({
         textShadowOffset: { width: 1, height: 0 },
         textShadowRadius: 10, 
         
+    },
+    // icon: {
+        
+    // },
+    // iconContainer: {
+    //     backgroundColor: 'rgba(225, 22, 94, 1)',
+    //     justifyContent: 'center',
+    //     position: 'absolute',
+    //     bottom: 65,
+    //     right: 25,  
+
+    // },
+    iconViewContainer:{
+        position: 'absolute',
+        bottom: 65,
+        right: 25,
+        backgroundColor: 'rgba(162, 163, 217, 0.85)',
+        borderRadius: 25,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 50,
+        height: 50
+
     },
     tabBottomBackground: {
         width: '100%',
