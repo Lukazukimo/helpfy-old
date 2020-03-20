@@ -25,6 +25,9 @@ import AddPost from './screens/AddPost'
 import Teste from './screens/Teste'
 import Category from './screens/Category'
 
+const navOptionHandler = (navigation) =>({
+    header: null
+})
 
 const goRegister = createStackNavigator({
     Login: {
@@ -39,11 +42,7 @@ const goRegister = createStackNavigator({
     initialRouteName: 'Login',    
 })
 
-const navOptionHandler = (navigation) =>({
-    header: null
-})
-
-const goSearch = createStackNavigator({
+const feedStack = createStackNavigator({
     Feed: {
         screen: Feed,
         navigationOptions: navOptionHandler
@@ -92,7 +91,7 @@ const goTesteScreen = createStackNavigator({
 })
 
 // Quando esta na tela Search retira o tabBottomBar
-goSearch.navigationOptions = ({ navigation }) => {
+feedStack.navigationOptions = ({ navigation }) => {
     const { state: { routes, index } } = navigation
     let tabBarVisible = true
     if(routes[index].routeName === 'Search'){
@@ -109,7 +108,7 @@ goSearch.navigationOptions = ({ navigation }) => {
 const MenuRoutes = {
     Feed: {
         name: 'Feed',
-        screen: goSearch,
+        screen: feedStack,
         navigationOptions: {
             title: 'Feed',
             tabBarIcon: ({ tintColor }) =>                
