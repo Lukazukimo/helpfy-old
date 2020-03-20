@@ -33,7 +33,7 @@ class Feed extends Component {
             // nickname: 'Rafael Pereira Filho',
             // email: 'rafaelprrflh@gmail.com',
             title: 'aloajsdiuas',
-            image:  '../../assets/imgs/boat.jpg',
+            image: require('../../assets/imgs/boat.jpg'),
             // comments: [{
             //     nickname: 'John Ray Sheldon',
             //     comment: 'Stunning'
