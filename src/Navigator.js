@@ -28,10 +28,6 @@ import Category from './screens/Category'
 const navOptionHandler = (navigation) =>({
     header: null
 })
-<<<<<<< HEAD
-
-=======
->>>>>>> 32363f22bf6d525ac52d934904c997dbc19f79bb
 
 const goRegister = createStackNavigator({
     Login: {
@@ -46,11 +42,7 @@ const goRegister = createStackNavigator({
     initialRouteName: 'Login',    
 })
 
-<<<<<<< HEAD
 const goSearch = createStackNavigator({
-=======
-const feedStack = createStackNavigator({
->>>>>>> 32363f22bf6d525ac52d934904c997dbc19f79bb
     Feed: {
         screen: Feed,
         navigationOptions: navOptionHandler
