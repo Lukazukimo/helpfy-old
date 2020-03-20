@@ -25,6 +25,10 @@ import AddPost from './screens/AddPost'
 import Teste from './screens/Teste'
 import Category from './screens/Category'
 
+const navOptionHandler = (navigation) =>({
+    header: null
+})
+
 
 const goRegister = createStackNavigator({
     Login: {
@@ -37,10 +41,6 @@ const goRegister = createStackNavigator({
     }
 }, {
     initialRouteName: 'Login',    
-})
-
-const navOptionHandler = (navigation) =>({
-    header: null
 })
 
 const goSearch = createStackNavigator({
@@ -67,10 +67,6 @@ const goSearch = createStackNavigator({
     Category: {
         screen: Category,
         navigationOptions: navOptionHandler
-    },
-    AddPost: {
-        screen: AddPost,
-        navigationOptions: navOptionHandler
     }
 }, {
     // rota inicial
@@ -90,6 +86,9 @@ const goTesteScreen = createStackNavigator({
     // rota inicial
     initialRouteName: 'Profile',    
 })
+
+
+
 
 // Quando esta na tela Search retira o tabBottomBar
 goSearch.navigationOptions = ({ navigation }) => {

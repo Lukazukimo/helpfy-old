@@ -14,7 +14,8 @@ class Register extends Component{
     state = {
         name: '',
         email: '',
-        password: ''
+        password: '',
+        passwordConfirm: ''
     }
 
     render(){
@@ -43,6 +44,9 @@ class Register extends Component{
                 <TextInput placeholder='Senha' style={styles.input}
                     secureTextEntry={true} value={this.state.password}
                     onChangeText={password => this.setState({ password })} />
+                <TextInput placeholder='Confirmar senha' style={styles.input}
+                    secureTextEntry={true} value={this.state.password}
+                    onChangeText={passwordConfirm => this.setState({ passwordConfirm })} />
                 <TouchableOpacity 
                     onPress={() => { this.props.onCreateUser(this.state) }} 
                     style={styles.buttom}>

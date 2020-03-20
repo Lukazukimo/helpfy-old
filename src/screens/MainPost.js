@@ -17,6 +17,7 @@ import CommentPost from './CommentPost'
 import AuthorPost from './AuthorPost'
 import IWantList from './IWantList'
 
+
 export default class MainPost extends Component {
         
     state = { 

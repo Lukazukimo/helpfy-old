@@ -32,8 +32,8 @@ class Feed extends Component {
             id: Math.random(),
             // nickname: 'Rafael Pereira Filho',
             // email: 'rafaelprrflh@gmail.com',
-            title: 'alo',
-            image: require('../../assets/imgs/boat.jpg'),
+            title: 'aloajsdiuas',
+            image:  '../../assets/imgs/boat.jpg',
             // comments: [{
             //     nickname: 'John Ray Sheldon',
             //     comment: 'Stunning'
@@ -45,18 +45,21 @@ class Feed extends Component {
             id: Math.random(),
             // nickname: 'Francisco Leandro Lima',
             // email: 'fllima@gmail.com',
+            title: 'alo',
             image: require('../../assets/imgs/bw.jpg'),
             // comments: []
         }, {
             id: Math.random(),
             // nickname: 'Francisco Leandro Lima',
             // email: 'fllima@gmail.com',
+            title: 'alo',
             image: require('../../assets/imgs/bw.jpg'),
             // comments: []
         }, {
             id: Math.random(),
             // nickname: 'Francisco Leandro Lima',
             // email: 'fllima@gmail.com',
+            title: 'alo',
             image: require('../../assets/imgs/bw.jpg'),
             // comments: []
         }]

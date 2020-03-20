@@ -17,7 +17,7 @@ export default class Category extends Component {
             title: this.props.navigation.state.params.title,
             posts: [{
                 id: Math.random(),
-                image: require('../../assets/imgs/bw.jpg'),
+                image: '../../assets/imgs/bw.jpg',
                 title: 'Titulo Post 1'
             }, {
                 id: Math.random(),
