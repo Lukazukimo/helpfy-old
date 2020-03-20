@@ -11,7 +11,6 @@ import{
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Icon1 from 'react-native-vector-icons/Feather'
 import Author from '../componentes/Author'
-import TitlePost from '../componentes/TitlePost'
 import DescriptionPost from '../componentes/DescriptionPost'
 import CommentPost from '../componentes/CommentPost'
 import AuthorPost from '../componentes/AuthorPost'
@@ -69,8 +68,10 @@ class ScreenPost extends Component {
                 style={styles.container} >
                 <ScrollView>
                     <IWantList isVisible={this.state.showIWantList} 
-                    onCancel={() => this.setState({ showIWantList: false })}/>
-                    <TitlePost titlePost={this.state.title} />
+                        onCancel={() => this.setState({ showIWantList: false })}/>
+                    <View style={styles.container}>
+                        <Text style={styles.titlePost}>{this.state.title}</Text>
+                    </View>                    
                     <Image source={this.state.image} style={styles.image}/>
                     <Author email={'fulano@teste.com'} nickname={'Fabio'}/>
                     <DescriptionPost descriptionPost={a} />
@@ -109,6 +110,12 @@ const styles = StyleSheet.create({
         resizeMode: "contain",        
         backgroundColor: 'red'
     },
+    titlePost: {
+        textAlign: 'center',
+        fontSize: 20,
+        marginTop: 50,
+        fontWeight: 'bold'
+    },
     buttonContainer: {
 		marginTop: 1,
 		height: 56,
@@ -134,14 +141,8 @@ const styles = StyleSheet.create({
         height: 45,
         width: 130,
         fontSize: 18,
-        borderTopColor: 'black',
-        borderTopWidth: 1,
-        borderBottomColor: 'black',
-        borderBottomWidth: 1,
-        borderLeftColor: 'black',
-        borderLeftWidth: 1,
-        borderRightColor: 'black',
-        borderRightWidth: 1,
+        borderColor: 'black',
+        borderWidth: 1,        
         borderRadius: 50,
         textAlign: 'center',
         textAlignVertical: 'center',
@@ -153,14 +154,8 @@ const styles = StyleSheet.create({
         height: 45,
         width: 130,
         fontSize: 18,
-        borderTopColor: 'black',
-        borderTopWidth: 1,
-        borderBottomColor: 'black',
-        borderBottomWidth: 1,
-        borderLeftColor: 'black',
-        borderLeftWidth: 1,
-        borderRightColor: 'black',
-        borderRightWidth: 1,
+        borderColor: 'black',
+        borderWidth: 1, 
         borderRadius: 50,
         textAlign: 'center',
         textAlignVertical: 'center',
@@ -172,14 +167,8 @@ const styles = StyleSheet.create({
         height: 45,
         width: 250,
         fontSize: 20,
-        borderTopColor: 'black',
-        borderTopWidth: 1,
-        borderBottomColor: 'black',
-        borderBottomWidth: 1,
-        borderLeftColor: 'black',
-        borderLeftWidth: 1,
-        borderRightColor: 'black',
-        borderRightWidth: 1,
+        borderColor: 'black',
+        borderWidth: 1, 
         borderRadius: 13,
         textAlign: 'center',
         textAlignVertical: 'center',
