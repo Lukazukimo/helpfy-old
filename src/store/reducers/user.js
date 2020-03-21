@@ -8,6 +8,8 @@ import {
 const initialState = {
     name: null,
     email: null,
+    birthDate: null,
+    stateLocation: null,
     isLoading: false,
     token: null,
 }
@@ -22,15 +24,19 @@ const reducer = (state = initialState, action) => {
                 // que no caso sao todos
                 name: action.payload.name,
                 email: action.payload.email,
-                token: action.payload.token
+                birthDate: action.payload.birthDate,
+                stateLocation: action.payload.stateLocation,
+                // token: action.payload.token
             }
         case USER_LOGGED_OUT:
             return {
-                // ...state,
+                ...state,
                 // quando deslogado, o nome e mail tem que ser zerado
-                // name: null,
-                // email: null,
-                ...initialState
+                name: null,
+                email: null,
+                birthDate: null,
+                state: null,
+                // ...initialState
             }
         case LOADING_USER:
             return {

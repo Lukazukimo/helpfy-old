@@ -20,6 +20,10 @@ class Login extends Component{
         password: ''
     }
 
+    login = () => {
+        this.props.onLogin({...this.state})
+        this.props.navigation.navigate('Profile')
+    }
 
     render(){
         return(
@@ -102,5 +106,10 @@ const styles = StyleSheet.create({
     }
 })
 
+const mapDispatchToProps = dispatch => {
+    return {
+        onLogin: user => dispatch(login(user))
+    }
+}
 
-export default Login
+export default connect(null, mapDispatchToProps)(Login)

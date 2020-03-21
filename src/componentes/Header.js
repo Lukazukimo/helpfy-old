@@ -14,13 +14,17 @@ import Icon from 'react-native-vector-icons/Feather'
 
 class Header extends Component {
 
-    render() {        
+    render() {
+        const avatar = this.props.email ? 
+            <Image source={require('../../assets/imgs/icon.png')} style={styles.profile}/> :
+            <Image source={require('../../assets/imgs/mao.png')} style={styles.profile}/>
+
         return (            
             <View style={styles.container}>
                 <StatusBar backgroundColor='transparent'
                     translucent={true}/>
                 <View style={styles.rowContainer}>      
-                    <Image source={require('../../assets/imgs/icon.png')} style={styles.profile}/>
+                    {avatar}
                     <Text style={styles.title}>Helpfy</Text>
                 </View>
                 <View style={styles.iconContainer}>
@@ -63,7 +67,7 @@ const styles = StyleSheet.create({
         borderColor: 'rgb(84, 76, 126)',
         marginRight: 20,        
         // redimensiona a imagem inteira
-        // resizeMode: 'contain',       
+        // resizeMode: 'contain',
         backgroundColor: '#fff'
     },
     title: {        
@@ -95,12 +99,11 @@ const styles = StyleSheet.create({
     // }
 })
 
-// const mapStateToProps = ({ user }) => {
-//     return {
-//         email: user.email,
-//         name: user.name,
-//     }
-// }
+const mapStateToProps = ({ user }) => {
+    return {
+        email: user.email,        
+    }
+}
 
-export default Header
-// export default connect(mapStateToProps, null)(Header)
+// export default Header
+export default connect(mapStateToProps, null)(Header)

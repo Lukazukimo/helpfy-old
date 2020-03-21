@@ -9,22 +9,16 @@ import {
 	Dimensions,	
 	TouchableOpacity
 } from 'react-native'
-import {
-	Container, Tabs, Tab, TabHeading, ScrollableTab, Content
-} from 'native-base'
-import ProfileInformation from './ProfileInformation'
-import ProfileComment from './ProfileComment'
-import ProfilePosts from './ProfilePosts'
+import { connect } from 'react-redux'
+import { logout } from '../store/actions/user'
 import Icon from 'react-native-vector-icons/Feather'
 import LinearGradient from 'react-native-linear-gradient'
-import RadialGradient from 'react-native-radial-gradient'
 import ProfileInfo from '../componentes/ProfileInfo'
 import RenderCommentList from '../componentes/RenderCommentList'
 import RenderPostList from '../componentes/RenderPostList'
 import Post from './../componentes/Post'
 
 class Profile extends Component {	
-
 	state = {
         id: Math.random(),
         dataNasc: '25/09/1998',
@@ -35,12 +29,14 @@ class Profile extends Component {
 
 	onNavigate = () => {
 		this.setState({showPostList: false})
-	  }
+	}
 
+	logout = () => {
+        this.props.onLogout()
+        this.props.navigation.navigate('Auth')
+    }
 
 	render() {
-		const widthScreen = Dimensions.get('window').width / 2
-		const heightScreen = Dimensions.get('window').height / 2
 		
 		return(
 			<LinearGradient colors={[
@@ -81,9 +77,7 @@ class Profile extends Component {
 											source={require("../../assets/imgs/icon.png")}
 											style={styles.imageProfile}/>
 										<Text style={styles.name} 
-											numberOfLines={2}>
-											Nome Sobrenome Sobrenome Sobrenome Sobrenome 
-											Sobrenome Sobrenome Sobrenome</Text>									
+											numberOfLines={2}>{this.props.name}</Text>									
 									</View>
 									<View style={styles.rankingContainer}>
 										<Text style={styles.ranking}>15#</Text>
@@ -124,8 +118,8 @@ class Profile extends Component {
 		          			  	</TouchableOpacity>
 							</View>
 						<View style={styles.conteudo}>
-							<ProfileInfo title={'Data de Nascimento'} item={this.state.dataNasc}/>
-							<ProfileInfo title={'Data de Nascimento'} item={this.state.dataNasc}/>
+							<ProfileInfo title={'Nome'} item={this.props.name}/>
+							<ProfileInfo title={'E-mail'} item={this.props.email}/>
 							<ProfileInfo title={'Data de Nascimento'} item={this.state.dataNasc}/>
 							<ProfileInfo title={'Data de Nascimento'} item={this.state.dataNasc}/>
 							<ProfileInfo title={'Data de Nascimento'} item={this.state.dataNasc}/>
@@ -272,4 +266,19 @@ const styles = StyleSheet.create({
   	},
 })
 
-export default Profile
+// user seria um state
+// user = estado global dentro de storeConfig
+const mapStateToProps = ({ user }) => {
+	return {
+		name: user.name,
+		email: user.email
+	}
+}
+
+const mapDispatchToProps = dispatch => {
+	return {
+		onLogout: () => dispatch(logout())
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)

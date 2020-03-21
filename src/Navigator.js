@@ -22,14 +22,14 @@ import NotificationScreen from './screens/NotificationScreen'
 import LikedScreen from './screens/LikedScreen'
 import TesteScreen from './screens/TesteScreen'
 import AddPost from './screens/AddPost'
-import Teste from './screens/Teste'
 import Category from './screens/Category'
+import Teste from './screens/Teste'
 
 const navOptionHandler = (navigation) =>({
     header: null
 })
 
-const goRegister = createStackNavigator({
+const authRouter = createStackNavigator({
     Login: {
         screen: Login,
         navigationOptions: navOptionHandler
@@ -41,6 +41,28 @@ const goRegister = createStackNavigator({
 }, {
     initialRouteName: 'Login',    
 })
+
+const loginOrProfileRouter = createSwitchNavigator({
+    Profile: Profile,
+    Auth: authRouter
+}, {
+    // rota inicial
+    initialRouteName: 'Auth'
+})
+
+
+// const goRegister = createStackNavigator({
+//     Login: {
+//         screen: Login,
+//         navigationOptions: navOptionHandler
+//     },
+//     Register: {
+//         screen: Register,  
+//         navigationOptions: navOptionHandler
+//     }
+// }, {
+//     initialRouteName: 'Login',    
+// })
 
 const feedStack = createStackNavigator({
     Feed: {
@@ -90,9 +112,6 @@ const goTesteScreen = createStackNavigator({
     initialRouteName: 'Profile',    
 })
 
-
-
-
 // Quando esta na tela Search retira o tabBottomBar
 feedStack.navigationOptions = ({ navigation }) => {
     const { state: { routes, index } } = navigation
@@ -120,7 +139,7 @@ const MenuRoutes = {
     },
     Profile: {
         name: 'Profile',              
-        screen: goTesteScreen,
+        screen: loginOrProfileRouter,
         navigationOptions: {
             title: 'Profile',
             tabBarIcon: ({ tintColor: color }) =>
@@ -129,7 +148,7 @@ const MenuRoutes = {
     },
     Message: {
         name: 'Message',
-        screen: goRegister,
+        screen: goTesteScreen,
         navigationOptions: {
             title: 'Message',
             tabBarIcon: ({ tintColor: color }) =>

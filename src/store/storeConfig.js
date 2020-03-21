@@ -12,12 +12,15 @@ import messageReducer from './reducers/message'
 const reducers = combineReducers({
     // user seria a "variavel global"
     user: userReducer,
-    posts: postsReducer,
-    message: messageReducer
+    // posts: postsReducer,
+    // message: messageReducer
 })
 
+
+//cria o estado 
 const storeConfig = () => {
-    return createStore(reducers, compose(applyMiddleware(thunk)))
+    // return createStore(reducers, compose(applyMiddleware(thunk)))
+    return createStore(reducers)
 }
 
 export default storeConfig

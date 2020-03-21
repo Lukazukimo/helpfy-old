@@ -10,8 +10,8 @@ import {
     ScrollView
 } from 'react-native'
 import RNPickerSelect from 'react-native-picker-select'
-import Logo from '../componentes/Logo'
 import ImagePicker from 'react-native-image-picker'
+import LinearGradient from 'react-native-linear-gradient'
 
 
 class AddPost extends Component{
@@ -41,9 +41,24 @@ class AddPost extends Component{
             color: '#AAA',
           }
         return(
-            <View style={styles.container}>
+            <LinearGradient colors={[
+                'rgb(146, 135, 211)',
+                'rgb(124, 147, 225)',
+                'rgba(124, 147, 225, 0.8)',
+                'rgb(155, 156, 213)',
+                'rgb(162, 163, 217)',            
+                'rgba(162, 163, 217, 0.85)',
+                'rgb(162, 163, 217)',
+                'rgb(162, 163, 217)',
+                'rgba(124, 147, 225, 0.8)',
+                'rgb(124, 147, 225)',
+                'rgb(146, 135, 211)',
+                ]}
+                style={styles.container} >   
                 <ScrollView>
-                    <Logo logo={'Insira as informações'} />
+                    <View style={styles.titleContainer}>
+                        <Text style={styles.title}>Nova Publicação</Text>
+                    </View>
                     <View style={styles.textInputs}>
                         <Text style={styles.information}>
                             Título do item
@@ -51,7 +66,6 @@ class AddPost extends Component{
                         <TextInput placeholder='Título' style={styles.input}
                             autoFocus={true} value={this.state.title}
                             onChangeText={title => this.setState({ title })} />
-
                     </View>
                     <View style={styles.textInputs}>
                         <Text style={styles.information}>
@@ -95,7 +109,7 @@ class AddPost extends Component{
                     </View>
                 </ScrollView>
                 <View style={styles.tabBottomBackground}/>
-            </View>
+            </LinearGradient>
         )
     }
 }
@@ -104,19 +118,34 @@ const styles = StyleSheet.create({
     container: {
         flex: 1
     },
+    titleContainer:{
+        height: 80,
+        alignItems: 'center'
+    },
+    title: {
+        marginTop: 30,
+        marginLeft: 10,
+        fontSize: 30,
+        fontFamily: 'shelter',
+        color: 'rgba(225, 22, 94, 0.7)',
+        textShadowColor: '#fff',
+        textShadowOffset: { width: 1, height: 0 },
+        textShadowRadius: 10,
+    },
     buttom: {
         marginTop: 30,
         padding: 10,
         backgroundColor: '#4286f4',
         width: 220,
         borderRadius: 40,
+        marginBottom: 10
 
     },
     buttomText: {
         fontSize: 20,
         color: '#fff',
         textAlignVertical: 'center',
-        textAlign: 'center'
+        textAlign: 'center',        
     },
     input: {
         marginTop: 5,
@@ -183,7 +212,7 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         height: Dimensions.get('window').width / 2,
-    },
+    },    
     tabBottomBackground: {
         width: '100%',
         height: 50,
