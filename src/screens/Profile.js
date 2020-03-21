@@ -60,70 +60,70 @@ class Profile extends Component {
 					<RenderPostList onNavigate={(this.onNavigate)} navigation={this.props.navigation}
 						isVisible={this.state.showPostList} 
                     	onCancel={() => this.setState({ showPostList: false })}/>	
-						<ImageBackground
-							source={require("../../assets/imgs/fence.jpg")}
-							imageStyle={{ opacity: 0.75, backgroundColor: 'rgba(107, 13, 200, 0.75)' }}
-							style={styles.imageBackground}>
-							<View style={styles.profileFraseContainer}>
-								<View style={styles.profileContainer}>
-									<View style={styles.donationContainer}>
-										<Text style={styles.donation}>200</Text>
-										<Image 
-											source={require("../../assets/imgs/mao.png")}
-											style={styles.donationImage}/>
-									</View>
-									<View style={styles.profile}>
-										<Image 
-											source={require("../../assets/imgs/icon.png")}
-											style={styles.imageProfile}/>
-										<Text style={styles.name} 
-											numberOfLines={2}>{this.props.name}</Text>									
-									</View>
-									<View style={styles.rankingContainer}>
-										<Text style={styles.ranking}>15#</Text>
-										<Image 
-											source={require("../../assets/imgs/trofeu.png")}
-											style={styles.rankingImage}/>
-									</View>
+					<ImageBackground
+						source={require("../../assets/imgs/fence.jpg")}
+						imageStyle={{ opacity: 0.75, backgroundColor: 'rgba(107, 13, 200, 0.75)' }}
+						style={styles.imageBackground}>
+						<View style={styles.profileFraseContainer}>
+							<View style={styles.profileContainer}>
+								<View style={styles.donationContainer}>
+									<Text style={styles.donation}>200</Text>
+									<Image 
+										source={require("../../assets/imgs/mao.png")}
+										style={styles.donationImage}/>
 								</View>
-								<View style={styles.fraseContainer}>
-									<Text style={styles.frase}
-										numberOfLines={3}>
-										Frase do Dia
-										Frase do Dia
-										Frase do Dia
-										Frase do Dia
-										Frase do Dia
-										Frase do Dia
-										Frase do Dia\Frase do Dia
-										Frase do Dia
-										Frase do Dia
-										Frase do Dia
-										Frase do Dia
-										Frase do Dia
-										Frase do Dia
-									</Text>
+								<View style={styles.profile}>
+									<Image 
+										source={require("../../assets/imgs/icon.png")}
+										style={styles.imageProfile}/>
+									<Text style={styles.name} 
+										numberOfLines={2}>{this.props.name}</Text>									
+								</View>
+								<View style={styles.rankingContainer}>
+									<Text style={styles.ranking}>15#</Text>
+									<Image 
+										source={require("../../assets/imgs/trofeu.png")}
+										style={styles.rankingImage}/>
 								</View>
 							</View>
-						</ImageBackground>
+							<View style={styles.fraseContainer}>
+								<Text style={styles.frase}
+									numberOfLines={3}>
+									Frase do Dia
+									Frase do Dia
+									Frase do Dia
+									Frase do Dia
+									Frase do Dia
+									Frase do Dia
+									Frase do Dia\Frase do Dia
+									Frase do Dia
+									Frase do Dia
+									Frase do Dia
+									Frase do Dia
+									Frase do Dia
+									Frase do Dia
+								</Text>
+							</View>
+						</View>
+					</ImageBackground>
 					</View>					                     
 					<View style={styles.bodyIcons}>
-								<TouchableOpacity style={styles.buttonContainer}
-								onPress={() => this.setState({ showCommentList: true })}>
-									<Icon name='edit' size={30} color={'blue'}/>	  
-		          			  	</TouchableOpacity>
-								<TouchableOpacity style={styles.buttonContainer}
-								onPress={() => this.setState({ showPostList: true })}>
-									<Icon name='message-circle' size={30} color={'blue'}/>	 
-		          			  	</TouchableOpacity>
-							</View>
-						<View style={styles.conteudo}>
-							<ProfileInfo title={'Nome'} item={this.props.name}/>
-							<ProfileInfo title={'E-mail'} item={this.props.email}/>
-							<ProfileInfo title={'Data de Nascimento'} item={this.state.dataNasc}/>
-							<ProfileInfo title={'Data de Nascimento'} item={this.state.dataNasc}/>
-							<ProfileInfo title={'Data de Nascimento'} item={this.state.dataNasc}/>
-						</View>
+						<TouchableOpacity style={styles.buttonContainer}
+							onPress={() => this.setState({ showCommentList: true })}>
+							<Icon name='edit' size={30} color={'blue'}/>	  
+						</TouchableOpacity>
+						<TouchableOpacity style={styles.buttonContainer}
+							onPress={() => this.setState({ showPostList: true })}>
+							<Icon name='message-circle' size={30} color={'blue'}/>	 
+						</TouchableOpacity>
+					</View>
+					<View style={styles.conteudo}>
+						<ProfileInfo title={'Nome'} item={this.props.name}/>
+						<ProfileInfo title={'E-mail'} item={this.props.email}/>
+						<ProfileInfo title={'Data de Nascimento'} item={this.state.dataNasc}/>
+						<ProfileInfo title={'Data de Nascimento'} item={this.state.dataNasc}/>
+						<ProfileInfo title={'Data de Nascimento'} item={this.state.dataNasc}/>
+					</View>
 				</ScrollView>
 				<View style={styles.tabBottomBackground}>
                 </View>
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
         height: 120,
         borderRadius: 60,
         borderWidth: 3,
-		borderColor: '#993399',
+		borderColor: 'rgb(84, 76, 126)',
 		marginTop: 18
 	},
 	profileContainer: {	
@@ -186,14 +186,18 @@ const styles = StyleSheet.create({
 	donation:{
 		fontSize: 32,		
 		fontWeight: 'bold',
-		// color: '#fff'
-		color: '#993399',
+		color: 'rgba(255, 255, 255, 0.8)',
+        textShadowColor: 'rgba(225, 22, 94, 0.7)', 
+        textShadowOffset: { width: 1, height: 0 },
+        textShadowRadius: 10, 
 	},
 	ranking: {
 		fontSize: 32,		
 		fontWeight: 'bold',
-		// color: '#fff'
-		color: '#993399',
+		color: 'rgba(255, 255, 255, 0.8)',
+        textShadowColor: 'rgba(225, 22, 94, 0.7)', 
+        textShadowOffset: { width: 1, height: 0 },
+        textShadowRadius: 10, 
 	},
 	donationImage: {
 		width: 50,
@@ -205,15 +209,17 @@ const styles = StyleSheet.create({
 		height: 40,	
 		resizeMode: 'contain'	
 	},
-	name: {
-        // color: '#fff',
-        color: '#993399',
+	name: {        
         fontSize: 20,
         fontWeight: '800',
 		fontWeight: 'bold',
 		marginVertical: 8,		
 		textAlignVertical: "center",
 		textAlign: "center",
+		color: 'rgba(225, 22, 94, 0.7)',
+        textShadowColor: '#fff', 
+        textShadowOffset: { width: 1, height: 0 },
+        textShadowRadius: 10, 
 	},
 	fraseContainer: {		
 		flex: 1,
@@ -222,15 +228,21 @@ const styles = StyleSheet.create({
 		// backgroundColor: 'pink',
 		justifyContent: 'center',
 		alignItems: 'center',
+		paddingRight: 10,
+		paddingLeft: 10
 	},
     frase: {
-        color: 'rgba(255, 255, 255, 0.8)',        
+        // color: 'rgba(255, 255, 255, 0.8)',        
         fontSize: 15,
 		marginRight: 4,
 		fontWeight: 'bold',
 		fontStyle: "italic",
 		textAlignVertical: "center",
 		textAlign: "center",
+		color: 'rgba(255, 255, 255, 0.8)',
+        textShadowColor: 'rgba(225, 22, 94, 0.7)', 
+        textShadowOffset: { width: 1, height: 0 },
+        textShadowRadius: 10, 
 	},
 	tabBottomBackground: {
         width: '100%',
