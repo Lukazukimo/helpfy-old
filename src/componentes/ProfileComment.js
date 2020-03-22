@@ -16,8 +16,8 @@ class ProfileComment extends Component {
                     <View style={styles.commentContainer} key={index}>
                         <Gravatar options={{ email: 'teste@teste.com', secure: true}}
                             style={styles.avatar} />
-                        <Text style={styles.nickname}>{item.nickname}: </Text>
-                        <Text style={styles.comment}>{item.comment}</Text>
+                        {/* <Text style={styles.nickname}>{item.nickname}:</Text> */}
+                        <Text style={styles.comments}>{item.comment}</Text>
                     </View>
                 )
             })
@@ -32,58 +32,40 @@ class ProfileComment extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    headerCommentView: {
-        marginLeft: 15,
-        borderBottomColor: 'black',
-        width: '100%',
-        borderBottomWidth: 1.5,
-    },
-    headerCommentText: {
-        fontSize: 22,
-        fontWeight: 'bold'
-    },
     commentContainer: {
-		height: 50,
+        flex: 1,		
 		flexDirection: 'row',
         borderBottomColor: 'black',
         width: '100%',
         borderBottomWidth: 0.5,
-        alignItems: 'center'
+        alignItems: 'center',
+        padding: 10
     },
     avatar: {
         width: 25,
         height: 25,
         borderRadius: 15,
-        marginHorizontal: 10,
+        // marginHorizontal: 10,
+        alignSelf: 'flex-start',        
+        
     },
     nickname: {
-        fontSize: 17,
-        fontWeight: 'bold',
-        color: 'black'
-    },
-    comment: {
         fontSize: 15,
-        color: 'black'
-    },
-    header:{
-        height: '8%',
-        backgroundColor: 'rgb(148, 100, 300)',
-        borderTopColor: 'black',
-		borderTopWidth: 2,
-		borderBottomColor: 'black',
-        borderBottomWidth: 2,
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    headerText: {
         fontWeight: 'bold',
         color: 'black',
-        fontSize: 25,
-        textAlign: 'left',
-
+        alignSelf: 'flex-start',        
+        paddingLeft: 10,        
+    },
+    comments: {
+        fontSize: 15,
+        color: 'black',
+        width: 0,
+        flexGrow: 1,
+        flex: 1,
+        textAlign: 'justify',
+        paddingLeft: 10
+        // paddingRight: 10,
+        // paddingBottom: 10
     },
 })
 

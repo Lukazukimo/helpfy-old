@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import {
     Dimensions,
-    StyleSheet
+    StyleSheet,
+    Text
 } from 'react-native'
 import RadialGradient from 'react-native-radial-gradient'
 import LinearGradient from 'react-native-linear-gradient'
+import { Overlay } from 'react-native-elements'
 
 export default class Teste extends Component {
+    state = {
+        isVisible: true
+    }
 
     render(){
         const widthScreen = Dimensions.get('window').width / 2
@@ -27,6 +32,11 @@ export default class Teste extends Component {
             //     center={[widthScreen,heightScreen]} 
             //     radius={350}>
             // </RadialGradient>
+            <Overlay
+                isVisible={this.state.isVisible}
+                onBackdropPress={() => this.setState({ isVisible: false })}
+                overlayStyle={{ padding: 0}}
+            >
             <LinearGradient colors={[
                 'rgb(146, 135, 211)',
                 'rgb(124, 147, 225)',
@@ -40,7 +50,9 @@ export default class Teste extends Component {
                 'rgb(124, 147, 225)',
                 'rgb(146, 135, 211)',
                 ]} style={styles.teste}>
-            </LinearGradient>
+                        <Text>Hello from Overlay!</Text>
+                </LinearGradient>
+            </Overlay>
         )
     }
 }

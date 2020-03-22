@@ -19,20 +19,22 @@ export default props => {
 const styles = StyleSheet.create({
     container: {
         padding: 10,
-        borderBottomColor: 'black',
-        borderBottomWidth: 0.5,
+        // borderBottomColor: 'black',
+        // borderBottomWidth: 0.5,
+        borderTopWidth: 0.5,
+        borderColor: 'black',
         backgroundColor: 'transparent'
-
     },
     profileText: {
         fontWeight: 'bold',
         textAlign: 'justify',
         fontSize: 22,
         color: "#696969",
+        paddingLeft: 10
       },
       profileItem: {
         textAlign: 'justify',
         fontSize: 15,
-        color: "#696969",
+        color: "#696969",        
       }
 })

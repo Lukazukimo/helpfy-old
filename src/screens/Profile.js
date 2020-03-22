@@ -9,6 +9,7 @@ import {
 	Dimensions,	
 	TouchableOpacity
 } from 'react-native'
+import { Overlay } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { logout } from '../store/actions/user'
 import Icon from 'react-native-vector-icons/Feather'
@@ -17,14 +18,18 @@ import ProfileInfo from '../componentes/ProfileInfo'
 import RenderCommentList from '../componentes/RenderCommentList'
 import RenderPostList from '../componentes/RenderPostList'
 import Post from './../componentes/Post'
+import ProfileComment from '../componentes/ProfileComment'
 
-class Profile extends Component {	
-	state = {
-        id: Math.random(),
-        dataNasc: '25/09/1998',
-		uf: 'São Paulo',
-		showCommentList: false,
-		showPostList: false
+class Profile extends Component {
+	constructor(props){
+		super(props)
+		this.state = {
+			id: Math.random(),
+			dataNasc: '25/09/1998',
+			uf: 'São Paulo',
+			showCommentList: false,
+			showPostList: false
+		}
 	}
 
 	onNavigate = () => {
@@ -34,9 +39,44 @@ class Profile extends Component {
 	logout = () => {
         this.props.onLogout()
         this.props.navigation.navigate('Auth')
-    }
+	}		
 
 	render() {
+		const comments = [{
+			nickname: 'Ulisses',
+			comment: 'Esse cara me roubou!!!daasdasdaksjdkasdjhkajkshdjkahsjkdhasjdjskldjaklsjdkljaskljdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'
+		}, {
+			nickname: 'Muriloooooooooooooooooooooooooooooooooooooooooooo',
+            comment: 'Esse cara me roubou!!!daasdasdaksjdkasdjhkajkshdjkahsjkdhasjdjskldjaklsjdkljaskljdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
+        }, {
+			nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }, {
+			nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }, {
+			nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }, {
+			nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }, {
+			nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }, {
+			nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }, {
+			nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }, {
+			nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }, {
+			nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+            
+        }]
 		
 		return(
 			<LinearGradient colors={[
@@ -54,63 +94,86 @@ class Profile extends Component {
                 ]}
                 style={styles.container} > 
 				<ScrollView>
-					<View style={styles.backgroundContainer}>
-					<RenderCommentList isVisible={this.state.showCommentList} 
-                    	onCancel={() => this.setState({ showCommentList: false })}/>
-					<RenderPostList onNavigate={(this.onNavigate)} navigation={this.props.navigation}
-						isVisible={this.state.showPostList} 
-                    	onCancel={() => this.setState({ showPostList: false })}/>	
-					<ImageBackground
-						source={require("../../assets/imgs/fence.jpg")}
-						imageStyle={{ opacity: 0.75, backgroundColor: 'rgba(107, 13, 200, 0.75)' }}
-						style={styles.imageBackground}>
-						<View style={styles.profileFraseContainer}>
-							<View style={styles.profileContainer}>
-								<View style={styles.donationContainer}>
-									<Text style={styles.donation}>200</Text>
-									<Image 
-										source={require("../../assets/imgs/mao.png")}
-										style={styles.donationImage}/>
+					<View style={styles.backgroundContainer}>												
+						<RenderPostList onNavigate={(this.onNavigate)} navigation={this.props.navigation}
+							isVisible={this.state.showPostList} 
+							onCancel={() => this.setState({ showPostList: false })}/>	
+						<ImageBackground
+							source={require("../../assets/imgs/fence.jpg")}
+							imageStyle={{ opacity: 0.75, backgroundColor: 'rgba(107, 13, 200, 0.75)' }}
+							style={styles.imageBackground}>
+							<View style={styles.profileFraseContainer}>
+								<View style={styles.profileContainer}>
+									<View style={styles.donationContainer}>
+										<Text style={styles.donation}>200</Text>
+										<Image 
+											source={require("../../assets/imgs/mao.png")}
+											style={styles.donationImage}/>
+									</View>
+									<View style={styles.profile}>
+										<Image 
+											source={require("../../assets/imgs/icon.png")}
+											style={styles.imageProfile}/>
+										<Text style={styles.name} 
+											numberOfLines={2}>{this.props.name}</Text>									
+									</View>
+									<View style={styles.rankingContainer}>
+										<Text style={styles.ranking}>15#</Text>
+										<Image 
+											source={require("../../assets/imgs/trofeu.png")}
+											style={styles.rankingImage}/>
+									</View>
 								</View>
-								<View style={styles.profile}>
-									<Image 
-										source={require("../../assets/imgs/icon.png")}
-										style={styles.imageProfile}/>
-									<Text style={styles.name} 
-										numberOfLines={2}>{this.props.name}</Text>									
-								</View>
-								<View style={styles.rankingContainer}>
-									<Text style={styles.ranking}>15#</Text>
-									<Image 
-										source={require("../../assets/imgs/trofeu.png")}
-										style={styles.rankingImage}/>
+								<View style={styles.fraseContainer}>
+									<Text style={styles.frase}
+										numberOfLines={3}>
+										Frase do Dia
+										Frase do Dia
+										Frase do Dia
+										Frase do Dia
+										Frase do Dia
+										Frase do Dia
+										Frase do Dia\Frase do Dia
+										Frase do Dia
+										Frase do Dia
+										Frase do Dia
+										Frase do Dia
+										Frase do Dia
+										Frase do Dia
+									</Text>
 								</View>
 							</View>
-							<View style={styles.fraseContainer}>
-								<Text style={styles.frase}
-									numberOfLines={3}>
-									Frase do Dia
-									Frase do Dia
-									Frase do Dia
-									Frase do Dia
-									Frase do Dia
-									Frase do Dia
-									Frase do Dia\Frase do Dia
-									Frase do Dia
-									Frase do Dia
-									Frase do Dia
-									Frase do Dia
-									Frase do Dia
-									Frase do Dia
-								</Text>
-							</View>
-						</View>
-					</ImageBackground>
+						</ImageBackground>
 					</View>					                     
 					<View style={styles.bodyIcons}>
 						<TouchableOpacity style={styles.buttonContainer}
 							onPress={() => this.setState({ showCommentList: true })}>
-							<Icon name='edit' size={30} color={'blue'}/>	  
+							<Icon name='edit' size={30} color={'blue'}/>
+							<Overlay
+								isVisible={this.state.showCommentList}
+								onBackdropPress={() => this.setState({ showCommentList: false })}
+								overlayStyle={{ padding: 0}}>
+								<LinearGradient colors={[
+									'rgb(146, 135, 211)',
+									'rgb(124, 147, 225)',
+									'rgba(124, 147, 225, 0.8)',
+									'rgb(155, 156, 213)',
+									'rgb(162, 163, 217)',            
+									'rgba(162, 163, 217, 0.85)',
+									'rgb(162, 163, 217)',
+									'rgb(162, 163, 217)',
+									'rgba(124, 147, 225, 0.8)',
+									'rgb(124, 147, 225)',
+									'rgb(146, 135, 211)',
+									]} style={styles.container}>                
+									<ScrollView>
+										<View style={styles.overlayHeaderContainer}>
+											<Text style={styles.overlayHeaderText}>Comentários sobre o autor</Text>
+										</View>									
+											<ProfileComment comments={comments} />										
+									</ScrollView>
+								</LinearGradient>
+							</Overlay>	
 						</TouchableOpacity>
 						<TouchableOpacity style={styles.buttonContainer}
 							onPress={() => this.setState({ showPostList: true })}>
@@ -253,16 +316,12 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center'
 	},
-	teste: {
-		// flex: 1,
-		backgroundColor: 'red',		
-	},
 	bodyIcons: {
 		marginTop: 0,
 		height: 56,
 		flexDirection: 'row',
-		borderBottomColor: 'black',
-		borderBottomWidth: 0.5,
+		// borderBottomColor: 'black',
+		// borderBottomWidth: 0.5,
 		justifyContent: 'space-around',
 		backgroundColor: 'transparent',
 		
@@ -275,7 +334,21 @@ const styles = StyleSheet.create({
     	alignItems: 'flex-start',
     	width:140,
 		borderRadius:40,
-  	},
+	},
+	overlayHeaderContainer: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		padding: 10
+	},
+	overlayHeaderText: {
+		fontFamily: 'shelter',
+        height: 30,
+        fontSize: 28,
+        color: 'rgba(225, 22, 94, 0.7)',
+        textShadowColor: '#fff', 
+        textShadowOffset: { width: 1, height: 0 },
+        textShadowRadius: 10, 
+	}
 })
 
 // user seria um state
