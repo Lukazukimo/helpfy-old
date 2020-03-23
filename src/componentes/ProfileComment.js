@@ -32,12 +32,15 @@ class ProfileComment extends Component {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
     commentContainer: {
         flex: 1,		
 		flexDirection: 'row',
-        borderBottomColor: 'black',
+        // borderBottomColor: 'black',
         width: '100%',
-        borderBottomWidth: 0.5,
+        // borderBottomWidth: 0.5,
         alignItems: 'center',
         padding: 10
     },
@@ -57,15 +60,17 @@ const styles = StyleSheet.create({
         paddingLeft: 10,        
     },
     comments: {
-        fontSize: 15,
-        color: 'black',
         width: 0,
         flexGrow: 1,
         flex: 1,
         textAlign: 'justify',
-        paddingLeft: 10
-        // paddingRight: 10,
-        // paddingBottom: 10
+        paddingLeft: 10,
+        paddingRight: 10,
+        backgroundColor: 'rgba(250, 127, 170, 0.5)',
+        // backgroundColor: 'rgba(146, 135, 211, 0.8)',
+        borderRadius: 10,
+        fontSize: 15,
+        color: '#fff',        
     },
 })
 

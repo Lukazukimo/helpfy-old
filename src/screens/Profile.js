@@ -7,7 +7,8 @@ import {
 	ImageBackground,
 	Image,
 	Dimensions,	
-	TouchableOpacity
+	TouchableOpacity,
+	FlatList
 } from 'react-native'
 import { Overlay } from 'react-native-elements'
 import { connect } from 'react-redux'
@@ -15,8 +16,6 @@ import { logout } from '../store/actions/user'
 import Icon from 'react-native-vector-icons/Feather'
 import LinearGradient from 'react-native-linear-gradient'
 import ProfileInfo from '../componentes/ProfileInfo'
-import RenderCommentList from '../componentes/RenderCommentList'
-import RenderPostList from '../componentes/RenderPostList'
 import Post from './../componentes/Post'
 import ProfileComment from '../componentes/ProfileComment'
 
@@ -28,7 +27,61 @@ class Profile extends Component {
 			dataNasc: '25/09/1998',
 			uf: 'São Paulo',
 			showCommentList: false,
-			showPostList: false
+			showPostList: false,
+
+			posts: [{
+				id: Math.random(),
+				image: require('../../assets/imgs/fence.jpg'),
+				title: 'Post sobre çççç'
+			}, {
+				id: Math.random(),
+				image: require('../../assets/imgs/fence.jpg'),
+				title: 'Post sobre çççç'
+			},{
+				id: Math.random(),
+				image: require('../../assets/imgs/gate.jpg'),
+				title: 'Post sobre çççç'
+			},{
+				id: Math.random(),
+				image: require('../../assets/imgs/gate.jpg'),
+				title: 'Post sobre çççç'
+			}, {
+				id: Math.random(),
+				image: require('../../assets/imgs/gate.jpg'),
+				title: 'Post sobre çççç'
+			},{
+				id: Math.random(),
+				image: require('../../assets/imgs/gate.jpg'),
+				title: 'Post sobre çççç'
+			},{
+				id: Math.random(),
+				image: require('../../assets/imgs/gate.jpg'),
+				title: 'Post sobre çççç'
+			},{
+				id: Math.random(),
+				image: require('../../assets/imgs/gate.jpg'),
+				title: 'Post sobre çççç'
+			},{
+				id: Math.random(),
+				image: require('../../assets/imgs/gate.jpg'),
+				title: 'P'
+			},{
+				id: Math.random(),
+				image: require('../../assets/imgs/gate.jpg'),
+				title: 'Post sobre çççç'
+			},{
+				id: Math.random(),
+				image: require('../../assets/imgs/gate.jpg'),
+				title: 'P'
+			},{
+				id: Math.random(),
+				image: require('../../assets/imgs/gate.jpg'),
+				title: 'Post sobre çççç'
+			},{
+				id: Math.random(),
+				image: require('../../assets/imgs/gate.jpg'),
+				title: 'P'
+			}]
 		}
 	}
 
@@ -94,10 +147,7 @@ class Profile extends Component {
                 ]}
                 style={styles.container} > 
 				<ScrollView>
-					<View style={styles.backgroundContainer}>												
-						<RenderPostList onNavigate={(this.onNavigate)} navigation={this.props.navigation}
-							isVisible={this.state.showPostList} 
-							onCancel={() => this.setState({ showPostList: false })}/>	
+					<View style={styles.backgroundContainer}>
 						<ImageBackground
 							source={require("../../assets/imgs/fence.jpg")}
 							imageStyle={{ opacity: 0.75, backgroundColor: 'rgba(107, 13, 200, 0.75)' }}
@@ -142,44 +192,89 @@ class Profile extends Component {
 										Frase do Dia
 									</Text>
 								</View>
-							</View>
+								<View style={styles.bodyIcons}>
+									<TouchableOpacity style={styles.buttonContainer}
+										onPress={() => this.setState({ showCommentList: true })}>
+										<Icon name='message-square' size={30} color={'rgba(225, 22, 94, 1)'}/>
+										<Overlay
+											isVisible={this.state.showCommentList}
+											onBackdropPress={() => this.setState({ showCommentList: false })}
+											overlayStyle={{ padding: 0}}
+											//formula do tamanho padrao
+											height={Dimensions.get('window').height - 180}
+											width={Dimensions.get('window').width - 80}>
+											<LinearGradient colors={[
+												'rgb(146, 135, 211)',
+												'rgb(124, 147, 225)',
+												'rgba(124, 147, 225, 0.8)',
+												'rgb(155, 156, 213)',
+												'rgb(162, 163, 217)',            
+												'rgba(162, 163, 217, 0.85)',
+												'rgb(162, 163, 217)',
+												'rgb(162, 163, 217)',
+												'rgba(124, 147, 225, 0.8)',
+												'rgb(124, 147, 225)',
+												'rgb(146, 135, 211)',
+												]} style={styles.container}>                
+												<ScrollView>
+													<View style={styles.overlayHeaderContainer}>
+														<Text style={styles.overlayHeaderText}>Comentários sobre o autor</Text>
+													</View>									
+													<ProfileComment comments={comments} />										
+												</ScrollView>
+											</LinearGradient>
+										</Overlay>	
+									</TouchableOpacity>
+									<TouchableOpacity style={styles.buttonContainer}
+										onPress={() => this.setState({ showPostList: true })}>
+										<Icon name='grid' size={30} color={'rgba(225, 22, 94, 1)'} />
+										<Overlay
+											isVisible={this.state.showPostList}
+											onBackdropPress={() => this.setState({ showPostList: false })}
+											overlayStyle={{ padding: 0}}
+											//formula do tamanho padrao
+											height={Dimensions.get('window').height - 180}
+											width={Dimensions.get('window').width - 80}>
+											<LinearGradient colors={[
+												'rgb(146, 135, 211)',
+												'rgb(124, 147, 225)',
+												'rgba(124, 147, 225, 0.8)',
+												'rgb(155, 156, 213)',
+												'rgb(162, 163, 217)',            
+												'rgba(162, 163, 217, 0.85)',
+												'rgb(162, 163, 217)',
+												'rgb(162, 163, 217)',
+												'rgba(124, 147, 225, 0.8)',
+												'rgb(124, 147, 225)',
+												'rgb(146, 135, 211)',
+												]} style={styles.container}>                
+												<ScrollView>
+												<FlatList numColumns={3}
+													data={this.state.posts}
+													keyExtractor={item => `${item.id}`}
+													renderItem={({ item }) =>  {
+														return (
+															<View style={styles.modalPosts}>
+																<Post key={item.id} {...item} 
+																	navigation={this.props.navigation}
+																	onNavigate={(this.onNavigate)}
+																	tamanho={{
+																		width: (Dimensions.get('window').width - 80 ) / 3,
+																		height: (Dimensions.get('window').width - 80 ) / 3,
+																		resizeMode: "stretch",
+																}}/>													
+															</View>												
+														)   
+													}}
+												/>									
+												</ScrollView>
+											</LinearGradient>
+										</Overlay>	 
+									</TouchableOpacity>
+								</View>
+							</View>							
 						</ImageBackground>
-					</View>					                     
-					<View style={styles.bodyIcons}>
-						<TouchableOpacity style={styles.buttonContainer}
-							onPress={() => this.setState({ showCommentList: true })}>
-							<Icon name='edit' size={30} color={'blue'}/>
-							<Overlay
-								isVisible={this.state.showCommentList}
-								onBackdropPress={() => this.setState({ showCommentList: false })}
-								overlayStyle={{ padding: 0}}>
-								<LinearGradient colors={[
-									'rgb(146, 135, 211)',
-									'rgb(124, 147, 225)',
-									'rgba(124, 147, 225, 0.8)',
-									'rgb(155, 156, 213)',
-									'rgb(162, 163, 217)',            
-									'rgba(162, 163, 217, 0.85)',
-									'rgb(162, 163, 217)',
-									'rgb(162, 163, 217)',
-									'rgba(124, 147, 225, 0.8)',
-									'rgb(124, 147, 225)',
-									'rgb(146, 135, 211)',
-									]} style={styles.container}>                
-									<ScrollView>
-										<View style={styles.overlayHeaderContainer}>
-											<Text style={styles.overlayHeaderText}>Comentários sobre o autor</Text>
-										</View>									
-											<ProfileComment comments={comments} />										
-									</ScrollView>
-								</LinearGradient>
-							</Overlay>	
-						</TouchableOpacity>
-						<TouchableOpacity style={styles.buttonContainer}
-							onPress={() => this.setState({ showPostList: true })}>
-							<Icon name='message-circle' size={30} color={'blue'}/>	 
-						</TouchableOpacity>
-					</View>
+					</View>					                     					
 					<View style={styles.conteudo}>
 						<ProfileInfo title={'Nome'} item={this.props.name}/>
 						<ProfileInfo title={'E-mail'} item={this.props.email}/>
@@ -202,18 +297,19 @@ const styles = StyleSheet.create({
 	backgroundContainer: {
 		flex: 1,
 		// backgroundColor: 'blue',
-		height: 280,		
+		height: 320,		
 	},
 	imageBackground: {
-        width: undefined, 
-        padding: 16,
+        width: undefined,         
 		paddingTop: 30,
-		height: 280,
-		justifyContent: 'space-around',
-		alignItems: 'center',				
+		height: 320,
+		// justifyContent: 'space-around',
+		alignItems: 'center',
+		// alignContent: 'space-between'
 	},
 	profileFraseContainer:{		
-		// backgroundColor: 'orange'
+		flex: 1
+		// backgroundColor: 'orange',
 	},
     imageProfile: {
         width: 120,
@@ -225,7 +321,8 @@ const styles = StyleSheet.create({
 	},
 	profileContainer: {	
 		flex: 5,	
-		flexDirection: 'row',		
+		flexDirection: 'row',
+		
 	},
 	profile: {		
 		flex: 3,
@@ -292,7 +389,8 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		paddingRight: 10,
-		paddingLeft: 10
+		paddingLeft: 10,
+		marginBottom: 10
 	},
     frase: {
         // color: 'rgba(255, 255, 255, 0.8)',        
@@ -317,23 +415,17 @@ const styles = StyleSheet.create({
 		justifyContent: 'center'
 	},
 	bodyIcons: {
-		marginTop: 0,
-		height: 56,
+		height: 40,
 		flexDirection: 'row',
-		// borderBottomColor: 'black',
-		// borderBottomWidth: 0.5,
 		justifyContent: 'space-around',
-		backgroundColor: 'transparent',
-		
+		alignItems: 'center',
+		// backgroundColor: 'red',
 	},
-  	buttonContainer: {
-		height:55,
-		marginTop:10,
-    	flexDirection: 'row',
-    	justifyContent: 'center',
-    	alignItems: 'flex-start',
-    	width:140,
+  	buttonContainer: {		    	
+    	alignItems: 'center',
+    	width:120,
 		borderRadius:40,
+		// backgroundColor: 'pink'
 	},
 	overlayHeaderContainer: {
 		justifyContent: 'center',
