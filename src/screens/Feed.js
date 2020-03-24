@@ -169,7 +169,7 @@ class Feed extends Component {
                     'rgba(225, 22, 94, 0.9)'
                     ]}
                     style={styles.iconViewContainer}>
-                    <TouchableOpacity
+                    <TouchableOpacity style={styles.buttonAddPost}
                         onPress={() => this.props.navigation.navigate('AddPost')}>
                         <Icon name='plus' size={32} color='rgba(255, 255, 255, 0.85)'/>
                     </TouchableOpacity>
@@ -234,11 +234,18 @@ const styles = StyleSheet.create({
         right: 25,
         backgroundColor: 'rgba(162, 163, 217, 0.85)',
         borderRadius: 25,
+        // justifyContent: 'center',
+        // alignItems: 'center',
+        // width: 50,
+        // height: 50
+
+    },
+    buttonAddPost: {
+        width: 48,
+        height: 48,
+        borderRadius: 24,
         justifyContent: 'center',
         alignItems: 'center',
-        width: 50,
-        height: 50
-
     },
     tabBottomBackground: {
         width: '100%',

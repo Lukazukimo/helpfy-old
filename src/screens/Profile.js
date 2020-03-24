@@ -249,24 +249,27 @@ class Profile extends Component {
 												'rgb(146, 135, 211)',
 												]} style={styles.container}>                
 												<ScrollView>
-												<FlatList numColumns={3}
-													data={this.state.posts}
-													keyExtractor={item => `${item.id}`}
-													renderItem={({ item }) =>  {
-														return (
-															<View style={styles.modalPosts}>
-																<Post key={item.id} {...item} 
-																	navigation={this.props.navigation}
-																	onNavigate={(this.onNavigate)}
-																	tamanho={{
-																		width: (Dimensions.get('window').width - 80 ) / 3,
-																		height: (Dimensions.get('window').width - 80 ) / 3,
-																		resizeMode: "stretch",
-																}}/>													
-															</View>												
-														)   
-													}}
-												/>									
+												<View style={styles.overlayHeaderContainer}>
+													<Text style={styles.overlayHeaderText}>Meus Posts</Text>
+												</View>	
+													<FlatList numColumns={3}
+														data={this.state.posts}
+														keyExtractor={item => `${item.id}`}
+														renderItem={({ item }) =>  {
+															return (
+																<View style={styles.modalPosts}>
+																	<Post key={item.id} {...item} 
+																		navigation={this.props.navigation}
+																		onNavigate={(this.onNavigate)}
+																		tamanho={{
+																			width: (Dimensions.get('window').width - 80 ) / 3,
+																			height: (Dimensions.get('window').width - 80 ) / 3,
+																			resizeMode: "stretch",
+																	}}/>													
+																</View>												
+															)   
+														}}
+													/>									
 												</ScrollView>
 											</LinearGradient>
 										</Overlay>	 
@@ -423,7 +426,7 @@ const styles = StyleSheet.create({
 	},
   	buttonContainer: {		    	
     	alignItems: 'center',
-    	width:120,
+    	width:60,
 		borderRadius:40,
 		// backgroundColor: 'pink'
 	},
