@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
     containerBack:{
         // flex: 1,
         backgroundColor: 'transparent',
-        marginTop: 20
+        // marginTop: 20
     },
     categoryContainer:{
         // backgroundColor: 'red',
@@ -284,7 +284,7 @@ const styles = StyleSheet.create({
         // borderWidth: 2,
         paddingTop: 10,
         paddingBottom: 10,        
-        justifyContent: 'center',        
+        justifyContent: 'center',
         alignItems: 'center',
         width: Dimensions.get('window').width / 2
     },

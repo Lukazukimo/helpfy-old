@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import {
     View,    
-    StyleSheet
+    StyleSheet,
+    StatusBar
 } from 'react-native'
 import SearchList from '../componentes/SearchList'
 import LinearGradient from 'react-native-linear-gradient'
 
-class Search extends Component {    
-
-    render() {        
+class Search extends Component {        
+    render() {                  
         return (            
             <LinearGradient colors={[
                 'rgb(146, 135, 211)',
@@ -33,7 +33,8 @@ class Search extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'blue',        
+        backgroundColor: 'blue',
+        paddingTop: StatusBar.currentHeight
     }
 })
 

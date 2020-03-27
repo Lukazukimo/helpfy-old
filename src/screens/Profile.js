@@ -348,19 +348,21 @@ const styles = StyleSheet.create({
 	},
 	donation:{
 		fontSize: 32,		
-		fontWeight: 'bold',
+		// fontWeight: 'bold',
 		color: 'rgba(255, 255, 255, 0.8)',
         textShadowColor: 'rgba(225, 22, 94, 0.7)', 
         textShadowOffset: { width: 1, height: 0 },
-        textShadowRadius: 10, 
+		textShadowRadius: 10,
+		fontFamily: 'Merienda-Bold'
 	},
 	ranking: {
 		fontSize: 32,		
-		fontWeight: 'bold',
+		// fontWeight: 'bold',
 		color: 'rgba(255, 255, 255, 0.8)',
         textShadowColor: 'rgba(225, 22, 94, 0.7)', 
         textShadowOffset: { width: 1, height: 0 },
-        textShadowRadius: 10, 
+		textShadowRadius: 10,
+		fontFamily: 'Merienda-Bold'
 	},
 	donationImage: {
 		width: 50,
@@ -399,14 +401,15 @@ const styles = StyleSheet.create({
         // color: 'rgba(255, 255, 255, 0.8)',        
         fontSize: 15,
 		marginRight: 4,
-		fontWeight: 'bold',
-		fontStyle: "italic",
 		textAlignVertical: "center",
 		textAlign: "center",
 		color: 'rgba(255, 255, 255, 0.8)',
         textShadowColor: 'rgba(225, 22, 94, 0.7)', 
         textShadowOffset: { width: 1, height: 0 },
         textShadowRadius: 10, 
+		// fontWeight: 'bold',
+		// fontStyle: "italic",
+		fontFamily: 'Merienda-Bold'
 	},
 	tabBottomBackground: {
         width: '100%',
