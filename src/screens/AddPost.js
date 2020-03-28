@@ -12,7 +12,8 @@ import {
 import RNPickerSelect from 'react-native-picker-select'
 import ImagePicker from 'react-native-image-picker'
 import LinearGradient from 'react-native-linear-gradient'
-
+import { connect } from 'react-redux'
+import { addPost } from '../store/actions/posts'
 
 class AddPost extends Component{
     state = {
@@ -31,7 +32,23 @@ class AddPost extends Component{
             if (!res.didCancel) {
                 this.setState({ image: { uri: res.uri, base64: res.data }})
             }
+        }) 
+    }
+
+    save = async () => {
+        this.props.onAddPost({
+            id: Math.random(),
+            title: this.state.title,
+            category: this.state.category,
+            description: this.state.description,
+            image: this.state.image
         })
+
+        this.setState({ title: '',
+        category: '',
+        description: '',
+        image: null})
+        this.props.navigation.navigate('Feed')
     }
 
     render(){
@@ -102,7 +119,7 @@ class AddPost extends Component{
                     </View>
                     <View style={styles.textInputsButton}>
                         <TouchableOpacity 
-                            onPress={() => { this.props.onCreateUser(this.state) }} 
+                            onPress={this.save} 
                             style={styles.buttom}>
                             <Text style={styles.buttomText}>Publicar</Text>
                         </TouchableOpacity>
@@ -221,4 +238,19 @@ const styles = StyleSheet.create({
 })
 
 
-export default AddPost
+// export default AddPost
+
+const mapStateToProps = ({ user }) => {
+    return{
+        email: user.email,
+        name: user.name,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onAddPost: post => dispatch(addPost(post))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddPost)

@@ -12,7 +12,7 @@ import messageReducer from './reducers/message'
 const reducers = combineReducers({
     // user seria a "variavel global"
     user: userReducer,
-    // posts: postsReducer,
+    posts: postsReducer,
     // message: messageReducer
 })
 

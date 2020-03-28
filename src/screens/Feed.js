@@ -8,6 +8,7 @@ import {
     Dimensions,
     TouchableOpacity
 } from 'react-native'
+import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/Feather'
 // import { Icon } from 'react-native-elements'
 import Header from '../componentes/Header'
@@ -27,44 +28,44 @@ const images = [
 
 class Feed extends Component {
 
-    state = {
-        posts: [{
-            id: Math.random(),
-            // nickname: 'Rafael Pereira Filho',
-            // email: 'rafaelprrflh@gmail.com',
-            title: 'aloajsdiuas',
-            image: require('../../assets/imgs/boat.jpg'),
-            // comments: [{
-            //     nickname: 'John Ray Sheldon',
-            //     comment: 'Stunning'
-            // }, {
-            //     nickname: 'Ana Julia Arruda',
-            //     comment: 'Foto Linda! Onde foi tirada?'
-            // }]
-        },{
-            id: Math.random(),
-            // nickname: 'Francisco Leandro Lima',
-            // email: 'fllima@gmail.com',
-            title: 'alo',
-            image: require('../../assets/imgs/boat.jpg'),
-            // comments: []
-        }, {
-            id: Math.random(),
-            // nickname: 'Francisco Leandro Lima',
-            // email: 'fllima@gmail.com',
-            title: 'alo',
-            image: require('../../assets/imgs/planeta.jpg'),
-            // comments: []
-        }, {
-            id: Math.random(),
-            // nickname: 'Francisco Leandro Lima',
-            // email: 'fllima@gmail.com',
-            title: 'alo',
-            image: require('../../assets/imgs/bw.jpg'),
-            // comments: []
-        }]
-       
-    }
+    //state = {
+    //    posts: [{
+    //        id: Math.random(),
+    //        // nickname: 'Rafael Pereira Filho',
+    //        // email: 'rafaelprrflh@gmail.com',
+    //        title: 'aloajsdiuas',
+    //        image: require('../../assets/imgs/boat.jpg'),
+    //        // comments: [{
+    //        //     nickname: 'John Ray Sheldon',
+    //        //     comment: 'Stunning'
+    //        // }, {
+    //        //     nickname: 'Ana Julia Arruda',
+    //        //     comment: 'Foto Linda! Onde foi tirada?'
+    //        // }]
+    //    },{
+    //        id: Math.random(),
+    //        // nickname: 'Francisco Leandro Lima',
+    //        // email: 'fllima@gmail.com',
+    //        title: 'alo',
+    //        image: require('../../assets/imgs/boat.jpg'),
+    //        // comments: []
+    //    }, {
+    //        id: Math.random(),
+    //        // nickname: 'Francisco Leandro Lima',
+    //        // email: 'fllima@gmail.com',
+    //        title: 'alo',
+    //        image: require('../../assets/imgs/planeta.jpg'),
+    //        // comments: []
+    //    }, {
+    //        id: Math.random(),
+    //        // nickname: 'Francisco Leandro Lima',
+    //        // email: 'fllima@gmail.com',
+    //        title: 'alo',
+    //        image: require('../../assets/imgs/bw.jpg'),
+    //        // comments: []
+    //    }]
+    //   
+    //}
     onNavigate = () => {
         return
     }
@@ -113,7 +114,7 @@ class Feed extends Component {
                         <ImageSlider images={images}/> 
                         <Text style={styles.title}>Destaques</Text>
                         <FlatList horizontal 
-                            data={this.state.posts}
+                            data={this.props.posts}
                             keyExtractor={item => `${item.id}`}                        
                             renderItem={({ item }) =>                         
                             <Post key={item.id} {...item} 
@@ -129,7 +130,7 @@ class Feed extends Component {
 
                         <Text style={styles.title}>Recentes</Text>
                         <FlatList horizontal                    
-                            data={this.state.posts}
+                            data={this.props.posts}
                             keyExtractor={item => `${item.id}`}
                             // destructuring de item
                             renderItem={({ item }) =>                         
@@ -146,7 +147,7 @@ class Feed extends Component {
 
                         <Text style={styles.title}>Destaques</Text>
                         <FlatList horizontal                    
-                            data={this.state.posts}
+                            data={this.props.posts}
                             keyExtractor={item => `${item.id}`}
                             // destructuring de item
                             renderItem={({ item }) =>                         
@@ -254,4 +255,12 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Feed
+// export default Feed
+
+const mapStateToProps = ({ posts }) => {
+    return {
+        posts: posts.posts
+    }
+}
+
+export default connect(mapStateToProps)(Feed)

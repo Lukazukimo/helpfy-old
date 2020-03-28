@@ -1,64 +1,12 @@
-import { ADD_POST, 
-    ADD_COMMENT, 
-    SET_POSTS,
-    CREATING_POST,
-    POST_CREATED
-} from './actionTypes'
+import { ADD_POST } from './actionTypes'
 import axios from 'axios'
 import { setMessage } from './message'
 
 export const addPost = post => {
-    // retorna funcao devido ao redux thunk
-    // devido ao redux thunk, o segunod parametro consegue
-    // pegar o estado completo = feito para pegar o token, nesse caso
-    return (dispatch, getState) => {
-        dispatch(creatingPost())
-        axios({
-            url: 'uploadImage',
-            baseURL: 'https://us-central1-helpfy-18cd6.cloudfunctions.net',
-            method: 'post',
-            data: {
-                image: post.image.base64
-            }
-        })
-            // .catch(err => console.log(err))
-            .catch(err => {
-                dispatch(setMessage({
-                    title: 'Erro',
-                    text: 'Ocorreu um erro inesperado'
-                }))
-            })
-            .then(resp => {
-                // substituindo a imagem pela sua URL gerada
-                // quando feito o upload
-                post.image = resp.data.imageUrl
-                // final da url do firebase .json
-                // segundo parametro = objeto post = ... gerando clone
-                axios.post(`/posts.json?auth=${getState().user.token}`, {...post})
-                    // .catch(err => console.log(err))
-                    .catch(err => {
-                        dispatch(setMessage({
-                            title: 'Erro',
-                            text: err
-                        }))
-                    })
-                    .then(res => {
-                        dispatch(fetchPosts())
-                        dispatch(postCreated())
-                        // dispatch(setMessage({
-                        //     title: 'Sucesso',
-                        //     text: 'Nova postagem!'
-                        // }))
-                    })
-            })
-
+    return {
+        type: ADD_POST,
+        payload: post
     }
-    
-    // retorna um objeto que eh a action
-    // return {
-    //     type: ADD_POST,
-    //     payload: post
-    // }
 }
 
 export const addComment = payload => {

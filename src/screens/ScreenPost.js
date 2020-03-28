@@ -16,6 +16,7 @@ import CommentPost from '../componentes/CommentPost'
 import AuthorPost from '../componentes/AuthorPost'
 import IWantList from '../componentes/IWantList'
 import LinearGradient from 'react-native-linear-gradient'
+import { connect } from 'react-redux'
 
 class ScreenPost extends Component {    
 
@@ -70,11 +71,11 @@ class ScreenPost extends Component {
                     <IWantList isVisible={this.state.showIWantList} 
                         onCancel={() => this.setState({ showIWantList: false })}/>
                     <View style={styles.container}>
-                        <Text style={styles.titlePost}>{this.state.title}</Text>
+                        <Text style={styles.titlePost}>{ this.props.posts.title }</Text>
                     </View>                    
-                    <Image source={this.state.image} style={styles.image}/>
+                    <Image source={this.props.posts.image} style={styles.image}/>
                     <Author email={'fulano@teste.com'} nickname={'Fabio'}/>
-                    <DescriptionPost descriptionPost={a} />
+                    <DescriptionPost descriptionPost={this.props.posts.description} />
                     <View style={styles.buttonContainer}>
                         <AuthorPost test={emailAuthorPost === email}>
                             <TouchableOpacity style={styles.buttons}
@@ -183,4 +184,10 @@ const styles = StyleSheet.create({
 	},
 })
 
-export default ScreenPost
+const mapStateToProps = ({ posts }) => {
+    return {
+        posts: posts.posts
+    }
+}
+
+export default connect(mapStateToProps)(ScreenPost)
