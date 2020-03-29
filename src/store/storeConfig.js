@@ -19,8 +19,8 @@ const reducers = combineReducers({
 
 //cria o estado 
 const storeConfig = () => {
-    // return createStore(reducers, compose(applyMiddleware(thunk)))
-    return createStore(reducers)
+    return createStore(reducers, compose(applyMiddleware(thunk)))
+    // return createStore(reducers)
 }
 
 export default storeConfig
