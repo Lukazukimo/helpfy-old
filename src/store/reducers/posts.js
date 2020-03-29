@@ -8,79 +8,76 @@ import {
 import { act } from 'react-test-renderer'
 
 const initialState = {
-    posts: [{
-        id: Math.random(),
-        title: 'aloajsdiuas',
-        author: 'Fábio Wu',
-        category: '',
-        description: 'ADJHBASUDJAHSDKJSAHDJKASHD',
-        image: require('../../../assets/imgs/boat.jpg'),
-        comments: [{
-			nickname: 'Ulisses',
-			comment: 'Esse car roubou!!!'
-		}, {
-			nickname: 'Murilo',
-            comment: 'Comendo o cu de curioso'
-        }, {
-            nickname: 'Murilo',
-            comment: 'Comendo o cu de curioso'
-        }, {
-            nickname: 'Murilo',
-            comment: 'Comendo o cu de curioso'
-        }],
-    },{     
-        id: Math.random(),
-        title: 'aloajsdiuas',
-        author: 'Fábio Wu',
-        category: '',
-        description: 'ADJHBASUDJAHSDKJSAHDJKASHD',
-        image: require('../../../assets/imgs/boat.jpg'),
-        comments: [{
-			nickname: 'Ulisses',
-			comment: 'Esse car roubou!!!'
-		}, {
-			nickname: 'Murilo',
-            comment: 'Comendo o cu de curioso'
-        }, {
-            nickname: 'Murilo',
-            comment: 'Comendo o cu de curioso'
-        }, {
-            nickname: 'Murilo',
-            comment: 'Comendo o cu de curioso'
-		}],
-    },{ 
-        id: Math.random(),
-        title: 'aloajsdiuas',
-        author: 'Fábio Wu',
-        category: '',
-        description: 'ADJHBASUDJAHSDKJSAHDJKASHD',
-        image: require('../../../assets/imgs/boat.jpg'),
-        comments: [{
-			nickname: 'Ulisses',
-			comment: 'Esse car roubou!!!'
-		}, {
-			nickname: 'Murilo',
-            comment: 'Comendo o cu de curioso'
-        }, {
-            nickname: 'Murilo',
-            comment: 'Comendo o cu de curioso'
-        }, {
-            nickname: 'Murilo',
-            comment: 'Comendo o cu de curioso'
-        }],
-    }]
-   
+    // posts: [{
+    //     id: Math.random(),
+    //     title: 'aloajsdiuas',
+    //     author: 'Fábio Wu',
+    //     category: '',
+    //     description: 'ADJHBASUDJAHSDKJSAHDJKASHD',
+    //     image: require('../../../assets/imgs/boat.jpg'),
+    //     comments: [{
+	// 		nickname: 'Ulisses',
+	// 		comment: 'Esse car roubou!!!'
+	// 	}, {
+	// 		nickname: 'Murilo',
+    //         comment: 'Comendo o cu de curioso'
+    //     }, {
+    //         nickname: 'Murilo',
+    //         comment: 'Comendo o cu de curioso'
+    //     }, {
+    //         nickname: 'Murilo',
+    //         comment: 'Comendo o cu de curioso'
+    //     }],
+    // },{     
+    //     id: Math.random(),
+    //     title: 'aloajsdiuas',
+    //     author: 'Fábio Wu',
+    //     category: '',
+    //     description: 'ADJHBASUDJAHSDKJSAHDJKASHD',
+    //     image: require('../../../assets/imgs/boat.jpg'),
+    //     comments: [{
+	// 		nickname: 'Ulisses',
+	// 		comment: 'Esse car roubou!!!'
+	// 	}, {
+	// 		nickname: 'Murilo',
+    //         comment: 'Comendo o cu de curioso'
+    //     }, {
+    //         nickname: 'Murilo',
+    //         comment: 'Comendo o cu de curioso'
+    //     }, {
+    //         nickname: 'Murilo',
+    //         comment: 'Comendo o cu de curioso'
+	// 	}],
+    // },{ 
+    //     id: Math.random(),
+    //     title: 'aloajsdiuas',
+    //     author: 'Fábio Wu',
+    //     category: '',
+    //     description: 'ADJHBASUDJAHSDKJSAHDJKASHD',
+    //     image: require('../../../assets/imgs/boat.jpg'),
+    //     comments: [{
+	// 		nickname: 'Ulisses',
+	// 		comment: 'Esse car roubou!!!'
+	// 	}, {
+	// 		nickname: 'Murilo',
+    //         comment: 'Comendo o cu de curioso'
+    //     }, {
+    //         nickname: 'Murilo',
+    //         comment: 'Comendo o cu de curioso'
+    //     }, {
+    //         nickname: 'Murilo',
+    //         comment: 'Comendo o cu de curioso'
+    //     }],
+    // }]   
 }
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_POST:
+        case SET_POSTS:
             return {
                 ...state,
-                posts: state.posts.concat({
-                    ...action.payload
-                })
-            }
+                posts: action.payload
+                }
         default:
             return state
     }

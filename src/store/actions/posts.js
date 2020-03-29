@@ -1,4 +1,4 @@
-import { ADD_POST } from './actionTypes'
+import { ADD_POST, SET_POSTS } from './actionTypes'
 import axios from 'axios'
 import { setMessage } from './message'
 
@@ -10,11 +10,26 @@ import { setMessage } from './message'
 // }
 
 export const addPost = post => {    
-    return dispatch => {        
-        axios.post('/posts.json', {...post})
-            .catch(err => console.log(err))
-            .then(res => console.log(res.data))
-    }
+    return dispatch => {    
+        axios({
+            url: 'uploadImage',
+            baseURL: 'https://us-central1-helpfy-18cd6.cloudfunctions.net',
+            method: 'post',
+            data: {
+                image: post.image.base64
+            }
+        })
+            .catch(err => console.log(err))            
+            .then(resp => {
+                // substituindo a imagem pela sua URL gerada
+                // quando feito o upload
+                post.image = resp.data.imageUrl
+
+                axios.post('/posts.json', {...post})
+                    .catch(err => console.log(err))
+                    .then(res => console.log(res.data))
+            })
+        }
 }
 
 export const addComment = payload => {
@@ -62,16 +77,12 @@ export const setPosts = posts => {
     }
 }
 
+// Obter os Posts
+// Axios vai pegar no Firbase
 export const fetchPosts = () => {
     return dispatch => {
         axios.get('/posts.json')
-            // .catch(err => console.log(err))
-            .catch(err => {
-                dispatch(setMessage({
-                    title: 'Erro',
-                    text: 'Ocorreu um erro inesperado'
-                }))
-            })
+            .catch(err => console.log(err))
             // a partir da resposta recebe a lista de postagen
             // do firebase, um objeto, chave: hash, valor: o objeto
             // que representa a postagem

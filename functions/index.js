@@ -14,7 +14,6 @@ const storage = new Storage({
 exports.uploadImage = functions.https.onRequest((request, response) => {
     cors(request, response, () => {        
         try {
-            console.log('teste')
             // escrever o arquivo imagem no disco local
             fs.writeFileSync('/tmp/imageToSave.jpg', 
                 request.body.image, 'base64')            

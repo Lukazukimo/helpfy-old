@@ -16,6 +16,7 @@ import Post from '../componentes/Post'
 import ImageSlider from '../componentes/ImageSlider'
 import LinearGradient from 'react-native-linear-gradient'
 import RadialGradient from 'react-native-radial-gradient'
+import { fetchPosts } from '../store/actions/posts'
 
 const images = [
     "https://images.unsplash.com/photo-1508138221679-760a23a2285b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
@@ -69,6 +70,11 @@ class Feed extends Component {
     onNavigate = () => {
         return
     }
+
+    componentDidMount = () => {
+        this.props.onFetchPosts()
+    }
+
     render(){
 
         const widthScreen = Dimensions.get('window').width / 2
@@ -115,7 +121,9 @@ class Feed extends Component {
                         <Text style={styles.title}>Destaques</Text>
                         <FlatList horizontal 
                             data={this.props.posts}
-                            keyExtractor={item => `${item.id}`}                        
+                            keyExtractor={item => `${item.id}`}
+                            style={styles.containerFlatPosts}
+                            showsHorizontalScrollIndicator={false}
                             renderItem={({ item }) =>                         
                             <Post key={item.id} {...item} 
                                 navigation={this.props.navigation}
@@ -127,12 +135,12 @@ class Feed extends Component {
                                     margin: 10,
                                     borderRadius: 15
                                 }}/>}/>    
-
                         <Text style={styles.title}>Recentes</Text>
                         <FlatList horizontal                    
                             data={this.props.posts}
                             keyExtractor={item => `${item.id}`}
-                            // destructuring de item
+                            style={styles.containerFlatPosts}
+                            showsHorizontalScrollIndicator={false}
                             renderItem={({ item }) =>                         
                             <Post key={item.id} {...item}
                                 navigation={this.props.navigation}
@@ -144,12 +152,12 @@ class Feed extends Component {
                                     margin: 10,
                                     borderRadius: 15
                                 }}/>}/>
-
                         <Text style={styles.title}>Destaques</Text>
                         <FlatList horizontal                    
                             data={this.props.posts}
                             keyExtractor={item => `${item.id}`}
-                            // destructuring de item
+                            style={styles.containerFlatPosts}
+                            showsHorizontalScrollIndicator={false}
                             renderItem={({ item }) =>                         
                             <Post key={item.id} {...item}
                                 navigation={this.props.navigation}
@@ -204,6 +212,11 @@ const styles = StyleSheet.create({
     // imageSlider: {
     //     flex: 1
     // },
+    containerFlatPosts: {
+        backgroundColor: 'transparent',
+        width: '100%',
+        height: Dimensions.get('window').width / (5/2.25)
+    },
     containerPosts: {
         flex: 2
     },
@@ -263,4 +276,10 @@ const mapStateToProps = ({ posts }) => {
     }
 }
 
-export default connect(mapStateToProps)(Feed)
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchPosts: () => dispatch(fetchPosts())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Feed)

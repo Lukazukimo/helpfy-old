@@ -9,14 +9,8 @@ import{
     TouchableNativeFeedbackBase
 } from 'react-native'
 
-class Post extends Component {
-    // constructor(props) {
-    //     super(props)
-    // }
-    
+class Post extends Component {    
     render() {            
-        // console.log(this.props)
-        
         return(
             <View style={styles.container}>
                 {/* <Image source={require('../../assets/imgs/boat.jpg')}/> */}
@@ -30,7 +24,7 @@ class Post extends Component {
                             description: this.props.description
                         })
                         this.props.onNavigate()}}>
-                    <Image source={this.props.image} style={this.props.tamanho}/>
+                    <Image source={{ uri: this.props.image }} style={this.props.tamanho}/>
                 </TouchableOpacity>
             </View>
         )
@@ -40,7 +34,7 @@ class Post extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent'        
     },
     // image: {
     //     width: Dimensions.get('window').width / (5/2),
