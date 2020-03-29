@@ -1,4 +1,9 @@
-import { ADD_POST, SET_POSTS } from './actionTypes'
+import { 
+    ADD_POST, 
+    SET_POSTS,
+    CREATING_POST,
+    POST_CREATED
+} from './actionTypes'
 import axios from 'axios'
 import { setMessage } from './message'
 
@@ -10,7 +15,8 @@ import { setMessage } from './message'
 // }
 
 export const addPost = post => {    
-    return dispatch => {    
+    return dispatch => {
+        dispatch(creatingPost())
         axios({
             url: 'uploadImage',
             baseURL: 'https://us-central1-helpfy-18cd6.cloudfunctions.net',
@@ -27,7 +33,10 @@ export const addPost = post => {
 
                 axios.post('/posts.json', {...post})
                     .catch(err => console.log(err))
-                    .then(res => console.log(res.data))
+                    .then(res => {
+                        dispatch(fetchPosts())
+                        dispatch(postCreated())
+                    })
             })
         }
 }

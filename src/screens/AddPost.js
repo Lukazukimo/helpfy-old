@@ -23,6 +23,18 @@ class AddPost extends Component{
         image: null
     }
 
+    componentDidUpdate = prevProps => {
+        if (prevProps.loading && !this.props.loading){
+            this.setState({
+                title: '',
+                category: '',
+                description: '',
+                image: null
+            })
+            this.props.navigation.navigate('Feed')
+        }
+    }
+
     pickImage = () => {
         ImagePicker.showImagePicker({
             title: 'Selecione a imagem',
@@ -45,11 +57,11 @@ class AddPost extends Component{
             image: this.state.image
         })
 
-        this.setState({ title: '',
-        category: '',
-        description: '',
-        image: null})
-        this.props.navigation.navigate('Feed')
+        // this.setState({ title: '',
+        // category: '',
+        // description: '',
+        // image: null})
+        // this.props.navigation.navigate('Feed')
     }
 
     render(){
@@ -114,14 +126,17 @@ class AddPost extends Component{
                         <Text style={styles.information}>
                             Descrição do item
                         </Text>
-                        <TextInput placeholder='Descreva seu item' style={styles.descriptionInput}
-                            multiline={true} value={this.state.description}
+                        <TextInput placeholder='Descreva seu item' 
+                            style={styles.descriptionInput}
+                            multiline={true}
+                            value={this.state.description}
                             onChangeText={description => this.setState({ description })} />
                     </View>
                     <View style={styles.textInputsButton}>
                         <TouchableOpacity 
                             onPress={this.save} 
-                            style={styles.buttom}>
+                            style={[styles.buttom, this.props.loading ? 
+                                styles.buttonDisabled : null]}>
                             <Text style={styles.buttomText}>Publicar</Text>
                         </TouchableOpacity>
                     </View>
@@ -164,6 +179,9 @@ const styles = StyleSheet.create({
         color: '#fff',
         textAlignVertical: 'center',
         textAlign: 'center',        
+    },
+    buttonDisabled: {
+        backgroundColor: '#aaa'
     },
     input: {
         marginTop: 5,
@@ -241,10 +259,11 @@ const styles = StyleSheet.create({
 
 // export default AddPost
 
-const mapStateToProps = ({ user }) => {
+const mapStateToProps = ({ user, posts }) => {
     return{
         email: user.email,
         name: user.name,
+        loading: posts.isUploading
     }
 }
 

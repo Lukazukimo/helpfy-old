@@ -8,67 +8,8 @@ import {
 import { act } from 'react-test-renderer'
 
 const initialState = {
-    // posts: [{
-    //     id: Math.random(),
-    //     title: 'aloajsdiuas',
-    //     author: 'Fábio Wu',
-    //     category: '',
-    //     description: 'ADJHBASUDJAHSDKJSAHDJKASHD',
-    //     image: require('../../../assets/imgs/boat.jpg'),
-    //     comments: [{
-	// 		nickname: 'Ulisses',
-	// 		comment: 'Esse car roubou!!!'
-	// 	}, {
-	// 		nickname: 'Murilo',
-    //         comment: 'Comendo o cu de curioso'
-    //     }, {
-    //         nickname: 'Murilo',
-    //         comment: 'Comendo o cu de curioso'
-    //     }, {
-    //         nickname: 'Murilo',
-    //         comment: 'Comendo o cu de curioso'
-    //     }],
-    // },{     
-    //     id: Math.random(),
-    //     title: 'aloajsdiuas',
-    //     author: 'Fábio Wu',
-    //     category: '',
-    //     description: 'ADJHBASUDJAHSDKJSAHDJKASHD',
-    //     image: require('../../../assets/imgs/boat.jpg'),
-    //     comments: [{
-	// 		nickname: 'Ulisses',
-	// 		comment: 'Esse car roubou!!!'
-	// 	}, {
-	// 		nickname: 'Murilo',
-    //         comment: 'Comendo o cu de curioso'
-    //     }, {
-    //         nickname: 'Murilo',
-    //         comment: 'Comendo o cu de curioso'
-    //     }, {
-    //         nickname: 'Murilo',
-    //         comment: 'Comendo o cu de curioso'
-	// 	}],
-    // },{ 
-    //     id: Math.random(),
-    //     title: 'aloajsdiuas',
-    //     author: 'Fábio Wu',
-    //     category: '',
-    //     description: 'ADJHBASUDJAHSDKJSAHDJKASHD',
-    //     image: require('../../../assets/imgs/boat.jpg'),
-    //     comments: [{
-	// 		nickname: 'Ulisses',
-	// 		comment: 'Esse car roubou!!!'
-	// 	}, {
-	// 		nickname: 'Murilo',
-    //         comment: 'Comendo o cu de curioso'
-    //     }, {
-    //         nickname: 'Murilo',
-    //         comment: 'Comendo o cu de curioso'
-    //     }, {
-    //         nickname: 'Murilo',
-    //         comment: 'Comendo o cu de curioso'
-    //     }],
-    // }]   
+    posts: [],
+    isUploading: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -78,6 +19,17 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 posts: action.payload
                 }
+
+        case CREATING_POST:
+            return {
+                ...state,
+                isUploading: true
+            }
+        case POST_CREATED:  
+            return {
+                ...state,
+                isUploading: false
+            }
         default:
             return state
     }
