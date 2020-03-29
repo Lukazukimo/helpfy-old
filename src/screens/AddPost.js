@@ -7,13 +7,18 @@ import {
     TextInput,
     Image,
     Dimensions,
-    ScrollView
+    ScrollView,
+    Alert
 } from 'react-native'
 import RNPickerSelect from 'react-native-picker-select'
 import ImagePicker from 'react-native-image-picker'
 import LinearGradient from 'react-native-linear-gradient'
 import { connect } from 'react-redux'
 import { addPost } from '../store/actions/posts'
+
+
+const noUser = 'Você precisa estar logado para adicionar um post'
+
 
 class AddPost extends Component{
     state = {
@@ -36,6 +41,10 @@ class AddPost extends Component{
     }
 
     pickImage = () => {
+        if (!this.props.name) {
+            Alert.alert('Falha!', noUser)
+            return
+        }
         ImagePicker.showImagePicker({
             title: 'Selecione a imagem',
             maxHeight: 200,
@@ -48,6 +57,10 @@ class AddPost extends Component{
     }
 
     save = async () => {
+        if (!this.props.name) {
+            Alert.alert('Falha!', noUser)
+            return
+        }
         this.props.onAddPost({
             id: Math.random(),
             title: this.state.title,

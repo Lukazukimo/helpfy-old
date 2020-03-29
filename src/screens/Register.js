@@ -14,6 +14,8 @@ class Register extends Component{
     state = {
         name: '',
         email: '',
+        date: '',
+        uf: '',
         password: '',
         passwordConfirm: ''
     }
@@ -41,6 +43,14 @@ class Register extends Component{
                 <TextInput placeholder='Email' style={styles.input}
                     keyboardType='email-address' value={this.state.email}
                     onChangeText={email => this.setState({ email })} />
+                <View style={styles.horizontal}>
+                    <TextInput placeholder='Confirmar senha' style={styles.input2}
+                        secureTextEntry={true} value={this.state.passwordConfirm}
+                        onChangeText={passwordConfirm => this.setState({ passwordConfirm })} />
+                    <TextInput placeholder='Confirmar senha' style={styles.input2}
+                        secureTextEntry={true} value={this.state.passwordConfirm}
+                        onChangeText={passwordConfirm => this.setState({ passwordConfirm })} />
+                </View>
                 <TextInput placeholder='Senha' style={styles.input}
                     secureTextEntry={true} value={this.state.password}
                     onChangeText={password => this.setState({ password })} />
@@ -85,7 +95,23 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#333',
         borderRadius: 7
-    }, 
+    },
+    horizontal: {
+        flexDirection: 'row',
+        alignItems: 'flex-end'
+    },
+    input2: {
+        marginTop: 20,
+        width: '35%',
+        backgroundColor: '#eee',
+        height: 40,
+        borderWidth: 1,
+        borderColor: '#333',
+        borderRadius: 7,
+        marginRight: 40,
+        marginLeft: 40
+        
+    },
 })
 
 

@@ -21,7 +21,8 @@ class Post extends Component {
                             author: this.props.author,
                             image: this.props.image,
                             comments: this.props.comments,
-                            description: this.props.description
+                            description: this.props.description,
+                            postId: this.props.id
                         })
                         this.props.onNavigate()}}>
                     <Image source={{ uri: this.props.image }} style={this.props.tamanho}/>

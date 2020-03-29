@@ -17,6 +17,7 @@ import AuthorPost from '../componentes/AuthorPost'
 import IWantList from '../componentes/IWantList'
 import LinearGradient from 'react-native-linear-gradient'
 import { connect } from 'react-redux'
+import AddComment from '../componentes/AddComment'
 
 class ScreenPost extends Component {    
 
@@ -24,6 +25,7 @@ class ScreenPost extends Component {
         liked: true,
         iWant: true,
         showIWantList: false,
+        id: this.props.navigation.state.params.postId,
         title: this.props.navigation.state.params.title,
         author: this.props.navigation.state.params.author,
         description: this.props.navigation.state.params.description,
@@ -40,7 +42,8 @@ class ScreenPost extends Component {
         
         const emailAuthorPost = 'aaa@gmail.com'
         const email = 'aaa@gmail.com'
-        
+        const addComment = this.props.name ?
+            <AddComment postId={this.state.id} /> : null
 
               
         return (            
@@ -84,7 +87,8 @@ class ScreenPost extends Component {
                             </TouchableOpacity>
                         </AuthorPost>
                     </View>
-                        <CommentPost comments={this.state.comments} />  
+                    <CommentPost comments={this.state.comments} />
+                    {addComment}
                 </ScrollView>
                 <View style={styles.tabBottomBackground} />
             </LinearGradient>
@@ -174,8 +178,9 @@ const styles = StyleSheet.create({
 	},
 })
 
-const mapStateToProps = ({ posts }) => {
+const mapStateToProps = ({ posts, user }) => {
     return {
+        name: user.name,
         posts: posts.posts
     }
 }
