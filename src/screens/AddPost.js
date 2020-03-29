@@ -39,6 +39,7 @@ class AddPost extends Component{
         this.props.onAddPost({
             id: Math.random(),
             title: this.state.title,
+            author: this.props.name,
             category: this.state.category,
             description: this.state.description,
             image: this.state.image

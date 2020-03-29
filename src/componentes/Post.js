@@ -5,7 +5,8 @@ import{
     Text,
     Image,
     Dimensions,
-    TouchableOpacity
+    TouchableOpacity,
+    TouchableNativeFeedbackBase
 } from 'react-native'
 
 class Post extends Component {
@@ -23,7 +24,11 @@ class Post extends Component {
                         // this.props.navigation.navigate('Category', { title: this.props.title})
                         this.props.navigation.navigate('ScreenPost', { 
                             title: this.props.title,
-                            image: this.props.image })
+                            author: this.props.author,
+                            image: this.props.image,
+                            comments: this.props.comments,
+                            description: this.props.description
+                        })
                         this.props.onNavigate()}}>
                     <Image source={this.props.image} style={this.props.tamanho}/>
                 </TouchableOpacity>

@@ -25,7 +25,10 @@ class ScreenPost extends Component {
         iWant: true,
         showIWantList: false,
         title: this.props.navigation.state.params.title,
+        author: this.props.navigation.state.params.author,
+        description: this.props.navigation.state.params.description,
         image: this.props.navigation.state.params.image,
+        comments: this.props.navigation.state.params.comments,
     }
     
     render() {  
@@ -38,19 +41,7 @@ class ScreenPost extends Component {
         const emailAuthorPost = 'aaa@gmail.com'
         const email = 'aaa@gmail.com'
         
-        const comments = [{
-			nickname: 'Ulisses',
-			comment: 'Esse cara me roubou!!!'
-		}, {
-			nickname: 'Murilo',
-            comment: 'Comendo o cu de curioso'
-        }, {
-            nickname: 'Murilo',
-            comment: 'Comendo o cu de curioso'
-        }, {
-            nickname: 'Murilo',
-            comment: 'Comendo o cu de curioso'
-		}]
+
               
         return (            
             <LinearGradient colors={[
@@ -71,11 +62,11 @@ class ScreenPost extends Component {
                     <IWantList isVisible={this.state.showIWantList} 
                         onCancel={() => this.setState({ showIWantList: false })}/>
                     <View style={styles.container}>
-                        <Text style={styles.titlePost}>{ this.props.posts.title }</Text>
+                        <Text style={styles.titlePost}>{ this.state.title }</Text>
                     </View>                    
-                    <Image source={this.props.posts.image} style={styles.image}/>
-                    <Author email={'fulano@teste.com'} nickname={'Fabio'}/>
-                    <DescriptionPost descriptionPost={this.props.posts.description} />
+                    <Image source={this.state.image} style={styles.image}/>
+                    <Author email={'fulano@teste.com'} nickname={this.state.author}/>
+                    <DescriptionPost descriptionPost={this.state.description} />
                     <View style={styles.buttonContainer}>
                         <AuthorPost test={emailAuthorPost === email}>
                             <TouchableOpacity style={styles.buttons}
@@ -93,7 +84,7 @@ class ScreenPost extends Component {
                             </TouchableOpacity>
                         </AuthorPost>
                     </View>
-                        <CommentPost comments={comments} />  
+                        <CommentPost comments={this.state.comments} />  
                 </ScrollView>
                 <View style={styles.tabBottomBackground} />
             </LinearGradient>
@@ -109,7 +100,6 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').width * 3 / 4,
         resizeMode: "contain",        
-        backgroundColor: 'red'
     },
     titlePost: {
         textAlign: 'center',

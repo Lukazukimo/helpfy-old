@@ -10,60 +10,9 @@ import {
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import Post from '../componentes/Post'
+import { connect } from 'react-redux'
 
-export default class WishList extends Component {
-    
-    state = {            
-        posts: [{
-            id: Math.random(),
-            image: require('../../assets/imgs/bw.jpg'),
-            title: 'Titulo Post 0'
-        }, {
-            id: Math.random(),
-            image: require('../../assets/imgs/boat.jpg'),
-            title: 'Titulo Post 2'
-        }, {
-            id: Math.random(),
-            image: require('../../assets/imgs/fence.jpg'),
-            title: 'Titulo Post 3'
-        }, {
-            id: Math.random(),
-            image: require('../../assets/imgs/bw.jpg'),
-            title: 'Titulo Post 1'
-        }, {
-            id: Math.random(),
-            image: require('../../assets/imgs/boat.jpg'),
-            title: 'Titulo Post 2'
-        }, {
-            id: Math.random(),
-            image: require('../../assets/imgs/fence.jpg'),
-            title: 'Titulo Post 3'
-        }, {
-            id: Math.random(),
-            image: require('../../assets/imgs/bw.jpg'),
-            title: 'Titulo Post 1'
-        }, {
-            id: Math.random(),
-            image: require('../../assets/imgs/boat.jpg'),
-            title: 'Titulo Post 2'
-        }, {
-            id: Math.random(),
-            image: require('../../assets/imgs/fence.jpg'),
-            title: 'Titulo Post 3'
-        }, {
-            id: Math.random(),
-            image: require('../../assets/imgs/bw.jpg'),
-            title: 'Titulo Post 1'
-        }, {
-            id: Math.random(),
-            image: require('../../assets/imgs/boat.jpg'),
-            title: 'Titulo Post 2'
-        }, {
-            id: Math.random(),
-            image: require('../../assets/imgs/fence.jpg'),
-            title: 'Titulo Post 3'
-        }]
-    }
+class WishList extends Component {
     
     onNavigate = () => {
         return
@@ -92,7 +41,7 @@ export default class WishList extends Component {
                     </View>
                     <View style={styles.bodyContainer}>
                         <FlatList numColumns={2}
-                            data={this.state.posts}
+                            data={this.props.posts}
                             keyExtractor={item => `${item.id}`}
                             renderItem={({ item }) => {
                                 return (
@@ -176,3 +125,11 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent'
     }
 })
+
+const mapStateToProps = ({ posts }) => {
+    return {
+        posts: posts.posts
+    }
+}
+
+export default connect(mapStateToProps)(WishList)

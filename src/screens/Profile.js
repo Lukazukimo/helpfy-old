@@ -19,6 +19,7 @@ import ProfileInfo from '../componentes/ProfileInfo'
 import Post from './../componentes/Post'
 import ProfileComment from '../componentes/ProfileComment'
 
+
 class Profile extends Component {
 	constructor(props){
 		super(props)
@@ -28,60 +29,6 @@ class Profile extends Component {
 			uf: 'São Paulo',
 			showCommentList: false,
 			showPostList: false,
-
-			posts: [{
-				id: Math.random(),
-				image: require('../../assets/imgs/fence.jpg'),
-				title: 'Post sobre çççç'
-			}, {
-				id: Math.random(),
-				image: require('../../assets/imgs/fence.jpg'),
-				title: 'Post sobre çççç'
-			},{
-				id: Math.random(),
-				image: require('../../assets/imgs/gate.jpg'),
-				title: 'Post sobre çççç'
-			},{
-				id: Math.random(),
-				image: require('../../assets/imgs/gate.jpg'),
-				title: 'Post sobre çççç'
-			}, {
-				id: Math.random(),
-				image: require('../../assets/imgs/gate.jpg'),
-				title: 'Post sobre çççç'
-			},{
-				id: Math.random(),
-				image: require('../../assets/imgs/gate.jpg'),
-				title: 'Post sobre çççç'
-			},{
-				id: Math.random(),
-				image: require('../../assets/imgs/gate.jpg'),
-				title: 'Post sobre çççç'
-			},{
-				id: Math.random(),
-				image: require('../../assets/imgs/gate.jpg'),
-				title: 'Post sobre çççç'
-			},{
-				id: Math.random(),
-				image: require('../../assets/imgs/gate.jpg'),
-				title: 'P'
-			},{
-				id: Math.random(),
-				image: require('../../assets/imgs/gate.jpg'),
-				title: 'Post sobre çççç'
-			},{
-				id: Math.random(),
-				image: require('../../assets/imgs/gate.jpg'),
-				title: 'P'
-			},{
-				id: Math.random(),
-				image: require('../../assets/imgs/gate.jpg'),
-				title: 'Post sobre çççç'
-			},{
-				id: Math.random(),
-				image: require('../../assets/imgs/gate.jpg'),
-				title: 'P'
-			}]
 		}
 	}
 
@@ -253,7 +200,7 @@ class Profile extends Component {
 													<Text style={styles.overlayHeaderText}>Meus Posts</Text>
 												</View>	
 													<FlatList numColumns={3}
-														data={this.state.posts}
+														data={this.props.posts}
 														keyExtractor={item => `${item.id}`}
 														renderItem={({ item }) =>  {
 															return (
@@ -451,10 +398,11 @@ const styles = StyleSheet.create({
 
 // user seria um state
 // user = estado global dentro de storeConfig
-const mapStateToProps = ({ user }) => {
+const mapStateToProps = ({ user, posts }) => {
 	return {
 		name: user.name,
-		email: user.email
+		email: user.email,
+		posts: posts.posts
 	}
 }
 

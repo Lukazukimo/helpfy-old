@@ -10,45 +10,64 @@ import { act } from 'react-test-renderer'
 const initialState = {
     posts: [{
         id: Math.random(),
-        email: 'rafaelprrflh@gmail.com',
         title: 'aloajsdiuas',
+        author: 'Fábio Wu',
         category: '',
-        description: '',
+        description: 'ADJHBASUDJAHSDKJSAHDJKASHD',
         image: require('../../../assets/imgs/boat.jpg'),
-        // comments: [{
-        //     nickname: 'John Ray Sheldon',
-        //     comment: 'Stunning'
-        // }, {
-        //     nickname: 'Ana Julia Arruda',
-        //     comment: 'Foto Linda! Onde foi tirada?'
-        // }]
-    },{
+        comments: [{
+			nickname: 'Ulisses',
+			comment: 'Esse car roubou!!!'
+		}, {
+			nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }, {
+            nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }, {
+            nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }],
+    },{     
         id: Math.random(),
-        // nickname: 'Francisco Leandro Lima',
-        email: 'fllima@gmail.com',
-        title: 'alo',
+        title: 'aloajsdiuas',
+        author: 'Fábio Wu',
         category: '',
-        description: '',
+        description: 'ADJHBASUDJAHSDKJSAHDJKASHD',
         image: require('../../../assets/imgs/boat.jpg'),
-        // comments: []
-    }, {
+        comments: [{
+			nickname: 'Ulisses',
+			comment: 'Esse car roubou!!!'
+		}, {
+			nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }, {
+            nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }, {
+            nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+		}],
+    },{ 
         id: Math.random(),
-        // nickname: 'Francisco Leandro Lima',
-        email: 'fllima@gmail.com',
-        title: 'alo',
+        title: 'aloajsdiuas',
+        author: 'Fábio Wu',
         category: '',
-        description: '',
-        image: require('../../../assets/imgs/planeta.jpg'),
-        // comments: []
-    }, {
-        id: Math.random(),
-        // nickname: 'Francisco Leandro Lima',
-        email: 'fllima@gmail.com',
-        title: 'alo',
-        category: '',
-        description: '',
-        image: require('../../../assets/imgs/bw.jpg'),
-        // comments: []
+        description: 'ADJHBASUDJAHSDKJSAHDJKASHD',
+        image: require('../../../assets/imgs/boat.jpg'),
+        comments: [{
+			nickname: 'Ulisses',
+			comment: 'Esse car roubou!!!'
+		}, {
+			nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }, {
+            nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }, {
+            nickname: 'Murilo',
+            comment: 'Comendo o cu de curioso'
+        }],
     }]
    
 }
