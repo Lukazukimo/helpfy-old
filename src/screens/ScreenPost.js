@@ -31,17 +31,15 @@ class ScreenPost extends Component {
         description: this.props.navigation.state.params.description,
         image: this.props.navigation.state.params.image,
         comments: this.props.navigation.state.params.comments,
+        emailPost: this.props.navigation.state.params.emailPost
     }
     
     render() {  
-        const a = 'asiodhjasildjaslidjalsiojdkxzjkjzsdkfsjfksdkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkklasidjalsikjnmdlaskmd.asl,dalmciasdj'
-        
+
         const changeIcon = this.state.liked? 'black' : 'red'
         const wantOrNo = this.state.iWant? styles.iWant : styles.iDontWant
         const wantOrNoText = this.state.iWant? 'Eu quero!' : 'Eu não quero'
         
-        const emailAuthorPost = 'aaa@gmail.com'
-        const email = 'aaa@gmail.com'
         const addComment = this.props.name ?
             <AddComment postId={this.state.id} /> : null
 
@@ -71,7 +69,7 @@ class ScreenPost extends Component {
                     <Author email={'fulano@teste.com'} nickname={this.state.author}/>
                     <DescriptionPost descriptionPost={this.state.description} />
                     <View style={styles.buttonContainer}>
-                        <AuthorPost test={emailAuthorPost === email}>
+                        <AuthorPost test={this.props.email !== this.state.emailPost}>
                             <TouchableOpacity style={styles.buttons}
                                 onPress={ () => this.setState({ liked : !this.state.liked})}>
                                 <Icon name={'heart'} size={40} color={changeIcon} style={{}} /> 
@@ -81,7 +79,7 @@ class ScreenPost extends Component {
                                 <Text style={wantOrNo}>{wantOrNoText}</Text>	  
                             </TouchableOpacity>                            
                         </AuthorPost>
-                        <AuthorPost test={emailAuthorPost !== email}>
+                        <AuthorPost test={this.props.email === this.state.emailPost}>
                             <TouchableOpacity style={styles.iWantList} onPress={() => this.setState({ showIWantList: true })}>
                                 <Text style={styles.iWantListButton}>Lista de quem quer</Text>	  
                             </TouchableOpacity>
@@ -181,6 +179,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = ({ posts, user }) => {
     return {
         name: user.name,
+        email: user.email,
         posts: posts.posts
     }
 }

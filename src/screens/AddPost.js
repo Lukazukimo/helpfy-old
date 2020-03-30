@@ -67,7 +67,8 @@ class AddPost extends Component{
             author: this.props.name,
             category: this.state.category,
             description: this.state.description,
-            image: this.state.image
+            image: this.state.image,
+            emailPost: this.props.email,
         })
 
         // this.setState({ title: '',
