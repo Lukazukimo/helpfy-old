@@ -118,11 +118,19 @@ class AddPost extends Component{
                     </View>
                     <View style={styles.picker}>
                         <RNPickerSelect
-                            onValueChange={(value) => console.log(value)}
+                            onValueChange={category => this.setState({ category })}
                             useNativeAndroidPickerStyle={false}
                             placeholder={placeholder} items={[
                                 { label: 'Roupa', value: 'roupa' },
-                                { label: 'Brinquedo', value: 'brinquedo',}
+                                { label: 'Brinquedo', value: 'brinquedo'},
+                                { label: 'Roupa', value: 'roupa' },
+                                { label: 'Brinquedo', value: 'brinquedo'},
+                                { label: 'Roupa', value: 'roupa' },
+                                { label: 'Brinquedo', value: 'brinquedo'},
+                                { label: 'Roupa', value: 'roupa' },
+                                { label: 'Brinquedo', value: 'brinquedo'},
+                                { label: 'Roupa', value: 'roupa' },
+                                { label: 'Brinquedo', value: 'brinquedo'},
                             ]}
                         />
                     </View>
