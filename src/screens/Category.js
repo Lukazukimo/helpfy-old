@@ -9,66 +9,72 @@ import {
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import Post from '../componentes/Post'
+import { connect } from 'react-redux'
+import { fetchPosts } from '../store/actions/posts'
 
-export default class Category extends Component {
+class Category extends Component {
     constructor(props) {
         super(props)
         this.state = {
             title: this.props.navigation.state.params.title,
-            posts: [{
-                id: Math.random(),
-                image: require('../../assets/imgs/bw.jpg'),
-                title: 'Titulo Post 1'
-            }, {
-                id: Math.random(),
-                image: require('../../assets/imgs/boat.jpg'),
-                title: 'Titulo Post 2'
-            }, {
-                id: Math.random(),
-                image: require('../../assets/imgs/fence.jpg'),
-                title: 'Titulo Post 3'
-            }, {
-                id: Math.random(),
-                image: require('../../assets/imgs/bw.jpg'),
-                title: 'Titulo Post 1'
-            }, {
-                id: Math.random(),
-                image: require('../../assets/imgs/boat.jpg'),
-                title: 'Titulo Post 2'
-            }, {
-                id: Math.random(),
-                image: require('../../assets/imgs/fence.jpg'),
-                title: 'Titulo Post 3'
-            }, {
-                id: Math.random(),
-                image: require('../../assets/imgs/bw.jpg'),
-                title: 'Titulo Post 1'
-            }, {
-                id: Math.random(),
-                image: require('../../assets/imgs/boat.jpg'),
-                title: 'Titulo Post 2'
-            }, {
-                id: Math.random(),
-                image: require('../../assets/imgs/fence.jpg'),
-                title: 'Titulo Post 3'
-            }, {
-                id: Math.random(),
-                image: require('../../assets/imgs/bw.jpg'),
-                title: 'Titulo Post 1'
-            }, {
-                id: Math.random(),
-                image: require('../../assets/imgs/boat.jpg'),
-                title: 'Titulo Post 2'
-            }, {
-                id: Math.random(),
-                image: require('../../assets/imgs/fence.jpg'),
-                title: 'Titulo Post 3'
-            }]
+            // posts: [{
+            //     id: Math.random(),
+            //     image: require('../../assets/imgs/bw.jpg'),
+            //     title: 'Titulo Post 1'
+            // }, {
+            //     id: Math.random(),
+            //     image: require('../../assets/imgs/boat.jpg'),
+            //     title: 'Titulo Post 2'
+            // }, {
+            //     id: Math.random(),
+            //     image: require('../../assets/imgs/fence.jpg'),
+            //     title: 'Titulo Post 3'
+            // }, {
+            //     id: Math.random(),
+            //     image: require('../../assets/imgs/bw.jpg'),
+            //     title: 'Titulo Post 1'
+            // }, {
+            //     id: Math.random(),
+            //     image: require('../../assets/imgs/boat.jpg'),
+            //     title: 'Titulo Post 2'
+            // }, {
+            //     id: Math.random(),
+            //     image: require('../../assets/imgs/fence.jpg'),
+            //     title: 'Titulo Post 3'
+            // }, {
+            //     id: Math.random(),
+            //     image: require('../../assets/imgs/bw.jpg'),
+            //     title: 'Titulo Post 1'
+            // }, {
+            //     id: Math.random(),
+            //     image: require('../../assets/imgs/boat.jpg'),
+            //     title: 'Titulo Post 2'
+            // }, {
+            //     id: Math.random(),
+            //     image: require('../../assets/imgs/fence.jpg'),
+            //     title: 'Titulo Post 3'
+            // }, {
+            //     id: Math.random(),
+            //     image: require('../../assets/imgs/bw.jpg'),
+            //     title: 'Titulo Post 1'
+            // }, {
+            //     id: Math.random(),
+            //     image: require('../../assets/imgs/boat.jpg'),
+            //     title: 'Titulo Post 2'
+            // }, {
+            //     id: Math.random(),
+            //     image: require('../../assets/imgs/fence.jpg'),
+            //     title: 'Titulo Post 3'
+            // }]
         }
     }
 
     onNavigate = () => {
         return
+    }
+
+    componentDidMount = () => {
+        this.props.onFetchPosts()
     }
 
     render() {
@@ -92,7 +98,7 @@ export default class Category extends Component {
                     </View>
                     <View style={styles.bodyContainer}>
                         <FlatList numColumns={2}
-                            data={this.state.posts}
+                            data={this.props.posts}
                             keyExtractor={item => `${item.id}`}
                             renderItem={({ item }) => {
                                 return (
@@ -103,10 +109,9 @@ export default class Category extends Component {
                                             tamanho={{
                                                 width: Dimensions.get('window').width / (5 / 2),
                                                 height: Dimensions.get('window').width / (5 / 2),
-                                                resizeMode: "stretch",
+                                                resizeMode: "cover",
                                                 margin: 10,
                                                 borderRadius: 15,
-                                                // backgroundColor: '#fff',
                                             }} />
                                         <Text style={styles.textTitle}>{item.title}</Text>
                                     </View>
@@ -176,3 +181,17 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent'
     }
 })
+
+const mapStateToProps = ({ posts }) => {
+    return {
+        posts: posts.posts
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchPosts: () => dispatch(fetchPosts())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Category)

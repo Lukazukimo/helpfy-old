@@ -52,7 +52,7 @@ class LikedScreen extends Component {
                                             tamanho={{
                                                 width: Dimensions.get('window').width / (5 / 2),
                                                 height: Dimensions.get('window').width / (5 / 2),
-                                                resizeMode: "stretch",
+                                                resizeMode: "cover",
                                                 margin: 10,
                                                 borderRadius: 15,
                                                 // backgroundColor: '#fff',

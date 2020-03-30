@@ -65,7 +65,7 @@ class ScreenPost extends Component {
                     <View style={styles.container}>
                         <Text style={styles.titlePost}>{ this.state.title }</Text>
                     </View>                    
-                    <Image source={this.state.image} style={styles.image}/>
+                    <Image source={{ uri: this.state.image }} style={styles.image}/>
                     <Author email={'fulano@teste.com'} nickname={this.state.author}/>
                     <DescriptionPost descriptionPost={this.state.description} />
                     <View style={styles.buttonContainer}>
