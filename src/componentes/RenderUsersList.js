@@ -23,6 +23,11 @@ class RenderUsersList extends Component {
                         <Text style={styles.nickname}>{item.nickname} </Text>
                         <View style={styles.callContainer}>
                             <TouchableWithoutFeedback style={styles.button}>
+                                    <Text style={styles.callButton1}> Doar para.. </Text>
+                                </TouchableWithoutFeedback>
+                        </View>
+                        <View style={styles.callContainer}>
+                            <TouchableWithoutFeedback style={styles.button}>
                                 <Text style={styles.callButton}> Chamar </Text>
                             </TouchableWithoutFeedback>
                         </View>
@@ -64,7 +69,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
         fontWeight: 'bold',
         color: 'black',
-        width: '70%'
+        width: '45%'
     },
     button: {
 		height:55,
@@ -83,8 +88,20 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'white',
     },
+    callButton1: {
+        height: 40,
+        width: 100,
+        fontSize: 16,
+        borderRadius: 20,
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        backgroundColor: 'green',
+        fontWeight: 'bold',
+        color: 'white',
+    },
     callContainer: {
-        alignItems: 'flex-end'
+        alignItems: 'stretch',
+        marginRight: 5
     }
 })
 
