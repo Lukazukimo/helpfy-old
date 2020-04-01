@@ -74,6 +74,10 @@ class Category extends Component {
     }
 
     componentDidMount = () => {
+        this.props.onFetchPosts(this.state.title)
+    }
+
+    componentWillUnmount(){
         this.props.onFetchPosts()
     }
 
@@ -105,7 +109,7 @@ class Category extends Component {
                                     <View style={styles.categoryContainer}>
                                         <Post key={item.id} {...item}
                                             navigation={this.props.navigation}
-                                            onNavigate={(this.onNavigate)}
+                                            // onNavigate={(this.onNavigate)}
                                             tamanho={{
                                                 width: Dimensions.get('window').width / (5 / 2),
                                                 height: Dimensions.get('window').width / (5 / 2),
@@ -190,7 +194,7 @@ const mapStateToProps = ({ posts }) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchPosts: () => dispatch(fetchPosts())
+        onFetchPosts: (title) => dispatch(fetchPosts(title))
     }
 }
 

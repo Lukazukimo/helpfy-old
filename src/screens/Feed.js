@@ -67,12 +67,14 @@ class Feed extends Component {
     //    }]
     //   
     //}
-    onNavigate = () => {
-        return
+
+    componentDidUpdate = props => {
+        console.log('Update')
     }
 
     componentDidMount = () => {
         this.props.onFetchPosts()
+        console.log('Eu montei')
     }
 
     render(){
@@ -126,8 +128,7 @@ class Feed extends Component {
                             showsHorizontalScrollIndicator={false}
                             renderItem={({ item }) =>                         
                             <Post key={item.id} {...item} 
-                                navigation={this.props.navigation}
-                                onNavigate={(this.onNavigate)}
+                                navigation={this.props.navigation}                                
                                 tamanho={{
                                     width: Dimensions.get('window').width / (5/2),
                                     height: Dimensions.get('window').width / (5/2),
@@ -143,8 +144,7 @@ class Feed extends Component {
                             showsHorizontalScrollIndicator={false}
                             renderItem={({ item }) =>                         
                             <Post key={item.id} {...item}
-                                navigation={this.props.navigation}
-                                onNavigate={(this.onNavigate)}
+                                navigation={this.props.navigation}                                
                                 tamanho={{
                                     width: Dimensions.get('window').width / (5/2),
                                     height: Dimensions.get('window').width / (5/2),
@@ -160,8 +160,7 @@ class Feed extends Component {
                             showsHorizontalScrollIndicator={false}
                             renderItem={({ item }) =>                         
                             <Post key={item.id} {...item}
-                                navigation={this.props.navigation}
-                                onNavigate={(this.onNavigate)}
+                                navigation={this.props.navigation}                                
                                 tamanho={{
                                     width: Dimensions.get('window').width / (5/2),
                                     height: Dimensions.get('window').width / (5/2),

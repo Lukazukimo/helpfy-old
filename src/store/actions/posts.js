@@ -86,7 +86,7 @@ export const setPosts = posts => {
 
 // Obter os Posts
 // Axios vai pegar no Firbase
-export const fetchPosts = () => {
+export const fetchPosts = (category=null) => {
     return dispatch => {
         axios.get('/posts.json')
             .catch(err => console.log(err))
@@ -95,16 +95,29 @@ export const fetchPosts = () => {
             // que representa a postagem
             .then(res => {
                 const rawPosts = res.data
-                const posts = []
+                let posts = []                
+                
                 // key = hash
-                for (let key in rawPosts) {
-                    posts.push({
-                        // todos os atributos de rawPosts do 
-                        // identificador key
-                        ...rawPosts[key],
-                        id: key
-                    })
-                }
+                console.log(rawPosts)
+
+                console.log(typeof(rawPosts))
+
+                if(category===null){
+                    for (let key in rawPosts) {
+                        posts.push({
+                            // todos os atributos de rawPosts do 
+                            // identificador key
+                            ...rawPosts[key],
+                            id: key
+                        })
+                    }                    
+                } else {                    
+                    posts = Object.keys(rawPosts) //retorna as chaves do objeto rawPosts
+                        .filter(postKey => rawPosts[postKey].category === category) //retorna um array com chaves do rawPosts onde categoria é igual category
+                        .map(key => rawPosts[key]) //retorna o objeto da chave encontrada no filter
+                    console.log(posts)                    
+                }                
+
                 // reverse inverte a postagem, fazendo com que a
                 // ultima postagem seja a primeira quando mostrada
                 // na tela feed

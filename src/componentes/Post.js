@@ -9,7 +9,12 @@ import{
     TouchableNativeFeedbackBase
 } from 'react-native'
 
-class Post extends Component {    
+class Post extends Component {
+    constructor(props){
+        super(props)
+        this.onNavigate = this.props.onNavigate ? this.props.onNavigate : Function()
+    }
+
     render() {            
         return(
             <View style={styles.container}>
@@ -25,7 +30,7 @@ class Post extends Component {
                             postId: this.props.id,
                             emailPost: this.props.emailPost
                         })
-                        this.props.onNavigate()}}>
+                        this.onNavigate()}}>
                     <Image source={{ uri: this.props.image }} style={this.props.tamanho}/>
                 </TouchableOpacity>
             </View>
