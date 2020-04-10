@@ -148,7 +148,7 @@ const MenuRoutes = {
     },
     Message: {
         name: 'Message',
-        screen: goTesteScreen,
+        screen: Teste,
         navigationOptions: {
             title: 'Message',
             tabBarIcon: ({ tintColor: color }) =>

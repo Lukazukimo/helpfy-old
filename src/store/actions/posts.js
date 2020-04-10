@@ -98,10 +98,6 @@ export const fetchPosts = (category=null) => {
                 let posts = []                
                 
                 // key = hash
-                console.log(rawPosts)
-
-                console.log(typeof(rawPosts))
-
                 if(category===null){
                     for (let key in rawPosts) {
                         posts.push({
@@ -114,8 +110,7 @@ export const fetchPosts = (category=null) => {
                 } else {                    
                     posts = Object.keys(rawPosts) //retorna as chaves do objeto rawPosts
                         .filter(postKey => rawPosts[postKey].category === category) //retorna um array com chaves do rawPosts onde categoria é igual category
-                        .map(key => rawPosts[key]) //retorna o objeto da chave encontrada no filter
-                    console.log(posts)                    
+                        .map(key => rawPosts[key]) //retorna o objeto da chave encontrada no filter                    
                 }                
 
                 // reverse inverte a postagem, fazendo com que a

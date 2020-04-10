@@ -68,13 +68,8 @@ class Feed extends Component {
     //   
     //}
 
-    componentDidUpdate = props => {
-        console.log('Update')
-    }
-
     componentDidMount = () => {
-        this.props.onFetchPosts()
-        console.log('Eu montei')
+        this.props.onFetchPosts()        
     }
 
     render(){
