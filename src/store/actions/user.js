@@ -22,11 +22,12 @@ export const createUser = user => {
             .catch(err => console.log(err))
             .then(res => {
                 if (res.data.localId) {
+                    console.log(res.data)
                     axios.put(`/users/${res.data.localId}.json`, {
                         name: user.name,
                         email: user.email,
-                        date: user.date,
-                        uf: user.uf,                        
+                        birthDate: user.birthDate,
+                        stateLocation: user.stateLocation,
                     })
                         .catch(err => console.log(err))                        
                         .then(() => {
@@ -37,7 +38,7 @@ export const createUser = user => {
     }
 }
 
-export const login = user => {
+export const userLogged = user => {
     return {
         type: USER_LOGGED_IN,
         payload: user
@@ -50,3 +51,44 @@ export const logout = () => {
     }
 }
 
+
+export const loadingUser = () => {
+    return {
+        type: LOADING_USER
+    }
+}
+
+export const userLoaded = () => {
+    return {
+        type: USER_LOADED
+    }
+}
+
+export const login = user => {
+    return dispatch => {
+        dispatch(loadingUser())
+        axios.post(`${authBaseURL}/verifyPassword?key=${API_KEY}`, {
+            email: user.email,
+            password: user.password,
+            returnSecureToken: true
+        })
+            .catch(err => console.log(err))
+            .then(res => {
+                if (res.data.localId) {
+                    user.token = res.data.idToken
+                    axios.get(`/users/${res.data.localId}.json`)
+                        .catch(err => console.log(err))
+                        .then(res => {
+                            // user.password = null
+                            delete user.password
+                            user.name = res.data.name,
+                            user.email = res.data.email,
+                            user.birthDate = res.data.birthDate,
+                            user.stateLocation = res.data.stateLocation,
+                            dispatch(userLogged(user))
+                            dispatch(userLoaded())
+                        })
+                }
+            })
+    }
+}

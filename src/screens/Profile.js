@@ -112,7 +112,7 @@ class Profile extends Component {
 											source={require("../../assets/imgs/icon.png")}
 											style={styles.imageProfile}/>
 										<Text style={styles.name} 
-											numberOfLines={2}>{this.props.name}</Text>									
+											numberOfLines={2}>{this.props.name}</Text>
 									</View>
 									<View style={styles.rankingContainer}>
 										<Text style={styles.ranking}>15#</Text>
@@ -226,10 +226,10 @@ class Profile extends Component {
 						</ImageBackground>
 					</View>					                     					
 					<View style={styles.conteudo}>
-						<ProfileInfo title={'Nome'} item={this.props.name}/>
-						<ProfileInfo title={'E-mail'} item={this.props.email}/>
-						<ProfileInfo title={'Data de Nascimento'} item={this.state.dataNasc}/>
-						<ProfileInfo title={'Data de Nascimento'} item={this.state.dataNasc}/>
+						<ProfileInfo title={'Nome'} item={this.props.name} icon={'user'}/>
+						<ProfileInfo title={'E-mail'} item={this.props.email} icon={'at-sign'}/>
+						<ProfileInfo title={'Data de Nascimento'} item={this.props.birthDate} icon2={'cake-variant'}/>
+						<ProfileInfo title={'Estado'} item={this.props.stateLocation} icon={'map-pin'}/>
 						<ProfileInfo title={'Data de Nascimento'} item={this.state.dataNasc}/>
 					</View>
 				</ScrollView>
@@ -266,7 +266,8 @@ const styles = StyleSheet.create({
         height: 120,
         borderRadius: 60,
         borderWidth: 3,
-		borderColor: 'rgb(84, 76, 126)',
+		// borderColor: 'rgb(84, 76, 126)',
+		borderColor: 'rgba(225, 22, 94, 0.4)',
 		marginTop: 18
 	},
 	profileContainer: {	
@@ -402,6 +403,8 @@ const mapStateToProps = ({ user, posts }) => {
 	return {
 		name: user.name,
 		email: user.email,
+		birthDate: user.birthDate,
+    	stateLocation: user.stateLocation,
 		posts: posts.posts
 	}
 }

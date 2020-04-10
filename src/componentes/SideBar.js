@@ -1,35 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
     View,
     Text,
     StyleSheet,
     ScrollView,
     ImageBackground,
-    Image,
-    SafeAreaView
+    Image,    
 } from 'react-native'
 import { DrawerItems } from 'react-navigation'
 import Icon from 'react-native-vector-icons/Ionicons'
+import { connect } from 'react-redux'
 
-// class SideBar extends Component{
-//     render(){
-//         return(
-//             <SafeAreaView style={styles.container}>                
-//                 <Text>Teste</Text>
-//             </SafeAreaView>
-//         )
-//     }
-// }
-
-// const styles = StyleSheet.create({
-//     container: {
-//         flex: 1
-//     }
-// })
-
-// export default SideBar
-
-export default SideBar = props => (
+export const SideBar = props => (
     <ScrollView>
         <ImageBackground
             source={require("../../assets/imgs/fence.jpg")}
@@ -38,7 +20,8 @@ export default SideBar = props => (
             <Image 
                 source={require("../../assets/imgs/icon.png")}
                 style={styles.profile}/>
-            <Text style={styles.name}>Nome Sobrenome</Text>
+            <Text style={styles.name}
+                numberOfLines={2}>{props.name}</Text>
 
             <View style={styles.perfilContainer}>
                 <Text style={styles.followers}>734 Followers</Text>
@@ -70,6 +53,7 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         borderWidth: 3,
         borderColor: 'rgb(84, 76, 126)',
+        borderColor: 'rgba(225, 22, 94, 0.4)',
         backgroundColor: '#fff'
     },
     name: {
@@ -90,3 +74,11 @@ const styles = StyleSheet.create({
         marginRight: 4,        
     }
 })
+
+const mapStateToProps = ({ user }) => {
+	return {
+		name: user.name,		
+	}
+}
+export default connect(mapStateToProps)(SideBar)
+// export default SideBar

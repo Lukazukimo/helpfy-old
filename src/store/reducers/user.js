@@ -35,7 +35,8 @@ const reducer = (state = initialState, action) => {
                 name: null,
                 email: null,
                 birthDate: null,
-                state: null,
+                stateLocation: null,
+                // state: null,
                 // ...initialState
             }
         case LOADING_USER:

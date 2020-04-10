@@ -19,8 +19,8 @@ class Register extends Component{
     state = {
         name: '',
         email: '',
-        date: '',
-        uf: '',
+        birthDate: '',
+        stateLocation: '',
         password: '',
         passwordConfirm: ''
     }
@@ -55,7 +55,9 @@ class Register extends Component{
                     <Icon name='user' size={26} color='rgba(255, 255, 255, 0.7)' 
                     style={styles.inputIcon} />
                     <TextInput style={styles.input}
-                        placeholder='Nome' 
+                        placeholder='Nome'
+                        placeholderTextColor='#fff'
+                        underlineColorAndroid='transparent'
                         autoFocus={true} 
                         value={this.state.name}
                         onChangeText={name => this.setState({ name })} />
@@ -64,7 +66,9 @@ class Register extends Component{
                     <Icon name='at-sign' size={26} color='rgba(255, 255, 255, 0.7)' 
                     style={styles.inputIcon} />
                     <TextInput style={styles.input}
-                        placeholder='Email' 
+                        placeholder='Email'
+                        placeholderTextColor='#fff'
+                        underlineColorAndroid='transparent'
                         keyboardType='email-address' 
                         value={this.state.email}
                         onChangeText={email => this.setState({ email })} />
@@ -75,25 +79,31 @@ class Register extends Component{
                             style={styles.inputIcon} />
                         <TextInput style={styles.input2}
                             placeholder='Data Aniver' 
+                            placeholderTextColor='#fff'
+                            underlineColorAndroid='transparent'
                             autoFocus={true} 
-                            value={this.state.date}
-                            onChangeText={date => this.setState({ date })} />
+                            value={this.state.birthDate}
+                            onChangeText={birthDate => this.setState({ birthDate })} />
                     </View>
                     <View style={styles.inputContainer2}>
                         <Icon name='map-pin' size={26} color='rgba(255, 255, 255, 0.7)' 
                             style={styles.inputIcon} />
                     <TextInput style={styles.input2}
                             placeholder='UF' 
+                            placeholderTextColor='#fff'
+                            underlineColorAndroid='transparent'
                             autoFocus={true} 
-                            value={this.state.uf}
-                            onChangeText={uf => this.setState({ uf })} />
+                            value={this.state.stateLocation}
+                            onChangeText={stateLocation => this.setState({ stateLocation })} />
                     </View>
                 </View>
                 <View style={styles.inputContainer}>
                     <Icon name='lock' size={26} color='rgba(255, 255, 255, 0.7)' 
                         style={styles.inputIcon} />
                     <TextInput style={styles.input}
-                        placeholder='Senha' 
+                        placeholder='Senha'
+                        placeholderTextColor='#fff'
+                        underlineColorAndroid='transparent'
                         secureTextEntry={true} 
                         value={this.state.password}
                         onChangeText={password => this.setState({ password })} />
@@ -102,7 +112,9 @@ class Register extends Component{
                     <Icon name='lock' size={26} color='rgba(255, 255, 255, 0.7)' 
                         style={styles.inputIcon} />
                     <TextInput style={styles.input}
-                        placeholder='Confirmar senha' 
+                        placeholder='Confirmar senha'
+                        placeholderTextColor='#fff'
+                        underlineColorAndroid='transparent'
                         secureTextEntry={true} 
                         value={this.state.passwordConfirm}
                         onChangeText={passwordConfirm => this.setState({ passwordConfirm })} />
