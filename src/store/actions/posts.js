@@ -132,3 +132,14 @@ export const postCreated = () => {
         type: POST_CREATED
     }
 }
+
+export const teste = () => {
+    return dispatch => {
+        axios.get('/posts/-M4lbwZrbjdaxWzHpsCC/curtidas/.json')
+            .catch(err => console.log(err))
+            .then(res => {
+                const blabla = res.data
+                console.log(blabla)
+            })
+    }
+}

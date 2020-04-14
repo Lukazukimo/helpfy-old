@@ -16,7 +16,7 @@ import Post from '../componentes/Post'
 import ImageSlider from '../componentes/ImageSlider'
 import LinearGradient from 'react-native-linear-gradient'
 import RadialGradient from 'react-native-radial-gradient'
-import { fetchPosts } from '../store/actions/posts'
+import { fetchPosts, teste } from '../store/actions/posts'
 
 const images = [
     "https://images.unsplash.com/photo-1508138221679-760a23a2285b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
@@ -29,47 +29,12 @@ const images = [
 
 class Feed extends Component {
 
-    //state = {
-    //    posts: [{
-    //        id: Math.random(),
-    //        // nickname: 'Rafael Pereira Filho',
-    //        // email: 'rafaelprrflh@gmail.com',
-    //        title: 'aloajsdiuas',
-    //        image: require('../../assets/imgs/boat.jpg'),
-    //        // comments: [{
-    //        //     nickname: 'John Ray Sheldon',
-    //        //     comment: 'Stunning'
-    //        // }, {
-    //        //     nickname: 'Ana Julia Arruda',
-    //        //     comment: 'Foto Linda! Onde foi tirada?'
-    //        // }]
-    //    },{
-    //        id: Math.random(),
-    //        // nickname: 'Francisco Leandro Lima',
-    //        // email: 'fllima@gmail.com',
-    //        title: 'alo',
-    //        image: require('../../assets/imgs/boat.jpg'),
-    //        // comments: []
-    //    }, {
-    //        id: Math.random(),
-    //        // nickname: 'Francisco Leandro Lima',
-    //        // email: 'fllima@gmail.com',
-    //        title: 'alo',
-    //        image: require('../../assets/imgs/planeta.jpg'),
-    //        // comments: []
-    //    }, {
-    //        id: Math.random(),
-    //        // nickname: 'Francisco Leandro Lima',
-    //        // email: 'fllima@gmail.com',
-    //        title: 'alo',
-    //        image: require('../../assets/imgs/bw.jpg'),
-    //        // comments: []
-    //    }]
-    //   
-    //}
-
     componentDidMount = () => {
-        this.props.onFetchPosts()        
+        this.props.onFetchPosts()
+    }
+
+    testeFuntion = () => {
+        this.props.onTeste()
     }
 
     render(){
@@ -177,15 +142,11 @@ class Feed extends Component {
                         <Icon name='plus' size={32} color='rgba(255, 255, 255, 0.85)'/>
                     </TouchableOpacity>
                 </LinearGradient> 
-                {/* <View style={styles.iconViewContainer}>
-                    <Icon
-                        name='rowing'
-                        containerStyle={styles.iconContainer}
-                        iconStyle={styles.icon}
-                        color='red'
-                        reverse='true'
-                        onPress={() => console.log('hello')} />
-                    />
+                {/* <View>
+                    <TouchableOpacity
+                        onPress={this.testeFuntion}>
+                        <Icon name={'heart'} size={40} color={'red'}/> 
+                    </TouchableOpacity>
                 </View> */}
                 <View style={styles.tabBottomBackground}>
                 </View>
@@ -272,7 +233,8 @@ const mapStateToProps = ({ posts }) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchPosts: () => dispatch(fetchPosts())
+        onFetchPosts: () => dispatch(fetchPosts()),
+        // onTeste: () => dispatch(teste())
     }
 }
 

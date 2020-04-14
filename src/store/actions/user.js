@@ -74,6 +74,7 @@ export const login = user => {
         })
             .catch(err => console.log(err))
             .then(res => {
+                console.log(res)
                 if (res.data.localId) {
                     user.token = res.data.idToken
                     axios.get(`/users/${res.data.localId}.json`)

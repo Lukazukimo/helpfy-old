@@ -8,6 +8,7 @@ import {
     Image,
     Dimensions,
     ScrollView,
+    StatusBar,
     Alert
 } from 'react-native'
 import RNPickerSelect from 'react-native-picker-select'
@@ -69,6 +70,7 @@ class AddPost extends Component{
             description: this.state.description,
             image: this.state.image,
             emailPost: this.props.email,
+            curtidas: {id: ''}
         })
 
         // this.setState({ title: '',
@@ -83,7 +85,32 @@ class AddPost extends Component{
             label: 'Selecione a categoria do item',
             value: null,
             color: '#AAA',
-          }
+        }
+
+        const buttonDisabled = this.props.loading ?
+            <LinearGradient colors={[
+                'rgba(240, 240, 240, 0.6)',
+                'rgba(240, 240, 240, 0.4)',
+                'rgba(240, 240, 240, 0.6)',
+                'rgba(240, 240, 240, 0.9)'
+            ]} style={[styles.buttom]}>
+                <TouchableOpacity 
+                    onPress={this.save}>
+                    <Text style={styles.buttomText}>Publicar</Text>
+                </TouchableOpacity>
+            </LinearGradient> :
+            <LinearGradient colors={[
+                'rgba(225, 22, 94, 0.6)',
+                'rgba(225, 22, 94, 0.4)',
+                'rgba(225, 22, 94, 0.6)',
+                'rgba(225, 22, 94, 0.9)'
+            ]} style={[styles.buttom]}>
+                <TouchableOpacity 
+                    onPress={this.save}>
+                    <Text style={styles.buttomText}>Publicar</Text>
+                </TouchableOpacity>
+            </LinearGradient>
+
         return(
             <LinearGradient colors={[
                 'rgb(146, 135, 211)',
@@ -98,71 +125,69 @@ class AddPost extends Component{
                 'rgb(124, 147, 225)',
                 'rgb(146, 135, 211)',
                 ]}
-                style={styles.container} >   
-                <ScrollView>
-                    <View style={styles.titleContainer}>
-                        <Text style={styles.title}>Nova Publicação</Text>
-                    </View>
-                    <View style={styles.textInputs}>
-                        <Text style={styles.information}>
-                            Título do item
-                        </Text>
-                        <TextInput placeholder='Título' style={styles.input}
-                            autoFocus={true} value={this.state.title}
-                            onChangeText={title => this.setState({ title })} />
-                    </View>
-                    <View style={styles.textInputs}>
-                        <Text style={styles.information}>
-                            Categoria do item
-                        </Text>
-                    </View>
-                    <View style={styles.picker}>
-                        <RNPickerSelect
-                            onValueChange={category => this.setState({ category })}
-                            useNativeAndroidPickerStyle={false}
-                            placeholder={placeholder} items={[
-                                { label: 'Roupa', value: 'roupa' },
-                                { label: 'Brinquedo', value: 'brinquedo'},
-                                { label: 'Roupa', value: 'roupa' },
-                                { label: 'Brinquedo', value: 'brinquedo'},
-                                { label: 'Roupa', value: 'roupa' },
-                                { label: 'Brinquedo', value: 'brinquedo'},
-                                { label: 'Roupa', value: 'roupa' },
-                                { label: 'Brinquedo', value: 'brinquedo'},
-                                { label: 'Roupa', value: 'roupa' },
-                                { label: 'Brinquedo', value: 'brinquedo'},
-                            ]}
-                        />
-                    </View>
-                    <View style={styles.imageContainer}> 
-                        <Image source={this.state.image} style={styles.image}/>
-                    </View>
-                    <View style={styles.textInputsButton}>
-                        <TouchableOpacity
-                            onPress={this.pickImage} 
-                            style={styles.buttomImage}>
-                            <Text style={styles.buttomText}>Insira a imagem</Text>
-                        </TouchableOpacity> 
-                    </View>
-                    <View style={styles.textInputs}>
-                        <Text style={styles.information}>
-                            Descrição do item
-                        </Text>
-                        <TextInput placeholder='Descreva seu item' 
-                            style={styles.descriptionInput}
-                            multiline={true}
-                            value={this.state.description}
-                            onChangeText={description => this.setState({ description })} />
-                    </View>
-                    <View style={styles.textInputsButton}>
-                        <TouchableOpacity 
-                            onPress={this.save} 
-                            style={[styles.buttom, this.props.loading ? 
-                                styles.buttonDisabled : null]}>
-                            <Text style={styles.buttomText}>Publicar</Text>
-                        </TouchableOpacity>
-                    </View>
-                </ScrollView>
+                style={styles.container}>                    
+                    <ScrollView>
+                        <View style={styles.scrollContainer}>
+                            <View style={styles.titleContainer}>
+                                <Text style={styles.title}>Nova Publicação</Text>
+                            </View>
+                            <View style={styles.informationContainer}>
+                                <Text style={styles.information}>Título da Postagem</Text>                                
+                            </View>
+                            <View style={styles.inputContainer}>
+                                <TextInput style={styles.input}
+                                        placeholder='Insira o título' 
+                                        autoFocus={true} value={this.state.title}
+                                        onChangeText={title => this.setState({ title })} />
+                                </View>
+                            <View style={styles.informationContainer}>
+                                <Text style={styles.information}>Categoria</Text>
+                            </View>
+                            <View style={styles.picker}>
+                                <RNPickerSelect
+                                    onValueChange={category => this.setState({ category })}
+                                    useNativeAndroidPickerStyle={false}
+                                    placeholder={placeholder} items={[
+                                        { label: 'Brinquedos', value: 'Brinquedos' },
+                                        { label: 'Calçados', value: 'Calçados'},
+                                        { label: 'Eletrodomésticos', value: 'Eletrodomésticos' },
+                                        { label: 'Higiene Pessoal', value: 'Higiene Pessoal'},
+                                        { label: 'Livros', value: 'Livros' },
+                                        { label: 'Material de Contrução', value: 'Material de Contrução'},
+                                        { label: 'Material de Limpeza', value: 'Material de Limpeza' },
+                                        { label: 'Material Escolar', value: 'Material Escolar'},
+                                        { label: 'Móveis', value: 'Móveis' },
+                                        { label: 'Roupas', value: 'Roupas'},
+                                    ]}
+                                />
+                            </View>
+                            <View style={styles.imageContainer}> 
+                                <Image source={this.state.image} style={styles.image}/>
+                            </View>
+                            <LinearGradient colors={[
+                                'rgba(225, 22, 94, 0.6)',
+                                'rgba(225, 22, 94, 0.4)',
+                                'rgba(225, 22, 94, 0.6)',
+                                'rgba(225, 22, 94, 0.9)'
+                            ]} style={styles.buttom}>
+                                <TouchableOpacity
+                                    onPress={this.pickImage}>
+                                    <Text style={styles.buttomText}>Insira a imagem</Text>
+                                </TouchableOpacity> 
+                            </LinearGradient>
+                            <View style={styles.informationContainer}>
+                                <Text style={styles.information}>Descrição do item</Text>
+                            </View>
+                            <View style={[styles.inputContainer, { height: 150}]}>
+                                <TextInput placeholder='Insira a descrição do item' 
+                                    style={styles.descriptionInput}
+                                    multiline={true}
+                                    value={this.state.description}
+                                    onChangeText={description => this.setState({ description })} />
+                            </View>
+                            { buttonDisabled}
+                        </View>
+                    </ScrollView>
                 <View style={styles.tabBottomBackground}/>
             </LinearGradient>
         )
@@ -171,106 +196,118 @@ class AddPost extends Component{
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        paddingTop: StatusBar.currentHeight
     },
-    titleContainer:{
-        height: 80,
-        alignItems: 'center'
+    scrollContainer: {        
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    titleContainer:{        
+        height: 50,
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        // backgroundColor: 'yellow'
     },
     title: {
-        marginTop: 30,
-        marginLeft: 10,
         fontSize: 30,
         fontFamily: 'shelter',
         color: 'rgba(225, 22, 94, 0.7)',
         textShadowColor: '#fff',
         textShadowOffset: { width: 1, height: 0 },
-        textShadowRadius: 10,
+        textShadowRadius: 10,        
     },
+    informationContainer: {
+        width: '100%',
+        paddingLeft: '10%',
+        justifyContent: 'center',
+        height: 30,
+        // backgroundColor: 'yellow',
+    },
+    information: {
+        fontFamily: 'shelter',
+        color: 'rgba(225, 22, 94, 0.7)',
+        textShadowColor: '#fff',
+        textShadowOffset: { width: 1, height: 0 },
+        textShadowRadius: 10, 
+        fontSize: 24,        
+    },
+    inputContainer: {
+        height: 50,        
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',        
+    },
+    input: {        
+        backgroundColor: 'rgba(0, 0, 0, 0.25)',
+        height: 45,
+        borderRadius: 25,
+        color: '#fff',
+        fontSize: 16,
+        paddingLeft: 20,
+        paddingRight: 20,
+        marginHorizontal: 25,
+        width: '90%'
+    },
+    picker: {
+        backgroundColor: 'rgba(0, 0, 0, 0.25)',
+        height: 45,
+        borderRadius: 25,
+        color: '#fff',
+        fontSize: 16,
+        paddingLeft: 20,
+        paddingRight: 20,
+        marginHorizontal: 25,
+        width: '90%',
+        fontSize: 15,
+    },
+    imageContainer: {
+        backgroundColor: 'rgba(0, 0, 0, 0.25)',
+        borderRadius: 25,
+        width: '90%',
+        height: Dimensions.get('window').width / 2,        
+        marginTop: 20,        
+    },
+    image: {
+        width: '100%',
+        borderRadius: 25,
+        height: Dimensions.get('window').width / 2,
+    }, 
     buttom: {
-        marginTop: 30,
-        padding: 10,
-        backgroundColor: '#4286f4',
-        width: 220,
-        borderRadius: 40,
-        marginBottom: 10
-
+        height: 45,        
+        width: '90%',
+        borderRadius: 25,                
+        justifyContent: 'center',
+        alignContent: 'center',
+        marginTop: 20,
+        marginBottom: 20
     },
     buttomText: {
         fontSize: 20,
         color: '#fff',
         textAlignVertical: 'center',
         textAlign: 'center',        
-    },
-    buttonDisabled: {
-        backgroundColor: '#aaa'
-    },
-    input: {
-        marginTop: 5,
+    },        
+    descriptionInput: {        
         width: '90%',
         backgroundColor: '#eee',
-        height: 40,
-        borderWidth: 1,
-        borderColor: '#333',
-        borderRadius: 7
-    },
-    textInputs: {
-        marginLeft: 20,
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start'
-        
-    },
-    information: {
-        fontWeight: 'bold',
-        color: 'black',
-        fontSize: 15,
-        marginTop: 10,
-    },
-    descriptionInput: {
-        marginTop: 5,
-        width: '90%',
-        backgroundColor: '#eee',
-        height: 90,
-        borderWidth: 1,
-        borderColor: '#333',
-        borderRadius: 7,
-    },
-    picker: {
-        fontSize: 15,
-        borderWidth: 0.5,
-        borderColor: 'purple',
-        borderRadius: 8,
-        color: 'black',
-        marginTop: 5,
-        width: '86%',
-        marginLeft: 20,
-        height: 45,
-        backgroundColor: '#eee'
-    },
-    buttomImage: {
-        marginTop: 20,
-        padding: 10,
-        backgroundColor: '#4286f4',
-        width: 220,
-        borderRadius: 5,
-
-    },
-    textInputsButton: {
-        alignItems: 'center',
-        borderRadius: 5,
+        height: 150,
+        backgroundColor: 'rgba(0, 0, 0, 0.25)',        
+        borderRadius: 25,
+        color: '#fff',
+        fontSize: 16,
+        paddingLeft: 20,
+        paddingRight: 20,
+        marginHorizontal: 25,
+        alignItems: 'flex-start'
+    },    
+    textInputsButton: {                
         justifyContent: 'center',
     },
-    imageContainer: {
-        width: '86%',
-        height: Dimensions.get('window').width / 2,
-        backgroundColor: '#eee',
-        marginTop: 40,
-        marginLeft: 20
-    },
-    image: {
-        width: '100%',
-        height: Dimensions.get('window').width / 2,
-    },    
+    // buttonDisabled: {
+    //     backgroundColor: '#aaa'
+    // },
     tabBottomBackground: {
         width: '100%',
         height: 50,

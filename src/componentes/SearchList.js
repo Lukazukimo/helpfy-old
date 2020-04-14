@@ -82,7 +82,7 @@ class SearchList extends Component {
             },{
                 id: Math.random(),
                 image: require('../../assets/imgs/icon.png'),
-                title: 'roupa'
+                title: 'Roupas'
             }]
         }
 
