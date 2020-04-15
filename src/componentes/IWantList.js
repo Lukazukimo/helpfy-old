@@ -15,7 +15,6 @@ export default class IWantList extends Component {
 			nickname: 'Ulisses',
 		}, {
 			nickname: 'Murilo',
-
         }, {
             nickname: 'Murilo',
         }, {

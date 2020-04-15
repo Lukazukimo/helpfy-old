@@ -28,7 +28,6 @@ class CommentPost extends Component {
                 <View style={styles.headerCommentView}> 
                     <Text style={styles.headerCommentText}>Comentários</Text>
                 </View>
-                
                 {view}
             </View>
         )
@@ -37,19 +36,24 @@ class CommentPost extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        marginLeft: 2,
-        marginTop: 20
+        height: 40,
+        // justifyContent: 'center',
+        alignItems: 'center',
+        // backgroundColor: 'red'
     },
-    headerCommentView: {
-        marginLeft: 15,
-        borderBottomColor: 'black',
-        width: '100%',
-        borderBottomWidth: 1.5,
+    headerCommentView: {        
+        paddingLeft: 15,
+        width: '100%',        
+        justifyContent: 'center',
+        // backgroundColor: 'green'
     },
-    headerCommentText: {
-        fontSize: 22,
-        fontWeight: 'bold'
+    headerCommentText: {        
+        fontSize: 30,
+        fontFamily: 'shelter',
+        color: 'rgba(225, 22, 94, 0.7)',
+        textShadowColor: '#fff',
+        textShadowOffset: { width: 1, height: 0 },
+        textShadowRadius: 10 
     },
     commentContainer: {
 		height: 50,
@@ -57,7 +61,8 @@ const styles = StyleSheet.create({
         borderBottomColor: 'black',
         width: '100%',
         borderBottomWidth: 0.5,
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: 'blue'
     },
     avatar: {
         width: 25,

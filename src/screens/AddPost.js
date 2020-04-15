@@ -92,7 +92,7 @@ class AddPost extends Component{
                 'rgba(240, 240, 240, 0.6)',
                 'rgba(240, 240, 240, 0.4)',
                 'rgba(240, 240, 240, 0.6)',
-                'rgba(240, 240, 240, 0.9)'
+                'rgba(240, 240, 240, 0.8)'
             ]} style={[styles.buttom]}>
                 <TouchableOpacity 
                     onPress={this.save}>
@@ -301,13 +301,7 @@ const styles = StyleSheet.create({
         paddingRight: 20,
         marginHorizontal: 25,
         alignItems: 'flex-start'
-    },    
-    textInputsButton: {                
-        justifyContent: 'center',
     },
-    // buttonDisabled: {
-    //     backgroundColor: '#aaa'
-    // },
     tabBottomBackground: {
         width: '100%',
         height: 50,

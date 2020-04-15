@@ -69,7 +69,10 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        margin: 10
+        marginHorizontal: 10,
+        marginBottom: 10
+        // backgroundColor: 'green'
+
     },
     caption: {
         marginLeft: 10,
@@ -77,7 +80,7 @@ const styles = StyleSheet.create({
         color: '#ccc'
     },
     input: {
-        width: '90%'
+        width: '95%'
     }
 })
 

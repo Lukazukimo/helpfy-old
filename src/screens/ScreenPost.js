@@ -6,14 +6,13 @@ import{
     Dimensions,
     Text,
     TouchableOpacity,
-    ScrollView
+    ScrollView,
+    StatusBar
 } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Icon1 from 'react-native-vector-icons/Feather'
 import Author from '../componentes/Author'
-import DescriptionPost from '../componentes/DescriptionPost'
 import CommentPost from '../componentes/CommentPost'
-import AuthorPost from '../componentes/AuthorPost'
 import IWantList from '../componentes/IWantList'
 import LinearGradient from 'react-native-linear-gradient'
 import { connect } from 'react-redux'
@@ -36,13 +35,46 @@ class ScreenPost extends Component {
     
     render() {  
 
-        const changeIcon = this.state.liked? 'black' : 'red'
-        const wantOrNo = this.state.iWant? styles.iWant : styles.iDontWant
-        const wantOrNoText = this.state.iWant? 'Eu quero!' : 'Eu não quero'
-        
+        const changeIcon = this.state.liked? 'rgba(0, 0, 0, 0.50)' : 'red'
+        // const wantOrNo = this.state.iWant? styles.iWant : styles.iDontWant
+        const wantOrNoText = this.state.iWant? 'Eu quero!' : 'Eu não quero!'        
         const addComment = this.props.name ?
             <AddComment postId={this.state.id} /> : null
 
+        const renderButtom = this.props.email === this.state.emailPost ?
+            <View style={styles.buttonContainer}>
+                <LinearGradient colors={[
+                    'rgba(225, 22, 94, 0.6)',
+                    'rgba(225, 22, 94, 0.4)',
+                    'rgba(225, 22, 94, 0.6)',
+                    'rgba(225, 22, 94, 0.9)'
+                ]} style={styles.listButton}>
+                    <TouchableOpacity
+                        onPress={() => this.setState({ showIWantList: true })}>
+                        <Text style={styles.buttonText}>Lista de Pessoas</Text>	  
+                    </TouchableOpacity> 
+                </LinearGradient>
+            </View> :
+            <View style={[styles.buttonContainer, {
+                    justifyContent: 'space-around',
+                    paddingLeft: 40,
+                    paddingRight: 20 }]}>
+                <TouchableOpacity
+                    onPress={ () => this.setState({ liked : !this.state.liked})}>
+                    <Icon name={'heart'} size={40} color={changeIcon}/> 
+                </TouchableOpacity>
+                <LinearGradient colors={[
+                    'rgba(225, 22, 94, 0.6)',
+                    'rgba(225, 22, 94, 0.4)',
+                    'rgba(225, 22, 94, 0.6)',
+                    'rgba(225, 22, 94, 0.9)'
+                ]} style={styles.wantButton}>
+                    <TouchableOpacity
+                        onPress={ () => this.setState({ iWant : !this.state.iWant})}>
+                        <Text style={styles.buttonText}>{wantOrNoText}</Text>	  
+                    </TouchableOpacity> 
+                </LinearGradient>
+            </View>
               
         return (            
             <LinearGradient colors={[
@@ -58,35 +90,21 @@ class ScreenPost extends Component {
                 'rgb(124, 147, 225)',
                 'rgb(146, 135, 211)',
                 ]}
-                style={styles.container} >
+                style={styles.container}>
                 <ScrollView>
                     <IWantList isVisible={this.state.showIWantList} 
                         onCancel={() => this.setState({ showIWantList: false })}/>
-                    <View style={styles.container}>
-                        <Text style={styles.titlePost}>{ this.state.title }</Text>
+                    <View style={styles.titleContainer}>
+                        <Text style={styles.titleText}>{ this.state.title }</Text>
                     </View>                    
                     <Image source={{ uri: this.state.image }} style={styles.image}/>
-                    <Author email={'fulano@teste.com'} nickname={this.state.author}/>
-                    <DescriptionPost descriptionPost={this.state.description} />
-                    <View style={styles.buttonContainer}>
-                        <AuthorPost test={this.props.email !== this.state.emailPost}>
-                            <TouchableOpacity style={styles.buttons}
-                                onPress={ () => this.setState({ liked : !this.state.liked})}>
-                                <Icon name={'heart'} size={40} color={changeIcon} style={{}} /> 
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons}
-                                onPress={ () => this.setState({ iWant : !this.state.iWant})}>
-                                <Text style={wantOrNo}>{wantOrNoText}</Text>	  
-                            </TouchableOpacity>                            
-                        </AuthorPost>
-                        <AuthorPost test={this.props.email === this.state.emailPost}>
-                            <TouchableOpacity style={styles.iWantList} onPress={() => this.setState({ showIWantList: true })}>
-                                <Text style={styles.iWantListButton}>Lista de quem quer</Text>	  
-                            </TouchableOpacity>
-                        </AuthorPost>
+                    <Author email={'fulano@teste.com'} nickname={ this.state.author }/>                    
+                    <View style={styles.descriptionContainer}>
+                        <Text style={styles.descriptionText}>{ this.state.description }</Text>
                     </View>
+                    { renderButtom}
                     <CommentPost comments={this.state.comments} />
-                    {addComment}
+                    { addComment }
                 </ScrollView>
                 <View style={styles.tabBottomBackground} />
             </LinearGradient>
@@ -96,78 +114,70 @@ class ScreenPost extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        paddingTop: StatusBar.currentHeight,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    titleContainer: {
+        // paddingTop: StatusBar.currentHeight,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 50,
+        // backgroundColor: 'yellow'
+    },
+    titleText: {
+        textAlign: 'center',
+        fontSize: 30,
+        fontFamily: 'shelter',
+        color: 'rgba(225, 22, 94, 0.7)',
+        textShadowColor: '#fff',
+        textShadowOffset: { width: 1, height: 0 },
+        textShadowRadius: 10           
     },
     image: {
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').width * 3 / 4,
-        resizeMode: "contain",        
+        resizeMode: "contain",
+        backgroundColor: 'rgba(0, 0, 0, 0.25)',
     },
-    titlePost: {
-        textAlign: 'center',
+    descriptionContainer: {
+        minHeight: 40,
+        flex: 1,
+        padding: 10,
+        backgroundColor: 'rgba(0, 0, 0, 0.25)',
+        borderRadius: 25,        
+    },
+    descriptionText: {
+        fontSize: 15,
+        textAlign: "justify"
+    },
+    buttonContainer: {		
+		height: 70,
+        flexDirection: 'row',
+        alignContent: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',        
+    },
+    listButton: {
+        height: 45,        
+        width: '90%',
+        borderRadius: 25,                
+        justifyContent: 'center',
+        alignContent: 'center',
+    },
+    buttonText: {
         fontSize: 20,
-        marginTop: 50,
-        fontWeight: 'bold'
-    },
-    buttonContainer: {
-		marginTop: 1,
-		height: 56,
-		flexDirection: 'row',
-    },
-    buttons: {
-		height:55,
-		marginTop:-5,
-    	flexDirection: 'row',
-    	justifyContent: 'center',
-    	alignItems: 'center',
-        width: Dimensions.get('window').width * 0.5,
-      },
-      iWantList: {
-		height:55,
-		marginTop:10,
-    	flexDirection: 'row',
-    	justifyContent: 'center',
-    	alignItems: 'center',
-        width: Dimensions.get('window').width
-      },
-    iWant: {
-        height: 45,
-        width: 130,
-        fontSize: 18,
-        borderColor: 'black',
-        borderWidth: 1,        
-        borderRadius: 50,
-        textAlign: 'center',
+        color: '#fff',
         textAlignVertical: 'center',
-        backgroundColor: 'blue',
-        fontWeight: 'bold',
-        color: 'white' 
+        textAlign: 'center',  
     },
-    iDontWant: {
-        height: 45,
-        width: 130,
-        fontSize: 18,
-        borderColor: 'black',
-        borderWidth: 1, 
-        borderRadius: 50,
-        textAlign: 'center',
-        textAlignVertical: 'center',
-        backgroundColor: 'gray',
-        fontWeight: 'bold',
-        color: 'white'  
-    },
-    iWantListButton: {
-        height: 45,
-        width: 250,
-        fontSize: 20,
-        borderColor: 'black',
-        borderWidth: 1, 
-        borderRadius: 13,
-        textAlign: 'center',
-        textAlignVertical: 'center',
-        backgroundColor: 'blue',
-        fontWeight: 'bold',
-        color: 'white'  
+    wantButton: {
+        height: 45,        
+        width: '70%',
+        borderRadius: 25,                
+        justifyContent: 'center',
+        alignContent: 'center',
     },
     tabBottomBackground: {		
 		width: '100%',
