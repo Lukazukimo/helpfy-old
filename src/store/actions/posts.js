@@ -11,12 +11,12 @@ import {
 import axios from 'axios'
 import { setMessage } from './message'
 
-export const addPost = post => {
-    return {
-        type: ADD_POST,
-        payload: post
-    }
-}
+// export const addPost = post => {
+//     return {
+//         type: ADD_POST,
+//         payload: post
+//     }
+// }
 
 export const addPost = post => {    
     return dispatch => {
