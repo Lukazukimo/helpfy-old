@@ -11,12 +11,12 @@ import {
 import axios from 'axios'
 import { setMessage } from './message'
 
-//export const addPost = post => {
-//    return {
-//        type: ADD_POST,
-//        payload: post
-//    }
-//}
+export const addPost = post => {
+    return {
+        type: ADD_POST,
+        payload: post
+    }
+}
 
 export const addPost = post => {    
     return dispatch => {
@@ -55,39 +55,25 @@ export const addPost = post => {
 }
 
 export const addComment = payload => {
-
-    return {
-        type: ADD_COMMENT,
-        payload
+    return (dispatch, getState) => {
+        axios.get(`posts/${payload.postId}.json`)
+            .catch(err => console.log(err))
+            .then(res => {
+                const comments = res.data.comments || []
+                comments.push(payload.comment)
+                axios.patch(`posts/${payload.postId}.json`, { comments })
+                    .catch(err => console.log(err))
+                    .then(res => {
+                        dispatch(fetchPosts())
+                    })
+            })
     }
-}
-    //return (dispatch, getState) => {
-    //    axios.get(`posts/${payload.postId}.json`)
-    //        // .catch(err => console.log(err))
-    //        .catch(err => {
-    //            dispatch(setMessage({
-    //                title: 'Erro',
-    //                text: 'Ocorreu um erro inesperado'
-    //            }))
-    //        })
-    //        .then(res => {
-    //            const comments = res.data.comments || []
-    //            comments.push(payload.comment)
-    //            // atualizacao de alguns atributos do objeto = comments
-    //            axios.patch(`posts/${payload.postId}.json?auth=${getState().user.token}`, { comments })
-    //                // .catch(err => console.log(err))
-    //                .catch(err => {
-    //                    dispatch(setMessage({
-    //                        title: 'Erro',
-    //                        text: 'Ocorreu um erro inesperado'
-    //                    }))
-    //                })
-    //                .then(res => {
-    //                    dispatch(fetchPosts())
-    //                })
-    //        })
+    //return {
+    //    type: ADD_COMMENT,
+    //    payload
     //}
-
+}
+    
 
 export const setPosts = posts => {
     return {

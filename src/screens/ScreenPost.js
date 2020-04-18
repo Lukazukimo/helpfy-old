@@ -103,8 +103,11 @@ class ScreenPost extends Component {
                         <Text style={styles.descriptionText}>{ this.state.description }</Text>
                     </View>
                     { renderButtom}
+                    
                     <CommentPost comments={this.state.comments} />
-                    { addComment }
+                    <View style={styles.comment}>
+                        { addComment }
+                    </View>
                 </ScrollView>
                 <View style={styles.tabBottomBackground} />
             </LinearGradient>
@@ -178,6 +181,9 @@ const styles = StyleSheet.create({
         borderRadius: 25,                
         justifyContent: 'center',
         alignContent: 'center',
+    },
+    comment: {
+        flex: 1
     },
     tabBottomBackground: {		
 		width: '100%',

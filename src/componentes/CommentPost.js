@@ -36,8 +36,7 @@ class CommentPost extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        height: 40,
-        // justifyContent: 'center',
+        flex: 1,
         alignItems: 'center',
         // backgroundColor: 'red'
     },
@@ -62,7 +61,7 @@ const styles = StyleSheet.create({
         width: '100%',
         borderBottomWidth: 0.5,
         alignItems: 'center',
-        backgroundColor: 'blue'
+        backgroundColor: 'transparent'
     },
     avatar: {
         width: 25,
