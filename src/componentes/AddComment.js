@@ -34,7 +34,7 @@ class AddComment extends Component{
             commentArea = (
                 <View style={styles.container}>
                     <TextInput placeholder='Pode comentar...'
-                        style={styles.input} autoFocus={true}
+                        maxLength={80} style={styles.input} autoFocus={true}
                         value={this.state.comment}
                         onChangeText={comment => this.setState({ comment })}
                         onSubmitEditing={this.handleAddComment}/>
@@ -67,6 +67,7 @@ class AddComment extends Component{
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        width: '100%',
         flexDirection: 'row',
         alignItems: 'center',
         marginHorizontal: 10,

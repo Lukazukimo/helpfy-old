@@ -14,6 +14,7 @@ class CommentPost extends Component {
             view = this.props.comments.map((item, index) => {
                 return(
                     <View style={styles.commentContainer} key={index}>
+                        
                         <Gravatar options={{ email: 'teste@teste.com', secure: true}}
                             style={styles.avatar} />
                         <Text style={styles.nickname}>{item.nickname}: </Text>
@@ -55,13 +56,14 @@ const styles = StyleSheet.create({
         textShadowRadius: 10 
     },
     commentContainer: {
-		height: 50,
-		flexDirection: 'row',
-        borderBottomColor: 'black',
+        minHeight: 40,
+        flex: 1,
+        flexDirection: 'row',
         width: '100%',
+        borderBottomColor: 'black',
         borderBottomWidth: 0.5,
         alignItems: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
     },
     avatar: {
         width: 25,

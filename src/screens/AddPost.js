@@ -137,6 +137,7 @@ class AddPost extends Component{
                             <View style={styles.inputContainer}>
                                 <TextInput style={styles.input}
                                         placeholder='Insira o título' 
+                                        maxLength={20}
                                         autoFocus={true} value={this.state.title}
                                         onChangeText={title => this.setState({ title })} />
                                 </View>
@@ -181,6 +182,7 @@ class AddPost extends Component{
                             <View style={[styles.inputContainer, { height: 150}]}>
                                 <TextInput placeholder='Insira a descrição do item' 
                                     style={styles.descriptionInput}
+                                    maxLength={200}
                                     multiline={true}
                                     value={this.state.description}
                                     onChangeText={description => this.setState({ description })} />

@@ -119,24 +119,27 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: StatusBar.currentHeight,
-        justifyContent: 'center',
-        alignItems: 'center',
     },
     titleContainer: {
         // paddingTop: StatusBar.currentHeight,
         justifyContent: 'center',
         alignItems: 'center',
-        height: 50,
+        marginLeft: 5,
+        marginRight: 5,
+        height: 40,
+
         // backgroundColor: 'yellow'
     },
     titleText: {
         textAlign: 'center',
-        fontSize: 30,
+        fontSize: 18,
         fontFamily: 'shelter',
         color: 'rgba(225, 22, 94, 0.7)',
         textShadowColor: '#fff',
         textShadowOffset: { width: 1, height: 0 },
-        textShadowRadius: 10           
+        textShadowRadius: 10,
+        marginTop: 5,
+        fontWeight: 'bold'           
     },
     image: {
         width: Dimensions.get('window').width,
