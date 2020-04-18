@@ -63,7 +63,7 @@ class AddPost extends Component{
             return
         }
         this.props.onAddPost({
-            id: Math.random(),
+            id: this.props.localId,
             title: this.state.title,
             author: this.props.name,
             category: this.state.category,
@@ -316,6 +316,7 @@ const mapStateToProps = ({ user, posts }) => {
     return{
         email: user.email,
         name: user.name,
+        localId: user.localId,
         loading: posts.isUploading
     }
 }

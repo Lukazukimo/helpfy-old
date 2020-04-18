@@ -22,7 +22,7 @@ export const createUser = user => {
             .catch(err => console.log(err))
             .then(res => {
                 if (res.data.localId) {
-                    console.log(res.data)
+                    // console.log(res.data)
                     axios.put(`/users/${res.data.localId}.json`, {
                         name: user.name,
                         email: user.email,
@@ -74,9 +74,10 @@ export const login = user => {
         })
             .catch(err => console.log(err))
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 if (res.data.localId) {
                     user.token = res.data.idToken
+                    user.localId = res.data.localId
                     axios.get(`/users/${res.data.localId}.json`)
                         .catch(err => console.log(err))
                         .then(res => {
@@ -86,6 +87,7 @@ export const login = user => {
                             user.email = res.data.email,
                             user.birthDate = res.data.birthDate,
                             user.stateLocation = res.data.stateLocation,
+                            // console.log(user)
                             dispatch(userLogged(user))
                             dispatch(userLoaded())
                         })

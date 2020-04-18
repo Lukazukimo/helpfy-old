@@ -18,6 +18,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import ProfileInfo from '../componentes/ProfileInfo'
 import Post from './../componentes/Post'
 import ProfileComment from '../componentes/ProfileComment'
+import { getMyPosts, postCreated } from '../store/actions/posts'
 
 
 class Profile extends Component {
@@ -31,6 +32,11 @@ class Profile extends Component {
 			showPostList: false,
 		}
 	}
+
+	componentDidMount = () => {
+		this.props.onGetMyPosts(this.props.id)
+		console.log(this.props.teste, ' tela profile')
+    }
 
 	onNavigate = () => {
 		this.setState({showPostList: false})
@@ -214,9 +220,8 @@ class Profile extends Component {
 																			resizeMode: "stretch",
 																	}}/>													
 																</View>												
-															)   
-														}}
-													/>									
+															) 	  
+														}} />									
 												</ScrollView>
 											</LinearGradient>
 										</Overlay>	 
@@ -404,14 +409,17 @@ const mapStateToProps = ({ user, posts }) => {
 		name: user.name,
 		email: user.email,
 		birthDate: user.birthDate,
-    	stateLocation: user.stateLocation,
-		posts: posts.posts
+		stateLocation: user.stateLocation,
+		id: user.localId,
+		posts: posts.myPosts,
+		teste: posts.postsFilter
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		onLogout: () => dispatch(logout())
+		onLogout: () => dispatch(logout()),
+		onGetMyPosts: (id) => dispatch(getMyPosts(id)),
 	}
 }
 

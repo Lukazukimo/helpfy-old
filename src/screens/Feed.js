@@ -16,7 +16,7 @@ import Post from '../componentes/Post'
 import ImageSlider from '../componentes/ImageSlider'
 import LinearGradient from 'react-native-linear-gradient'
 import RadialGradient from 'react-native-radial-gradient'
-import { fetchPosts, teste } from '../store/actions/posts'
+import { fetchPosts } from '../store/actions/posts'
 
 const images = [
     "https://images.unsplash.com/photo-1508138221679-760a23a2285b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
@@ -30,7 +30,7 @@ const images = [
 class Feed extends Component {
 
     componentDidMount = () => {
-        this.props.onFetchPosts()
+        this.props.onFetchPosts()        
     }
 
     testeFuntion = () => {
@@ -142,12 +142,6 @@ class Feed extends Component {
                         <Icon name='plus' size={32} color='rgba(255, 255, 255, 0.85)'/>
                     </TouchableOpacity>
                 </LinearGradient> 
-                {/* <View>
-                    <TouchableOpacity
-                        onPress={this.testeFuntion}>
-                        <Icon name={'heart'} size={40} color={'red'}/> 
-                    </TouchableOpacity>
-                </View> */}
                 <View style={styles.tabBottomBackground}>
                 </View>
             </LinearGradient>
@@ -234,7 +228,6 @@ const mapStateToProps = ({ posts }) => {
 const mapDispatchToProps = dispatch => {
     return {
         onFetchPosts: () => dispatch(fetchPosts()),
-        // onTeste: () => dispatch(teste())
     }
 }
 

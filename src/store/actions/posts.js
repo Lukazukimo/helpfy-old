@@ -3,7 +3,10 @@ import {
     SET_POSTS,
     CREATING_POST,
     POST_CREATED,
-    ADD_COMMENT
+    ADD_COMMENT,
+    SET_MYPOSTS,
+    SET_POSTSFILTER,
+    DEL_POSTSFILTER
 } from './actionTypes'
 import axios from 'axios'
 import { setMessage } from './message'
@@ -31,15 +34,24 @@ export const addPost = post => {
                 // substituindo a imagem pela sua URL gerada
                 // quando feito o upload
                 post.image = resp.data.imageUrl
-
+                console.log(resp)
                 axios.post('/posts.json', {...post})
                     .catch(err => console.log(err))
                     .then(res => {
                         dispatch(fetchPosts())
-                        dispatch(postCreated())
+                        dispatch(postCreated()) 
+                        // console.log(res.data.name)
+                        // axios.patch(`/posts/${res.data.name}.json`, {
+                        //     id: res.data.name
+                        // })
+                        //     .catch(err => console.log(err))
+                        //     .then(resp => {                                
+                                
+                        //     })
+                            
                     })
             })
-        }
+    }
 }
 
 export const addComment = payload => {
@@ -84,6 +96,26 @@ export const setPosts = posts => {
     }
 }
 
+export const setPostsFilter = postsFilter => {
+    return {
+        type: SET_POSTSFILTER,
+        payload: postsFilter
+    }
+}
+
+export const setMyPosts = myPosts => {
+    return {
+        type: SET_MYPOSTS,
+        payload: myPosts
+    }
+}
+
+export const clearPostsFilter = () => {
+    return {
+        type: DEL_POSTSFILTER,        
+    }
+}
+
 // Obter os Posts
 // Axios vai pegar no Firbase
 export const fetchPosts = (category=null) => {
@@ -121,6 +153,52 @@ export const fetchPosts = (category=null) => {
     }
 }
 
+export const getPostsFilter = (category) => {
+    return dispatch => {
+        console.log(category)
+        axios.get(`/posts.json?orderBy="category"&equalTo="${category}"`)
+            .catch(err => console.log(err))
+            .then(res => {
+                // console.log(res)
+                const rawPosts = res.data
+                let posts = []
+                for (let key in rawPosts){
+                    posts.push({
+                        // todos os atributos de rawPosts do 
+                        // identificador key
+                        ...rawPosts[key],
+                        id: key
+                    })
+                }   
+                // console.log(posts)
+                dispatch(setPostsFilter(posts))
+            })
+    }            
+}
+
+export const getMyPosts = (localId) => {
+    return dispatch => {
+        console.log(localId)
+        axios.get(`/posts.json?orderBy="id"&equalTo="${localId}"`)
+            .catch(err => console.log(err))
+            .then(res => {
+                // console.log(res)
+                const rawPosts = res.data
+                let posts = []
+                for (let key in rawPosts){
+                    posts.push({
+                        // todos os atributos de rawPosts do 
+                        // identificador key
+                        ...rawPosts[key],
+                        id: key
+                    })
+                }   
+                // console.log(posts)
+                dispatch(setMyPosts(posts.reverse()))
+            })
+    }            
+}
+
 export const creatingPost = () => {
     return {
         type: CREATING_POST
@@ -130,16 +208,5 @@ export const creatingPost = () => {
 export const postCreated = () => {
     return {
         type: POST_CREATED
-    }
-}
-
-export const teste = () => {
-    return dispatch => {
-        axios.get('/posts/-M4lbwZrbjdaxWzHpsCC/curtidas/.json')
-            .catch(err => console.log(err))
-            .then(res => {
-                const blabla = res.data
-                console.log(blabla)
-            })
     }
 }

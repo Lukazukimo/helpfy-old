@@ -10,6 +10,7 @@ const initialState = {
     email: null,
     birthDate: null,
     stateLocation: null,
+    localId: null,
     isLoading: false,
     token: null,
 }
@@ -26,6 +27,7 @@ const reducer = (state = initialState, action) => {
                 email: action.payload.email,
                 birthDate: action.payload.birthDate,
                 stateLocation: action.payload.stateLocation,
+                localId: action.payload.localId
                 // token: action.payload.token
             }
         case USER_LOGGED_OUT:
@@ -36,6 +38,7 @@ const reducer = (state = initialState, action) => {
                 email: null,
                 birthDate: null,
                 stateLocation: null,
+                localId: null,
                 // state: null,
                 // ...initialState
             }

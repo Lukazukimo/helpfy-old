@@ -3,12 +3,17 @@ import {
     ADD_COMMENT, 
     SET_POSTS,
     CREATING_POST,
-    POST_CREATED
+    POST_CREATED,
+    SET_MYPOSTS,
+    SET_POSTSFILTER,
+    DEL_POSTSFILTER
 } from '../actions/actionTypes'
 import { act } from 'react-test-renderer'
 
 const initialState = {
     posts: [],
+    myPosts: [],
+    postsFilter:[],
     isUploading: false,
 }
 
@@ -18,8 +23,22 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 posts: action.payload
-                }
-
+            }
+        case SET_MYPOSTS:
+            return {
+                ...state,
+                myPosts: action.payload
+            }
+        case SET_POSTSFILTER:
+            return {
+                ...state,
+                postsFilter: action.payload
+            }
+        case DEL_POSTSFILTER:
+            return {
+                ...state,
+                postsFilter: [],
+            }
         case CREATING_POST:
             return {
                 ...state,
