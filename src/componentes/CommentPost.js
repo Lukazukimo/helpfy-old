@@ -14,11 +14,14 @@ class CommentPost extends Component {
             view = this.props.comments.map((item, index) => {
                 return(
                     <View style={styles.commentContainer} key={index}>
-                        
-                        <Gravatar options={{ email: 'teste@teste.com', secure: true}}
-                            style={styles.avatar} />
-                        <Text style={styles.nickname}>{item.nickname}: </Text>
-                        <Text style={styles.comment}>{item.comment}</Text>
+                        <View style={styles.iconContainer}>
+                            <Gravatar options={{ email: 'teste@teste.com', secure: true}}
+                                style={styles.avatar} />
+                            <Text style={styles.nickname}>{item.nickname}: </Text>
+                        </View>
+                        <View style={styles.commentText}>
+                            <Text style={styles.comment}>{item.comment}</Text>
+                        </View>
                     </View>
                 )
             })
@@ -55,15 +58,19 @@ const styles = StyleSheet.create({
         textShadowOffset: { width: 1, height: 0 },
         textShadowRadius: 10 
     },
+    iconContainer: {
+        flexDirection: 'row'
+    },
     commentContainer: {
-        minHeight: 40,
-        flex: 1,
-        flexDirection: 'row',
-        width: '100%',
         borderBottomColor: 'black',
-        borderBottomWidth: 0.5,
-        alignItems: 'center',
         backgroundColor: 'transparent',
+        marginTop: 5,
+    },
+    commentText: {
+        marginTop: 2,
+        marginLeft: 20,
+        width: '95%',
+        marginBottom: 10
     },
     avatar: {
         width: 25,
