@@ -10,7 +10,11 @@ import {
 import LinearGradient from 'react-native-linear-gradient'
 import Post from '../componentes/Post'
 import { connect } from 'react-redux'
-import { fetchPosts, getPostsFilter } from '../store/actions/posts'
+import { 
+    fetchPosts, 
+    getPostsFilter,
+    clearPostsFilter
+} from '../store/actions/posts'
 
 class Category extends Component {
     constructor(props) {
@@ -75,12 +79,14 @@ class Category extends Component {
 
     componentDidMount = () => {
         this.props.onGetPostsFilter(this.state.title)
-        console.log(this.props.posts, ' tela categoria')
+        console.log(this.props.posts, ' tela categoria montagem')
         // this.props.onFetchPosts(this.state.title)
     }
 
     componentWillUnmount(){
         this.props.onFetchPosts()
+        this.props.onClearPosstFilter()
+        console.log(this.props.posts, ' tela categoria desmontagem')
     }
 
     render() {
@@ -197,7 +203,8 @@ const mapStateToProps = ({ posts }) => {
 const mapDispatchToProps = dispatch => {
     return {
         onFetchPosts: () => dispatch(fetchPosts()),
-        onGetPostsFilter: (title) => dispatch(getPostsFilter(title))
+        onGetPostsFilter: (title) => dispatch(getPostsFilter(title)),
+        onClearPosstFilter: () => dispatch(clearPostsFilter())
     }
 }
 

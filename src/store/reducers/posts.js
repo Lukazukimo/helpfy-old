@@ -11,6 +11,11 @@ import {
 import { act } from 'react-test-renderer'
 
 const initialState = {
+    // posts: {
+    //     highlights: [],
+    //     recent: [],
+    //     commented: [],
+    // },
     posts: [],
     myPosts: [],
     postsFilter:[],

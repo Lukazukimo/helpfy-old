@@ -162,6 +162,27 @@ export const getPostsFilter = (category) => {
     }            
 }
 
+// export const getPostsFilter = (category) => {
+//     return dispatch => {
+//         console.log(category)
+//         axios.get(`/posts.json?orderBy="category"&equalTo="${category}"&limitToLast=1`)
+//             .catch(err => console.log(err))
+//             .then(res => {
+//                 // console.log(res)
+//                 const rawPosts = res.data
+//                 let posts = []
+//                 for (let key in rawPosts){
+//                     posts.push({
+//                         ...rawPosts[key],
+//                         id: key
+//                     })
+//                 }
+//                 // console.log(posts)
+//                 dispatch(setPostsFilter(posts))
+//             })
+//     }            
+// }
+
 export const getMyPosts = (localId) => {
     return dispatch => {
         console.log(localId)
