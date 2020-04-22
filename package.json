@@ -10,7 +10,9 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@freakycoder/react-native-helpers": "0.1.0",
     "axios": "0.19.2",
+    "moment": "^2.24.0",
     "native-base": "^2.13.8",
     "react": "16.9.0",
     "react-native": "0.61.5",
@@ -26,8 +28,7 @@
     "react-navigation": "2.14.2",
     "react-redux": "5.0.7",
     "redux": "4.0.5",
-    "redux-thunk": "2.3.0",
-    "@freakycoder/react-native-helpers": "0.1.0"
+    "redux-thunk": "2.3.0"
   },
   "devDependencies": {
     "@babel/core": "7.8.4",

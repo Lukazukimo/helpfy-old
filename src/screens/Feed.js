@@ -9,6 +9,7 @@ import {
     TouchableOpacity
 } from 'react-native'
 import { connect } from 'react-redux'
+import moment from 'moment'
 import Icon from 'react-native-vector-icons/Feather'
 // import { Icon } from 'react-native-elements'
 import Header from '../componentes/Header'
@@ -29,8 +30,13 @@ const images = [
 
 class Feed extends Component {
 
-    componentDidMount = () => {
-        this.props.onFetchPosts()        
+    componentDidMount = () => {        
+        // const a = new Date().getTime()
+        // const b = Date.parse(new Date())
+        // console.log(a)
+        // console.log(moment(a).format('MMMM Do YYYY, h:mm:ss a'))    
+        // console.log(moment(a).format())
+        this.props.onFetchPosts()
     }
 
     testeFuntion = () => {

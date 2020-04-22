@@ -70,6 +70,7 @@ class AddPost extends Component{
             description: this.state.description,
             image: this.state.image,
             emailPost: this.props.email,
+            timePost: new Date().getTime(),
             curtidas: {id: ''}
         })
 
