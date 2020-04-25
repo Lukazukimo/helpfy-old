@@ -12,12 +12,13 @@ import {
 } from 'react-native'
 import { Overlay } from 'react-native-elements'
 import { connect } from 'react-redux'
-import { logout } from '../store/actions/user'
+import { logout, addCommentProfile } from '../store/actions/user'
 import Icon from 'react-native-vector-icons/Feather'
 import LinearGradient from 'react-native-linear-gradient'
 import ProfileInfo from '../componentes/ProfileInfo'
 import Post from './../componentes/Post'
 import ProfileComment from '../componentes/ProfileComment'
+import AddCommentProfile from '../componentes/AddCommentProfile'
 import { getMyPosts, postCreated } from '../store/actions/posts'
 
 
@@ -48,41 +49,7 @@ class Profile extends Component {
 	}		
 
 	render() {
-		const comments = [{
-			nickname: 'Ulisses',
-			comment: 'Esse cara me roubou!!!daasdasdaksjdkasdjhkajkshdjkahsjkdhasjdjskldjaklsjdkljaskljdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'
-		}, {
-			nickname: 'Muriloooooooooooooooooooooooooooooooooooooooooooo',
-            comment: 'Esse cara me roubou!!!daasdasdaksjdkasdjhkajkshdjkahsjkdhasjdjskldjaklsjdkljaskljdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
-        }, {
-			nickname: 'Murilo',
-            comment: 'Comendo o cu de curioso'
-        }, {
-			nickname: 'Murilo',
-            comment: 'Comendo o cu de curioso'
-        }, {
-			nickname: 'Murilo',
-            comment: 'Comendo o cu de curioso'
-        }, {
-			nickname: 'Murilo',
-            comment: 'Comendo o cu de curioso'
-        }, {
-			nickname: 'Murilo',
-            comment: 'Comendo o cu de curioso'
-        }, {
-			nickname: 'Murilo',
-            comment: 'Comendo o cu de curioso'
-        }, {
-			nickname: 'Murilo',
-            comment: 'Comendo o cu de curioso'
-        }, {
-			nickname: 'Murilo',
-            comment: 'Comendo o cu de curioso'
-        }, {
-			nickname: 'Murilo',
-            comment: 'Comendo o cu de curioso'
-            
-        }]
+
 		
 		return(
 			<LinearGradient colors={[
@@ -173,7 +140,8 @@ class Profile extends Component {
 													<View style={styles.overlayHeaderContainer}>
 														<Text style={styles.overlayHeaderText}>Comentários sobre o autor</Text>
 													</View>									
-													<ProfileComment comments={comments} />										
+													<ProfileComment/>
+													<AddCommentProfile localId={this.props.localId}/>										
 												</ScrollView>
 											</LinearGradient>
 										</Overlay>	

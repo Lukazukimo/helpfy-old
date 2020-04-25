@@ -2,7 +2,8 @@ import {
     USER_LOGGED_IN, 
     USER_LOGGED_OUT,
     LOADING_USER,
-    USER_LOADED
+    USER_LOADED,
+    ADD_COMMENT_PROFILE
 } from '../actions/actionTypes' 
 
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
     localId: null,
     isLoading: false,
     token: null,
+    comments: [{}]
 }
 
 const reducer = (state = initialState, action) => {
@@ -51,6 +53,26 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false
+            }
+        case ADD_COMMENT_PROFILE: 
+            return {
+                ...state,
+                comments: state.comments.map(user => {
+                    if (state.localId) {
+                        console.log('entrou 1')    
+                        if (user.comments) {
+                            user.comments = user.comments.concat(
+                                action.payload.comment
+                        )
+                        console.log('entrou 2 = ', action.payload.comment)
+                        } else {
+                            user.comments = [action.payload.comment]
+                            console.log('entrou 3 = ', user.comments, action.payload.comment)
+                        }    
+                    console.log('entrou 4 = ', user)
+                    return user
+                    }
+                })
             }
         default:
             // caso que nao foi alterardo nada

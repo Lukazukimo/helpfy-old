@@ -2,7 +2,8 @@ import {
     USER_LOGGED_IN, 
     USER_LOGGED_OUT,
     LOADING_USER,
-    USER_LOADED
+    USER_LOADED,
+    ADD_COMMENT_PROFILE
 } from './actionTypes'
 import axios from 'axios'
 import { setMessage } from './message'
@@ -93,5 +94,12 @@ export const login = user => {
                         })
                 }
             })
+    }
+}
+
+export const addCommentProfile = payload => {
+    return {
+        type: ADD_COMMENT_PROFILE,
+        payload
     }
 }

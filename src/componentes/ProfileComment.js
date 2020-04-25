@@ -26,6 +26,7 @@ class ProfileComment extends Component {
         return(
             <View style={styles.container}>
                 {view}
+            
             </View>
         )
     }
