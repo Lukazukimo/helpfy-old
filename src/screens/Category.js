@@ -79,14 +79,14 @@ class Category extends Component {
 
     componentDidMount = () => {
         this.props.onGetPostsFilter(this.state.title)
-        console.log(this.props.posts, ' tela categoria montagem')
+        // console.log(this.props.posts, ' tela categoria montagem')
         // this.props.onFetchPosts(this.state.title)
     }
 
     componentWillUnmount(){
         this.props.onFetchPosts()
         this.props.onClearPosstFilter()
-        console.log(this.props.posts, ' tela categoria desmontagem')
+        // console.log(this.props.posts, ' tela categoria desmontagem')
     }
 
     render() {
