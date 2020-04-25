@@ -17,7 +17,7 @@ import Post from '../componentes/Post'
 import ImageSlider from '../componentes/ImageSlider'
 import LinearGradient from 'react-native-linear-gradient'
 import RadialGradient from 'react-native-radial-gradient'
-import { fetchPosts } from '../store/actions/posts'
+import { fetchPosts, getPostsFeed } from '../store/actions/posts'
 
 const images = [
     "https://images.unsplash.com/photo-1508138221679-760a23a2285b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
@@ -34,9 +34,11 @@ class Feed extends Component {
         // const a = new Date().getTime()
         // const b = Date.parse(new Date())
         // console.log(a)
-        // console.log(moment(a).format('MMMM Do YYYY, h:mm:ss a'))    
+        // console.log(moment(a).format('MMMM Do YYYY, h:mm:ss a'))
         // console.log(moment(a).format())
-        this.props.onFetchPosts()
+        // this.props.onFetchPosts()
+        this.props.onGetPostsFeed()
+        // console.log(this.props.posts)
     }
 
     testeFuntion = () => {
@@ -88,7 +90,7 @@ class Feed extends Component {
                         <ImageSlider images={images}/> 
                         <Text style={styles.title}>Destaques</Text>
                         <FlatList horizontal 
-                            data={this.props.posts}
+                            data={this.props.posts.highlights}
                             keyExtractor={item => `${item.id}`}
                             style={styles.containerFlatPosts}
                             showsHorizontalScrollIndicator={false}
@@ -104,7 +106,7 @@ class Feed extends Component {
                                 }}/>}/>    
                         <Text style={styles.title}>Recentes</Text>
                         <FlatList horizontal                    
-                            data={this.props.posts}
+                            data={this.props.posts.recent}
                             keyExtractor={item => `${item.id}`}
                             style={styles.containerFlatPosts}
                             showsHorizontalScrollIndicator={false}
@@ -118,9 +120,9 @@ class Feed extends Component {
                                     margin: 10,
                                     borderRadius: 15
                                 }}/>}/>
-                        <Text style={styles.title}>Destaques</Text>
+                        <Text style={styles.title}>Comentados</Text>
                         <FlatList horizontal                    
-                            data={this.props.posts}
+                            data={this.props.posts.commented}
                             keyExtractor={item => `${item.id}`}
                             style={styles.containerFlatPosts}
                             showsHorizontalScrollIndicator={false}
@@ -233,7 +235,8 @@ const mapStateToProps = ({ posts }) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchPosts: () => dispatch(fetchPosts()),
+        // onFetchPosts: () => dispatch(fetchPosts()),
+        onGetPostsFeed: () => dispatch(getPostsFeed()),
     }
 }
 

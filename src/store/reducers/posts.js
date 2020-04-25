@@ -6,17 +6,18 @@ import {
     POST_CREATED,
     SET_MYPOSTS,
     SET_POSTSFILTER,
-    DEL_POSTSFILTER
+    DEL_POSTSFILTER,
+    SET_POSTSFEED
 } from '../actions/actionTypes'
 import { act } from 'react-test-renderer'
 
 const initialState = {
-    // posts: {
-    //     highlights: [],
-    //     recent: [],
-    //     commented: [],
-    // },
-    posts: [],
+    posts: {
+        highlights: [],
+        recent: [],
+        commented: [],
+    },
+    // posts: [],
     myPosts: [],
     postsFilter:[],
     isUploading: false,
@@ -24,7 +25,12 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_POSTS:
+        // case SET_POSTS:
+        //     return {
+        //         ...state,
+        //         posts: action.payload
+        //     }
+        case SET_POSTSFEED:
             return {
                 ...state,
                 posts: action.payload
@@ -54,10 +60,27 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 isUploading: false
             }
+        // case ADD_COMMENT:
+        //     return {
+        //         ...state,
+        //         posts: state.posts.map(post => {
+        //             if (post.id === action.payload.postId) {
+        //                 if (post.comments) {
+        //                     post.comments = post.comments.concat(
+        //                         action.payload.comment
+        //                     )
+        //                 } else {
+        //                     post.comments = [action.payload.comment]
+        //                 }
+        //             }
+        //             return post
+        //         })
+        //     }
         case ADD_COMMENT:
             return {
                 ...state,
-                posts: state.posts.map(post => {
+                posts: {
+                    highlights: state.posts.highlights.map(post => {
                     if (post.id === action.payload.postId) {
                         if (post.comments) {
                             post.comments = post.comments.concat(
@@ -68,7 +91,33 @@ const reducer = (state = initialState, action) => {
                         }
                     }
                     return post
-                })
+                    }),
+                    recent: state.posts.recent.map(post => {
+                    if (post.id === action.payload.postId) {
+                        if (post.comments) {
+                            post.comments = post.comments.concat(
+                                action.payload.comment
+                            )
+                        } else {
+                            post.comments = [action.payload.comment]
+                        }
+                    }
+                    return post
+                    }),
+                    commented: state.posts.commented.map(post => {
+                    if (post.id === action.payload.postId) {
+                        if (post.comments) {
+                            post.comments = post.comments.concat(
+                                action.payload.comment
+                            )
+                        } else {
+                            post.comments = [action.payload.comment]
+                        }
+                    }
+                    return post
+                    })
+                }
+                
             }
         default:
             return state

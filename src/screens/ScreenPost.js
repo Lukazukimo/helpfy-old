@@ -17,6 +17,7 @@ import IWantList from '../componentes/IWantList'
 import LinearGradient from 'react-native-linear-gradient'
 import { connect } from 'react-redux'
 import AddComment from '../componentes/AddComment'
+import moment from 'moment'
 
 class ScreenPost extends Component {    
 
@@ -30,11 +31,14 @@ class ScreenPost extends Component {
         description: this.props.navigation.state.params.description,
         image: this.props.navigation.state.params.image,
         comments: this.props.navigation.state.params.comments,
-        emailPost: this.props.navigation.state.params.emailPost
+        emailPost: this.props.navigation.state.params.emailPost,
+        timePost: this.props.navigation.state.params.timePost,
     }
     
     render() {  
-
+        // console.log(moment(this.state.timePost).format('MMMM Do YYYY, h:mm:ss a'))
+        // console.log(moment(this.state.timePost).format())
+        // console.log(moment(this.state.timePost).startOf('hour').fromNow())
         const changeIcon = this.state.liked? 'rgba(0, 0, 0, 0.50)' : 'red'
         // const wantOrNo = this.state.iWant? styles.iWant : styles.iDontWant
         const wantOrNoText = this.state.iWant? 'Eu quero!' : 'Eu não quero!'        

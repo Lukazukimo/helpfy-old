@@ -6,7 +6,8 @@ import {
     ADD_COMMENT,
     SET_MYPOSTS,
     SET_POSTSFILTER,
-    DEL_POSTSFILTER
+    DEL_POSTSFILTER,
+    SET_POSTSFEED
 } from './actionTypes'
 import axios from 'axios'
 import { setMessage } from './message'
@@ -64,7 +65,8 @@ export const addComment = payload => {
                 axios.patch(`posts/${payload.postId}.json`, { comments })
                     .catch(err => console.log(err))
                     .then(res => {
-                        dispatch(fetchPosts())
+                        // dispatch(fetchPosts())
+                        dispatch(getPostsFeed())
                     })
             })
     }
@@ -78,6 +80,13 @@ export const addComment = payload => {
 export const setPosts = posts => {
     return {
         type: SET_POSTS,
+        payload: posts
+    }
+}
+
+export const setPostsFeed = posts => {
+    return {
+        type: SET_POSTSFEED,
         payload: posts
     }
 }
@@ -162,26 +171,43 @@ export const getPostsFilter = (category) => {
     }            
 }
 
-// export const getPostsFilter = (category) => {
-//     return dispatch => {
-//         console.log(category)
-//         axios.get(`/posts.json?orderBy="category"&equalTo="${category}"&limitToLast=1`)
-//             .catch(err => console.log(err))
-//             .then(res => {
-//                 // console.log(res)
-//                 const rawPosts = res.data
-//                 let posts = []
-//                 for (let key in rawPosts){
-//                     posts.push({
-//                         ...rawPosts[key],
-//                         id: key
-//                     })
-//                 }
-//                 // console.log(posts)
-//                 dispatch(setPostsFilter(posts))
-//             })
-//     }            
-// }
+export const getPostsFeed = () => {
+    return dispatch => {        
+        let posts = {
+                highlights: [],
+                recent: [],
+                commented: [],
+            }        
+        axios.get(`/posts.json?`)
+            .catch(err => console.log(err))
+            .then(res => {
+                // console.log(res)
+                const rawPosts = res.data                
+                for (let key in rawPosts){
+                    posts.highlights.push({
+                        ...rawPosts[key],
+                        id: key
+                    })
+                }
+                posts.highlights = posts.highlights.reverse()                
+                dispatch(setPostsFeed(posts))
+            })
+        axios.get(`/posts.json?orderBy="author"&equalTo="gabriel"&limitToLast=4`)
+            .catch(err => console.log(err))
+            .then(res => {
+                console.log(res)
+                const rawPosts = res.data                
+                for (let key in rawPosts){
+                    posts.recent.push({
+                        ...rawPosts[key],
+                        id: key
+                    })
+                }
+                posts.recent = posts.recent.reverse()                
+                dispatch(setPostsFeed(posts))
+            })
+    }            
+}
 
 export const getMyPosts = (localId) => {
     return dispatch => {
