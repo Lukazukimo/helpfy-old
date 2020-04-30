@@ -63,15 +63,14 @@ class AddPost extends Component{
             return
         }
         this.props.onAddPost({
-            id: this.props.localId,
+            userId: this.props.localId,
             title: this.state.title,
             author: this.props.name,
             category: this.state.category,
             description: this.state.description,
             image: this.state.image,
             emailPost: this.props.email,
-            timePost: new Date().getTime(),
-            curtidas: {id: ''}
+            timePost: new Date().getTime(),            
         })
 
         // this.setState({ title: '',

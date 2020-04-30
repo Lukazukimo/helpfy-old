@@ -38,7 +38,8 @@ class Feed extends Component {
         // console.log(moment(a).format())
         // this.props.onFetchPosts()
         this.props.onGetPostsFeed()
-        // console.log(this.props.posts)
+        // console.log('========================================================')
+        // console.log(this.props.posts.highlights)        
     }
 
     testeFuntion = () => {

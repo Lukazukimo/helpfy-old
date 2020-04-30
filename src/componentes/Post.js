@@ -12,10 +12,12 @@ import{
 class Post extends Component {
     constructor(props){
         super(props)
+        // console.log('+++++++++++++++++++++++++++++++++')
+        // console.log(props)
         this.onNavigate = this.props.onNavigate ? this.props.onNavigate : Function()
     }
 
-    render() {            
+    render() {
         return(
             <View style={styles.container}>
                 {/* <Image source={require('../../assets/imgs/boat.jpg')}/> */}
@@ -29,7 +31,7 @@ class Post extends Component {
                             description: this.props.description,
                             postId: this.props.id,
                             emailPost: this.props.emailPost,
-                            timePost: this.props.timePost
+                            timePost: this.props.timePost,                            
                         })
                         this.onNavigate()}}>
                     <Image source={{ uri: this.props.image }} style={this.props.tamanho}/>
