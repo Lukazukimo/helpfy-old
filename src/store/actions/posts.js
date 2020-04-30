@@ -192,7 +192,7 @@ export const getPostsFeed = () => {
                 posts.highlights = posts.highlights.reverse()                
                 dispatch(setPostsFeed(posts))
             })
-        axios.get(`/posts.json?orderBy="author"&equalTo="gabriel"&limitToLast=4`)
+        axios.get(`/posts.json?orderBy="timePost"&limitToLast=2`)
             .catch(err => console.log(err))
             .then(res => {
                 console.log(res)

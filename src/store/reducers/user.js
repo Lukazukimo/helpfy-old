@@ -14,7 +14,7 @@ const initialState = {
     localId: null,
     isLoading: false,
     token: null,
-    comments: [{}]
+    comments: [{ nickname: 'gabriel', comment: 'aaosdjaosid'}, { nickname: 'gabriel', comment: 'alo'}]
 }
 
 const reducer = (state = initialState, action) => {
@@ -57,20 +57,22 @@ const reducer = (state = initialState, action) => {
         case ADD_COMMENT_PROFILE: 
             return {
                 ...state,
-                comments: state.comments.map(user => {
+                comments: state.comments.map(comments =>  {
                     if (state.localId) {
-                        console.log('entrou 1')    
-                        if (user.comments) {
-                            user.comments = user.comments.concat(
+                        console.log(comments)
+                        console.log(typeof(comments))
+                        console.log(typeof(action.payload.comment))
+                        console.log(state.comments)
+                        
+                        if (comments) {
+                            array = array.concat(
                                 action.payload.comment
                         )
-                        console.log('entrou 2 = ', action.payload.comment)
                         } else {
-                            user.comments = [action.payload.comment]
-                            console.log('entrou 3 = ', user.comments, action.payload.comment)
-                        }    
-                    console.log('entrou 4 = ', user)
-                    return user
+                            array = [action.payload.comment]
+                        }
+                    
+                    return array
                     }
                 })
             }

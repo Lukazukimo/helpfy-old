@@ -83,6 +83,8 @@ const reducer = (state = initialState, action) => {
                     highlights: state.posts.highlights.map(post => {
                     if (post.id === action.payload.postId) {
                         if (post.comments) {
+                            console.log(typeof(post.comments))
+                            console.log(post.comments)
                             post.comments = post.comments.concat(
                                 action.payload.comment
                             )

@@ -36,6 +36,8 @@ class Profile extends Component {
 
 	componentDidMount = () => {
 		this.props.onGetMyPosts(this.props.id)
+		console.log('local', this.props.localId)
+		console.log('id ',this.props.id)
 		console.log(this.props.teste, ' tela profile')
     }
 
@@ -140,8 +142,8 @@ class Profile extends Component {
 													<View style={styles.overlayHeaderContainer}>
 														<Text style={styles.overlayHeaderText}>Comentários sobre o autor</Text>
 													</View>									
-													<ProfileComment/>
-													<AddCommentProfile localId={this.props.localId}/>										
+													<ProfileComment comments={this.props.comments}/>
+													<AddCommentProfile id={this.props.id}/>										
 												</ScrollView>
 											</LinearGradient>
 										</Overlay>	
@@ -380,7 +382,8 @@ const mapStateToProps = ({ user, posts }) => {
 		stateLocation: user.stateLocation,
 		id: user.localId,
 		posts: posts.myPosts,
-		teste: posts.postsFilter
+		teste: posts.postsFilter,
+		comments: user.comments
 	}
 }
 

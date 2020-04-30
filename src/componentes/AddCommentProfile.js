@@ -25,6 +25,7 @@ class AddCommentProfile extends Component{
                 comment: this.state.comment
             }
         })
+        console.log('state = ', this.state)
         this.setState({ comment: '', editMode: false })
     }
 
