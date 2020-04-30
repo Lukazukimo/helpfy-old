@@ -7,7 +7,8 @@ import {
     SET_MYPOSTS,
     SET_POSTSFILTER,
     DEL_POSTSFILTER,
-    SET_POSTSFEED
+    SET_POSTSFEED,
+    SET_LIKE
 } from '../actions/actionTypes'
 import { act } from 'react-test-renderer'
 
@@ -118,8 +119,31 @@ const reducer = (state = initialState, action) => {
                     }
                     return post
                     })
-                }
-                
+                },
+                myPosts: state.myPosts.map(post => {
+                    if (post.id === action.payload.postId) {
+                        if (post.comments) {
+                            post.comments = post.comments.concat(
+                                action.payload.comment
+                            )
+                        } else {
+                            post.comments = [action.payload.comment]
+                        }
+                    }
+                    return post
+                }),
+                postsFilter: state.postsFilter.map(post => {
+                    if (post.id === action.payload.postId) {
+                        if (post.comments) {
+                            post.comments = post.comments.concat(
+                                action.payload.comment
+                            )
+                        } else {
+                            post.comments = [action.payload.comment]
+                        }
+                    }
+                    return post
+                })
             }
         default:
             return state

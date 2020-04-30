@@ -16,31 +16,86 @@ import CommentPost from '../componentes/CommentPost'
 import IWantList from '../componentes/IWantList'
 import LinearGradient from 'react-native-linear-gradient'
 import { connect } from 'react-redux'
+import { 
+    like, 
+    verifyLike,
+    dislike
+} from '../store/actions/posts'
 import AddComment from '../componentes/AddComment'
 import moment from 'moment'
 
 class ScreenPost extends Component {    
+    constructor(props){
+        super(props)
+        this.state = { 
+            liked: false,
+            iWant: true,
+            showIWantList: false,
+            userIdLike: '',
+            id: this.props.navigation.state.params.postId,
+            title: this.props.navigation.state.params.title,
+            author: this.props.navigation.state.params.author,
+            description: this.props.navigation.state.params.description,
+            image: this.props.navigation.state.params.image,
+            comments: this.props.navigation.state.params.comments,
+            emailPost: this.props.navigation.state.params.emailPost,
+            timePost: this.props.navigation.state.params.timePost,
+        }
 
-    state = { 
-        liked: true,
-        iWant: true,
-        showIWantList: false,
-        id: this.props.navigation.state.params.postId,
-        title: this.props.navigation.state.params.title,
-        author: this.props.navigation.state.params.author,
-        description: this.props.navigation.state.params.description,
-        image: this.props.navigation.state.params.image,
-        comments: this.props.navigation.state.params.comments,
-        emailPost: this.props.navigation.state.params.emailPost,
-        timePost: this.props.navigation.state.params.timePost,
+        verifyLike(this.props.userId, this.state.id).then(res => {
+            this.setState({ liked: res})            
+        })
+
+    }
+
+    componentDidMount = () => {
+        // // console.log(this.state)
+        // let newArray = []
+        // // console.log(this.state.arrayLike)
+        // // console.log(typeof(this.state.arrayLike))
+        // for(let x in this.state.arrayLike){
+        //     newArray.push({
+        //         ...this.state.arrayLike[x],
+        //     })
+        //     this.state.userIdLike = x            
+        //     if(this.props.userId === this.state.userIdLike) {
+        //         let b = Object.values(newArray[0])            
+        //         this.setState({ liked: b[0]})
+        //         // for(let y in teste) {
+        //         //     teste2.push({
+        //         //         ...teste[y]
+        //         //     })
+        //         // }
+        //     }
+        // }
+        // // console.log('1 ', newArray)
+        // // console.log('2 ', this.state.liked)
+        console.log(this.state)
+        
+    }
+
+    changeLike = () => {        
+        if(this.props.userId){
+            if (!(this.state.liked) || null){
+                this.setState({ liked : true})
+                this.props.onLike(this.props.userId, this.state.id)
+            } else {
+                this.setState({ liked : false})
+                this.props.onDislike(this.props.userId, this.state.id)
+            }
+        }        
     }
     
+<<<<<<< HEAD
     render() {  
         console.log(this.state)
+=======
+    render() {
+>>>>>>> 0812090a07c95898c70ec34b9cde81587b56ff6f
         // console.log(moment(this.state.timePost).format('MMMM Do YYYY, h:mm:ss a'))
         // console.log(moment(this.state.timePost).format())
         // console.log(moment(this.state.timePost).startOf('hour').fromNow())
-        const changeIcon = this.state.liked? 'rgba(0, 0, 0, 0.50)' : 'red'
+        const changeIcon = this.state.liked ? 'red' : 'rgba(0, 0, 0, 0.50)'
         // const wantOrNo = this.state.iWant? styles.iWant : styles.iDontWant
         const wantOrNoText = this.state.iWant? 'Eu quero!' : 'Eu não quero!'        
         const addComment = this.props.name ?
@@ -65,7 +120,7 @@ class ScreenPost extends Component {
                     paddingLeft: 40,
                     paddingRight: 20 }]}>
                 <TouchableOpacity
-                    onPress={ () => this.setState({ liked : !this.state.liked})}>
+                    onPress={this.changeLike}>
                     <Icon name={'heart'} size={40} color={changeIcon}/> 
                 </TouchableOpacity>
                 <LinearGradient colors={[
@@ -204,8 +259,16 @@ const mapStateToProps = ({ posts, user }) => {
     return {
         name: user.name,
         email: user.email,
-        posts: posts.posts
+        userId: user.localId,
+        posts: posts.posts,        
     }
 }
 
-export default connect(mapStateToProps)(ScreenPost)
+const mapDispatchToProps = dispatch => {
+    return {
+        onLike: (userId, postId) => dispatch(like(userId, postId)),
+        onDislike: (userId, postId) => dispatch(dislike(userId, postId))        
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ScreenPost)
