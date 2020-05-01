@@ -12,8 +12,4 @@ export const POST_CREATED = 'POST_CREATED'
 export const LOADING_USER = 'LOADING_USER'
 export const USER_LOADED = 'USER_LOADED'
 export const SET_MESSAGE = 'SET_MESSAGE'
-<<<<<<< HEAD
-export const ADD_COMMENT_PROFILE = 'ADD_COMMENT_PROFILE'
-=======
 export const SET_LIKE = 'SET_LIKE'
->>>>>>> 0812090a07c95898c70ec34b9cde81587b56ff6f

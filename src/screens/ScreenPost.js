@@ -86,12 +86,7 @@ class ScreenPost extends Component {
         }        
     }
     
-<<<<<<< HEAD
-    render() {  
-        console.log(this.state)
-=======
     render() {
->>>>>>> 0812090a07c95898c70ec34b9cde81587b56ff6f
         // console.log(moment(this.state.timePost).format('MMMM Do YYYY, h:mm:ss a'))
         // console.log(moment(this.state.timePost).format())
         // console.log(moment(this.state.timePost).startOf('hour').fromNow())

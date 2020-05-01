@@ -211,41 +211,6 @@ export const getPostsFilter = (category) => {
 export const getPostsFeed = () => {
     return async dispatch => {
         let posts = {
-<<<<<<< HEAD
-                highlights: [],
-                recent: [],
-                commented: [],
-            }        
-        axios.get(`/posts.json?`)
-            .catch(err => console.log(err))
-            .then(res => {
-                // console.log(res)
-                const rawPosts = res.data                
-                for (let key in rawPosts){
-                    posts.highlights.push({
-                        ...rawPosts[key],
-                        id: key
-                    })
-                }
-                posts.highlights = posts.highlights.reverse()                
-                dispatch(setPostsFeed(posts))
-            })
-        axios.get(`/posts.json?orderBy="timePost"&limitToLast=2`)
-            .catch(err => console.log(err))
-            .then(res => {
-                console.log(res)
-                const rawPosts = res.data                
-                for (let key in rawPosts){
-                    posts.recent.push({
-                        ...rawPosts[key],
-                        id: key
-                    })
-                }
-                posts.recent = posts.recent.reverse()                
-                dispatch(setPostsFeed(posts))
-            })
-    }            
-=======
             highlights: [],
             recent: [],
             commented: [],
@@ -253,6 +218,7 @@ export const getPostsFeed = () => {
         try {
             let res = await axios.get(`/posts.json?`)
             let rawPosts = res.data
+            console.log(rawPosts)
             for (let key in rawPosts) {
                 posts.highlights.push({
                     ...rawPosts[key],
@@ -274,6 +240,7 @@ export const getPostsFeed = () => {
                 // }
             }
             posts.highlights = posts.highlights.reverse()
+            console.log("asdas", posts.highlights)
             res = await axios.get(`/posts.json?orderBy="timePost"&limitToLast=2`)
             rawPosts = res.data
             for (let key in rawPosts) {
@@ -288,7 +255,6 @@ export const getPostsFeed = () => {
             console.log(e)
         }
     }
->>>>>>> 0812090a07c95898c70ec34b9cde81587b56ff6f
 }
 
 export const getMyPosts = (localId) => {
