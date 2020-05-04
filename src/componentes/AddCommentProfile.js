@@ -25,7 +25,7 @@ class AddCommentProfile extends Component{
                 comment: this.state.comment
             }
         })
-        console.log('state = ', this.state)
+        console.log(this.props.localId)
         this.setState({ comment: '', editMode: false })
     }
 
@@ -89,7 +89,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = ({ user }) => {
     return {
-        name: user.name
+        name: user.name,
+        localId: user.localId
     }
 }
 

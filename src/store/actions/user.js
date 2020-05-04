@@ -3,7 +3,8 @@ import {
     USER_LOGGED_OUT,
     LOADING_USER,
     USER_LOADED,
-    ADD_COMMENT_PROFILE
+    ADD_COMMENT_PROFILE,
+    SET_USER_COMMENTS
 } from './actionTypes'
 import axios from 'axios'
 import { setMessage } from './message'
@@ -65,6 +66,39 @@ export const userLoaded = () => {
     }
 }
 
+
+export const fetchComments = localId => {
+    return dispatch => {
+        console.log('local Id', localId)
+        axios.get(`users/${localId}.json`)
+            .catch(err => {
+                dispatch(setMessage({
+                    title: 'Erro',
+                    text: 'Ocorreu um erro inesperado!'
+                }))
+            })
+            .then(res => {
+                const rawComments = res.data.comments
+                const comments = []
+                for (let key in rawComments) {
+                    comments.push({
+                        ...rawComments[key],
+                        id: key
+                    })
+                }
+                dispatch(setUserComments(comments))
+            })
+    }
+}
+
+export const setUserComments = comments => {
+    return {
+        type: SET_USER_COMMENTS,
+        payload: comments
+    }
+}
+
+
 export const login = user => {
     return dispatch => {
         dispatch(loadingUser())
@@ -98,8 +132,22 @@ export const login = user => {
 }
 
 export const addCommentProfile = payload => {
-    return {
-        type: ADD_COMMENT_PROFILE,
-        payload
+    return (dispatch, getState) => {
+        axios.get(`users/${payload.localId}.json`)
+            .catch(err => console.log(err))
+            .then(res => {
+                const comments = res.data.comments || []
+                comments.push(payload.comment)
+                axios.patch(`users/${payload.localId}.json`, { comments })
+                    .catch(err => console.log(err))
+                    .then(res => {
+                        // dispatch(fetchPosts())
+                        dispatch(fetchComments(payload.localId))
+                    })
+            })
     }
+    //return {
+    //    type: ADD_COMMENT,
+    //    payload
+    //}
 }

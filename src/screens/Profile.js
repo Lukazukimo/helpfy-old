@@ -20,6 +20,7 @@ import Post from './../componentes/Post'
 import ProfileComment from '../componentes/ProfileComment'
 import AddCommentProfile from '../componentes/AddCommentProfile'
 import { getMyPosts, postCreated } from '../store/actions/posts'
+import { fetchComments } from '../store/actions/user' 
 
 
 class Profile extends Component {
@@ -36,6 +37,7 @@ class Profile extends Component {
 
 	componentDidMount = () => {
 		this.props.onGetMyPosts(this.props.id)
+		this.props.onFetchComments(this.props.id)
 		console.log('local', this.props.localId)
 		console.log('id ',this.props.id)
 		console.log(this.props.teste, ' tela profile')
@@ -143,7 +145,7 @@ class Profile extends Component {
 														<Text style={styles.overlayHeaderText}>Comentários sobre o autor</Text>
 													</View>									
 													<ProfileComment comments={this.props.comments}/>
-													<AddCommentProfile id={this.props.id}/>										
+													<AddCommentProfile localid={this.props.id}/>										
 												</ScrollView>
 											</LinearGradient>
 										</Overlay>	
@@ -391,6 +393,8 @@ const mapDispatchToProps = dispatch => {
 	return {
 		onLogout: () => dispatch(logout()),
 		onGetMyPosts: (id) => dispatch(getMyPosts(id)),
+		onFetchComments: (id) => dispatch(fetchComments(id))
+
 	}
 }
 

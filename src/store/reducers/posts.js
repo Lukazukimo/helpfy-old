@@ -8,7 +8,8 @@ import {
     SET_POSTSFILTER,
     DEL_POSTSFILTER,
     SET_POSTSFEED,
-    SET_LIKE
+    SET_LIKE,
+    
 } from '../actions/actionTypes'
 import { act } from 'react-test-renderer'
 

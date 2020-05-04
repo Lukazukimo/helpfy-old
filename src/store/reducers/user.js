@@ -3,7 +3,8 @@ import {
     USER_LOGGED_OUT,
     LOADING_USER,
     USER_LOADED,
-    ADD_COMMENT_PROFILE
+    ADD_COMMENT_PROFILE,
+    SET_USER_COMMENTS
 } from '../actions/actionTypes' 
 
 const initialState = {
@@ -14,7 +15,7 @@ const initialState = {
     localId: null,
     isLoading: false,
     token: null,
-    comments: [{ nickname: 'gabriel', comment: 'aaosdjaosid'}, { nickname: 'gabriel', comment: 'alo'}]
+    comments: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -58,23 +59,24 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 comments: state.comments.map(comments =>  {
-                    if (state.localId) {
-                        console.log(comments)
-                        console.log(typeof(comments))
-                        console.log(typeof(action.payload.comment))
-                        console.log(state.comments)
-                        
-                        if (comments) {
-                            array = array.concat(
+                    if (state.localId === action.payload.localId) {
+                        let array = state.comments
+                        if (array) {
+                            array.push(
                                 action.payload.comment
                         )
                         } else {
                             array = [action.payload.comment]
                         }
-                    
+                    console.log(state.comments)
                     return array
                     }
                 })
+            }
+        case SET_USER_COMMENTS:
+            return {
+                ...state,
+                comments: action.payload
             }
         default:
             // caso que nao foi alterardo nada
