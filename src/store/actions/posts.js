@@ -12,6 +12,7 @@ import {
 } from './actionTypes'
 import axios from 'axios'
 import { setMessage } from './message'
+import RNEventSource from 'react-native-event-source'
 
 // export const addPost = post => {
 //     return {
@@ -218,7 +219,7 @@ export const getPostsFeed = () => {
         try {
             let res = await axios.get(`/posts.json?`)
             let rawPosts = res.data
-            console.log(rawPosts)
+            // console.log(rawPosts)
             for (let key in rawPosts) {
                 posts.highlights.push({
                     ...rawPosts[key],
@@ -240,7 +241,7 @@ export const getPostsFeed = () => {
                 // }
             }
             posts.highlights = posts.highlights.reverse()
-            console.log("asdas", posts.highlights)
+            // console.log("asdas", posts.highlights)
             res = await axios.get(`/posts.json?orderBy="timePost"&limitToLast=2`)
             rawPosts = res.data
             for (let key in rawPosts) {
@@ -332,4 +333,26 @@ export const verifyLike = async (userId, postId)  => {
         console.log(e)
         return false
     }
+}
+
+export const listen = () => {
+    let eventSource = new RNEventSource('https://helpfy-18cd6.firebaseio.com/posts.json')
+    let oldData = {}
+    let count = 0        
+    eventSource.addEventListener('put',(event) => {
+        if(oldData != event.data){
+            count += 1
+            console.log(count)            
+            console.log(JSON.parse(event.data))
+            oldData = event.data
+        }
+    })
+    console.log('cheguei aqui')
+    return eventSource
+}
+
+export const stopListen = (eventSource) => {
+    eventSource.removeAllListeners()
+    eventSource.close()
+    console.log('Fechando Conexao')
 }

@@ -70,7 +70,7 @@ class ScreenPost extends Component {
         // }
         // // console.log('1 ', newArray)
         // // console.log('2 ', this.state.liked)
-        console.log(this.state)
+        // console.log(this.state)
         
     }
 
