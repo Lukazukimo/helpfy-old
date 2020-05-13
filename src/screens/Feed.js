@@ -17,7 +17,13 @@ import Post from '../componentes/Post'
 import ImageSlider from '../componentes/ImageSlider'
 import LinearGradient from 'react-native-linear-gradient'
 import RadialGradient from 'react-native-radial-gradient'
-import { fetchPosts, getPostsFeed } from '../store/actions/posts'
+import { 
+    fetchPosts, 
+    getPostsFeed, 
+    listen,
+    stopListen
+} from '../store/actions/posts'
+import RNEventSource from 'react-native-event-source'
 
 const images = [
     "https://images.unsplash.com/photo-1508138221679-760a23a2285b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
@@ -27,8 +33,9 @@ const images = [
     "https://images.unsplash.com/photo-1505678261036-a3fcc5e884ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
 ];
 
+let eventSource
 
-class Feed extends Component {
+class Feed extends Component {    
 
     componentDidMount = () => {        
         // const a = new Date().getTime()
@@ -38,12 +45,34 @@ class Feed extends Component {
         // console.log(moment(a).format())
         // this.props.onFetchPosts()
         this.props.onGetPostsFeed()
-        console.log('========================================================')
-        console.log(this.props.posts.highlights)        
+        // console.log('========================================================')
+        // console.log(this.props.posts.highlights)
+
+        eventSource = listen()
+
+        // this.eventSource = new RNEventSource('https://helpfy-18cd6.firebaseio.com/posts.json')
+        // this.oldData = {}
+        // this.count = 0        
+        // this.eventSource.addEventListener('put',(event) => {
+        //     if(this.oldData != event.data){
+        //         this.count += 1
+        //         console.log(this.count)
+        //         console.log(event, 'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn')
+        //         console.log(JSON.parse(event.data))
+        //         this.oldData = event.data                
+        //     }
+        // })
+        // console.log('cheguei aqui')
     }
 
     testeFuntion = () => {
         this.props.onTeste()
+    }
+
+    componentWillUnmount = () => {
+        stopListen(eventSource)
+        // this.eventSource.removeAllListeners()
+        // this.eventSource.close()
     }
 
     render(){

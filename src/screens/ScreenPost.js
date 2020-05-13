@@ -86,6 +86,8 @@ class ScreenPost extends Component {
         console.log('id post', this.state.id)
         console.log(this.props.listiWant)
         this.props.oniWantList(this.props.id)
+        // console.log(this.state)
+        
     }
 
     changeLike = () => {        
