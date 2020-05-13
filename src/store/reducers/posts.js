@@ -23,6 +23,7 @@ const initialState = {
     myPosts: [],
     postsFilter:[],
     isUploading: false,
+    listiWant:[]
 }
 
 const reducer = (state = initialState, action) => {
@@ -144,6 +145,11 @@ const reducer = (state = initialState, action) => {
                     return post
                 })
             }
+        case ADD_COMMENT:
+            return {    
+                ...state,
+                listiWant: action.payload
+        }
         default:
             return state
     }

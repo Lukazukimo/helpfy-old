@@ -19,7 +19,11 @@ import { connect } from 'react-redux'
 import { 
     like, 
     verifyLike,
-    dislike
+    dislike,
+    iWant,
+    iDontWant,
+    verifyiWant,
+    iWantList
 } from '../store/actions/posts'
 import AddComment from '../componentes/AddComment'
 import moment from 'moment'
@@ -29,7 +33,7 @@ class ScreenPost extends Component {
         super(props)
         this.state = { 
             liked: false,
-            iWant: true,
+            iWant: false,
             showIWantList: false,
             userIdLike: '',
             id: this.props.navigation.state.params.postId,
@@ -40,11 +44,20 @@ class ScreenPost extends Component {
             comments: this.props.navigation.state.params.comments,
             emailPost: this.props.navigation.state.params.emailPost,
             timePost: this.props.navigation.state.params.timePost,
+            userDonated: this.props.navigation.state.params.userDonated,
+            postDonated: true
+            
         }
 
         verifyLike(this.props.userId, this.state.id).then(res => {
             this.setState({ liked: res})            
         })
+
+        verifyiWant(this.props.userId, this.state.id).then(res => {
+            this.setState({ iWant: res})            
+        })
+        
+
 
     }
 
@@ -70,8 +83,9 @@ class ScreenPost extends Component {
         // }
         // // console.log('1 ', newArray)
         // // console.log('2 ', this.state.liked)
-        console.log(this.state)
-        
+        console.log('id post', this.state.id)
+        console.log(this.props.listiWant)
+        this.props.oniWantList(this.props.id)
     }
 
     changeLike = () => {        
@@ -85,14 +99,37 @@ class ScreenPost extends Component {
             }
         }        
     }
+
+    changeiWant = () => {        
+        if(this.props.userId){
+            if (!(this.state.iWant) || null){
+                this.setState({ iWant : true})
+                this.props.oniWant(this.props.userId, this.state.id)
+            } else {
+                this.setState({ iWant : false})
+                this.props.oniDontWant(this.props.userId, this.state.id)
+            }
+        }        
+    }
     
     render() {
+        const users = [{
+			nickname: 'Ulisses',
+		}, {
+			nickname: 'Murilo',
+        }, {
+            nickname: 'Murilo',
+        }, {
+            nickname: 'Murilo',
+        },{
+            nickname: 'Murilo',
+        }]
         // console.log(moment(this.state.timePost).format('MMMM Do YYYY, h:mm:ss a'))
         // console.log(moment(this.state.timePost).format())
         // console.log(moment(this.state.timePost).startOf('hour').fromNow())
         const changeIcon = this.state.liked ? 'red' : 'rgba(0, 0, 0, 0.50)'
         // const wantOrNo = this.state.iWant? styles.iWant : styles.iDontWant
-        const wantOrNoText = this.state.iWant? 'Eu quero!' : 'Eu não quero!'        
+        const wantOrNoText = this.state.iWant? 'Eu não quero!' : 'Eu quero!' 
         const addComment = this.props.name ?
             <AddComment postId={this.state.id} /> : null
 
@@ -125,47 +162,85 @@ class ScreenPost extends Component {
                     'rgba(225, 22, 94, 0.9)'
                 ]} style={styles.wantButton}>
                     <TouchableOpacity
-                        onPress={ () => this.setState({ iWant : !this.state.iWant})}>
+                        onPress={this.changeiWant}>
                         <Text style={styles.buttonText}>{wantOrNoText}</Text>	  
                     </TouchableOpacity> 
                 </LinearGradient>
             </View>
-              
-        return (            
-            <LinearGradient colors={[
-                'rgb(146, 135, 211)',
-                'rgb(124, 147, 225)',
-                'rgba(124, 147, 225, 0.8)',
-                'rgb(155, 156, 213)',
-                'rgb(162, 163, 217)',            
-                'rgba(162, 163, 217, 0.85)',
-                'rgb(162, 163, 217)',
-                'rgb(162, 163, 217)',
-                'rgba(124, 147, 225, 0.8)',
-                'rgb(124, 147, 225)',
-                'rgb(146, 135, 211)',
-                ]}
-                style={styles.container}>
-                <ScrollView>
-                    <IWantList isVisible={this.state.showIWantList} 
-                        onCancel={() => this.setState({ showIWantList: false })}/>
-                    <View style={styles.titleContainer}>
-                        <Text style={styles.titleText}>{ this.state.title }</Text>
-                    </View>                    
-                    <Image source={{ uri: this.state.image }} style={styles.image}/>
-                    <Author email={'fulano@teste.com'} nickname={ this.state.author }/>                    
-                    <View style={styles.descriptionContainer}>
-                        <Text style={styles.descriptionText}>{ this.state.description }</Text>
-                    </View>
-                    { renderButtom}
-                    
-                    <CommentPost comments={this.state.comments} />
-                    <View style={styles.comment}>
-                        { addComment }
-                    </View>
-                </ScrollView>
-                <View style={styles.tabBottomBackground} />
-            </LinearGradient>
+
+        const isPostDonated = this.state.postDonated === false ? 
+        <LinearGradient colors={[
+            'rgb(146, 135, 211)',
+            'rgb(124, 147, 225)',
+            'rgba(124, 147, 225, 0.8)',
+            'rgb(155, 156, 213)',
+            'rgb(162, 163, 217)',            
+            'rgba(162, 163, 217, 0.85)',
+            'rgb(162, 163, 217)',
+            'rgb(162, 163, 217)',
+            'rgba(124, 147, 225, 0.8)',
+            'rgb(124, 147, 225)',
+            'rgb(146, 135, 211)',
+            ]}
+            style={styles.container}>
+            <ScrollView>
+                <IWantList isVisible={this.state.showIWantList} users={this.props.listiWant}
+                    onCancel={() => this.setState({ showIWantList: false })}/>
+                <View style={styles.titleContainer}>
+                    <Text style={styles.titleText}>{ this.state.title }</Text>
+                </View>                    
+                <Image source={{ uri: this.state.image }} style={styles.image}/>
+                <Author email={'fulano@teste.com'} nickname={ this.state.author }/>                    
+                <View style={styles.descriptionContainer}>
+                    <Text style={styles.descriptionText}>{ this.state.description }</Text>
+                </View>
+                { renderButtom}
+                
+                <CommentPost comments={this.state.comments} />
+                <View style={styles.comment}>
+                    { addComment }
+                </View>
+            </ScrollView>
+            <View style={styles.tabBottomBackground} />
+        </LinearGradient> :
+        <LinearGradient colors={[
+            'rgb(146, 135, 211)',
+            'rgb(124, 147, 225)',
+            'rgba(124, 147, 225, 0.8)',
+            'rgb(155, 156, 213)',
+            'rgb(162, 163, 217)',            
+            'rgba(162, 163, 217, 0.85)',
+            'rgb(162, 163, 217)',
+            'rgb(162, 163, 217)',
+            'rgba(124, 147, 225, 0.8)',
+            'rgb(124, 147, 225)',
+            'rgb(146, 135, 211)',
+            ]}
+            style={styles.container}>
+            <ScrollView>
+                <IWantList isVisible={this.state.showIWantList} users={this.props.listiWant}
+                    onCancel={() => this.setState({ showIWantList: false })}/>
+                <View style={styles.titleContainer}>
+                    <Text style={styles.titleText}>{ this.state.title }</Text>
+                </View>                    
+                <Image source={{ uri: this.state.image }} style={styles.image}/>
+                <Author email={'fulano@teste.com'} nickname={ this.state.author }/>                    
+                <View style={styles.descriptionContainer}>
+                    <Text style={styles.descriptionText}>{ this.state.description }</Text>
+                </View>
+                { renderButtom}
+                
+                <CommentPost comments={this.state.comments} />
+                <View style={styles.comment}>
+                    { addComment }
+                </View>
+            </ScrollView>
+            <View style={styles.tabBottomBackground} />
+        </LinearGradient>
+        return (         
+            <View style={styles.container}>   
+                {isPostDonated}
+            </View>
         )
     }
 }
@@ -262,7 +337,10 @@ const mapStateToProps = ({ posts, user }) => {
 const mapDispatchToProps = dispatch => {
     return {
         onLike: (userId, postId) => dispatch(like(userId, postId)),
-        onDislike: (userId, postId) => dispatch(dislike(userId, postId))        
+        onDislike: (userId, postId) => dispatch(dislike(userId, postId)),
+        oniWant: (userId, postId) => dispatch(iWant(userId, postId)),
+        oniDontWant: (userId, postId) => dispatch(iDontWant(userId, postId)),
+        oniWantList: (id) => dispatch(iWantList(id))    
     }
 }
 

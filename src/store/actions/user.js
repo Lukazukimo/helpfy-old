@@ -132,7 +132,7 @@ export const login = user => {
 }
 
 export const addCommentProfile = payload => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         axios.get(`users/${payload.localId}.json`)
             .catch(err => console.log(err))
             .then(res => {
