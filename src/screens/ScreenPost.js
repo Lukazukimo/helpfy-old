@@ -7,7 +7,8 @@ import{
     Text,
     TouchableOpacity,
     ScrollView,
-    StatusBar
+    StatusBar,
+    Alert
 } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Icon1 from 'react-native-vector-icons/Feather'
@@ -45,7 +46,7 @@ class ScreenPost extends Component {
             emailPost: this.props.navigation.state.params.emailPost,
             timePost: this.props.navigation.state.params.timePost,
             userDonated: this.props.navigation.state.params.userDonated,
-            postDonated: true
+            postDonated: true,
             
         }
 
@@ -83,9 +84,8 @@ class ScreenPost extends Component {
         // }
         // // console.log('1 ', newArray)
         // // console.log('2 ', this.state.liked)
-        console.log('id post', this.state.id)
-        console.log(this.props.listiWant)
-        this.props.oniWantList(this.props.id)
+        console.log('lista de quem quer', this.props.listiWant)
+        this.props.oniWantList(this.state.id)
         // console.log(this.state)
         
     }
@@ -106,26 +106,20 @@ class ScreenPost extends Component {
         if(this.props.userId){
             if (!(this.state.iWant) || null){
                 this.setState({ iWant : true})
-                this.props.oniWant(this.props.userId, this.state.id)
+                this.props.oniWant(this.props.userId, this.state.id, this.props.name)
             } else {
                 this.setState({ iWant : false})
                 this.props.oniDontWant(this.props.userId, this.state.id)
             }
         }        
     }
+
+    handleDonation = () => {
+        Alert.alert('Clicou!', 'alo')
+    }
+
     
     render() {
-        const users = [{
-			nickname: 'Ulisses',
-		}, {
-			nickname: 'Murilo',
-        }, {
-            nickname: 'Murilo',
-        }, {
-            nickname: 'Murilo',
-        },{
-            nickname: 'Murilo',
-        }]
         // console.log(moment(this.state.timePost).format('MMMM Do YYYY, h:mm:ss a'))
         // console.log(moment(this.state.timePost).format())
         // console.log(moment(this.state.timePost).startOf('hour').fromNow())
@@ -186,7 +180,8 @@ class ScreenPost extends Component {
             ]}
             style={styles.container}>
             <ScrollView>
-                <IWantList isVisible={this.state.showIWantList} users={this.props.listiWant}
+                <IWantList isVisible={this.state.showIWantList} donation={this.handleDonation} 
+                    users={this.props.listiWant}
                     onCancel={() => this.setState({ showIWantList: false })}/>
                 <View style={styles.titleContainer}>
                     <Text style={styles.titleText}>{ this.state.title }</Text>
@@ -220,7 +215,8 @@ class ScreenPost extends Component {
             ]}
             style={styles.container}>
             <ScrollView>
-                <IWantList isVisible={this.state.showIWantList} users={this.props.listiWant}
+                <IWantList isVisible={this.state.showIWantList} 
+                    users={this.props.listiWant} donation={this.handleDonation}
                     onCancel={() => this.setState({ showIWantList: false })}/>
                 <View style={styles.titleContainer}>
                     <Text style={styles.titleText}>{ this.state.title }</Text>
@@ -332,7 +328,9 @@ const mapStateToProps = ({ posts, user }) => {
         name: user.name,
         email: user.email,
         userId: user.localId,
-        posts: posts.posts,        
+        posts: posts.posts,
+        listiWant: posts.listiWant,
+        id: posts.id
     }
 }
 
@@ -340,9 +338,9 @@ const mapDispatchToProps = dispatch => {
     return {
         onLike: (userId, postId) => dispatch(like(userId, postId)),
         onDislike: (userId, postId) => dispatch(dislike(userId, postId)),
-        oniWant: (userId, postId) => dispatch(iWant(userId, postId)),
+        oniWant: (userId, postId, name) => dispatch(iWant(userId, postId, name)),
         oniDontWant: (userId, postId) => dispatch(iDontWant(userId, postId)),
-        oniWantList: (id) => dispatch(iWantList(id))    
+        oniWantList: (postId) => dispatch(iWantList(postId))    
     }
 }
 

@@ -11,9 +11,6 @@ import RenderUsersList from './RenderUsersList'
 
 export default class IWantList extends Component {
     
-    componentDidMount = () => {
-        console.log('postId = ', this.props.postId)
-    }
 
     render() {
 
@@ -24,7 +21,7 @@ export default class IWantList extends Component {
                     <View style={styles.background} />
                 </TouchableWithoutFeedback>
                 <View style={styles.modal}> 
-                    <RenderUsersList users={this.props.users}/>
+                    <RenderUsersList donation={this.props.donation} users={this.props.users}/>
                 </View>
                 <TouchableWithoutFeedback onPress={this.props.onCancel}> 
                     <View style={styles.background} />

@@ -9,6 +9,7 @@ import {
     DEL_POSTSFILTER,
     SET_POSTSFEED,
     SET_LIKE,
+    SET_I_WANT_LIST
     
 } from '../actions/actionTypes'
 import { act } from 'react-test-renderer'
@@ -145,11 +146,11 @@ const reducer = (state = initialState, action) => {
                     return post
                 })
             }
-        case ADD_COMMENT:
+        case SET_I_WANT_LIST:
             return {    
                 ...state,
                 listiWant: action.payload
-        }
+            }
         default:
             return state
     }

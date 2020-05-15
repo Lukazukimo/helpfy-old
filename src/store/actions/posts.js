@@ -336,12 +336,13 @@ export const verifyLike = async (userId, postId)  => {
     }
 }
 
-export const iWant = (userId, postId)  => {
+export const iWant = (userId, postId, name)  => {
     return async dispatch => {
         // console.log(userId, postId)
         try {
             res = await axios.patch(`/posts/${postId}/listiWant/${userId}.json`, {
-                iWant: true 
+                iWant: true,
+                name
             })
             
         } catch (e) {
@@ -380,7 +381,7 @@ export const verifyiWant = async (userId, postId)  => {
 
 export const iWantList = postId => {
     return dispatch => {
-        axios.get(`posts/${postId}.json`)
+        axios.get(`posts/${postId}/.json`)
             .catch(err => {
                 dispatch(setMessage({
                     title: 'Erro',
@@ -388,6 +389,8 @@ export const iWantList = postId => {
                 }))
             })
             .then(res => {
+                console.log('-------------------------------------------')
+                console.log('list i want', postId)
                 const rawListiWant = res.data.listiWant
                 const listiWant = []
                 for (let key in rawListiWant) {
@@ -402,7 +405,7 @@ export const iWantList = postId => {
     }
 }
 
-export const setiWantList = comments => {
+export const setiWantList = listiWant => {
     return {
         type: SET_I_WANT_LIST,
         payload: listiWant

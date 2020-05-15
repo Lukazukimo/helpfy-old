@@ -21,9 +21,9 @@ class RenderUsersList extends Component {
                         <Gravatar options={{ email: 'teste@teste.com', secure: true}}
                             style={styles.avatar} />
                         
-                        <Text style={styles.nickname}>{item.nickname} </Text>
+                        <Text style={styles.nickname}>{item.name} </Text>
                         <View style={styles.callContainer}>
-                            <TouchableWithoutFeedback style={styles.button}>
+                            <TouchableWithoutFeedback onPress={this.props.donation} style={styles.button}>
                                 <Text style={styles.callButton1}> Doar para.. </Text>
                             </TouchableWithoutFeedback>
                         </View>
