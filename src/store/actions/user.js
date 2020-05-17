@@ -224,7 +224,6 @@ export const fetchNotifications = localId => {
                         id: key
                     })
                 }
-                dispatch(changeNotificationIcon())
                 dispatch(setNotifications(notifications))
 
                 

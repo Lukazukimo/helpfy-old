@@ -18,7 +18,7 @@ class NotificationScreen extends Component{
     
 	componentDidMount = () => {
         this.props.onFetchNotifications(this.props.id)
-        this.props.onChangeNotificationIcon()
+        //this.props.onChangeNotificationIcon()
     }    
     render(){
 
@@ -76,16 +76,14 @@ const styles = StyleSheet.create({
 const mapStateToProps = ({ user }) => {
     return {
         notifications: user.notifications,
-        id: user.localId,
-        notificationIcon: user.notificationIcon
+        id: user.localId
     }
 }
 
 
 const mapDispatchToProps = dispatch => {
 	return {
-		onFetchNotifications: (id) => dispatch(fetchNotifications(id)),
-        onChangeNotificationIcon: () => dispatch(changeNotificationIcon())
+		onFetchNotifications: (id) => dispatch(fetchNotifications(id))
 	}
 }
 
