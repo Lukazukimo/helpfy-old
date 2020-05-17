@@ -379,31 +379,31 @@ export const verifyiWant = async (userId, postId)  => {
     }
 }
 
-export const iWantList = postId => {
-    return dispatch => {
-        axios.get(`posts/${postId}/.json`)
-            .catch(err => {
-                dispatch(setMessage({
-                    title: 'Erro',
-                    text: 'Ocorreu um erro inesperado!'
-                }))
-            })
-            .then(res => {
-                console.log('-------------------------------------------')
-                console.log('list i want', postId)
-                const rawListiWant = res.data.listiWant
-                const listiWant = []
-                for (let key in rawListiWant) {
-                    listiWant.push({
-                        ...rawListiWant[key],
-                        id: key
-                    })
-                }
-                console.log('LISTA DE QUEM QUER', listiWant)
-                dispatch(setiWantList(listiWant))
-            })
-    }
-}
+//export const iWantList = postId => {
+//    return dispatch => {
+//        axios.get(`posts/${postId}/.json`)
+//            .catch(err => {
+//                dispatch(setMessage({
+//                    title: 'Erro',
+//                    text: 'Ocorreu um erro inesperado!'
+//                }))
+//            })
+//            .then(res => {
+//                console.log('-------------------------------------------')
+//                console.log('list i want', postId)
+//                const rawListiWant = res.data.listiWant
+//                const listiWant = []
+//                for (let key in rawListiWant) {
+//                    listiWant.push({
+//                        ...rawListiWant[key],
+//                        id: key
+//                    })
+//                }
+//                console.log('LISTA DE QUEM QUER', listiWant)
+//                dispatch(setiWantList(listiWant))
+//            })
+//    }
+//}
 
 export const setiWantList = listiWant => {
     return {

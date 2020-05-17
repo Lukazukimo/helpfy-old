@@ -17,8 +17,8 @@ class Notifications extends Component {
                         <Gravatar options={{ email: 'teste@teste.com', secure: true}}
                             style={styles.avatar} />
                         <View style={styles.notificationText}>     
-                            <Text style={styles.nickname}>{item.nickname} </Text>
-                            <Text style={styles.notification}>{item.notification}</Text>
+                            <Text style={styles.nickname}>{item.name} </Text>
+                            <Text style={styles.notification}>{item.type}</Text>
                         </View>
                     </View>
                 )

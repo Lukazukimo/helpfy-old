@@ -12,6 +12,7 @@ import {
     SET_I_WANT_LIST
     
 } from '../actions/actionTypes'
+import  { Alert } from 'react-native'
 import { act } from 'react-test-renderer'
 
 const initialState = {
@@ -24,7 +25,7 @@ const initialState = {
     myPosts: [],
     postsFilter:[],
     isUploading: false,
-    listiWant:[]
+    listiWant:[{ name: 'alo'}, { name: '123'}]
 }
 
 const reducer = (state = initialState, action) => {

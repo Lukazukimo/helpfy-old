@@ -11,57 +11,16 @@ import{
 } from 'react-native'
 import Notifications from '../componentes/Notifications'
 import LinearGradient from 'react-native-linear-gradient'
+import { fetchNotifications, changeNotificationIcon } from '../store/actions/user' 
 
 
 class NotificationScreen extends Component{
     
+	componentDidMount = () => {
+        this.props.onFetchNotifications(this.props.id)
+        this.props.onChangeNotificationIcon()
+    }    
     render(){
-        const notifications = [{
-			nickname: 'Ulisses',
-			notification: 'curtiu sua postagem '
-		}, {
-			nickname: 'Murilo',
-            notification: 'quer receber seu item'
-        }, {
-            nickname: 'Murilo',
-            notification: 'curtiu sua postagem'
-        }, {
-            nickname: 'Murilo',
-            notification: 'curtiu sua postagem'
-        }, {
-            nickname: 'Murilo',
-            notification: 'curtiu sua postagem'
-        }, {
-            nickname: 'Murilo',
-            notification: 'curtiu sua postagem'
-        }, {
-            nickname: 'Murilo',
-            notification: 'curtiu sua postagem'
-        }, {
-            nickname: 'Murilo',
-            notification: 'curtiu sua postagem'
-        }, {
-            nickname: 'Murilo',
-            notification: 'curtiu sua postagem'
-        }, {
-            nickname: 'Murilo',
-            notification: 'curtiu sua postagem'
-		}, {
-            nickname: 'Murilo',
-            notification: 'curtiu sua postagem'
-		}, {
-            nickname: 'Murilo',
-            notification: 'curtiu sua postagem'
-		}, {
-            nickname: 'Murilo',
-            notification: 'curtiu sua postagem'
-		}, {
-            nickname: 'Murilo',
-            notification: 'curtiu sua postagem'
-		}, {
-            nickname: 'Murilo',
-            notification: 'curtiu sua postagem'
-        }]        
 
         return(            
             <LinearGradient colors={[
@@ -81,7 +40,7 @@ class NotificationScreen extends Component{
                     <View style={styles.headerContainer}>
                         <Text style={styles.title}>Notificações</Text>
                     </View>
-                    <Notifications notifications={notifications} />
+                    <Notifications notifications={this.props.notifications} />
                 </ScrollView>                
             </LinearGradient>            
         )
@@ -114,4 +73,21 @@ const styles = StyleSheet.create({
 })
 
 
-export default NotificationScreen
+const mapStateToProps = ({ user }) => {
+    return {
+        notifications: user.notifications,
+        id: user.localId,
+        notificationIcon: user.notificationIcon
+    }
+}
+
+
+const mapDispatchToProps = dispatch => {
+	return {
+		onFetchNotifications: (id) => dispatch(fetchNotifications(id)),
+        onChangeNotificationIcon: () => dispatch(changeNotificationIcon())
+	}
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(NotificationScreen)

@@ -13,12 +13,14 @@ import {
 import Icon from 'react-native-vector-icons/Feather'
 
 class Header extends Component {
+    
 
     render() {
         const avatar = this.props.email ? 
             <Image source={require('../../assets/imgs/icon.png')} style={styles.profile}/> :
             <Image source={require('../../assets/imgs/mao.png')} style={styles.profile}/>
 
+        const notificationIcon = this.props.notificationIcon ? 'bell-off' : 'bell'            
         return (            
             <View style={styles.container}>
                 <StatusBar backgroundColor='transparent'
@@ -30,7 +32,7 @@ class Header extends Component {
                 <View style={styles.iconContainer}>
                     <TouchableOpacity style={styles.icon}
                         onPress={() => this.props.navigation.navigate('Notification')}>
-                        <Icon name='bell' size={30} color='rgb(84, 76, 126)'/>
+                        <Icon name={notificationIcon} size={30} color='rgb(84, 76, 126)'/>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.icon}
                         onPress={() => this.props.navigation.navigate('Search')}>                        
@@ -101,7 +103,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = ({ user }) => {
     return {
-        email: user.email,        
+        email: user.email,
+        notificationIcon: user.notificationIcon        
     }
 }
 

@@ -4,7 +4,9 @@ import {
     LOADING_USER,
     USER_LOADED,
     ADD_COMMENT_PROFILE,
-    SET_USER_COMMENTS
+    SET_USER_COMMENTS,
+    SET_NOTIFICATIONS,
+    CHANGE_NOTIFICATION_ICON
 } from '../actions/actionTypes' 
 
 const initialState = {
@@ -15,7 +17,10 @@ const initialState = {
     localId: null,
     isLoading: false,
     token: null,
-    comments: []
+    comments: [],
+    notifications: [],
+    notificationIcon: false
+
 }
 
 const reducer = (state = initialState, action) => {
@@ -77,6 +82,16 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 comments: action.payload
+            }
+        case SET_NOTIFICATIONS:
+            return {
+                ...state,
+                notifications: action.payload
+            }
+        case CHANGE_NOTIFICATION_ICON:
+            return {
+                ...state,
+                notificationIcon: !notificationIcon
             }
         default:
             // caso que nao foi alterardo nada

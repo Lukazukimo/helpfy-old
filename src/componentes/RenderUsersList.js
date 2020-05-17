@@ -23,7 +23,7 @@ class RenderUsersList extends Component {
                         
                         <Text style={styles.nickname}>{item.name} </Text>
                         <View style={styles.callContainer}>
-                            <TouchableWithoutFeedback onPress={this.props.donation} style={styles.button}>
+                            <TouchableWithoutFeedback onPress={item.donation} style={styles.button}>
                                 <Text style={styles.callButton1}> Doar para.. </Text>
                             </TouchableWithoutFeedback>
                         </View>

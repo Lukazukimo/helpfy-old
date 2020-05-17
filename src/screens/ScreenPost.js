@@ -26,6 +26,7 @@ import {
     verifyiWant,
     iWantList
 } from '../store/actions/posts'
+import { notificationUp } from '../store/actions/user'
 import AddComment from '../componentes/AddComment'
 import moment from 'moment'
 
@@ -47,6 +48,7 @@ class ScreenPost extends Component {
             timePost: this.props.navigation.state.params.timePost,
             userDonated: this.props.navigation.state.params.userDonated,
             postDonated: true,
+            postAuthorId: this.props.navigation.state.params.userId
             
         }
 
@@ -84,8 +86,8 @@ class ScreenPost extends Component {
         // }
         // // console.log('1 ', newArray)
         // // console.log('2 ', this.state.liked)
-        console.log('lista de quem quer', this.props.listiWant)
-        this.props.oniWantList(this.state.id)
+        console.log('postauthor', this.props.posts.author)
+        //this.props.oniWantList(this.state.id)
         // console.log(this.state)
         
     }
@@ -95,6 +97,9 @@ class ScreenPost extends Component {
             if (!(this.state.liked) || null){
                 this.setState({ liked : true})
                 this.props.onLike(this.props.userId, this.state.id)
+                console.log(this.props.author)
+                this.props.onNotificationUp('uR7EZ1lt9PTUwcCb4mHFSj7Bjuq2', this.props.userId, this.props.name, 'like', this.state.title)
+
             } else {
                 this.setState({ liked : false})
                 this.props.onDislike(this.props.userId, this.state.id)
@@ -330,7 +335,9 @@ const mapStateToProps = ({ posts, user }) => {
         userId: user.localId,
         posts: posts.posts,
         listiWant: posts.listiWant,
-        id: posts.id
+        id: posts.id,
+        author: posts.author,
+        postAuthorId: posts.userId
     }
 }
 
@@ -340,7 +347,7 @@ const mapDispatchToProps = dispatch => {
         onDislike: (userId, postId) => dispatch(dislike(userId, postId)),
         oniWant: (userId, postId, name) => dispatch(iWant(userId, postId, name)),
         oniDontWant: (userId, postId) => dispatch(iDontWant(userId, postId)),
-        oniWantList: (postId) => dispatch(iWantList(postId))    
+        onNotificationUp: (postUserId, userId, name, typeNotification, titlePost) => dispatch(notificationUp('uR7EZ1lt9PTUwcCb4mHFSj7Bjuq2', userId, name, typeNotification, titlePost)) 
     }
 }
 
