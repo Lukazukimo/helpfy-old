@@ -12,7 +12,8 @@ import {
     setMessages,
     getMessages,
     listenMessages,
-    stopListenMessages
+    stopListenMessages,
+    teste
 } from '../store/actions/chatMessage'
 import { connect } from 'react-redux'
 
@@ -55,6 +56,9 @@ class ChatMessage extends Component {
 
 
         console.log('Entrou no Did Mount')
+        console.log(this.state)
+        teste(this.state)
+        console.log(this.state)
 
         // Verifica qual eh o ID mairo para salvar um padrao no Firebase
         if (this.props.userId > this.state.otherUser){
@@ -79,8 +83,12 @@ class ChatMessage extends Component {
 
         // console.log(this.state)
 
-        this.setState({ eventSource: listenMessages(this.state.idMaior, this.state.idMenor, this.state) }) 
-        console.log('===================================', this.state.eventSource)
+        this.setState({ eventSource: listenMessages(this.state.idMaior, this.state.idMenor, this.state, this.updateState) }) 
+        // console.log('===================================', this.state.eventSource)
+    }
+
+    updateState = (info) => {
+        this.setState({...info})
     }
 
     componentWillUnmount = () => {
@@ -110,7 +118,7 @@ class ChatMessage extends Component {
     }
 
     render() {
-        console.log('++++++++++++++++', this.state.eventSource)
+        // console.log('++++++++++++++++', this.state.eventSource)
 
         // console.log(this.state)
         // console.log('Dentro do Render')

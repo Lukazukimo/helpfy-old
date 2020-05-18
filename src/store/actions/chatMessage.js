@@ -3,6 +3,7 @@ import RNEventSource from 'react-native-event-source'
 import {
     creatingPost
 } from '../actions/posts'
+import { setMessage } from './message'
 
 
 // export const setMessages = (userId, message)  => { 
@@ -16,9 +17,9 @@ import {
 //         }
 // }
 
-export const setMessages = async (idMaior, idMenor, message)  => {    
+export const setMessages = async (idMaior, idMenor, message) => {
     try {
-        let res = await axios.post(`/messages/${idMaior}/${idMenor}.json`, {...message})
+        let res = await axios.post(`/messages/${idMaior}/${idMenor}.json`, { ...message })
         // console.log(res)
         return true
     } catch (e) {
@@ -27,7 +28,7 @@ export const setMessages = async (idMaior, idMenor, message)  => {
     }
 }
 
-export const getMessages = async (idMaior, idMenor, state)  => {    
+export const getMessages = async (idMaior, idMenor, state) => {
     try {
         let res = await axios.get(`/messages/${idMaior}/${idMenor}.json`)
         // console.log(res)
@@ -40,7 +41,7 @@ export const getMessages = async (idMaior, idMenor, state)  => {
                 id: key
             })
         }
-        console.log('aqui eh o state ',state)
+        // console.log('aqui eh o state ',state)
         state.messages = messages.reverse()
         return state
         // if (res.data === null){
@@ -55,18 +56,22 @@ export const getMessages = async (idMaior, idMenor, state)  => {
     }
 }
 
-export const listenMessages = (idMaior, idMenor, state) => {
+export const listenMessages = (idMaior, idMenor, state, setState) => {
     let eventSource = new RNEventSource(`https://helpfy-18cd6.firebaseio.com/messages/${idMaior}/${idMenor}.json`)
     let oldData = {}
-    let count = 0        
-    eventSource.addEventListener('put',(event) => {
-        if(oldData != event.data){
+    let count = 0
+    eventSource.addEventListener('put', (event) => {
+        if (oldData != event.data) {
             // count += 1
             // console.log(count)            
             // console.log(JSON.parse(event.data))
             oldData = event.data
-            getMessages(idMaior, idMenor, state)
-            
+            getMessages(idMaior, idMenor, state).then(res => {
+                console.log(setState)
+                setState(state)
+            }
+            )
+
         }
     })
     // console.log('cheguei aqui')
@@ -77,4 +82,8 @@ export const stopListenMessages = (eventSource) => {
     eventSource.removeAllListeners()
     eventSource.close()
     console.log('Fechando Conexao')
+}
+
+export const teste = (state) => {
+    state['teste'] = true
 }
