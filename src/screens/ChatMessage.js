@@ -73,14 +73,14 @@ class ChatMessage extends Component {
             this.setState({ ...this.state })
         }
 
-        getMessages(this.state.idMaior, this.state.idMenor).then(res => {
-            this.setState({ messages: res })
+        getMessages(this.state.idMaior, this.state.idMenor, this.state).then(res => {
+            this.setState({ ...res })
         })
 
         // console.log(this.state)
 
-        this.setState({ eventSource: listenMessages(this.state.idMaior, this.state.idMenor) }) 
-        // console.log('===================================', this.state.eventSource)
+        this.setState({ eventSource: listenMessages(this.state.idMaior, this.state.idMenor, this.state) }) 
+        console.log('===================================', this.state.eventSource)
     }
 
     componentWillUnmount = () => {
@@ -110,7 +110,7 @@ class ChatMessage extends Component {
     }
 
     render() {
-        // console.log('++++++++++++++++', this.state.eventSource)
+        console.log('++++++++++++++++', this.state.eventSource)
 
         // console.log(this.state)
         // console.log('Dentro do Render')

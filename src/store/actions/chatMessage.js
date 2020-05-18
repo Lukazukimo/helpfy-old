@@ -27,7 +27,7 @@ export const setMessages = async (idMaior, idMenor, message)  => {
     }
 }
 
-export const getMessages = async (idMaior, idMenor)  => {    
+export const getMessages = async (idMaior, idMenor, state)  => {    
     try {
         let res = await axios.get(`/messages/${idMaior}/${idMenor}.json`)
         // console.log(res)
@@ -40,8 +40,9 @@ export const getMessages = async (idMaior, idMenor)  => {
                 id: key
             })
         }
-        // console.log(messages)
-        return messages.reverse()
+        console.log('aqui eh o state ',state)
+        state.messages = messages.reverse()
+        return state
         // if (res.data === null){
         //     return res.data
         // } else {
@@ -54,7 +55,7 @@ export const getMessages = async (idMaior, idMenor)  => {
     }
 }
 
-export const listenMessages = (idMaior, idMenor) => {
+export const listenMessages = (idMaior, idMenor, state) => {
     let eventSource = new RNEventSource(`https://helpfy-18cd6.firebaseio.com/messages/${idMaior}/${idMenor}.json`)
     let oldData = {}
     let count = 0        
@@ -64,7 +65,7 @@ export const listenMessages = (idMaior, idMenor) => {
             // console.log(count)            
             // console.log(JSON.parse(event.data))
             oldData = event.data
-            getMessages(idMaior, idMenor)
+            getMessages(idMaior, idMenor, state)
         }
     })
     // console.log('cheguei aqui')
