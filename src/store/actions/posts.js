@@ -342,12 +342,12 @@ export const listen = () => {
     eventSource.addEventListener('put',(event) => {
         if(oldData != event.data){
             count += 1
-            console.log(count)            
-            console.log(JSON.parse(event.data))
+            // console.log(count)            
+            // console.log(JSON.parse(event.data))
             oldData = event.data
         }
     })
-    console.log('cheguei aqui')
+    // console.log('cheguei aqui')
     return eventSource
 }
 

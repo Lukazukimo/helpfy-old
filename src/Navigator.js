@@ -23,6 +23,7 @@ import LikedScreen from './screens/LikedScreen'
 import TesteScreen from './screens/TesteScreen'
 import AddPost from './screens/AddPost'
 import Category from './screens/Category'
+import ChatMessage from './screens/ChatMessage'
 import Teste from './screens/Teste'
 
 const navOptionHandler = (navigation) =>({
@@ -148,7 +149,7 @@ const MenuRoutes = {
     },
     Message: {
         name: 'Message',
-        screen: Teste,
+        screen: ChatMessage,
         navigationOptions: {
             title: 'Message',
             tabBarIcon: ({ tintColor: color }) =>
