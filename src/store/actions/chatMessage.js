@@ -66,6 +66,7 @@ export const listenMessages = (idMaior, idMenor, state) => {
             // console.log(JSON.parse(event.data))
             oldData = event.data
             getMessages(idMaior, idMenor, state)
+            
         }
     })
     // console.log('cheguei aqui')
