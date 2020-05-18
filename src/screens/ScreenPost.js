@@ -7,7 +7,8 @@ import{
     Text,
     TouchableOpacity,
     ScrollView,
-    StatusBar
+    StatusBar,
+    Alert
 } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Icon1 from 'react-native-vector-icons/Feather'
@@ -19,8 +20,13 @@ import { connect } from 'react-redux'
 import { 
     like, 
     verifyLike,
-    dislike
+    dislike,
+    iWant,
+    iDontWant,
+    verifyiWant,
+    iWantList
 } from '../store/actions/posts'
+import { notificationUp } from '../store/actions/user'
 import AddComment from '../componentes/AddComment'
 import moment from 'moment'
 
@@ -29,7 +35,7 @@ class ScreenPost extends Component {
         super(props)
         this.state = { 
             liked: false,
-            iWant: true,
+            iWant: false,
             showIWantList: false,
             userIdLike: '',
             id: this.props.navigation.state.params.postId,
@@ -40,11 +46,21 @@ class ScreenPost extends Component {
             comments: this.props.navigation.state.params.comments,
             emailPost: this.props.navigation.state.params.emailPost,
             timePost: this.props.navigation.state.params.timePost,
+            userDonated: this.props.navigation.state.params.userDonated,
+            postDonated: true,
+            postAuthorId: this.props.navigation.state.params.userId
+            
         }
 
         verifyLike(this.props.userId, this.state.id).then(res => {
             this.setState({ liked: res})            
         })
+
+        verifyiWant(this.props.userId, this.state.id).then(res => {
+            this.setState({ iWant: res})            
+        })
+        
+
 
     }
 
@@ -70,6 +86,8 @@ class ScreenPost extends Component {
         // }
         // // console.log('1 ', newArray)
         // // console.log('2 ', this.state.liked)
+        console.log('postauthor', this.state.postAuthorId)
+        //this.props.oniWantList(this.state.id)
         // console.log(this.state)
         
     }
@@ -79,12 +97,32 @@ class ScreenPost extends Component {
             if (!(this.state.liked) || null){
                 this.setState({ liked : true})
                 this.props.onLike(this.props.userId, this.state.id)
+                console.log(this.props.author)
+                this.props.onNotificationUp(this.state.postAuthorId, this.props.userId, this.props.name, 'like', this.state.title)
+
             } else {
                 this.setState({ liked : false})
                 this.props.onDislike(this.props.userId, this.state.id)
             }
         }        
     }
+
+    changeiWant = () => {        
+        if(this.props.userId){
+            if (!(this.state.iWant) || null){
+                this.setState({ iWant : true})
+                this.props.oniWant(this.props.userId, this.state.id, this.props.name)
+            } else {
+                this.setState({ iWant : false})
+                this.props.oniDontWant(this.props.userId, this.state.id)
+            }
+        }        
+    }
+
+    handleDonation = () => {
+        Alert.alert('Clicou!', 'alo')
+    }
+
     
     render() {
         // console.log(moment(this.state.timePost).format('MMMM Do YYYY, h:mm:ss a'))
@@ -92,7 +130,7 @@ class ScreenPost extends Component {
         // console.log(moment(this.state.timePost).startOf('hour').fromNow())
         const changeIcon = this.state.liked ? 'red' : 'rgba(0, 0, 0, 0.50)'
         // const wantOrNo = this.state.iWant? styles.iWant : styles.iDontWant
-        const wantOrNoText = this.state.iWant? 'Eu quero!' : 'Eu não quero!'        
+        const wantOrNoText = this.state.iWant? 'Eu não quero!' : 'Eu quero!' 
         const addComment = this.props.name ?
             <AddComment postId={this.state.id} /> : null
 
@@ -125,47 +163,87 @@ class ScreenPost extends Component {
                     'rgba(225, 22, 94, 0.9)'
                 ]} style={styles.wantButton}>
                     <TouchableOpacity
-                        onPress={ () => this.setState({ iWant : !this.state.iWant})}>
+                        onPress={this.changeiWant}>
                         <Text style={styles.buttonText}>{wantOrNoText}</Text>	  
                     </TouchableOpacity> 
                 </LinearGradient>
             </View>
-              
-        return (            
-            <LinearGradient colors={[
-                'rgb(146, 135, 211)',
-                'rgb(124, 147, 225)',
-                'rgba(124, 147, 225, 0.8)',
-                'rgb(155, 156, 213)',
-                'rgb(162, 163, 217)',            
-                'rgba(162, 163, 217, 0.85)',
-                'rgb(162, 163, 217)',
-                'rgb(162, 163, 217)',
-                'rgba(124, 147, 225, 0.8)',
-                'rgb(124, 147, 225)',
-                'rgb(146, 135, 211)',
-                ]}
-                style={styles.container}>
-                <ScrollView>
-                    <IWantList isVisible={this.state.showIWantList} 
-                        onCancel={() => this.setState({ showIWantList: false })}/>
-                    <View style={styles.titleContainer}>
-                        <Text style={styles.titleText}>{ this.state.title }</Text>
-                    </View>                    
-                    <Image source={{ uri: this.state.image }} style={styles.image}/>
-                    <Author email={'fulano@teste.com'} nickname={ this.state.author }/>                    
-                    <View style={styles.descriptionContainer}>
-                        <Text style={styles.descriptionText}>{ this.state.description }</Text>
-                    </View>
-                    { renderButtom}
-                    
-                    <CommentPost comments={this.state.comments} />
-                    <View style={styles.comment}>
-                        { addComment }
-                    </View>
-                </ScrollView>
-                <View style={styles.tabBottomBackground} />
-            </LinearGradient>
+
+        const isPostDonated = this.state.postDonated === false ? 
+        <LinearGradient colors={[
+            'rgb(146, 135, 211)',
+            'rgb(124, 147, 225)',
+            'rgba(124, 147, 225, 0.8)',
+            'rgb(155, 156, 213)',
+            'rgb(162, 163, 217)',            
+            'rgba(162, 163, 217, 0.85)',
+            'rgb(162, 163, 217)',
+            'rgb(162, 163, 217)',
+            'rgba(124, 147, 225, 0.8)',
+            'rgb(124, 147, 225)',
+            'rgb(146, 135, 211)',
+            ]}
+            style={styles.container}>
+            <ScrollView>
+                <IWantList isVisible={this.state.showIWantList} donation={this.handleDonation} 
+                    users={this.props.listiWant}
+                    onCancel={() => this.setState({ showIWantList: false })}/>
+                <View style={styles.titleContainer}>
+                    <Text style={styles.titleText}>{ this.state.title }</Text>
+                </View>                    
+                <Image source={{ uri: this.state.image }} style={styles.image}/>
+                <Author email={'fulano@teste.com'} nickname={ this.state.author }/>                    
+                <View style={styles.descriptionContainer}>
+                    <Text style={styles.descriptionText}>{ this.state.description }</Text>
+                </View>
+                { renderButtom}
+                
+                <CommentPost comments={this.state.comments} />
+                <View style={styles.comment}>
+                    { addComment }
+                </View>
+            </ScrollView>
+            <View style={styles.tabBottomBackground} />
+        </LinearGradient> :
+        <LinearGradient colors={[
+            'rgb(146, 135, 211)',
+            'rgb(124, 147, 225)',
+            'rgba(124, 147, 225, 0.8)',
+            'rgb(155, 156, 213)',
+            'rgb(162, 163, 217)',            
+            'rgba(162, 163, 217, 0.85)',
+            'rgb(162, 163, 217)',
+            'rgb(162, 163, 217)',
+            'rgba(124, 147, 225, 0.8)',
+            'rgb(124, 147, 225)',
+            'rgb(146, 135, 211)',
+            ]}
+            style={styles.container}>
+            <ScrollView>
+                <IWantList isVisible={this.state.showIWantList} 
+                    users={this.props.listiWant} donation={this.handleDonation}
+                    onCancel={() => this.setState({ showIWantList: false })}/>
+                <View style={styles.titleContainer}>
+                    <Text style={styles.titleText}>{ this.state.title }</Text>
+                </View>                    
+                <Image source={{ uri: this.state.image }} style={styles.image}/>
+                <Author email={'fulano@teste.com'} nickname={ this.state.author }/>                    
+                <View style={styles.descriptionContainer}>
+                    <Text style={styles.descriptionText}>{ this.state.description }</Text>
+                </View>
+                { renderButtom}
+                
+                <CommentPost comments={this.state.comments} />
+                <View style={styles.comment}>
+                    { addComment }
+                </View>
+            </ScrollView>
+            <View style={styles.tabBottomBackground} />
+        </LinearGradient>
+        return (         
+            <View style={styles.container}>   
+                {isPostDonated}
+            </View>
         )
     }
 }
@@ -255,14 +333,21 @@ const mapStateToProps = ({ posts, user }) => {
         name: user.name,
         email: user.email,
         userId: user.localId,
-        posts: posts.posts,        
+        posts: posts.posts,
+        listiWant: posts.listiWant,
+        id: posts.id,
+        author: posts.author,
+        postAuthorId: posts.userId
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         onLike: (userId, postId) => dispatch(like(userId, postId)),
-        onDislike: (userId, postId) => dispatch(dislike(userId, postId))        
+        onDislike: (userId, postId) => dispatch(dislike(userId, postId)),
+        oniWant: (userId, postId, name) => dispatch(iWant(userId, postId, name)),
+        oniDontWant: (userId, postId) => dispatch(iDontWant(userId, postId)),
+        onNotificationUp: (postUserId, userId, name, typeNotification, titlePost) => dispatch(notificationUp(postUserId, userId, name, typeNotification, titlePost)) 
     }
 }
 

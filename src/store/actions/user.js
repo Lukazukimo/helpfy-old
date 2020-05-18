@@ -4,7 +4,9 @@ import {
     LOADING_USER,
     USER_LOADED,
     ADD_COMMENT_PROFILE,
-    SET_USER_COMMENTS
+    SET_USER_COMMENTS,
+    SET_NOTIFICATIONS,
+    CHANGE_NOTIFICATION_ICON
 } from './actionTypes'
 import axios from 'axios'
 import { setMessage } from './message'
@@ -132,7 +134,7 @@ export const login = user => {
 }
 
 export const addCommentProfile = payload => {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         axios.get(`users/${payload.localId}.json`)
             .catch(err => console.log(err))
             .then(res => {
@@ -151,3 +153,94 @@ export const addCommentProfile = payload => {
     //    payload
     //}
 }
+
+
+export const notificationUp = (postUserId, userId, name, typeNotification, titlePost)  => {
+    return (dispatch) => {
+        axios.get(`users/${postUserId}.json`)
+            .catch(err => console.log(err))
+            .then(res => {
+                const notifications = res.data.notifications || []
+                if (postUserId !== userId) {
+                    switch (typeNotification) {
+                        case 'comment':
+                            notifications.push({
+                                type: `${name} comentou no seu post: ${titlePost}`,
+                                name,
+                                titlePost
+                            })
+                            axios.patch(`/users/${postUserId}.json`, {notifications})
+                            .catch(err => console.log(err))
+                            .then(res => {
+                                
+                            })
+                            break 
+                        case 'iWant':
+                            notifications.push({
+                                type: `${name} deseja o item do seu post: ${titlePost}`,
+                                name,
+                                titlePost
+                            })
+                            axios.patch(`/users/${postUserId}.json`, {notifications})
+                            .catch(err => console.log(err))
+                            .then(res => {
+                               
+                            })
+                            break 
+                        case 'like':
+                            notifications.push({
+                                type: `${name} deu like no seu post: ${titlePost}`,
+                                name,
+                                titlePost
+                            })
+                            axios.patch(`/users/${postUserId}.json`, {notifications})
+                            .catch(err => console.log(err))
+                            .then(res => {
+                            })
+                            break
+                    }
+                }
+            })           
+        
+    }
+}
+
+export const fetchNotifications = localId => {
+    return dispatch => {
+        axios.get(`users/${localId}.json`)
+            .catch(err => {
+                dispatch(setMessage({
+                    title: 'Erro',
+                    text: 'Ocorreu um erro inesperado!'
+                }))
+            })
+            .then(res => {
+                console.log(res.data.notifications)
+                const rawNotifications = res.data.notifications
+                const notifications = []
+                for (let key in rawNotifications) {
+                    notifications.push({
+                        ...rawNotifications[key],
+                        id: key
+                    })
+                }
+                dispatch(setNotifications(notifications))
+
+                
+            })
+    }
+}
+
+export const setNotifications = notifications => {
+    return {
+        type: SET_NOTIFICATIONS,
+        payload: notifications
+    }
+}
+
+export const changeNotificationIcon = () => {
+    return {
+        type: CHANGE_NOTIFICATION_ICON,
+    }
+}
+

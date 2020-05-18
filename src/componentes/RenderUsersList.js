@@ -9,6 +9,7 @@ import {
 } from 'react-native'
 import { Gravatar } from 'react-native-gravatar'
 
+
 class RenderUsersList extends Component {
     render() {
         // Array de Comentario transformar em JSX
@@ -20,11 +21,11 @@ class RenderUsersList extends Component {
                         <Gravatar options={{ email: 'teste@teste.com', secure: true}}
                             style={styles.avatar} />
                         
-                        <Text style={styles.nickname}>{item.nickname} </Text>
+                        <Text style={styles.nickname}>{item.name} </Text>
                         <View style={styles.callContainer}>
-                            <TouchableWithoutFeedback style={styles.button}>
-                                    <Text style={styles.callButton1}> Doar para.. </Text>
-                                </TouchableWithoutFeedback>
+                            <TouchableWithoutFeedback onPress={item.donation} style={styles.button}>
+                                <Text style={styles.callButton1}> Doar para.. </Text>
+                            </TouchableWithoutFeedback>
                         </View>
                         <View style={styles.callContainer}>
                             <TouchableWithoutFeedback style={styles.button}>

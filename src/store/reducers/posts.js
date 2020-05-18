@@ -9,8 +9,10 @@ import {
     DEL_POSTSFILTER,
     SET_POSTSFEED,
     SET_LIKE,
+    SET_I_WANT_LIST
     
 } from '../actions/actionTypes'
+import  { Alert } from 'react-native'
 import { act } from 'react-test-renderer'
 
 const initialState = {
@@ -23,6 +25,7 @@ const initialState = {
     myPosts: [],
     postsFilter:[],
     isUploading: false,
+    listiWant:[{ name: 'alo'}, { name: '123'}]
 }
 
 const reducer = (state = initialState, action) => {
@@ -143,6 +146,11 @@ const reducer = (state = initialState, action) => {
                     }
                     return post
                 })
+            }
+        case SET_I_WANT_LIST:
+            return {    
+                ...state,
+                listiWant: action.payload
             }
         default:
             return state

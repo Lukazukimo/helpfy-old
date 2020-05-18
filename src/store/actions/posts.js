@@ -8,7 +8,8 @@ import {
     SET_POSTSFILTER,
     DEL_POSTSFILTER,
     SET_POSTSFEED,
-    SET_LIKE
+    SET_LIKE,
+    SET_I_WANT_LIST
 } from './actionTypes'
 import axios from 'axios'
 import { setMessage } from './message'
@@ -332,6 +333,82 @@ export const verifyLike = async (userId, postId)  => {
     } catch (e) {
         console.log(e)
         return false
+    }
+}
+
+export const iWant = (userId, postId, name)  => {
+    return async dispatch => {
+        // console.log(userId, postId)
+        try {
+            res = await axios.patch(`/posts/${postId}/listiWant/${userId}.json`, {
+                iWant: true,
+                name
+            })
+            
+        } catch (e) {
+            console.log(e)            
+        }
+    }
+}
+
+export const iDontWant = (userId, postId)  => {
+    return async dispatch => {
+        console.log(userId, postId)
+        try {
+            let res = await axios.delete(`/posts/${postId}/listiWant/${userId}.json`)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+}
+
+export const verifyiWant = async (userId, postId)  => {
+    console.log(userId, postId)
+    try {
+        let res = await axios.get(`/posts/${postId}/listiWant/${userId}.json`)               
+        if (res.data === null){            
+            return res.data
+        } else {
+            let [teste] = Object.values(res.data)
+            return teste
+        }        
+
+    } catch (e) {
+        console.log(e)
+        return false
+    }
+}
+
+//export const iWantList = postId => {
+//    return dispatch => {
+//        axios.get(`posts/${postId}/.json`)
+//            .catch(err => {
+//                dispatch(setMessage({
+//                    title: 'Erro',
+//                    text: 'Ocorreu um erro inesperado!'
+//                }))
+//            })
+//            .then(res => {
+//                console.log('-------------------------------------------')
+//                console.log('list i want', postId)
+//                const rawListiWant = res.data.listiWant
+//                const listiWant = []
+//                for (let key in rawListiWant) {
+//                    listiWant.push({
+//                        ...rawListiWant[key],
+//                        id: key
+//                    })
+//                }
+//                console.log('LISTA DE QUEM QUER', listiWant)
+//                dispatch(setiWantList(listiWant))
+//            })
+//    }
+//}
+
+export const setiWantList = listiWant => {
+    return {
+        type: SET_I_WANT_LIST,
+        payload: listiWant
     }
 }
 

@@ -40,7 +40,7 @@ class Profile extends Component {
 		this.props.onFetchComments(this.props.id)
 		console.log('local', this.props.localId)
 		console.log('id ',this.props.id)
-		console.log(this.props.teste, ' tela profile')
+		console.log(this.props.userId, 'POST AUTHOR')
     }
 
 	onNavigate = () => {
@@ -385,7 +385,7 @@ const mapStateToProps = ({ user, posts }) => {
 		id: user.localId,
 		posts: posts.myPosts,
 		teste: posts.postsFilter,
-		comments: user.comments
+		comments: user.comments,
 	}
 }
 
