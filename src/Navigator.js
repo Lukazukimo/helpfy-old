@@ -23,6 +23,7 @@ import LikedScreen from './screens/LikedScreen'
 import TesteScreen from './screens/TesteScreen'
 import AddPost from './screens/AddPost'
 import Category from './screens/Category'
+import ChatList from './screens/ChatList'
 import ChatMessage from './screens/ChatMessage'
 import Teste from './screens/Teste'
 
@@ -45,7 +46,11 @@ const authRouter = createStackNavigator({
 
 const loginOrProfileRouter = createSwitchNavigator({
     Profile: Profile,
-    Auth: authRouter
+    Auth: authRouter,
+    ChatMessage: {
+        screen: ChatMessage,
+        navigationOptions: navOptionHandler
+    },
 }, {
     // rota inicial
     initialRouteName: 'Auth'
@@ -99,18 +104,19 @@ const feedStack = createStackNavigator({
     initialRouteName: 'Feed',    
 })
 
-const goTesteScreen = createStackNavigator({
-    Profile: {
-        screen: Profile,
+const chatStack = createStackNavigator({
+    ChatMessage: {
+        screen: ChatMessage,
         navigationOptions: navOptionHandler
     },
-    TesteScreen: {
-        screen: TesteScreen,  
+    ChatList: {
+        screen: ChatList,  
         navigationOptions: navOptionHandler
     },
 }, {
     // rota inicial
-    initialRouteName: 'Profile',    
+    initialRouteName: 'ChatList',
+    // initialRouteName: 'ChatMessage',
 })
 
 // Quando esta na tela Search retira o tabBottomBar
@@ -149,7 +155,7 @@ const MenuRoutes = {
     },
     Message: {
         name: 'Message',
-        screen: ChatMessage,
+        screen: chatStack,
         navigationOptions: {
             title: 'Message',
             tabBarIcon: ({ tintColor: color }) =>

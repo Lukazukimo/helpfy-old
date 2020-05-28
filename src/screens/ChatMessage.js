@@ -23,7 +23,8 @@ class ChatMessage extends Component {
         super(props)
         this.state = {
             messages: [],
-            otherUser: 'uR7EZ1lt9PTUwcCb4mHFSj7Bjuq2',
+            otherUser: this.props.navigation.state.params.userId,
+            // otherUser: 'uR7EZ1lt9PTUwcCb4mHFSj7Bjuq2',
             // otherUser: 'Aem3JvZJn7OkehMcMKgCkdWtRna2',
             idMaior: '',
             idMenor: '',
@@ -56,11 +57,11 @@ class ChatMessage extends Component {
 
 
         console.log('Entrou no Did Mount')
-        console.log(this.state)
-        teste(this.state)
-        console.log(this.state)
+        // console.log(this.state)
+        // teste(this.state)
+        // console.log(this.state)
 
-        // Verifica qual eh o ID mairo para salvar um padrao no Firebase
+        // Verifica qual eh o ID maior para salvar um padrao no Firebase
         if (this.props.userId > this.state.otherUser){
             this.state = {
                 ...this.state,
@@ -82,8 +83,10 @@ class ChatMessage extends Component {
         })
 
         // console.log(this.state)
+            
+        this.setState({ eventSource: listenMessages(this.state.idMaior, this.state.idMenor, 
+            this.state, this.updateState) }) 
 
-        this.setState({ eventSource: listenMessages(this.state.idMaior, this.state.idMenor, this.state, this.updateState) }) 
         // console.log('===================================', this.state.eventSource)
     }
 
@@ -114,13 +117,21 @@ class ChatMessage extends Component {
             }
         })
 
+        // setMessages(this.state.idMenor, this.state.idMaior, messages[0]).then((param) => {
+        //     if (param) {
+        //         this.setState(previousState => ({
+        //             messages: GiftedChat.append(previousState.messages, messages),
+        //         }))
+        //     }
+        // })
+
         // console.log(messages)
     }
 
     render() {
         // console.log('++++++++++++++++', this.state.eventSource)
 
-        // console.log(this.state)
+        console.log(this.state)
         // console.log('Dentro do Render')
         // console.log(this.state)
         // console.log('------------------------')
@@ -141,7 +152,7 @@ class ChatMessage extends Component {
             messages={this.state.messages}
             onSend={messages => this.onSend(messages)}
             user={{
-                _id: this.props.userId,
+                userId: this.props.userId,
             }}
             renderInputToolbar={props => customtInputToolbar(props)}
             scrollToBottomOffset={400}

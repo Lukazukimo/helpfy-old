@@ -120,7 +120,15 @@ class Login extends Component{
                         </TouchableOpacity>
                     </LinearGradient>
                     <View style={styles.forgot}>
-                        <TouchableOpacity style={styles.forgot}>
+                        <TouchableOpacity onPress={() => {
+                            this.props.navigation.navigate(NavigationActions.navigate({
+                                routeName: 'chatStack',
+                                action: NavigationActions.navigate({ routeName: 'ChatMessage' })
+                            }))
+                            // console.log(this.props)
+                            // this.props.navigation.jumpTo('Message')
+                        }}
+                            style={styles.forgot}>
                             <Text style={styles.forgotPasswd}>Esqueci minha senha</Text>
                         </TouchableOpacity>
                     </View>

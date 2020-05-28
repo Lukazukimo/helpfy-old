@@ -63,6 +63,7 @@ class Feed extends Component {
         //     }
         // })
         // console.log('cheguei aqui')
+        // console.log(this.props.navigation.actions.navigate)
     }
 
     testeFuntion = () => {
