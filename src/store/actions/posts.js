@@ -412,6 +412,30 @@ export const setiWantList = listiWant => {
     }
 }
 
+
+export const makeRemoteRequest = async (state, setState) => {
+    try {        
+        setState({...state, loading: true})        
+        let res = await axios.get(`/posts.json`)
+        let rawPosts = res.data
+        let posts = []
+        for (let key in rawPosts) {
+            posts.push({
+                ...rawPosts[key],                                                                             
+            }) 
+        }        
+        state.data = posts,
+        state.loading = false,
+        state.arrayholder = posts
+        setState(state)        
+    } catch (e) {
+        state.error = e,
+        state.loading = false
+        setState(state)        
+        console.log(e)
+    }    
+}
+
 export const listen = () => {
     let eventSource = new RNEventSource('https://helpfy-18cd6.firebaseio.com/posts.json')
     let oldData = {}

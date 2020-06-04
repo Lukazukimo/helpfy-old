@@ -6,12 +6,16 @@ import { View,
     TouchableOpacity,
     StyleSheet,
     ScrollView,
-    Dimensions
+    Dimensions,
+    StatusBar
 } from 'react-native'
 import { ListItem, SearchBar } from 'react-native-elements'
 import Post from './Post'
 import PostCategory from './PostCategory'
 import LinearGradient from 'react-native-linear-gradient'
+import {
+    makeRemoteRequest
+} from '../store/actions/posts'
 
 class SearchList extends Component {
     constructor(props) {
@@ -20,29 +24,30 @@ class SearchList extends Component {
         this.state = {
             loading: false,
             renderResult: false,            
-            data: [{
-                // picture: require('../../assets/imgs/boat.jpg'),
-                name: {
-                    first: 'Fabio',
-                    last: 'Huang',            
-                },
-                email: 'fabio@teste',
-            },{
-                // picture: require('../../assets/imgs/boat.jpg'),
-                name: {
-                    first: 'Gabriel',
-                    last: 'Ciccotti',            
-                },
-                email: 'gabriel@teste',
-            }, {
-                // picture: require('../../assets/imgs/boat.jpg'),
-                name: {
-                    first: 'Teste',
-                    last: 'TesteLastname',            
-                },
-                email: 'teste@teste',
-            }],
-            error: null,               
+            // data: [{
+            //     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+            //     name: {
+            //         first: 'Fabio',
+            //         last: 'Huang',            
+            //     },
+            //     email: 'fabio@teste',
+            // },{
+            //     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+            //     name: {
+            //         first: 'Gabriel',
+            //         last: 'Ciccotti',            
+            //     },
+            //     email: 'gabriel@teste',
+            // }, {
+            //     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+            //     name: {
+            //         first: 'Teste',
+            //         last: 'TesteLastname',            
+            //     },
+            //     email: 'teste@teste',
+            // }],
+            data: [],
+            error: null,
             posts: [{
                 id: Math.random(),
                 image: require('../../assets/imgs/icon.png'),
@@ -83,10 +88,9 @@ class SearchList extends Component {
                 id: Math.random(),
                 image: require('../../assets/imgs/icon.png'),
                 title: 'Roupas'
-            }]
+            }],
+            arrayholder: []
         }
-
-        this.arrayholder = []
     }
 
     onNavigate = () => {
@@ -94,14 +98,19 @@ class SearchList extends Component {
     }
 
     componentDidMount() {
-        this.makeRemoteRequest()        
+        // this.makeRemoteRequest()
+        makeRemoteRequest(this.state, this.updateState)        
+    }    
+
+    updateState = (info) => {
+        this.setState({...info})
     }
 
-    makeRemoteRequest = () => {
-        this.setState({ loading: false })
-        this.arrayholder = this.state.data;
+    // makeRemoteRequest = () => {
+    //     this.setState({ loading: false })
+    //     this.arrayholder = this.state.data;
 
-    };
+    // }
 
     // makeRemoteRequest = () => {
     //     const url = `https://randomuser.me/api/?&results=20`;
@@ -139,7 +148,7 @@ class SearchList extends Component {
                 style={{
                     height: 1,
                     width: '86%',
-                    // backgroundColor: '#CED0CE',                    
+                    // backgroundColor: '#CED0CE',
                     marginLeft: '14%',
                 }}
             />
@@ -150,8 +159,8 @@ class SearchList extends Component {
         this.setState({
             value: text,
         })        
-        const newData = this.arrayholder.filter(item => {
-            const itemData = `${item.name.first.toUpperCase()} ${item.name.last.toUpperCase()}`
+        const newData = this.state.arrayholder.filter(item => {
+            const itemData = `${item.title.toUpperCase()}`
             const textData = text.toUpperCase()
             // console.log(itemData.indexOf(textData) > -1)
             return itemData.indexOf(textData) > -1
@@ -191,6 +200,7 @@ class SearchList extends Component {
     }
 
     render() {
+        console.log(this.state)
         if (this.state.loading) {
             return (
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -202,15 +212,28 @@ class SearchList extends Component {
         // caso contrario nao
         const renderResultCondition = this.state.renderResult ?            
             <FlatList
-                data={this.state.data}
-                renderItem={({ item }) => (                                           
-                    <ListItem
-                        // leftAvatar={{ source: { uri: item.picture.thumbnail } }}
-                        title={`${item.name.first} ${item.name.last}`}
-                        subtitle={item.email}
+                data={this.state.data}                
+                renderItem={({ item }) => (
+                    <ListItem                        
+                        leftAvatar={{ source: { uri: item.image } }}
+                        title={`${item.title}`}
+                        subtitle={item.author}    
                         containerStyle={{ backgroundColor: 'transparent' }}
                         titleStyle={{ color: '#fff'}}
                         subtitleStyle={{ color: '#fff'}}
+                        onPress={() => {
+                            this.props.navigation.navigate('ScreenPost', { 
+                                title: item.title,
+                                author: item.author,
+                                image: item.image,
+                                comments: item.comments,
+                                description: item.description,
+                                postId: item.id,
+                                emailPost: item.emailPost,
+                                timePost: item.timePost,
+                                userId: item.userId             
+                            })
+                        }}
                     />                    
                 )}
                 keyExtractor={item => item.email}
@@ -219,10 +242,10 @@ class SearchList extends Component {
             /> : 
             <FlatList                                
                 renderItem={({ item }) => (
-                    <ListItem                                            
-                        // leftAvatar={{ source: { uri: item.picture.thumbnail } }}
-                        title={`${item.name.first} ${item.name.last}`}
-                        subtitle={item.email}                        
+                    <ListItem                        
+                        leftAvatar={{ source: { uri: item.image } }}
+                        title={`${item.title}`}
+                        subtitle={item.author}                        
                     />
                 )}
                 keyExtractor={item => item.email}
@@ -276,7 +299,6 @@ const styles = StyleSheet.create({
     containerBack:{
         // flex: 1,
         backgroundColor: 'transparent',
-        // marginTop: 20
     },
     categoryContainer:{
         // backgroundColor: 'red',

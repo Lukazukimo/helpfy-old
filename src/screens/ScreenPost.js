@@ -170,20 +170,7 @@ class ScreenPost extends Component {
             </View>
 
         const isPostDonated = this.state.postDonated === false ? 
-        <LinearGradient colors={[
-            'rgb(146, 135, 211)',
-            'rgb(124, 147, 225)',
-            'rgba(124, 147, 225, 0.8)',
-            'rgb(155, 156, 213)',
-            'rgb(162, 163, 217)',            
-            'rgba(162, 163, 217, 0.85)',
-            'rgb(162, 163, 217)',
-            'rgb(162, 163, 217)',
-            'rgba(124, 147, 225, 0.8)',
-            'rgb(124, 147, 225)',
-            'rgb(146, 135, 211)',
-            ]}
-            style={styles.container}>
+        <View style={styles.container}>
             <ScrollView>
                 <IWantList isVisible={this.state.showIWantList} donation={this.handleDonation} 
                     users={this.props.listiWant}
@@ -204,21 +191,8 @@ class ScreenPost extends Component {
                 </View>
             </ScrollView>
             <View style={styles.tabBottomBackground} />
-        </LinearGradient> :
-        <LinearGradient colors={[
-            'rgb(146, 135, 211)',
-            'rgb(124, 147, 225)',
-            'rgba(124, 147, 225, 0.8)',
-            'rgb(155, 156, 213)',
-            'rgb(162, 163, 217)',            
-            'rgba(162, 163, 217, 0.85)',
-            'rgb(162, 163, 217)',
-            'rgb(162, 163, 217)',
-            'rgba(124, 147, 225, 0.8)',
-            'rgb(124, 147, 225)',
-            'rgb(146, 135, 211)',
-            ]}
-            style={styles.container}>
+        </View> :
+        <View style={styles.container}>
             <ScrollView>
                 <IWantList isVisible={this.state.showIWantList} 
                     users={this.props.listiWant} donation={this.handleDonation}
@@ -239,11 +213,98 @@ class ScreenPost extends Component {
                 </View>
             </ScrollView>
             <View style={styles.tabBottomBackground} />
-        </LinearGradient>
+        </View>        
+
+        // <LinearGradient colors={[
+        //     'rgb(146, 135, 211)',
+        //     'rgb(124, 147, 225)',
+        //     'rgba(124, 147, 225, 0.8)',
+        //     'rgb(155, 156, 213)',
+        //     'rgb(162, 163, 217)',            
+        //     'rgba(162, 163, 217, 0.85)',
+        //     'rgb(162, 163, 217)',
+        //     'rgb(162, 163, 217)',
+        //     'rgba(124, 147, 225, 0.8)',
+        //     'rgb(124, 147, 225)',
+        //     'rgb(146, 135, 211)',
+        //     ]}
+        //     style={styles.container}>
+        //     <ScrollView>
+        //         <IWantList isVisible={this.state.showIWantList} donation={this.handleDonation} 
+        //             users={this.props.listiWant}
+        //             onCancel={() => this.setState({ showIWantList: false })}/>
+        //         <View style={styles.titleContainer}>
+        //             <Text style={styles.titleText}>{ this.state.title }</Text>
+        //         </View>                    
+        //         <Image source={{ uri: this.state.image }} style={styles.image}/>
+        //         <Author email={'fulano@teste.com'} nickname={ this.state.author }/>                    
+        //         <View style={styles.descriptionContainer}>
+        //             <Text style={styles.descriptionText}>{ this.state.description }</Text>
+        //         </View>
+        //         { renderButtom}
+                
+        //         <CommentPost comments={this.state.comments} />
+        //         <View style={styles.comment}>
+        //             { addComment }
+        //         </View>
+        //     </ScrollView>
+        //     <View style={styles.tabBottomBackground} />
+        // </LinearGradient> :
+        // <LinearGradient colors={[
+        //     'rgb(146, 135, 211)',
+        //     'rgb(124, 147, 225)',
+        //     'rgba(124, 147, 225, 0.8)',
+        //     'rgb(155, 156, 213)',
+        //     'rgb(162, 163, 217)',            
+        //     'rgba(162, 163, 217, 0.85)',
+        //     'rgb(162, 163, 217)',
+        //     'rgb(162, 163, 217)',
+        //     'rgba(124, 147, 225, 0.8)',
+        //     'rgb(124, 147, 225)',
+        //     'rgb(146, 135, 211)',
+        //     ]}
+        //     style={styles.container}>
+        //     <ScrollView>
+        //         <IWantList isVisible={this.state.showIWantList} 
+        //             users={this.props.listiWant} donation={this.handleDonation}
+        //             onCancel={() => this.setState({ showIWantList: false })}/>
+        //         <View style={styles.titleContainer}>
+        //             <Text style={styles.titleText}>{ this.state.title }</Text>
+        //         </View>                    
+        //         <Image source={{ uri: this.state.image }} style={styles.image}/>
+        //         <Author email={'fulano@teste.com'} nickname={ this.state.author }/>                    
+        //         <View style={styles.descriptionContainer}>
+        //             <Text style={styles.descriptionText}>{ this.state.description }</Text>
+        //         </View>
+        //         { renderButtom}
+                
+        //         <CommentPost comments={this.state.comments} />
+        //         <View style={styles.comment}>
+        //             { addComment }
+        //         </View>
+        //     </ScrollView>
+        //     <View style={styles.tabBottomBackground} />
+        // </LinearGradient>
         return (         
-            <View style={styles.container}>   
+            // <View style={[styles.container, { paddingTop: 20 }]}>
+            //     {isPostDonated}
+            // </View>
+            <LinearGradient colors={[
+                'rgb(146, 135, 211)',
+                'rgb(124, 147, 225)',
+                'rgba(124, 147, 225, 0.8)',
+                'rgb(155, 156, 213)',
+                'rgb(162, 163, 217)',            
+                'rgba(162, 163, 217, 0.85)',
+                'rgb(162, 163, 217)',
+                'rgb(162, 163, 217)',
+                'rgba(124, 147, 225, 0.8)',
+                'rgb(124, 147, 225)',
+                'rgb(146, 135, 211)',
+                ]}
+                style={[styles.container, { paddingTop: 20 }]}>
                 {isPostDonated}
-            </View>
+            </LinearGradient>
         )
     }
 }
@@ -251,15 +312,16 @@ class ScreenPost extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: StatusBar.currentHeight,
+        // paddingTop: StatusBar.currentHeight,        
+        // backgroundColor: 'green'
     },
     titleContainer: {
         // paddingTop: StatusBar.currentHeight,
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft: 5,
-        marginRight: 5,
-        height: 40,
+        // marginLeft: 5,
+        // marginRight: 5,
+        height: 50,
 
         // backgroundColor: 'yellow'
     },
