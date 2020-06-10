@@ -9,7 +9,8 @@ import {
     DEL_POSTSFILTER,
     SET_POSTSFEED,
     SET_LIKE,
-    SET_I_WANT_LIST
+    SET_I_WANT_LIST,
+    SET_POST_DONATED
     
 } from '../actions/actionTypes'
 import  { Alert } from 'react-native'
@@ -25,7 +26,7 @@ const initialState = {
     myPosts: [],
     postsFilter:[],
     isUploading: false,
-    listiWant:[{ name: 'alo'}, { name: '123'}]
+    listiWant:[],
 }
 
 const reducer = (state = initialState, action) => {
@@ -151,6 +152,11 @@ const reducer = (state = initialState, action) => {
             return {    
                 ...state,
                 listiWant: action.payload
+            }
+        case SET_POST_DONATED:
+            return {
+                ...state,
+                postDonated: action.payload
             }
         default:
             return state

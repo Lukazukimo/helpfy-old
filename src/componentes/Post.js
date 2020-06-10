@@ -32,7 +32,8 @@ class Post extends Component {
                             postId: this.props.id,
                             emailPost: this.props.emailPost,
                             timePost: this.props.timePost,
-                            userId: this.props.userId             
+                            userId: this.props.userId,
+                            postDonated: this.props.postDonated             
                         })
                         this.onNavigate()}}>
                     <Image source={{ uri: this.props.image }} style={this.props.tamanho}/>

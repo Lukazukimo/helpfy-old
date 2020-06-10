@@ -11,6 +11,7 @@ import {
     StatusBar
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Feather'
+import { setNotificationIcon } from "../store/actions/user"
 
 class Header extends Component {
     
@@ -32,7 +33,7 @@ class Header extends Component {
                 <View style={styles.iconContainer}>
                     <TouchableOpacity style={styles.icon}
                         onPress={() => this.props.navigation.navigate('Notification')}>
-                        <Icon name={notificationIcon} size={30} color='rgb(84, 76, 126)'/>
+                        <Icon name={this.props.notificationIcon} size={30} color='rgb(84, 76, 126)'/>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.icon}
                         onPress={() => this.props.navigation.navigate('Search')}>                        
@@ -103,10 +104,16 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = ({ user }) => {
     return {
-        email: user.email,
-        notificationIcon: user.notificationIcon        
+        id: user.localId,
+        notificationIcon: user.notificationIcon
     }
 }
 
-// export default Header
-export default connect(mapStateToProps, null)(Header)
+const mapDispatchToProps = dispatch => {
+	return {
+        onSetNotificationIcon: (id) =>  dispatch(setNotificationIcon(id))
+	}
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

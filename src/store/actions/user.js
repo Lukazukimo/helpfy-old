@@ -238,9 +238,44 @@ export const setNotifications = notifications => {
     }
 }
 
-export const changeNotificationIcon = () => {
-    return {
-        type: CHANGE_NOTIFICATION_ICON,
+export const changeNotificationIcon = (postUserId, typeNotification) => {
+    return (dispatch) => {
+        console.log('wtf????????')
+        axios.get(`users/${postUserId}.json`)
+            .catch(err => console.log(err))
+            .then(res => {
+                if (typeNotification) {
+                    axios.patch(`/users/${postUserId}.json`, { typeNotification })
+                }
+                else {
+                    axios.patch(`/users/${postUserId}.json`, { typeNotification })
+
+                }
+            })
+            
     }
 }
 
+export const setNotificationIcon = (postUserId) => {
+        return (dispatch) => {
+            axios.get(`users/${postUserId}.json`)
+                .catch(err => console.log(err))
+                .then(res => {
+                    console.log('-------------------------------------------------')
+                    if (res.data.typeNotification) {
+                        dispatch(setChangeNotificationIcon('bell'))
+                    }
+                    else {
+                        dispatch(setChangeNotificationIcon('bell-off'))
+                    }
+                })
+                
+        }
+    }
+
+export const setChangeNotificationIcon = notificationIcon => {
+    return {
+        type: CHANGE_NOTIFICATION_ICON,
+        payload: notificationIcon
+    }
+}

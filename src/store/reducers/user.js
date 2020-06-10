@@ -19,7 +19,7 @@ const initialState = {
     token: null,
     comments: [],
     notifications: [],
-    notificationIcon: false
+    notificationIcon: 'bell-off'
 
 }
 
@@ -91,7 +91,7 @@ const reducer = (state = initialState, action) => {
         case CHANGE_NOTIFICATION_ICON:
             return {
                 ...state,
-                notificationIcon: !notificationIcon
+                notificationIcon: action.payload
             }
         default:
             // caso que nao foi alterardo nada

@@ -5,17 +5,26 @@ import {
     StyleSheet,
     ScrollView,
     TouchableWithoutFeedback, 
-    Dimensions   
+    Dimensions,
+    Alert   
 } from 'react-native'
 import { Gravatar } from 'react-native-gravatar'
-
+import { connect } from 'react-redux'
+import { 
+    patchPostDonated
+} from '../store/actions/posts'
 
 class RenderUsersList extends Component {
+
+    componentDidMount = () => {
+        console.log('idpostttt', this.props.listiWant)
+    }
+
     render() {
         // Array de Comentario transformar em JSX
         let view = null
-        if(this.props.users) {
-            view = this.props.users.map((item, index) => {
+        if(this.props.listiWant) {
+            view = this.props.listiWant.map((item, index) => {
                 return(
                     <View style={styles.listContainer} key={index}>
                         <Gravatar options={{ email: 'teste@teste.com', secure: true}}
@@ -23,7 +32,11 @@ class RenderUsersList extends Component {
                         
                         <Text style={styles.nickname}>{item.name} </Text>
                         <View style={styles.callContainer}>
-                            <TouchableWithoutFeedback onPress={item.donation} style={styles.button}>
+                            <TouchableWithoutFeedback 
+                                onPress={() => {
+                                    this.props.onPatchPostDonated(this.props.idPost, item.name)}
+                                }
+                                style={styles.button}>
                                 <Text style={styles.callButton1}> Doar para.. </Text>
                             </TouchableWithoutFeedback>
                         </View>
@@ -106,4 +119,16 @@ const styles = StyleSheet.create({
     }
 })
 
-export default RenderUsersList
+const mapStateToProps = ({ posts }) => {
+    return {
+        listiWant: posts.listiWant,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onPatchPostDonated: (idPost, username) => dispatch(patchPostDonated(idPost, username)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RenderUsersList)
