@@ -10,7 +10,6 @@ import RenderUsersList from './RenderUsersList'
 
 
 export default class IWantList extends Component {
-    
 
     render() {
 
@@ -21,7 +20,7 @@ export default class IWantList extends Component {
                     <View style={styles.background} />
                 </TouchableWithoutFeedback>
                 <View style={styles.modal}> 
-                    <RenderUsersList donation={this.props.donation} users={this.props.users}/>
+                    <RenderUsersList idPost={this.props.idPost} />
                 </View>
                 <TouchableWithoutFeedback onPress={this.props.onCancel}> 
                     <View style={styles.background} />

@@ -24,9 +24,9 @@ import {
     iWant,
     iDontWant,
     verifyiWant,
-    iWantList
+    iWantList,
 } from '../store/actions/posts'
-import { notificationUp } from '../store/actions/user'
+import { notificationUp, changeNotificationIcon } from '../store/actions/user'
 import AddComment from '../componentes/AddComment'
 import moment from 'moment'
 
@@ -47,9 +47,8 @@ class ScreenPost extends Component {
             emailPost: this.props.navigation.state.params.emailPost,
             timePost: this.props.navigation.state.params.timePost,
             userDonated: this.props.navigation.state.params.userDonated,
-            postDonated: true,
-            postAuthorId: this.props.navigation.state.params.userId
-            
+            postAuthorId: this.props.navigation.state.params.userId,
+            postDonated: this.props.navigation.state.params.postDonated
         }
 
         verifyLike(this.props.userId, this.state.id).then(res => {
@@ -60,7 +59,6 @@ class ScreenPost extends Component {
             this.setState({ iWant: res})            
         })
         
-
 
     }
 
@@ -86,10 +84,11 @@ class ScreenPost extends Component {
         // }
         // // console.log('1 ', newArray)
         // // console.log('2 ', this.state.liked)
-        console.log('postauthor', this.state.postAuthorId)
         //this.props.oniWantList(this.state.id)
         // console.log(this.state)
-        
+        this.props.oniWantList(this.state.id)
+        console.log('postdonated', this.state.postDonated)
+
     }
 
     changeLike = () => {        
@@ -99,6 +98,7 @@ class ScreenPost extends Component {
                 this.props.onLike(this.props.userId, this.state.id)
                 console.log(this.props.author)
                 this.props.onNotificationUp(this.state.postAuthorId, this.props.userId, this.props.name, 'like', this.state.title)
+                this.props.onChangeNotificationIcon(this.state.postAuthorId, true)
 
             } else {
                 this.setState({ liked : false})
@@ -119,9 +119,7 @@ class ScreenPost extends Component {
         }        
     }
 
-    handleDonation = () => {
-        Alert.alert('Clicou!', 'alo')
-    }
+
 
     
     render() {
@@ -169,17 +167,17 @@ class ScreenPost extends Component {
                 </LinearGradient>
             </View>
 
-        const isPostDonated = this.state.postDonated === false ? 
+        const isPostDonated = this.state.postDonated === undefined ? 
         <View style={styles.container}>
             <ScrollView>
-                <IWantList isVisible={this.state.showIWantList} donation={this.handleDonation} 
-                    users={this.props.listiWant}
+                <IWantList isVisible={this.state.showIWantList}
+                    idPost={this.state.id}
                     onCancel={() => this.setState({ showIWantList: false })}/>
                 <View style={styles.titleContainer}>
                     <Text style={styles.titleText}>{ this.state.title }</Text>
                 </View>                    
                 <Image source={{ uri: this.state.image }} style={styles.image}/>
-                <Author email={'fulano@teste.com'} nickname={ this.state.author }/>                    
+                <Author email={'fulano@teste.com'} nickname={ 'aloalo'}/>                    
                 <View style={styles.descriptionContainer}>
                     <Text style={styles.descriptionText}>{ this.state.description }</Text>
                 </View>
@@ -195,7 +193,7 @@ class ScreenPost extends Component {
         <View style={styles.container}>
             <ScrollView>
                 <IWantList isVisible={this.state.showIWantList} 
-                    users={this.props.listiWant} donation={this.handleDonation}
+                    idPost={this.state.id}
                     onCancel={() => this.setState({ showIWantList: false })}/>
                 <View style={styles.titleContainer}>
                     <Text style={styles.titleText}>{ this.state.title }</Text>
@@ -409,7 +407,9 @@ const mapDispatchToProps = dispatch => {
         onDislike: (userId, postId) => dispatch(dislike(userId, postId)),
         oniWant: (userId, postId, name) => dispatch(iWant(userId, postId, name)),
         oniDontWant: (userId, postId) => dispatch(iDontWant(userId, postId)),
-        onNotificationUp: (postUserId, userId, name, typeNotification, titlePost) => dispatch(notificationUp(postUserId, userId, name, typeNotification, titlePost)) 
+        oniWantList: (userId) => dispatch(iWantList(userId)),
+        onNotificationUp: (postUserId, userId, name, typeNotification, titlePost) => dispatch(notificationUp(postUserId, userId, name, typeNotification, titlePost)), 
+        onChangeNotificationIcon: (postUserId, typeNotification) =>  dispatch(changeNotificationIcon(postUserId, typeNotification)),
     }
 }
 
