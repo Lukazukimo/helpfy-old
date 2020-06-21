@@ -25,6 +25,7 @@ import AddPost from './screens/AddPost'
 import Category from './screens/Category'
 import ChatList from './screens/ChatList'
 import ChatMessage from './screens/ChatMessage'
+import LeaderBoard from './screens/LeaderBoard'
 import Teste from './screens/Teste'
 
 const navOptionHandler = (navigation) =>({
@@ -210,7 +211,14 @@ const Drawer = createDrawerNavigator({
                 <Icon name='heart' size={23} color={ tintColor } />
         }
     },
-
+    Board: {
+        screen: LeaderBoard,
+        navigationOptions: {
+            title: 'Classificação',
+            drawerIcon:({ tintColor }) =>
+                <Icon name='heart' size={23} color={ tintColor } />
+        }
+    },
     SignOut: {
         screen: MenuNavigator,
         navigationOptions: {

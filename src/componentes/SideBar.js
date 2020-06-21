@@ -5,11 +5,13 @@ import {
     StyleSheet,
     ScrollView,
     ImageBackground,
-    Image,    
+    Image,
+    Dimensions
 } from 'react-native'
 import { DrawerItems } from 'react-navigation'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { connect } from 'react-redux'
+import * as Progress from 'react-native-progress'
 
 export const SideBar = props => (
     <ScrollView>
@@ -24,8 +26,12 @@ export const SideBar = props => (
                 numberOfLines={2}>{props.name}</Text>
 
             <View style={styles.perfilContainer}>
-                <Text style={styles.followers}>734 Followers</Text>
-                <Icon name='md-people' size={16} color="rgba(255, 255, 255, 0.8)"/>
+                {/* <Text style={styles.followers}>734 Followers</Text>
+                <Icon name='md-people' size={16} color="rgba(255, 255, 255, 0.8)"/> */}
+                <Progress.Bar progress={0.3}                    
+                    borderRadius={0}
+                    height={10}
+                    width={Dimensions.get('window').width * 3/5} />
             </View>
         </ImageBackground>
 
@@ -42,7 +48,9 @@ const styles = StyleSheet.create({
         paddingTop: 45,        
     },
     perfilContainer: {
-        flexDirection: 'row',        
+        flexDirection: 'row',
+        justifyContent: "center",
+        // backgroundColor: 'red'
     },
     container: {
         flex: 1,    
