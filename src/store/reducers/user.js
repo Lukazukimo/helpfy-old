@@ -19,8 +19,8 @@ const initialState = {
     token: null,
     comments: [],
     notifications: [],
-    notificationIcon: 'bell-off'
-
+    notificationIcon: 'bell-off',
+    highScore: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -35,7 +35,8 @@ const reducer = (state = initialState, action) => {
                 email: action.payload.email,
                 birthDate: action.payload.birthDate,
                 stateLocation: action.payload.stateLocation,
-                localId: action.payload.localId
+                localId: action.payload.localId,
+                highScore: action.payload.highScore
                 // token: action.payload.token
             }
         case USER_LOGGED_OUT:
@@ -47,6 +48,7 @@ const reducer = (state = initialState, action) => {
                 birthDate: null,
                 stateLocation: null,
                 localId: null,
+                highScore: 0
                 // state: null,
                 // ...initialState
             }

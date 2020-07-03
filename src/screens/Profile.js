@@ -41,6 +41,7 @@ class Profile extends Component {
 		console.log('local', this.props.localId)
 		console.log('id ',this.props.id)
 		console.log(this.props.userId, 'POST AUTHOR')
+		console.log(this.props)
     }
 
 	onNavigate = () => {
@@ -386,6 +387,7 @@ const mapStateToProps = ({ user, posts }) => {
 		posts: posts.myPosts,
 		teste: posts.postsFilter,
 		comments: user.comments,
+		highScore: user.highScore
 	}
 }
 

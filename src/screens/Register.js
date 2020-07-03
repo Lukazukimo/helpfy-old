@@ -22,7 +22,8 @@ class Register extends Component{
         birthDate: '',
         stateLocation: '',
         password: '',
-        passwordConfirm: ''
+        passwordConfirm: '',
+        highScore: 0
     }
 
     render(){

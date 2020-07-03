@@ -32,6 +32,7 @@ export const createUser = user => {
                         email: user.email,
                         birthDate: user.birthDate,
                         stateLocation: user.stateLocation,
+                        highScore: user.highScore
                     })
                         .catch(err => console.log(err))                        
                         .then(() => {
@@ -111,7 +112,7 @@ export const login = user => {
         })
             .catch(err => console.log(err))
             .then(res => {
-                // console.log(res)
+                // console.log(res.data)
                 if (res.data.localId) {
                     user.token = res.data.idToken
                     user.localId = res.data.localId
@@ -119,11 +120,14 @@ export const login = user => {
                         .catch(err => console.log(err))
                         .then(res => {
                             // user.password = null
+                            console.log('Mensagem dentro do Login')
+                            console.log(res.data)
                             delete user.password
                             user.name = res.data.name,
                             user.email = res.data.email,
                             user.birthDate = res.data.birthDate,
                             user.stateLocation = res.data.stateLocation,
+                            user.highScore = res.data.highScore
                             // console.log(user)
                             dispatch(userLogged(user))
                             dispatch(userLoaded())
