@@ -45,6 +45,7 @@ export const addPost = post => {
                     .then(res => {
                         dispatch(getPostsFeed())
                         dispatch(postCreated())
+                        dispatch(addScore(post.userId))
                         // console.log(res.data.name)
                         // axios.patch(`/posts/${res.data.name}.json`, {
                         //     id: res.data.name
@@ -471,5 +472,20 @@ export const patchPostDonated = (idPost, username) => {
             const postDonated = username
             axios.patch(`posts/${idPost}/.json`, { postDonated })
         })
+    }
+}
+
+export const addScore = (userId) => {
+    return async dispatch => {
+        try 
+        {
+            let res = await axios.get(`/users/${userId}/highScore.json?`)
+            let score = res.data + 1            
+            res = await axios.patch(`/users/${userId}/.json?`, { 
+                highScore: score 
+            })
+        } catch(e) {
+            console.log(e)
+        }
     }
 }

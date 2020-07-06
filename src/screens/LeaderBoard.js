@@ -11,7 +11,8 @@ import {
 } from 'react-native'
 import Leaderboard from 'react-native-leaderboard'
 import {
-    getNames
+    getNames,
+    getScoreBar
 } from '../store/actions/leaderBoard'
 import { connect } from 'react-redux'
 
@@ -117,6 +118,7 @@ class LeaderBoard extends Component {
                 }
             })
         })
+        // getScoreBar('iKOkUKM1AAXDQYytondeLXjDqM03')
     }
 
     render() {        
