@@ -10,7 +10,7 @@ import {
     SET_POSTSFEED,
     SET_LIKE,
     SET_I_WANT_LIST,
-    SET_POST_DONATED
+    SET_IS_VISIBLE
     
 } from '../actions/actionTypes'
 import  { Alert } from 'react-native'
@@ -27,6 +27,7 @@ const initialState = {
     postsFilter:[],
     isUploading: false,
     listiWant:[],
+    isVisible: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -153,10 +154,10 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 listiWant: action.payload
             }
-        case SET_POST_DONATED:
+        case SET_IS_VISIBLE:
             return {
                 ...state,
-                postDonated: action.payload
+                isVisible: action.payload
             }
         default:
             return state

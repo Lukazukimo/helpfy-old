@@ -25,6 +25,7 @@ import {
     iDontWant,
     verifyiWant,
     iWantList,
+    setIsVisible
 } from '../store/actions/posts'
 import { notificationUp, changeNotificationIcon } from '../store/actions/user'
 import AddComment from '../componentes/AddComment'
@@ -87,7 +88,8 @@ class ScreenPost extends Component {
         //this.props.oniWantList(this.state.id)
         // console.log(this.state)
         this.props.oniWantList(this.state.id)
-        console.log('postdonated', this.state.postDonated)
+        console.log('postdonated', Boolean(this.state.postDonated) )
+        console.log('idpostttt111', this.props.isVisible)
 
     }
 
@@ -141,7 +143,7 @@ class ScreenPost extends Component {
                     'rgba(225, 22, 94, 0.9)'
                 ]} style={styles.listButton}>
                     <TouchableOpacity
-                        onPress={() => this.setState({ showIWantList: true })}>
+                        onPress={() => this.props.onSetIsVisible(true)}>
                         <Text style={styles.buttonText}>Lista de Pessoas</Text>	  
                     </TouchableOpacity> 
                 </LinearGradient>
@@ -170,9 +172,13 @@ class ScreenPost extends Component {
         const isPostDonated = this.state.postDonated === undefined ? 
         <View style={styles.container}>
             <ScrollView>
-                <IWantList isVisible={this.state.showIWantList}
+                <IWantList visible={this.state.show}
                     idPost={this.state.id}
-                    onCancel={() => this.setState({ showIWantList: false })}/>
+                    onCancel={() => {
+                        if (this.props.isVisible || this.state.showIWantList) {
+                            this.setState({ showIWantList: false })}
+                        }
+                    }/>
                 <View style={styles.titleContainer}>
                     <Text style={styles.titleText}>{ this.state.title }</Text>
                 </View>                    
@@ -192,9 +198,9 @@ class ScreenPost extends Component {
         </View> :
         <View style={styles.container}>
             <ScrollView>
-                <IWantList isVisible={this.state.showIWantList} 
+                <IWantList visible={this.props.isVisible} 
                     idPost={this.state.id}
-                    onCancel={() => this.setState({ showIWantList: false })}/>
+                    onCancel={() => this.props.onSetIsVisible(false)}/>
                 <View style={styles.titleContainer}>
                     <Text style={styles.titleText}>{ this.state.title }</Text>
                 </View>                    
@@ -397,7 +403,8 @@ const mapStateToProps = ({ posts, user }) => {
         listiWant: posts.listiWant,
         id: posts.id,
         author: posts.author,
-        postAuthorId: posts.userId
+        postAuthorId: posts.userId,
+        isVisible: posts.isVisible
     }
 }
 
@@ -410,6 +417,7 @@ const mapDispatchToProps = dispatch => {
         oniWantList: (userId) => dispatch(iWantList(userId)),
         onNotificationUp: (postUserId, userId, name, typeNotification, titlePost) => dispatch(notificationUp(postUserId, userId, name, typeNotification, titlePost)), 
         onChangeNotificationIcon: (postUserId, typeNotification) =>  dispatch(changeNotificationIcon(postUserId, typeNotification)),
+        onSetIsVisible: (visible) => dispatch(setIsVisible(visible)),
     }
 }
 

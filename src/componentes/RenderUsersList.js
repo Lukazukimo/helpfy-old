@@ -11,14 +11,16 @@ import {
 import { Gravatar } from 'react-native-gravatar'
 import { connect } from 'react-redux'
 import { 
-    patchPostDonated
+    patchPostDonated,
+    setIsVisible
 } from '../store/actions/posts'
 
 class RenderUsersList extends Component {
 
     componentDidMount = () => {
-        console.log('idpostttt', this.props.listiWant)
+        console.log('idpostttt', this.props.isVisible)
     }
+
 
     render() {
         // Array de Comentario transformar em JSX
@@ -34,8 +36,12 @@ class RenderUsersList extends Component {
                         <View style={styles.callContainer}>
                             <TouchableWithoutFeedback 
                                 onPress={() => {
-                                    this.props.onPatchPostDonated(this.props.idPost, item.name)}
+                                    this.props.onPatchPostDonated(this.props.idPost, item.name)
+                                    this.props.onSetIsVisible(false)
                                 }
+
+                                }
+
                                 style={styles.button}>
                                 <Text style={styles.callButton1}> Doar para.. </Text>
                             </TouchableWithoutFeedback>
@@ -128,6 +134,7 @@ const mapStateToProps = ({ posts }) => {
 const mapDispatchToProps = dispatch => {
     return {
         onPatchPostDonated: (idPost, username) => dispatch(patchPostDonated(idPost, username)),
+        onSetIsVisible: (visible) => dispatch(setIsVisible(visible)),
     }
 }
 

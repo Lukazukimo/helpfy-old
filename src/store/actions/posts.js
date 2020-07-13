@@ -10,7 +10,7 @@ import {
     SET_POSTSFEED,
     SET_LIKE,
     SET_I_WANT_LIST,
-    SET_POST_DONATED
+    SET_IS_VISIBLE
 } from './actionTypes'
 import axios from 'axios'
 import { setMessage } from './message'
@@ -472,6 +472,13 @@ export const patchPostDonated = (idPost, username) => {
             const postDonated = username
             axios.patch(`posts/${idPost}/.json`, { postDonated })
         })
+    }
+}
+
+export const setIsVisible = visible =>  {
+    return {
+        type: SET_IS_VISIBLE,
+        payload: visible
     }
 }
 
